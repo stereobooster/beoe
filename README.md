@@ -40,3 +40,11 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
   - https://bestofjs.org/projects/lru-cache
   - https://bestofjs.org/projects/micro-memoize
   - https://bestofjs.org/projects/kvjs
+
+## Diagrams
+
+- https://github.com/remcohaszing/mermaid-isomorphic
+- https://github.com/hikerpig/pintora
+- https://github.com/plantuml/plantuml.js
+- https://www.npmjs.com/package/@hpcc-js/wasm
+- etc.
