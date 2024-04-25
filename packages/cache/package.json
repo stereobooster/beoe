@@ -1,0 +1,39 @@
+{
+  "name": "@datt/cache",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "rehype plugin",
+  "author": "stereobooster",
+  "license": "MIT",
+  "homepage": "https://github.com/stereobooster/datt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/datt.git",
+    "directory": "packages/cache"
+  },
+  "bugs": "https://github.com/stereobooster/datt/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "exports": {
+    "types": "./dist/index.d.js",
+    "default": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "vitest",
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "better-sqlite3": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.3"
+  }
+}

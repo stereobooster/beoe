@@ -5,7 +5,7 @@ import { rehypeCodeHook } from "@datt/rehype-code-hook";
 
 const graphviz = await Graphviz.load();
 
-export const rehypeGraphviz: Plugin<[{}], Root> = (_options) => {
+export const rehypeGraphviz: Plugin<[{}], Root> = () => {
   // @ts-expect-error
   return rehypeCodeHook({
     code: ({ language, code }) => {
