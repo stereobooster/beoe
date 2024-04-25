@@ -11,10 +11,10 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 ## TODO
 
-- [ ] monorepo setup (pnpm, Turbo)
-- [ ] rehype-code-hook
-  - template for modern rehype/remark plugin with Typescript?
-  - tests
+- [x] rehype-code-hook
+- [ ] cache
+- [ ] remark-code-hook
+- [ ] first rehype diagram integration
 
 ## Notes
 

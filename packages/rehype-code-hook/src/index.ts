@@ -39,7 +39,7 @@ function replace(
   }
 }
 
-export type Props = {
+export type RehypeCodeHookProps = {
   code: string;
   inline: boolean;
   language?: string;
@@ -47,7 +47,7 @@ export type Props = {
 };
 
 export type RehypeCodeHookOptions = {
-  code: (x: Props) => NewNode;
+  code: (x: RehypeCodeHookProps) => NewNode;
 };
 
 export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (

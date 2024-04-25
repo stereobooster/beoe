@@ -1,3 +1,3 @@
-# rehype-code-hook
+# rehype-graphviz
 
 TODO: usage example
