@@ -1,0 +1,26 @@
+{
+  "name": "datt",
+  "version": "1.0.0",
+  "description": "Diagram All The Things",
+  "author": "stereobooster",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "@types/node": "^20.12.7",
+    "turbo": "^1.10.16",
+    "typescript": "^5.4.5",
+    "unbuild": "^2.0.0",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^1.5.2"
+  },
+  "scripts": {
+    "test": "turbo run test",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "clean": "turbo run clean",
+    "tsc": "turbo run tsc"
+  }
+}

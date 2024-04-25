@@ -1,0 +1,59 @@
+{
+  "name": "@datt/rehype-code-hook",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "rehype plugin",
+  "author": "stereobooster",
+  "license": "MIT",
+  "homepage": "https://github.com/stereobooster/datt",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/datt.git",
+    "directory": "packages/rehype-code-hook"
+  },
+  "bugs": "https://github.com/stereobooster/datt/issues",
+  "keywords": [
+    "rehype"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "prepublishOnly": "unbuild"
+  },
+  "dependencies": {
+    "@types/hast": "^3.0.4",
+    "hast-util-from-html-isomorphic": "^2.0.0",
+    "hast-util-to-string": "^3.0.0",
+    "hast-util-to-text": "^4.0.2",
+    "unified": "^11.0.4",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "rehype-raw": "^7.0.0",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0"
+  }
+}

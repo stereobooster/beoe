@@ -31,6 +31,9 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
   - optional https://github.com/Brooooooklyn/snappy
   - optional https://github.com/OneIdentity/zstd-js
   - https://github.com/bokuweb/zstd-wasm
+  - https://github.com/antoniomuso/lz4-napi
+  - https://github.com/PSeitz/lz4-wasm
+    - https://github.com/PSeitz/lz4_flex
 - namespace?
 - other
   - https://keyv.org/docs/
@@ -48,3 +51,17 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - https://github.com/plantuml/plantuml.js
 - https://www.npmjs.com/package/@hpcc-js/wasm
 - etc.
+
+## Other
+
+- https://github.com/shreshthmohan/rehype-color-chips
+- https://github.com/mapbox/rehype-highlight-code-block
+- https://github.com/rehypejs/rehype-highlight (lowlight, js)
+- https://shiki.matsu.io/packages/rehype (shiki, ts)
+  - https://github.com/rsclarke/rehype-shiki (old)
+  - https://rehype-pretty.pages.dev/
+- https://github.com/haze/rehype-tree-sitter (tree-sitter, js)
+- https://www.npmjs.com/package/rehype-prism (prism, ts)
+  - https://www.npmjs.com/package/rehype-prism-plus
+- https://github.com/Microflash/rehype-starry-night (starry-night, js)
+- https://github.com/svg/svgo
