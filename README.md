@@ -38,14 +38,21 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 ---
 
-- [ ] add classes to output (to SVG or wrapping div)
-  - use classes to show how to style (dark mode maybe)
-- [ ] shared cache
-  - use it in demo
+- [ ] astro-graphviz should use shared cache
+- [ ] rehype-graphviz - pass shared cache in config?
+- It's anoyingly a lot subpackages, for graphviz there is:
+  - graphviz
+  - rehype-graphviz
+  - astro-graphviz
+  - should I pack `graphviz` inside `rehype-graphviz` and make `astro-graphviz` dependent on `rehype-graphviz`
+    - plus re-export `rehype-graphviz` with preconfigured shared cache?
+- shared cache can use `cosmiconfig` to load configuration
+  - rename `cache` to `SQLiteCache`
+  - and make cache a package with shared cache and `cosmiconfig` configuration
+    - store shared cache on disk, for example, `.datt/cache.sqlite` or `.astro/datt.sqlite` or `node_modules`
 
 ## Other
 
 - https://github.com/svg/svgo
-- https://github.com/kangax/html-minifier
 - https://github.com/Microflash/fenceparser
 - https://github.com/frencojobs/fenceparser
