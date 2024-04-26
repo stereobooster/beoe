@@ -10,9 +10,10 @@ export type RehypeGraphvizConfig = {
   cache?: MapLike;
 };
 
-export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig], Root> = (
-  options
-) => {
+export const rehypeGraphviz: Plugin<
+  [RehypeGraphvizConfig?],
+  Root
+> = (options = {}) => {
   // @ts-expect-error
   return rehypeCodeHook({
     // intentionally do not pass cache to rehypeCodeHook

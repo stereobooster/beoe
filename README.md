@@ -17,11 +17,10 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] SQLiteCache
 - [x] astro-graphviz
 - [x] cache
+- [x] rehype-pintora
 - [ ] astro components need to render something in case of error?
   - maybe not - it can just show default Astro error message
 - [ ] what about cache collisions?
-- [ ] rehype-pintora
-  - https://github.com/hikerpig/pintora
 - [ ] rehype-mermaid
   - https://github.com/remcohaszing/mermaid-isomorphic
   - it makes sense only with cache
