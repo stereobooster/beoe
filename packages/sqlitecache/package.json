@@ -2,18 +2,18 @@
   "name": "@datt/sqlitecache",
   "type": "module",
   "version": "0.0.1",
-  "description": "rehype plugin",
+  "description": "persistent LRU TTL cache based on SQLite",
+  "keywords": [
+    "cache",
+    "sqlite"
+  ],
   "author": "stereobooster",
   "license": "MIT",
-  "homepage": "https://github.com/stereobooster/datt",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
     "directory": "packages/sqlitecache"
   },
-  "bugs": "https://github.com/stereobooster/datt/issues",
-  "keywords": [],
-  "sideEffects": false,
   "exports": {
     "types": "./dist/index.d.js",
     "default": "./dist/index.js"

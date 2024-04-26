@@ -2,19 +2,17 @@
   "name": "@datt/rehype-code-hook",
   "type": "module",
   "version": "0.0.1",
-  "description": "rehype plugin",
+  "description": "rehype plugin for code fences",
+  "keywords": [
+    "rehype"
+  ],
   "author": "stereobooster",
   "license": "MIT",
-  "homepage": "https://github.com/stereobooster/datt",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
     "directory": "packages/rehype-code-hook"
   },
-  "bugs": "https://github.com/stereobooster/datt/issues",
-  "keywords": [
-    "rehype"
-  ],
   "sideEffects": false,
   "exports": {
     "types": "./dist/index.d.js",

@@ -2,20 +2,18 @@
   "name": "@datt/rehype-graphviz",
   "type": "module",
   "version": "0.0.1",
-  "description": "rehype plugin",
+  "description": "rehype graphviz plugin",
+  "keywords": [
+    "rehype",
+    "graphviz"
+  ],
   "author": "stereobooster",
   "license": "MIT",
-  "homepage": "https://github.com/stereobooster/datt",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
     "directory": "packages/rehype-graphviz"
   },
-  "bugs": "https://github.com/stereobooster/datt/issues",
-  "keywords": [
-    "rehype",
-    "graphviz"
-  ],
   "sideEffects": false,
   "exports": {
     "types": "./dist/index.d.js",

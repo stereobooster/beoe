@@ -1,7 +1,12 @@
 {
   "name": "@datt/astro-graphviz",
   "version": "0.0.1",
-  "description": "astro component",
+  "description": "astro graphviz component",
+  "keywords": [
+    "astro",
+    "astro-component",
+    "graphviz"
+  ],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
@@ -9,13 +14,7 @@
     "url": "git+https://github.com/stereobooster/datt.git",
     "directory": "packages/astro-graphviz"
   },
-  "keywords": [
-    "astro",
-    "astro-component",
-    "graphviz"
-  ],
   "type": "module",
-  "sideEffects": false,
   "exports": {
     ".": "./index.ts",
     "./rehype": "./rehype.mjs"

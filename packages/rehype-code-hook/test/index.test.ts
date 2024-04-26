@@ -3,11 +3,11 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { expect, it, vi, describe } from "vitest";
+import { expect, it, vi } from "vitest";
 
-import { rehypeCodeHook } from "../src";
+import { rehypeCodeHook } from "../src/index.js";
 // it's ok to use direct import in test use file directly
-import { SQLiteCache } from "../../sqlitecache/src";
+import { SQLiteCache } from "../../sqlitecache/src/index.js";
 
 it("does nothing if code returns undefined", async () => {
   const file = await unified()

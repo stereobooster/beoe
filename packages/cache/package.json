@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "description": "persistent LRU TTL cache",
-  "keywords": [],
+  "keywords": ["cache"],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
@@ -11,7 +11,6 @@
     "url": "git+https://github.com/stereobooster/datt.git",
     "directory": "packages/sqlitecache"
   },
-  "sideEffects": true,
   "exports": {
     "types": "./dist/index.d.js",
     "default": "./dist/index.js"
