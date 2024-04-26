@@ -1,21 +1,18 @@
 {
-  "name": "@datt/rehype-graphviz",
-  "type": "module",
+  "name": "@datt/graphviz",
   "version": "0.0.1",
-  "description": "rehype plugin",
+  "description": "graphviz",
   "author": "stereobooster",
   "license": "MIT",
-  "homepage": "https://github.com/stereobooster/datt",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
-    "directory": "packages/rehype-graphviz"
+    "directory": "packages/graphviz"
   },
-  "bugs": "https://github.com/stereobooster/datt/issues",
   "keywords": [
-    "rehype",
     "graphviz"
   ],
+  "type": "module",
   "sideEffects": false,
   "exports": {
     "types": "./dist/index.d.js",
@@ -34,15 +31,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@datt/rehype-code-hook": "workspace:*",
-    "@types/hast": "^3.0.4",
-    "@types/html-minifier": "^4.0.5",
-    "unified": "^11.0.4",
-    "@datt/graphviz": "workspace:*"
+    "@hpcc-js/wasm": "^2.16.1",
+    "html-minifier": "^4.0.0"
   },
-  "devDependencies": {
-    "rehype-stringify": "^10.0.0",
-    "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.0"
-  }
+  "devDependencies": {}
 }

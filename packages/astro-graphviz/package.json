@@ -30,7 +30,7 @@
     "clean": "exit 0"
   },
   "dependencies": {
-    "@hpcc-js/wasm": "^2.16.1"
+    "@datt/graphviz": "workspace:*"
   },
   "devDependencies": {
     "astro": "^4.0.0"

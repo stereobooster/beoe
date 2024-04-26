@@ -12,10 +12,11 @@
   "dependencies": {
     "@astrojs/check": "^0.5.10",
     "@astrojs/mdx": "^2.3.1",
+    "@datt/astro-graphviz": "workspace:*",
+    "@datt/rehype-graphviz": "workspace:*",
     "astro": "^4.6.3",
     "sharp": "^0.33.3",
-    "typescript": "^5.4.5",
-    "@datt/rehype-graphviz": "workspace:*",
-    "@datt/astro-graphviz": "workspace:*"
+    "svg-pan-zoom-gesture": "^0.0.2",
+    "typescript": "^5.4.5"
   }
 }

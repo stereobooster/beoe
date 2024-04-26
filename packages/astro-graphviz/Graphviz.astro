@@ -1,34 +1,11 @@
 ---
-// @ts-ignore
-import { Graphviz as GraphvizWasm } from "@hpcc-js/wasm/graphviz";
-const graphviz = await GraphvizWasm.load();
+import { graphvizSvg } from "@datt/graphviz";
 
 interface Props {
   code: string;
 }
 
-const code = Astro.props.code; // await Astro.slots.render('default');
-
-// TODO
-// export const graphvizSvg = (code: string) =>
-//   minify(graphviz.dot(code).split("\n").slice(6).join("\n"), minifyOptions);
-
-let svg = graphviz
-  .dot(code)
-  .replace(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>`, "")
-  .replace(
-    `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`,
-    ""
-  );
-
-const widthMatch = svg.match(/width="(\d+)([^"]+)"/);
-if (widthMatch) svg = svg.replace(widthMatch[0], "");
-
-const heightMatch = svg.match(/height="(\d+)([^"]+)"/);
-if (heightMatch) svg = svg.replace(heightMatch[0], "");
-
-// TODO: remove html comments
+const svg = graphvizSvg(Astro.props.code)
 ---
 
 <div class="graphviz">
