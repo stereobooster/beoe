@@ -3,6 +3,9 @@ import type { Root, Node, Element } from "hast";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 import { toText } from "hast-util-to-text";
 import { CONTINUE, SKIP, visit } from "unist-util-visit";
+// Other options: askorama/seqproto, pouya-eghbali/sia, deterministic-object-hash
+// I haven't benchmarked it
+import { serialize } from "node:v8";
 
 function isNode(node: unknown): node is Node {
   return Boolean(typeof node === "object" && node !== null && "type" in node);
@@ -26,10 +29,8 @@ function replace(
       replace(newNewNode, index, parent);
     });
   } else if (typeof newNode === "string") {
-    const root = fromHtmlIsomorphic(newNode);
-    // TODO: there can be more than one element, maybe need to inset all of them
+    const element = fromHtmlIsomorphic(newNode, { fragment: true });
     // @ts-expect-error
-    const element = root.children[0].children[1].children[0];
     parent.children[index] = element;
   } else if (isNode(newNode)) {
     // @ts-expect-error
@@ -46,13 +47,27 @@ export type RehypeCodeHookProps = {
   metastring?: string;
 };
 
+export type MapLike<K = any, V = any> = {
+  has(key: K): boolean;
+  get(key: K): V | undefined;
+  set(key: K, value: V): void;
+};
+
 export type RehypeCodeHookOptions = {
   code: (x: RehypeCodeHookProps) => NewNode;
+  cache?: MapLike;
+  salt?: any;
+  /**
+   * By default hashed to Buffer. If you want to use Map as cache set this to true
+   **/
+  hashTostring?: boolean;
 };
 
 export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
   options
 ) => {
+  const cb = options.code.toString();
+
   return (ast, file) => {
     const promises: PromiseLike<unknown>[] = [];
 
@@ -82,13 +97,32 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
       );
 
       try {
-        const newNode = options.code({
+        const props = {
           code: toText(codeNode, { whitespace: "pre" }),
           inline,
           language,
           // @ts-expect-error
           metastring: codeNode.data?.meta || codeNode.properties.metastring,
-        });
+        };
+
+        let newNode: NewNode;
+        if (options.cache) {
+          let propsWithSalt: string | Buffer = serialize({
+            ...props,
+            cb,
+            salt: options.salt,
+          });
+          if (options.hashTostring === true) {
+            propsWithSalt = propsWithSalt.toString();
+          }
+          newNode = options.cache.get(propsWithSalt);
+          if (!options.cache.has(propsWithSalt)) {
+            newNode = options.code(props);
+            options.cache.set(propsWithSalt, newNode);
+          }
+        } else {
+          newNode = options.code(props);
+        }
 
         const result = replace(newNode, index, parent);
 

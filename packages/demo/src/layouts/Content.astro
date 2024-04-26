@@ -1,0 +1,26 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={title}>
+  <main>
+    <slot />
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100% - 2rem);
+    font-size: 20px;
+    line-height: 1.6;
+  }
+</style>

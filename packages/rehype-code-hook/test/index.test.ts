@@ -3,9 +3,11 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { expect, it, vi } from "vitest";
+import { expect, it, vi, describe } from "vitest";
 
-import rehypeCodeHook from "../src";
+import { rehypeCodeHook } from "../src";
+// it's ok to use direct import in test use file directly
+import { SQLiteCache } from "../../cache/src";
 
 it("does nothing if code returns undefined", async () => {
   const file = await unified()
@@ -158,4 +160,84 @@ it("passes error and adds location in markdown", async () => {
       .use(rehypeStringify)
       .process("`test`")
   ).rejects.toThrowErrorMatchingInlineSnapshot(`[1:1-1:7: whatever]`);
+});
+
+it("can cache with Map", async () => {
+  const code = vi.fn(() => undefined);
+  const cache = new Map();
+
+  // twice in the same run
+  const file1 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code` `code`");
+  expect(file1.toString()).toMatchInlineSnapshot(
+    `"<p><code>code</code> <code>code</code></p>"`
+  );
+
+  // once in different run
+  const file2 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code`");
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
+
+  // but called only once instead of 3
+  expect(code).toHaveBeenCalledOnce();
+});
+
+it("can cache with @datt/cache", async () => {
+  const code = vi.fn(() => undefined);
+  const cache = new SQLiteCache();
+
+  // twice in the same run
+  const file1 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code` `code`");
+  expect(file1.toString()).toMatchInlineSnapshot(
+    `"<p><code>code</code> <code>code</code></p>"`
+  );
+
+  // once in different run
+  const file2 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code`");
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
+
+  // but called only once instead of 3
+  expect(code).toHaveBeenCalledOnce();
+});
+
+it("cache reacts to callback change", async () => {
+  const cache = new Map();
+
+  const file1 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code: () => undefined, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code`");
+
+  expect(file1.toString()).toMatchInlineSnapshot(
+    `"<p><code>code</code></p>"`
+  );
+
+  const file2 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code: () => "test", cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code`");
+
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
 });

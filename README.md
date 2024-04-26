@@ -13,7 +13,10 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 - [x] rehype-code-hook
 - [x] rehype-graphviz
-- [ ] sync-cache
+- [x] astro demo
+- [x] SQLiteCache
+- [ ] cache
+- [ ] astro-graphviz
 - [ ] remark-code-hook
 - [ ] rehype-gnuplot
 - [ ] rehype-plantuml

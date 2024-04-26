@@ -4,6 +4,8 @@
 
 ## TODO
 
+- maybe drop `withMeta`
+- add test for `has`
 - memoize function?
 - can I share same DB if it was from different modules
   - do I need namespaces

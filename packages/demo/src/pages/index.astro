@@ -1,0 +1,17 @@
+---
+import Content from "../layouts/Content.astro";
+import { getCollection } from "astro:content";
+const examples = await getCollection("examples");
+---
+
+<Content title="Welcome to Astro.">
+  <ul>
+    {
+      examples.map((example) => (
+        <li>
+          <a href={`/examples/${example.slug}`}>{example.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Content>

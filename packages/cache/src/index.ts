@@ -117,6 +117,19 @@ export class SQLiteCache<TData = any> {
     this.db = initSqliteCache(this.configuration);
     this.checkInterval = setInterval(this.checkForExpiredItems, 500);
   }
+
+  public has(key: string): boolean {
+    if (this.isClosed) {
+      throw new Error("Cache is closed");
+    }
+    const db = this.db;
+    const res = db.getStatement.get({
+      key,
+      now: now(),
+    });
+    return Boolean(res);
+  }
+
   /**
    * Retrieves the value associated with the specified key from the cache.
    *
@@ -125,8 +138,8 @@ export class SQLiteCache<TData = any> {
    * @returns The retrieved value, or undefined if the key does not exist in the cache.
    *          If `withMeta` is true, returns an object containing the value, key, and compression status.
    */
-  public get<T = any>(key: string, withMeta?: false): T | undefined;
-  public get<T = any>(
+  public get<T = TData>(key: string, withMeta?: false): T | undefined;
+  public get<T = TData>(
     key: string,
     withMeta: true
   ): ValueWithMeta<T> | undefined;
@@ -160,6 +173,7 @@ export class SQLiteCache<TData = any> {
     }
     return deserialized;
   }
+
   /**
    * Sets a value in the cache with the specified key.
    *
