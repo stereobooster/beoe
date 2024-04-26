@@ -1,4 +1,4 @@
-# cache
+# SQLiteCache
 
 **Important**: this is fork of https://github.com/notskamr/bun-sqlite-cache. Need to make it clear that most of code writen by the different author (not me)
 
@@ -12,7 +12,7 @@
 - TODO: test new options
 - TODO: benchmark
   - `@node-rs/xxhash` or `cyrb53` (for key)
-    - Do I even need it if there is SQLite index
+    - Do I even need hash function if there is SQLite index
   - serialize
     - https://nodejs.org/api/v8.html#v8serializevalue
     - CBOR, msgpack, seqproto, etc
@@ -29,4 +29,4 @@
 - if input is object use
   - `import { deterministicString } from 'deterministic-object-hash';`
     - this can be outside of cache, just accept string
-- universal DB https://www.npmjs.com/package/great.db
+- Support bun and Deno: https://www.npmjs.com/package/great.db

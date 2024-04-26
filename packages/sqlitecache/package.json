@@ -1,5 +1,5 @@
 {
-  "name": "@datt/cache",
+  "name": "@datt/sqlitecache",
   "type": "module",
   "version": "0.0.1",
   "description": "rehype plugin",
@@ -9,7 +9,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
-    "directory": "packages/cache"
+    "directory": "packages/sqlitecache"
   },
   "bugs": "https://github.com/stereobooster/datt/issues",
   "keywords": [],

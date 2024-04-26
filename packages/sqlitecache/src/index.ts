@@ -150,8 +150,7 @@ export class SQLiteCache<TData = any> {
     if (this.isClosed) {
       throw new Error("Cache is closed");
     }
-    const db = this.db;
-    const res = db.getStatement.get({
+    const res = this.db.getStatement.get({
       key,
       now: now(),
     });
@@ -211,8 +210,7 @@ export class SQLiteCache<TData = any> {
     }
     setImmediate(this.checkForExpiredItems.bind(this));
     try {
-      const db = this.db;
-      db.setStatement.run({
+      this.db.setStatement.run({
         key,
         value: valueBuffer,
         expires: expires ? expires.getTime() : null,
@@ -265,12 +263,11 @@ export class SQLiteCache<TData = any> {
     }
 
     try {
-      const db = this.db;
-      db.cleanupExpiredStatement.run({ now: now() });
+      this.db.cleanupExpiredStatement.run({ now: now() });
 
       if (this.configuration.maxItems !== undefined) {
-        db.cleanupLruStatement.run({
-          $maxItems: this.configuration.maxItems,
+        this.db.cleanupLruStatement.run({
+          maxItems: this.configuration.maxItems,
         });
       }
     } catch (ex) {

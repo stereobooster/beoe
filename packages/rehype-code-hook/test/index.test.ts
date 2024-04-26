@@ -7,7 +7,7 @@ import { expect, it, vi, describe } from "vitest";
 
 import { rehypeCodeHook } from "../src";
 // it's ok to use direct import in test use file directly
-import { SQLiteCache } from "../../cache/src";
+import { SQLiteCache } from "../../sqlitecache/src";
 
 it("does nothing if code returns undefined", async () => {
   const file = await unified()
@@ -190,7 +190,7 @@ it("can cache with Map", async () => {
   expect(code).toHaveBeenCalledOnce();
 });
 
-it("can cache with @datt/cache", async () => {
+it("can cache with @datt/sqlitecache", async () => {
   const code = vi.fn(() => undefined);
   const cache = new SQLiteCache();
 
