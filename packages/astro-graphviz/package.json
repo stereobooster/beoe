@@ -1,0 +1,41 @@
+{
+  "name": "@datt/astro-graphviz",
+  "version": "0.0.1",
+  "description": "astro component",
+  "author": "stereobooster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/datt.git",
+    "directory": "packages/astro-graphviz"
+  },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "graphviz"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts",
+    "Graphviz.astro"
+  ],
+  "scripts": {
+    "test": "exit 0",
+    "build": "exit 0",
+    "dev": "exit 0",
+    "clean": "exit 0"
+  },
+  "dependencies": {
+    "@hpcc-js/wasm": "^2.16.1"
+  },
+  "devDependencies": {
+    "astro": "^4.0.0"
+  },
+  "peerDependencies": {
+    "astro": "^2.0.0 || ^3.0.0 || ^4.0.0"
+  }
+}

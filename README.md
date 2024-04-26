@@ -15,8 +15,8 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-graphviz
 - [x] astro demo
 - [x] SQLiteCache
+- [x] astro-graphviz
 - [ ] cache
-- [ ] astro-graphviz
 - [ ] remark-code-hook
 - [ ] rehype-gnuplot
 - [ ] rehype-plantuml
@@ -35,6 +35,13 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] rehype-pikchr
   - https://github.com/fabiospampinato/pikchr-wasm
 - ...
+
+---
+
+- [ ] add classes to output (to SVG or wrapping div)
+  - use classes to show how to style (dark mode maybe)
+- [ ] shared cache
+  - use it in demo
 
 ## Other
 
