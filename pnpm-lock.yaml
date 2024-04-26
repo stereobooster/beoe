@@ -29,13 +29,22 @@ importers:
 
   packages/astro-graphviz:
     dependencies:
-      '@datt/graphviz':
+      '@datt/cache':
         specifier: workspace:*
-        version: link:../graphviz
+        version: link:../cache
+      '@datt/rehype-graphviz':
+        specifier: workspace:*
+        version: link:../rehype-graphviz
     devDependencies:
       astro:
         specifier: ^4.0.0
         version: 4.6.3(@types/node@20.12.7)(typescript@5.4.5)
+
+  packages/cache:
+    dependencies:
+      '@datt/sqlitecache':
+        specifier: workspace:*
+        version: link:../sqlitecache
 
   packages/demo:
     dependencies:
@@ -64,15 +73,6 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
-  packages/graphviz:
-    dependencies:
-      '@hpcc-js/wasm':
-        specifier: ^2.16.1
-        version: 2.16.1
-      html-minifier:
-        specifier: ^4.0.0
-        version: 4.0.0
-
   packages/rehype-code-hook:
     dependencies:
       '@types/hast':
@@ -84,9 +84,6 @@ importers:
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
-      hast-util-to-string:
-        specifier: ^3.0.0
-        version: 3.0.0
       hast-util-to-text:
         specifier: ^4.0.2
         version: 4.0.2
@@ -109,18 +106,24 @@ importers:
 
   packages/rehype-graphviz:
     dependencies:
-      '@datt/graphviz':
-        specifier: workspace:*
-        version: link:../graphviz
       '@datt/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
+      '@hpcc-js/wasm':
+        specifier: ^2.16.1
+        version: 2.16.1
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
       '@types/html-minifier':
         specifier: ^4.0.5
         version: 4.0.5
+      hast-util-from-html-isomorphic:
+        specifier: ^2.0.0
+        version: 2.0.0
+      html-minifier:
+        specifier: ^4.0.0
+        version: 4.0.0
       unified:
         specifier: ^11.0.4
         version: 11.0.4
@@ -2891,12 +2894,6 @@ packages:
       space-separated-tokens: 2.0.2
       web-namespaces: 2.0.1
       zwitch: 2.0.4
-
-  /hast-util-to-string@3.0.0:
-    resolution: {integrity: sha512-OGkAxX1Ua3cbcW6EJ5pT/tslVb90uViVkcJ4ZZIMW/R33DX/AkcJcRrPebPwJkHYwlDHXz4aIwvAAaAdtrACFA==}
-    dependencies:
-      '@types/hast': 3.0.4
-    dev: false
 
   /hast-util-to-text@4.0.2:
     resolution: {integrity: sha512-KK6y/BN8lbaq654j7JgBydev7wuNMcID54lkRav1P0CaE1e47P72AWWPiGKXTJU271ooYzcvTAn/Zt0REnvc7A==}

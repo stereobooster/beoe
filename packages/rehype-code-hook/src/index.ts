@@ -116,9 +116,24 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
             propsWithSalt = propsWithSalt.toString();
           }
           newNode = options.cache.get(propsWithSalt);
-          if (!options.cache.has(propsWithSalt)) {
+          if (newNode === undefined) {
             newNode = options.code(props);
-            options.cache.set(propsWithSalt, newNode);
+            if (isThenable(newNode)) {
+              // while promise not resilved there will be cache misses
+              // TODO: should I cache promises in memory until they setled?
+              newNode.then((x) => {
+                if (x !== undefined) {
+                  options.cache!.set(propsWithSalt, x);
+                }
+                return x;
+              });
+            } else {
+              // Do not save undefined, because if we would have more than one handler
+              // `undefined` can overwrite actual value
+              if (newNode !== undefined) {
+                options.cache.set(propsWithSalt, newNode);
+              }
+            }
           }
         } else {
           newNode = options.code(props);

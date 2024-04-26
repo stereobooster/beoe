@@ -1,1 +1,1 @@
-export { default as Graphviz } from './Graphviz.astro';
+export { default as Graphviz } from "./Graphviz.astro";

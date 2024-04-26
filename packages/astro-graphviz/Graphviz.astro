@@ -1,11 +1,20 @@
 ---
-import { graphvizSvg } from "@datt/graphviz";
+import { graphvizSvg } from "@datt/rehype-graphviz";
+import { getCache } from "@datt/cache";
+
+const cache = getCache();
 
 interface Props {
   code: string;
 }
 
-const svg = graphvizSvg(Astro.props.code)
+let svg: string;
+if (cache.has(Astro.props.code)) {
+  svg = cache.get(Astro.props.code);
+} else {
+  svg = graphvizSvg(Astro.props.code);
+  cache.set(Astro.props.code, svg);
+}
 ---
 
 <div class="graphviz">

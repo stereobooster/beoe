@@ -1,7 +1,10 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
-import { graphvizSvg } from "@datt/graphviz";
+import { graphvizSvg } from "./graphviz.js";
 import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
+
+export { graphvizSvg };
 
 export type RehypeGraphvizConfig = {
   cache?: MapLike;
@@ -12,10 +15,24 @@ export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig], Root> = (
 ) => {
   // @ts-expect-error
   return rehypeCodeHook({
-    ...options,
+    // intentionally do not pass cache to rehypeCodeHook
+    // because cache is handled by plugin itself
     code: ({ language, code }) => {
       if (language !== "dot") return undefined;
-      return graphvizSvg(code);
+      code = code.trim();
+      if (options.cache) {
+        if (options.cache.has(code)) {
+          return options.cache.get(code);
+        } else {
+          const result = fromHtmlIsomorphic(graphvizSvg(code), {
+            fragment: true,
+          });
+          options.cache.set(code, result);
+          return result;
+        }
+      } else {
+        return graphvizSvg(code);
+      }
     },
   });
 };

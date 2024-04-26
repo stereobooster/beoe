@@ -162,8 +162,25 @@ it("passes error and adds location in markdown", async () => {
   ).rejects.toThrowErrorMatchingInlineSnapshot(`[1:1-1:7: whatever]`);
 });
 
-it("can cache with Map", async () => {
+it("doesn't cache undefined", async () => {
   const code = vi.fn(() => undefined);
+  const cache = new Map();
+
+  const file1 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code` `code`");
+  expect(file1.toString()).toMatchInlineSnapshot(
+    `"<p><code>code</code> <code>code</code></p>"`
+  );
+
+  expect(code).toHaveBeenCalledTimes(2);
+});
+
+it("can cache with Map", async () => {
+  const code = vi.fn(() => "test");
   const cache = new Map();
 
   // twice in the same run
@@ -173,9 +190,7 @@ it("can cache with Map", async () => {
     .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code` `code`");
-  expect(file1.toString()).toMatchInlineSnapshot(
-    `"<p><code>code</code> <code>code</code></p>"`
-  );
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p>test test</p>"`);
 
   // once in different run
   const file2 = await unified()
@@ -184,14 +199,14 @@ it("can cache with Map", async () => {
     .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
 
   // but called only once instead of 3
   expect(code).toHaveBeenCalledOnce();
 });
 
 it("can cache with @datt/sqlitecache", async () => {
-  const code = vi.fn(() => undefined);
+  const code = vi.fn(() => "test");
   const cache = new SQLiteCache();
 
   // twice in the same run
@@ -201,9 +216,7 @@ it("can cache with @datt/sqlitecache", async () => {
     .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code` `code`");
-  expect(file1.toString()).toMatchInlineSnapshot(
-    `"<p><code>code</code> <code>code</code></p>"`
-  );
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p>test test</p>"`);
 
   // once in different run
   const file2 = await unified()
@@ -212,7 +225,7 @@ it("can cache with @datt/sqlitecache", async () => {
     .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
 
   // but called only once instead of 3
   expect(code).toHaveBeenCalledOnce();
@@ -224,20 +237,18 @@ it("cache reacts to callback change", async () => {
   const file1 = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code: () => undefined, cache, hashTostring: true })
+    .use(rehypeCodeHook, { code: () => "1", cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
 
-  expect(file1.toString()).toMatchInlineSnapshot(
-    `"<p><code>code</code></p>"`
-  );
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p>1</p>"`);
 
   const file2 = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code: () => "test", cache, hashTostring: true })
+    .use(rehypeCodeHook, { code: () => "2", cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
 
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p>2</p>"`);
 });

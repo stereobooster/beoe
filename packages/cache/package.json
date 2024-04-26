@@ -1,19 +1,17 @@
 {
-  "name": "@datt/graphviz",
+  "name": "@datt/cache",
+  "type": "module",
   "version": "0.0.1",
-  "description": "graphviz",
+  "description": "persistent LRU TTL cache",
+  "keywords": [],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
-    "directory": "packages/graphviz"
+    "directory": "packages/sqlitecache"
   },
-  "keywords": [
-    "graphviz"
-  ],
-  "type": "module",
-  "sideEffects": false,
+  "sideEffects": true,
   "exports": {
     "types": "./dist/index.d.js",
     "default": "./dist/index.js"
@@ -31,8 +29,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@hpcc-js/wasm": "^2.16.1",
-    "html-minifier": "^4.0.0"
+    "@datt/sqlitecache": "workspace:*"
   },
   "devDependencies": {}
 }

@@ -16,7 +16,8 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] astro demo
 - [x] SQLiteCache
 - [x] astro-graphviz
-- [ ] cache
+- [x] cache
+- [ ] configure cache with cosmiconfig
 - [ ] remark-code-hook
 - [ ] rehype-gnuplot
 - [ ] rehype-plantuml
@@ -35,21 +36,6 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] rehype-pikchr
   - https://github.com/fabiospampinato/pikchr-wasm
 - ...
-
----
-
-- [ ] astro-graphviz should use shared cache
-- [ ] rehype-graphviz - pass shared cache in config?
-- It's anoyingly a lot subpackages, for graphviz there is:
-  - graphviz
-  - rehype-graphviz
-  - astro-graphviz
-  - should I pack `graphviz` inside `rehype-graphviz` and make `astro-graphviz` dependent on `rehype-graphviz`
-    - plus re-export `rehype-graphviz` with preconfigured shared cache?
-- shared cache can use `cosmiconfig` to load configuration
-  - rename `cache` to `SQLiteCache`
-  - and make cache a package with shared cache and `cosmiconfig` configuration
-    - store shared cache on disk, for example, `.datt/cache.sqlite` or `.astro/datt.sqlite` or `node_modules`
 
 ## Other
 

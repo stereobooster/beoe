@@ -1,6 +1,6 @@
 import { expect, it } from "vitest";
 
-import { graphvizSvg } from "../src";
+import { graphvizSvg } from "../src/graphviz";
 
 it("renders SVG", async () => {
   const result = graphvizSvg(`digraph x {Start -> Stop}`);

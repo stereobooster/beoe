@@ -17,11 +17,13 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./rehype": "./rehype.mjs"
   },
   "files": [
     "index.ts",
-    "Graphviz.astro"
+    "Graphviz.astro",
+    "rehype.mjs"
   ],
   "scripts": {
     "test": "exit 0",
@@ -30,7 +32,8 @@
     "clean": "exit 0"
   },
   "dependencies": {
-    "@datt/graphviz": "workspace:*"
+    "@datt/cache": "workspace:*",
+    "@datt/rehype-graphviz": "workspace:*"
   },
   "devDependencies": {
     "astro": "^4.0.0"
