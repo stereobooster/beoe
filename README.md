@@ -19,7 +19,10 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] cache
 - [x] rehype-pintora
 - [x] rehype-mermaid
-- [ ] rehype-gnuplot
+- [x] rehype-gnuplot
+- [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
+- [ ] remove `has` from SQLiteCache
+- [ ] example of gnuplot custom diagram
 - [ ] rehype-color-chips
   - just because it should be easy https://github.com/shreshthmohan/rehype-color-chips
 - [ ] rehype-starry-night
@@ -34,6 +37,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] rehype-pikchr
   - https://github.com/fabiospampinato/pikchr-wasm
 - [ ] https://zenuml.com/
+- [ ] https://astro-digital-garden.stereobooster.com/recipes/euler-diagram/
 - ...
 
 ## Other

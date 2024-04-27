@@ -60,6 +60,9 @@ importers:
       '@datt/cache':
         specifier: workspace:*
         version: link:../cache
+      '@datt/rehype-gnuplot':
+        specifier: workspace:*
+        version: link:../rehype-gnuplot
       '@datt/rehype-mermaid':
         specifier: workspace:*
         version: link:../rehype-mermaid
@@ -109,6 +112,37 @@ importers:
       remark-rehype:
         specifier: ^11.1.0
         version: 11.1.0
+
+  packages/rehype-gnuplot:
+    dependencies:
+      '@datt/rehype-code-hook':
+        specifier: workspace:*
+        version: link:../rehype-code-hook
+      gnuplot-wasm:
+        specifier: ^0.0.1
+        version: 0.0.1
+      html-minifier:
+        specifier: ^4.0.0
+        version: 4.0.0
+    devDependencies:
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
+      '@types/html-minifier':
+        specifier: ^4.0.5
+        version: 4.0.5
+      rehype-stringify:
+        specifier: ^10.0.0
+        version: 10.0.0
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      remark-rehype:
+        specifier: ^11.1.0
+        version: 11.1.0
+      unified:
+        specifier: ^11.0.4
+        version: 11.0.4
 
   packages/rehype-graphviz:
     dependencies:
@@ -3659,6 +3693,10 @@ packages:
 
   /globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: false
+
+  /gnuplot-wasm@0.0.1:
+    resolution: {integrity: sha512-hXxshGwNXaTuPk/rC6+xgrc/LbBwk7fagcra1i0YVRSXSv6qbHL05l9r70S5qTLkqi/VWZaNOW3s70VWP5qgxg==}
     dev: false
 
   /graceful-fs@4.2.11:
