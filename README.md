@@ -23,10 +23,8 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-starry-night
 - [x] rehype-color-chips
 - [x] configure cache with cosmiconfig
-- [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
-  - can `html-minifier` remove doctype and `<?xml>`
-  - use `figure` instead of `div` as wrapper?
-- [ ] load resources (wasm) only when needed (`waitFor`)
+- [x] load resources (wasm) only when needed (`waitFor`)
+- [x] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
 - [ ] write documentation
 - [ ] astro-mermaid
 - [ ] astro-gnuplot

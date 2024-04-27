@@ -1,5 +1,5 @@
 ---
-import { graphvizSvg } from "@datt/rehype-graphviz";
+import { renderGraphviz } from "@datt/rehype-graphviz";
 import { getCache } from "@datt/cache";
 
 const cache = await getCache();
@@ -11,11 +11,9 @@ interface Props {
 let svg: string;
 svg = cache.get(Astro.props.code);
 if (svg === undefined) {
-  svg = graphvizSvg(Astro.props.code);
+  svg = await renderGraphviz({ code: Astro.props.code });
   cache.set(Astro.props.code, svg);
 }
 ---
 
-<div class="graphviz">
-  <Fragment set:html={svg} />
-</div>
+<Fragment set:html={svg} />

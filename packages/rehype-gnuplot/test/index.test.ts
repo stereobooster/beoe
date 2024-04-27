@@ -3,17 +3,17 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { expect, it, vi } from "vitest";
+import { expect, it } from "vitest";
 
-import rehypeGraphviz from "../src";
+import rehypeGnuplot from "../src/index.js";
 
 it("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeGraphviz)
+    .use(rehypeGnuplot)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a1.out.html");
+  expect(file.toString()).toMatchFileSnapshot("./fixtures/a.html");
 });

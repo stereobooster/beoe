@@ -7,6 +7,8 @@ import { CONTINUE, SKIP, visit } from "unist-util-visit";
 // I haven't benchmarked it
 import { serialize } from "node:v8";
 
+export { waitFor } from "./waitFor.js";
+
 function isNode(node: unknown): node is Node {
   return Boolean(typeof node === "object" && node !== null && "type" in node);
 }

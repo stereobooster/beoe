@@ -1,7 +1,4 @@
-import { Graphviz } from "@hpcc-js/wasm";
 import { minify } from "html-minifier";
-
-const graphviz = await Graphviz.load();
 
 const minifyOptions = {
   removeComments: true,
@@ -9,12 +6,17 @@ const minifyOptions = {
 };
 
 /**
- * TODO:
- * - option to load files/images
- * - other options?
+ * removes `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`
+ * removes `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"`
+ * removes `width="..." height="..."` from svg tag
+ * minifies SVG with `html-minifier`
+ * wraps in a div with class `datt graphviz`
+ *
+ * TODO: probably better to wrap in figure (can use title for figcaption)
+ * Can also try SVGO
  */
-export const graphvizSvg = (code: string) => {
-  let svg = graphviz.dot(code).split("\n").slice(6).join("\n");
+export const processGraphvizSvg = (svg: string) => {
+  svg = svg.split("\n").slice(6).join("\n");
   svg = minify(svg, minifyOptions);
   svg = svg.replace(/width="\d+[^"]+"\s+/, "");
   svg = svg.replace(/height="\d+[^"]+"\s+/, "");
