@@ -22,8 +22,9 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-gnuplot
 - [x] rehype-starry-night
 - [x] rehype-color-chips
-- [ ] cache collisions, not caching undefined and re-calling hook every time
+- [ ] cache collisions, not caching `undefined` and re-calling hook every time
   - instead introduce namespaces and cache `undefined`
+- [ ] configure cache with cosmiconfig
 - [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
 - [ ] load resources (wasm) only when needed (`waitFor`)
 - [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
@@ -31,10 +32,20 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] example of gnuplot custom diagram
 - [ ] Do astro components need to render something in case of error?
   - maybe not - it can just show default Astro error message
-- [ ] configure cache with cosmiconfig
 - [ ] remark-code-hook
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
+  - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
+  - https://andrewtbiehl.com/blog/jekyll-tree-sitter
+  - https://github.com/devongovett/tree-sitter-highlight
+  - https://crates.io/crates/tree-sitter-loader
+  - https://tree-sitter.github.io/tree-sitter/creating-parsers#command-build
+  - https://zed.dev/blog/language-extensions-part-1#challenges-with-packaging-parsers
+  - https://www.npmjs.com/package/web-tree-sitter
+  - npm package with dev dependencies on other packages providing WASM prebuilt binaries
+    - on build pack all wasm binaries
+    - auto release with github
+    - https://github.com/wooorm/starry-night/blob/main/script/common.js
 - [ ] rehype-pikchr
   - https://github.com/fabiospampinato/pikchr-wasm
 - [ ] https://zenuml.com/
