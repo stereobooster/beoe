@@ -21,7 +21,6 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-mermaid
 - [x] rehype-gnuplot
 - [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
-- [ ] remove `has` from SQLiteCache
 - [ ] example of gnuplot custom diagram
 - [ ] rehype-color-chips
   - just because it should be easy https://github.com/shreshthmohan/rehype-color-chips

@@ -118,18 +118,6 @@ export class SQLiteCache<TData = any> {
     this.checkInterval = setInterval(this.checkForExpiredItems, 500);
   }
 
-  public has(key: string): boolean {
-    if (this.isClosed) {
-      throw new Error("Cache is closed");
-    }
-    const db = this.db;
-    const res = db.getStatement.get({
-      key,
-      now: now(),
-    });
-    return Boolean(res);
-  }
-
   /**
    * Retrieves the value associated with the specified key from the cache.
    *
