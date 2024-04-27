@@ -15,7 +15,10 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <link rel="stylesheet" href="https://esm.sh/@wooorm/starry-night@3/style/both.css">
+    <link
+      rel="stylesheet"
+      href="https://esm.sh/@wooorm/starry-night@3/style/both.css"
+    />
   </head>
   <body>
     <slot />
@@ -35,5 +38,12 @@ const { title } = Astro.props;
       Bitstream Vera Sans Mono,
       Courier New,
       monospace;
+  }
+  .gfm-color-chip {
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-left: 0.3rem;
+    display: inline-block;
+    border-radius: 50%;
   }
 </style>

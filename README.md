@@ -21,14 +21,16 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-mermaid
 - [x] rehype-gnuplot
 - [x] rehype-starry-night
-- [ ] rehype-color-chips
-  - just because it should be easy https://github.com/shreshthmohan/rehype-color-chips
-  - needs `node.children.push`?
+- [x] rehype-color-chips
+- [ ] cache collisions, not caching undefined and re-calling hook every time
+  - instead introduce namespaces and cache `undefined`
+- [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
+- [ ] load resources (wasm) only when needed (`waitFor`)
 - [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
+  - can `html-minifier` remove doctype and `<?xml>`
 - [ ] example of gnuplot custom diagram
 - [ ] Do astro components need to render something in case of error?
   - maybe not - it can just show default Astro error message
-- [ ] what about cache collisions?
 - [ ] configure cache with cosmiconfig
 - [ ] remark-code-hook
 - [ ] rehype-tree-sitter

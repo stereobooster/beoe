@@ -6,6 +6,7 @@ import { rehypePintora } from "@datt/rehype-pintora";
 import { rehypeMermaid } from "@datt/rehype-mermaid";
 import { rehypeGnuplot } from "@datt/rehype-gnuplot";
 import { rehypeStarryNight } from "@datt/rehype-starry-night";
+import { rehypeColorChips } from "@datt/rehype-color-chips";
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,6 +29,7 @@ export default defineConfig({
       ],
       [rehypeMermaid, { cache: getCache() }],
       [rehypeGnuplot, { cache: getCache() }],
+      rehypeColorChips,
       rehypeStarryNight,
     ],
   },

@@ -1,0 +1,46 @@
+{
+  "name": "@datt/rehype-color-chips",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "rehype color-chips plugin",
+  "keywords": [
+    "rehype",
+    "color-chips"
+  ],
+  "author": "stereobooster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/datt.git",
+    "directory": "packages/rehype-color-chips"
+  },
+  "sideEffects": false,
+  "exports": {
+    "types": "./dist/index.d.js",
+    "default": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "vitest",
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@datt/rehype-code-hook": "workspace:*",
+    "hastscript": "^9.0.0",
+    "validate-color": "^2.2.4"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.4",
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0",
+    "unified": "^11.0.4"
+  }
+}
