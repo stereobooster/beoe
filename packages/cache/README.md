@@ -2,5 +2,5 @@
 
 TODO:
 
-- cosmiconfig
 - tests
+- need to reset cache if config changed

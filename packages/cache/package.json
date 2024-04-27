@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "description": "persistent LRU TTL cache",
-  "keywords": ["cache"],
+  "keywords": [
+    "cache"
+  ],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
@@ -28,7 +30,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@datt/sqlitecache": "workspace:*"
-  },
-  "devDependencies": {}
+    "@datt/sqlitecache": "workspace:*",
+    "cosmiconfig": "^9.0.0"
+  }
 }

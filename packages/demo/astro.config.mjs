@@ -8,6 +8,8 @@ import { rehypeGnuplot } from "@datt/rehype-gnuplot";
 import { rehypeStarryNight } from "@datt/rehype-starry-night";
 import { rehypeColorChips } from "@datt/rehype-color-chips";
 
+const cache = await getCache();
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [mdx()],
@@ -25,10 +27,10 @@ export default defineConfig({
         //
         // Conclusion: don't overuse MDX
         rehypePintora,
-        { cache: getCache() },
+        { cache },
       ],
-      [rehypeMermaid, { cache: getCache() }],
-      [rehypeGnuplot, { cache: getCache() }],
+      [rehypeMermaid, { cache }],
+      [rehypeGnuplot, { cache }],
       rehypeColorChips,
       rehypeStarryNight,
     ],

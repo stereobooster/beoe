@@ -86,7 +86,7 @@ const parseConfig = (config: SQLiteCacheOptions): SQLiteCacheConfiguration => {
     errors.push("'zip'");
   }
   if (rawConfig.unzip && typeof rawConfig.unzip !== "function") {
-    errors.push("'zip'");
+    errors.push("'unzip'");
   }
   if (errors.length > 0) {
     throw new Error(`Invalid ${errors.join(",")} configuration`);

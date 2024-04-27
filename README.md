@@ -22,7 +22,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-gnuplot
 - [x] rehype-starry-night
 - [x] rehype-color-chips
-- [ ] configure cache with cosmiconfig
+- [x] configure cache with cosmiconfig
 - [ ] load resources (wasm) only when needed (`waitFor`)
 - [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
   - can `html-minifier` remove doctype and `<?xml>`

@@ -1,30 +1,35 @@
 import { SQLiteCache } from "@datt/sqlitecache";
 import process from "node:process";
-import { mkdirSync } from "node:fs";
-import { join, dirname } from "node:path";
+import { getConfig, Config, MapLike, defineConfig } from "./config.js";
+export { Config, defineConfig };
 
-let cache: SQLiteCache;
+let cachePromise: Promise<MapLike>;
+
+const getCacheOriginal = async () => {
+  const { override, ...cfg } = await getConfig();
+  if (override) {
+    return override;
+  }
+
+  const cache = new SQLiteCache(cfg);
+
+  // Not sure if this is the best way to do it...
+  process.on("exit", () => (cache as SQLiteCache).close());
+  // catches ctrl+c event
+  process.on("SIGINT", () => process.exit());
+  // catches "kill pid" (for example: nodemon restart)
+  process.on("SIGUSR1", () => process.exit());
+  process.on("SIGUSR2", () => process.exit());
+  // catches uncaught exceptions
+  process.on("uncaughtException", () => process.exit());
+
+  return cache;
+};
 
 export const getCache = () => {
-  const dbPath = join(process.cwd(), ".datt/datt.sqlite");
-  mkdirSync(dirname(dbPath), { recursive: true });
-  if (!cache) {
-    // TODO: it should read config, for example, with cosmiconfig
-    // plus escape hatch to provide your own cache implementation
-    cache = new SQLiteCache({
-      database: dbPath,
-      maxItems: 1024,
-    });
-
-    // Not sure if this is the best way to do it...
-    process.on("exit", () => cache.close());
-    // catches ctrl+c event
-    process.on("SIGINT", () => process.exit());
-    // catches "kill pid" (for example: nodemon restart)
-    process.on("SIGUSR1", () => process.exit());
-    process.on("SIGUSR2", () => process.exit());
-    // catches uncaught exceptions
-    process.on("uncaughtException", () => process.exit());
+  if (!cachePromise) {
+    cachePromise = getCacheOriginal();
   }
-  return cache;
+
+  return cachePromise;
 };

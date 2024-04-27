@@ -4,10 +4,12 @@
 
 ## TODO
 
+- cache suppose to reset when those changed:
+  - `zip`
+  - `unzip`
+  - `serialize`
+  - `deserialize`
 - maybe drop `withMeta`?
-- memoize function?
-- can I share same DB if it was from different modules
-  - do I need namespaces
 - TODO: test new options
 - TODO: benchmark
   - `@node-rs/xxhash` or `cyrb53` (for key)

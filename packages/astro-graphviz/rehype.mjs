@@ -6,10 +6,12 @@ import {
 
 export { graphvizSvg };
 
+const cache = await getCache();
+
 export const rehypeGraphviz = (options = {}) => {
   // @ts-expect-error
   return defaultRehypeGraphviz({
-    cache: getCache(),
+    cache,
     ...options,
   });
 };

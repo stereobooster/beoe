@@ -2,7 +2,7 @@
 import { graphvizSvg } from "@datt/rehype-graphviz";
 import { getCache } from "@datt/cache";
 
-const cache = getCache();
+const cache = await getCache();
 
 interface Props {
   code: string;
