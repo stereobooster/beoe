@@ -15,10 +15,8 @@ export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig?], Root> = (
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
-    code: ({ language, code }) => {
-      if (language !== "dot") return undefined;
-      return graphvizSvg(code);
-    },
+    language: "dot",
+    code: ({ code }) => graphvizSvg(code),
   });
 };
 

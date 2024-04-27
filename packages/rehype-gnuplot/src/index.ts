@@ -15,10 +15,8 @@ export const rehypeGnuplot: Plugin<[RehypeGraphvizConfig?], Root> = (
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
-    code: ({ language, code }) => {
-      if (language !== "gnuplot") return undefined;
-      return gnuplotSvg(code);
-    },
+    language: "gnuplot",
+    code: ({ code }) => gnuplotSvg(code),
   });
 };
 

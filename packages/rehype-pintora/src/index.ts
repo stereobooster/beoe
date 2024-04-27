@@ -15,10 +15,8 @@ export const rehypePintora: Plugin<[RehypePintoraConfig?], Root> = (
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
-    code: ({ language, code }) => {
-      if (language !== "pintora") return undefined;
-      return pintoraSvg(code);
-    },
+    language: "pintora",
+    code: ({ code }) => pintoraSvg(code),
   });
 };
 

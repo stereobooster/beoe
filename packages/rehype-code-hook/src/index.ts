@@ -144,10 +144,10 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
               // while promise not resilved there will be cache misses
               // TODO: should I cache promises in memory until they setled?
               newNode.then((x) => {
-                if (newNode === undefined) {
+                if (x === undefined) {
                   options.cache!.set(propsWithSalt, EMPTY_CACHE);
                 } else {
-                  options.cache!.set(propsWithSalt, newNode);
+                  options.cache!.set(propsWithSalt, x);
                 }
                 return x;
               });

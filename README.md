@@ -23,14 +23,19 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-starry-night
 - [x] rehype-color-chips
 - [x] configure cache with cosmiconfig
-- [ ] load resources (wasm) only when needed (`waitFor`)
 - [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
   - can `html-minifier` remove doctype and `<?xml>`
+  - use `figure` instead of `div` as wrapper?
+- [ ] load resources (wasm) only when needed (`waitFor`)
+- [ ] write documentation
+- [ ] astro-mermaid
+- [ ] astro-gnuplot
 - [ ] example of gnuplot custom diagram
-- [ ] Do astro components need to render something in case of error?
-  - maybe not - it can just show default Astro error message
+- [ ] Do astro components need to render something in case of an error?
 - [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
+  - or maybe don't try to overcomplicate it
 - [ ] remark-code-hook
+  - because of https://github.com/withastro/starlight/discussions/1259#discussioncomment-9247236
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting

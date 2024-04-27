@@ -15,17 +15,18 @@ export type RehypeMermaidConfig = RenderOptions &
 export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
   options = {}
 ) => {
-  const { css, mermaidConfig, prefix, browser, launchOptions } = options;
+  const { css, mermaidConfig, prefix, browser, launchOptions, ...rest } =
+    options;
   const renerOptions = { css, mermaidConfig, prefix };
   const createOptions = { browser, launchOptions };
   const renderDiagrams = createMermaidRenderer(createOptions);
   const salt = { ...renerOptions, ...createOptions };
   // @ts-expect-error
   return rehypeCodeHook({
-    ...options,
+    ...rest,
     salt,
-    code: ({ language, code }) => {
-      if (language !== "mermaid") return undefined;
+    language: "mermaid",
+    code: ({ code }) => {
       return renderDiagrams([code], renerOptions).then(([x]) => {
         if (x.status === "fulfilled") {
           return `<div class="datt mermaid">${x.value.svg}</div>`;
