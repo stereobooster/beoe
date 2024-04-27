@@ -9,9 +9,8 @@ interface Props {
 }
 
 let svg: string;
-if (cache.has(Astro.props.code)) {
-  svg = cache.get(Astro.props.code);
-} else {
+svg = cache.get(Astro.props.code);
+if (svg === undefined) {
   svg = graphvizSvg(Astro.props.code);
   cache.set(Astro.props.code, svg);
 }

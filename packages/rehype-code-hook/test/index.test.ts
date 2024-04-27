@@ -162,10 +162,11 @@ it("passes error and adds location in markdown", async () => {
   ).rejects.toThrowErrorMatchingInlineSnapshot(`[1:1-1:7: whatever]`);
 });
 
-it("doesn't cache undefined", async () => {
+it("caches undefined", async () => {
   const code = vi.fn(() => undefined);
   const cache = new Map();
 
+  // twice in the same run
   const file1 = await unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -176,7 +177,16 @@ it("doesn't cache undefined", async () => {
     `"<p><code>code</code> <code>code</code></p>"`
   );
 
-  expect(code).toHaveBeenCalledTimes(2);
+  // once in different run
+  const file2 = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, cache, hashTostring: true })
+    .use(rehypeStringify)
+    .process("`code`");
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
+
+  expect(code).toHaveBeenCalledTimes(1);
 });
 
 it("can cache with Map", async () => {
@@ -251,4 +261,48 @@ it("cache reacts to callback change", async () => {
     .process("`code`");
 
   expect(file2.toString()).toMatchInlineSnapshot(`"<p>2</p>"`);
+});
+
+it("calls hook only for given language", async () => {
+  const code = vi.fn(() => undefined);
+
+  await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, language: "other" })
+    .use(rehypeStringify)
+    .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
+
+  expect(code).toHaveBeenCalledTimes(0);
+
+  await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, language: "js" })
+    .use(rehypeStringify)
+    .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
+
+  expect(code).toHaveBeenCalledTimes(1);
+});
+
+it("calls hook only for inline or block", async () => {
+  const code = vi.fn(() => undefined);
+
+  await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, inline: true })
+    .use(rehypeStringify)
+    .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
+
+  expect(code).toHaveBeenCalledTimes(0);
+
+  await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeCodeHook, { code, inline: false })
+    .use(rehypeStringify)
+    .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
+
+  expect(code).toHaveBeenCalledTimes(1);
 });

@@ -22,7 +22,7 @@ function replace(
   index: number | undefined,
   parent: Root | Element | undefined
 ) {
-  if (newNode == undefined || index == undefined || parent == undefined) {
+  if (newNode === undefined || index === undefined || parent === undefined) {
     // no new node - do nothing
   } else if (isThenable(newNode)) {
     return newNode.then((newNewNode) => {
@@ -52,12 +52,28 @@ export type MapLike<K = any, V = any> = {
   set(key: K, value: V): void;
 };
 
+/**
+ * special value to identify that saved value was undefined
+ */
+const EMPTY_CACHE = null;
+
 export type RehypeCodeHookOptions = {
   code: (x: RehypeCodeHookProps) => NewNode;
   cache?: MapLike;
+  /**
+   * if given hook will be called only for this language
+   */
+  language?: string;
+  /**
+   * if given hook will be called only for inline or block code
+   */
+  inline?: boolean;
+  /**
+   * Other configuration which can influence result, so cache would reset when it changes
+   */
   salt?: any;
   /**
-   * By default hashed to Buffer. If you want to use Map as cache set this to true
+   * By default hashed to Buffer. If you want to use Map as cache - set this to true
    **/
   hashTostring?: boolean;
 };
@@ -89,11 +105,17 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
 
       if (!codeNode) return CONTINUE;
 
+      if (options.inline !== undefined && options.inline !== inline)
+        return CONTINUE;
+
       // @ts-expect-error
       const language = codeNode.properties.className?.[0]?.replace(
         "language-",
         ""
       );
+
+      if (options.language !== undefined && options.language !== language)
+        return CONTINUE;
 
       try {
         const props = {
@@ -115,21 +137,24 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
             propsWithSalt = propsWithSalt.toString();
           }
           newNode = options.cache.get(propsWithSalt);
+          if (newNode === EMPTY_CACHE) return CONTINUE;
           if (newNode === undefined) {
             newNode = options.code(props);
             if (isThenable(newNode)) {
               // while promise not resilved there will be cache misses
               // TODO: should I cache promises in memory until they setled?
               newNode.then((x) => {
-                if (x !== undefined) {
-                  options.cache!.set(propsWithSalt, x);
+                if (newNode === undefined) {
+                  options.cache!.set(propsWithSalt, EMPTY_CACHE);
+                } else {
+                  options.cache!.set(propsWithSalt, newNode);
                 }
                 return x;
               });
             } else {
-              // Do not save undefined, because if we would have more than one handler
-              // `undefined` can overwrite actual value
-              if (newNode !== undefined) {
+              if (newNode === undefined) {
+                options.cache.set(propsWithSalt, EMPTY_CACHE);
+              } else {
                 options.cache.set(propsWithSalt, newNode);
               }
             }
