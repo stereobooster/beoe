@@ -46,7 +46,7 @@ export type RehypeCodeHookProps = {
   code: string;
   inline: boolean;
   language?: string;
-  metastring?: string;
+  meta?: string;
 };
 
 export type MapLike<K = any, V = any> = {
@@ -125,7 +125,7 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
           inline,
           language,
           // @ts-expect-error
-          metastring: codeNode.data?.meta || codeNode.properties.metastring,
+          meta: codeNode.data?.meta || codeNode.properties.meta,
         };
 
         let newNode: NewNode;

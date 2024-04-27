@@ -1,17 +1,16 @@
 # Diagram All The Things (datt)
 
-## Idea
+**Core idea**: if you have function that can produce diagram as SVG it should be trivial to use it in astro to create diagrams - either as rehype (remark) plugin or as Astro component.
 
-- remark-code-hook
-- rehype-code-hook
-- persistent LRU, TTL cache (sqlite or other)
-- astro components
+Rehype (remark) plugins are tedious to write. If your render function is long (headless berowser) you probably need to take care of caching. I felt like this process was complicated.
+
+## Goal
 
 Support as much as possible diagrams from https://stereobooster.com/posts/text-to-diagram/, basically everything that has WASM or node package.
 
 ## TODO
 
-- [x] rehype-code-hook
+- [x] [rehype-code-hook](packages/rehype-code-hook/)
 - [x] rehype-graphviz
 - [x] astro demo
 - [x] SQLiteCache
@@ -22,9 +21,6 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-gnuplot
 - [x] rehype-starry-night
 - [x] rehype-color-chips
-- [x] configure cache with cosmiconfig
-- [x] load resources (wasm) only when needed (`waitFor`)
-- [x] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
 - [ ] write documentation
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
@@ -52,13 +48,3 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] https://zenuml.com/
 - [ ] https://astro-digital-garden.stereobooster.com/recipes/euler-diagram/
 - ...
-
-## Other
-
-- Do I need to use https://github.com/svg/svgo?
-- https://github.com/Microflash/fenceparser
-- https://github.com/frencojobs/fenceparser
-
-## Not gonna work
-
-- https://github.com/plantuml/plantuml.js - I think it works only in browser

@@ -112,7 +112,7 @@ it("passes props to callback for code-block", async () => {
     code: "test\n",
     inline: false,
     language: "js",
-    metastring: "{3-4} fileName=test /a/",
+    meta: "{3-4} fileName=test /a/",
   });
 });
 
@@ -130,7 +130,7 @@ it("passes props to callback for code-inline", async () => {
     code: "test",
     inline: true,
     language: undefined,
-    metastring: undefined,
+    meta: undefined,
   });
 });
 
