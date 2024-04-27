@@ -1,5 +1,3 @@
 # rehype-mermaid
 
-TODO:
-
-- maybe remove `style="max-width: ..."`?
+TODO: maybe remove `style="max-width: ..."`?

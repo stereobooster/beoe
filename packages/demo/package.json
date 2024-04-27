@@ -16,6 +16,7 @@
     "@datt/cache": "workspace:*",
     "@datt/rehype-gnuplot": "workspace:*",
     "@datt/rehype-mermaid": "workspace:*",
+    "@datt/rehype-starry-night": "workspace:*",
     "@datt/rehype-pintora": "workspace:*",
     "astro": "^4.7.0",
     "sharp": "^0.33.3",

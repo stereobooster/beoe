@@ -20,12 +20,12 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] rehype-pintora
 - [x] rehype-mermaid
 - [x] rehype-gnuplot
-- [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
-- [ ] example of gnuplot custom diagram
+- [x] rehype-starry-night
 - [ ] rehype-color-chips
   - just because it should be easy https://github.com/shreshthmohan/rehype-color-chips
-- [ ] rehype-starry-night
-  - just because it should be easy https://github.com/Microflash/rehype-starry-night
+  - needs `node.children.push`?
+- [ ] change `gnuplotSvg`, `graphvizSvg` to wrapper-functions
+- [ ] example of gnuplot custom diagram
 - [ ] Do astro components need to render something in case of error?
   - maybe not - it can just show default Astro error message
 - [ ] what about cache collisions?
@@ -41,7 +41,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 ## Other
 
-- https://github.com/svg/svgo
+- Do I need to use https://github.com/svg/svgo?
 - https://github.com/Microflash/fenceparser
 - https://github.com/frencojobs/fenceparser
 

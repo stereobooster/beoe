@@ -1,18 +1,18 @@
 {
-  "name": "@datt/rehype-mermaid",
+  "name": "@datt/rehype-starry-night",
   "type": "module",
   "version": "0.0.1",
-  "description": "rehype mermaid plugin",
+  "description": "rehype starry-night plugin",
   "keywords": [
     "rehype",
-    "mermaid"
+    "starry-night"
   ],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
-    "directory": "packages/rehype-mermaid"
+    "directory": "packages/rehype-starry-night"
   },
   "sideEffects": false,
   "exports": {
@@ -33,13 +33,14 @@
   },
   "dependencies": {
     "@datt/rehype-code-hook": "workspace:*",
-    "mermaid-isomorphic": "^2.1.2"
+    "@wooorm/starry-night": "^3.3.0",
+    "hastscript": "^9.0.0"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
-    "unified": "^11.0.4",
     "rehype-stringify": "^10.0.0",
     "remark-parse": "^11.0.0",
-    "remark-rehype": "^11.1.0"
+    "remark-rehype": "^11.1.0",
+    "unified": "^11.0.4"
   }
 }
