@@ -18,17 +18,15 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] astro-graphviz
 - [x] cache
 - [x] rehype-pintora
-- [ ] astro components need to render something in case of error?
+- [x] rehype-mermaid
+- [ ] rehype-plantuml
+  - https://github.com/plantuml/plantuml.js ???
+- [ ] Do astro components need to render something in case of error?
   - maybe not - it can just show default Astro error message
 - [ ] what about cache collisions?
-- [ ] rehype-mermaid
-  - https://github.com/remcohaszing/mermaid-isomorphic
-  - it makes sense only with cache
 - [ ] configure cache with cosmiconfig
 - [ ] remark-code-hook
 - [ ] rehype-gnuplot
-- [ ] rehype-plantuml
-  - https://github.com/plantuml/plantuml.js
 - [ ] rehype-color-chips
   - just because it should be easy https://github.com/shreshthmohan/rehype-color-chips
 - [ ] rehype-starry-night
@@ -37,6 +35,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
   - https://github.com/haze/rehype-tree-sitter
 - [ ] rehype-pikchr
   - https://github.com/fabiospampinato/pikchr-wasm
+- [ ] https://zenuml.com/
 - ...
 
 ## Other

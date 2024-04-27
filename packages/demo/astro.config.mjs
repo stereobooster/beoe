@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import { rehypeGraphviz } from "@datt/astro-graphviz/rehype";
 import { rehypePintora } from "@datt/rehype-pintora";
+import { rehypeMermaid } from "@datt/rehype-mermaid";
 import { getCache } from "@datt/cache";
 
 // https://astro.build/config
@@ -23,6 +24,7 @@ export default defineConfig({
         rehypePintora,
         { cache: getCache() },
       ],
+      [rehypeMermaid, { cache: getCache() }],
     ],
   },
 });

@@ -1,18 +1,18 @@
 {
-  "name": "@datt/rehype-graphviz",
+  "name": "@datt/rehype-mermaid",
   "type": "module",
   "version": "0.0.1",
-  "description": "rehype graphviz plugin",
+  "description": "rehype mermaid plugin",
   "keywords": [
     "rehype",
-    "graphviz"
+    "mermaid"
   ],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/datt.git",
-    "directory": "packages/rehype-graphviz"
+    "directory": "packages/rehype-mermaid"
   },
   "sideEffects": false,
   "exports": {
@@ -33,8 +33,7 @@
   },
   "dependencies": {
     "@datt/rehype-code-hook": "workspace:*",
-    "@hpcc-js/wasm": "^2.16.1",
-    "html-minifier": "^4.0.0"
+    "mermaid-isomorphic": "^2.1.2"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
