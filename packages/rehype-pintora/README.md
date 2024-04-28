@@ -1,5 +1,5 @@
-# rehype-pintora
+# @datt/rehype-pintora
 
-As SVG it looks really bad, I guess the only way is to use PNG...
+Rehype plugin to generate [Pintora](https://pintorajs.vercel.app/) diagrams (as inline SVGs) in place of code fences.
 
-**On pause for now**
+Tried it out of curiosity (and it is kind of easy to do with `@datt/rehype-code-hook`). Didn't like the result. And I don't have use case for it, so not gonna push it forward.

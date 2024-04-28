@@ -15,12 +15,13 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] [@datt/cache](/packages/cache/)
 - [x] [@datt/rehype-graphviz](/packages/rehype-graphviz/)
 - [x] [@datt/rehype-mermaid](/packages/rehype-mermaid/)
-- [x] @datt/rehype-pintora
+- [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
 - [x] @datt/rehype-gnuplot
 - [x] @datt/rehype-starry-night
 - [x] @datt/rehype-color-chips
 - [x] @datt/astro-graphviz
 - [x] astro demo
+- [ ] check if `@datt` organization available on npm
 - [ ] write documentation
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
