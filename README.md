@@ -37,8 +37,8 @@ Out of scope:
 
 - [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
 - [x] [@datt/rehype-starry-night](/packages/rehype-starry-night/)
-- [x] @datt/rehype-color-chips
-- [x] demo
+- [x] [@datt/rehype-color-chips](/packages/rehype-color-chips/)
+- [x] [demo](/packages/demo/)
 - [ ] example of graphviz custom diagram
   - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] example of gnuplot custom diagram
@@ -66,10 +66,12 @@ Out of scope:
 
 ## TODO
 
-- [ ] write documentation
-- [ ] check if `@datt` organization available on npm
+- [ ] remark-code-hook
+  - and it work with Astro out of the box
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
+- [ ] check if `@datt` organization available on npm
+- [ ] publish to npm and make repo public
 - [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
   - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
