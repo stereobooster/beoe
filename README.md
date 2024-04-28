@@ -70,7 +70,7 @@ Out of scope:
 
 ## TODO
 
-- [ ] configuration to class to root wrapper element
+- [ ] configuration to add class to root wrapper element
   - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
     ](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] remark-code-hook
