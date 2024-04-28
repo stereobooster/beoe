@@ -3,7 +3,7 @@
 Rehype plugin to highlight code with the help of [starry-night](https://github.com/wooorm/starry-night). This:
 
 ````md
-```markdown
+```md
 # Hello, world!
 ```
 ````
@@ -11,12 +11,12 @@ Rehype plugin to highlight code with the help of [starry-night](https://github.c
 will be converted to:
 
 ```html
-<pre><code class="language-markdown"><span class="pl-mh"><span class="pl-mh">#</span><span class="pl-mh"> </span>Hello, world!</span></code></pre>
+<pre><code class="language-md"><span class="pl-mh"><span class="pl-mh">#</span><span class="pl-mh"> </span>Hello, world!</span></code></pre>
 ```
 
 which can look like this:
 
-```markdown
+```md
 # Hello, world!
 ```
 
