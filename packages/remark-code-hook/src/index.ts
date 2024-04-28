@@ -125,7 +125,7 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
           inline,
           language,
           // @ts-expect-error
-          meta: codeNode.data?.meta || codeNode.properties?.metastring,
+          meta: codeNode.data?.meta || codeNode.properties.meta,
         };
 
         let newNode: NewNode;

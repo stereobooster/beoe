@@ -113,17 +113,45 @@ If you need to parse `meta` param you can use, for example:
 
 ### Astro
 
-If you want to use rehype plugin for `code` elements in Astro you need to **either** disable built-in highlighter
+If you want to use rehype plugin for `code` elements in Astro you need to disable built-in highlighter and then make sure it will appear after your rehype plugin
 
 ```js
+import { rehypeShiki, markdownConfigDefaults } from "@astrojs/markdown-remark";
+
 export default defineConfig({
   markdown: {
     syntaxHighlight: false,
+    rehypePlugins: [
+      // you rehype plugin goes here
+      // re-enable default Astro code highlighter
+      [rehypeShiki, markdownConfigDefaults.shikiConfig],
+    ],
   },
 });
 ```
 
-**or** do workaround with `raw` nodes see [this comment](https://github.com/withastro/starlight/discussions/1259#discussioncomment-8515492)
+### Starlight
+
+If you want to use rehype plugin for `code` elements in Starlight you need to **either** disable built-in highlighter (`expressiveCode` and `syntaxHighlight`):
+
+```js
+export default defineConfig({
+  integrations: [
+    starlight({
+      expressiveCode: false,
+    }),
+  ],
+  markdown: {
+    syntaxHighlight: false,
+    rehypePlugins: [
+      // you rehype plugin goes here
+      // after you can insert code highlighter
+    ],
+  },
+});
+```
+
+**or** do other workarounds see [this comment](https://github.com/withastro/starlight/discussions/1259#discussioncomment-8515492).
 
 **or** you can use remark plugin [@datt/remark-code-hook](/packages/rehype-code-hook/) (not implemented yet)
 

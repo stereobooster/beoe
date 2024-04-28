@@ -6,6 +6,10 @@ Rehype (remark) plugins are tedious to write. If your render function is costly 
 
 See [how much diagrams asciidoctor supports](https://docs.asciidoctor.org/diagram-extension/latest/).
 
+## Status
+
+There are still some pending TODOs. It can be rough on edges.
+
 ## Packages
 
 ### Core
@@ -13,7 +17,7 @@ See [how much diagrams asciidoctor supports](https://docs.asciidoctor.org/diagra
 - [x] [@datt/rehype-code-hook](/packages/rehype-code-hook/)
 - [x] [@datt/sqlitecache](/packages/sqlitecache/)
 - [x] [@datt/cache](/packages/cache/)
-- [ ] remark-code-hook
+- [ ] @datt/remark-code-hook
   - because of https://github.com/withastro/starlight/discussions/1259#discussioncomment-9247236
 
 ### Diagrams
@@ -66,6 +70,9 @@ Out of scope:
 
 ## TODO
 
+- [ ] configuration to class to root wrapper element
+  - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
+    ](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] remark-code-hook
   - and make it work with Astro out of the box
 - [ ] @datt/astro-graphviz - update readme

@@ -7,6 +7,7 @@ import { rehypeMermaid } from "@datt/rehype-mermaid";
 import { rehypeGnuplot } from "@datt/rehype-gnuplot";
 import { rehypeStarryNight } from "@datt/rehype-starry-night";
 import { rehypeColorChips } from "@datt/rehype-color-chips";
+// import { rehypeShiki, markdownConfigDefaults } from "@astrojs/markdown-remark";
 
 const cache = await getCache();
 
@@ -33,6 +34,7 @@ export default defineConfig({
       [rehypeGnuplot, { cache }],
       rehypeColorChips,
       rehypeStarryNight,
+      // [rehypeShiki, markdownConfigDefaults.shikiConfig],
     ],
   },
 });
