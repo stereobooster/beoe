@@ -4,35 +4,35 @@
 
 Rehype (remark) plugins are tedious to write. If your render function is long (headless berowser) you probably need to take care of caching. I felt like this process was complicated.
 
-## Goal
+## Packages
 
-Support as much as possible diagrams from https://stereobooster.com/posts/text-to-diagram/, basically everything that has WASM or node package.
-
-## TODO
+### Core
 
 - [x] [@datt/rehype-code-hook](/packages/rehype-code-hook/)
 - [x] [@datt/sqlitecache](/packages/sqlitecache/)
 - [x] [@datt/cache](/packages/cache/)
-- [x] [@datt/rehype-graphviz](/packages/rehype-graphviz/)
-- [x] [@datt/rehype-mermaid](/packages/rehype-mermaid/)
-- [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
-- [x] [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)
-- [x] @datt/rehype-starry-night
-- [x] @datt/rehype-color-chips
-- [x] @datt/astro-graphviz
-- [x] astro demo
-- [ ] check if `@datt` organization available on npm
-- [ ] write documentation
-- [ ] astro-mermaid
-- [ ] astro-gnuplot
-- [ ] example of gnuplot custom diagram
-- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
-  - maybe move it to this monorepo?
-- [ ] Do astro components need to render something in case of an error?
-- [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
-  - or maybe don't try to overcomplicate it
 - [ ] remark-code-hook
   - because of https://github.com/withastro/starlight/discussions/1259#discussioncomment-9247236
+
+### Diagrams
+
+|          | rehype                                              | Astro                | remark |
+| -------- | --------------------------------------------------- | -------------------- | ------ |
+| Graphviz | [@datt/rehype-graphviz](/packages/rehype-graphviz/) | @datt/astro-graphviz |        |
+| Mermaid  | [@datt/rehype-mermaid](/packages/rehype-mermaid/)   |                      |        |
+| Gnuplot  | [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)   |                      |        |
+| venn.js  |                                                     |                      |        |
+| pikchr   |                                                     |                      |        |
+|          |                                                     |                      |        |
+
+Support as much as possible diagrams from https://stereobooster.com/posts/text-to-diagram/, basically everything that has WASM or node package.
+
+### Experiments
+
+- [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
+- [x] @datt/rehype-starry-night
+- [x] @datt/rehype-color-chips
+- [x] demo
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
@@ -46,8 +46,16 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
     - on build pack all wasm binaries
     - auto release with github
     - https://github.com/wooorm/starry-night/blob/main/script/common.js
-- [ ] rehype-pikchr
-  - https://github.com/fabiospampinato/pikchr-wasm
-- [ ] https://zenuml.com/
-- [ ] https://astro-digital-garden.stereobooster.com/recipes/euler-diagram/
-- ...
+
+## TODO
+
+- [ ] write documentation
+- [ ] check if `@datt` organization available on npm
+- [ ] astro-mermaid
+- [ ] astro-gnuplot
+- [ ] example of gnuplot custom diagram
+- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
+  - maybe move it to this monorepo?
+- [ ] Do astro components need to render something in case of an error?
+- [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
+  - or maybe don't try to overcomplicate it
