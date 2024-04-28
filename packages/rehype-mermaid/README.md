@@ -17,7 +17,7 @@ will be converted to
 </div>
 ```
 
-which looks like this:
+which can look like this:
 
 ```mermaid
 flowchart LR
@@ -50,3 +50,4 @@ It support caching the same way as [@datt/rehype-code-hook](/packages/rehype-cod
 - maybe use `waitFor`
 - maybe remove `style="max-width: ..."`
 - test `mermaid-isomorphic` options (`css, mermaidConfig, prefix, browser, launchOptions`)
+- write tips about styling with CSS

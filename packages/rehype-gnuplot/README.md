@@ -34,3 +34,20 @@ const html = await unified()
 ```
 
 It support caching the same way as [@datt/rehype-code-hook](/packages/rehype-code-hook/) does.
+
+## Tips
+
+### XKCD-style
+
+You can create XKCD-style plots with this [snippet](https://rfonseca.github.io/xkcd-gnuplot/). In order for it to work as SVG you need to changed following lines:
+
+```diff
+- set term postscript eps font 'HumorSans' fontfile 'Humor-Sans.pfa' 22
+- set output 'xkcd.eps'
++ set terminal svg enhanced font "HumorSans,Patrick Hand,Chalkboard,Comic Sans MS,18"
+```
+
+You may use any font you like (don't forget to load it in HTML), for example:
+
+- [Humor Sans](https://github.com/shreyankg/xkcd-desktop/blob/master/Humor-Sans.ttf)
+- [Patrick Hand](https://fonts.google.com/specimen/Patrick+Hand)

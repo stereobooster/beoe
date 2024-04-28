@@ -1,8 +1,10 @@
 # Diagram All The Things (datt)
 
-**Core idea**: if you have function that can produce diagram as SVG it should be trivial to use it in astro to create diagrams - either as rehype (remark) plugin or as Astro component.
+**Core idea**: if you have function that can produce diagram as SVG it should be trivial to use it in Astro (or other SSG that uses remark/rehype) to create diagrams - either as rehype (remark) plugin or as Astro component.
 
-Rehype (remark) plugins are tedious to write. If your render function is long (headless berowser) you probably need to take care of caching. I felt like this process was complicated.
+Rehype (remark) plugins are tedious to write. If your render function is costly (headless berowser) you probably need to take care of caching. I felt like this process was over-complicated.
+
+See [how much diagrams asciidoctor supports](https://docs.asciidoctor.org/diagram-extension/latest/).
 
 ## Packages
 
@@ -21,18 +23,27 @@ Rehype (remark) plugins are tedious to write. If your render function is long (h
 | Graphviz | [@datt/rehype-graphviz](/packages/rehype-graphviz/) | @datt/astro-graphviz |        |
 | Mermaid  | [@datt/rehype-mermaid](/packages/rehype-mermaid/)   |                      |        |
 | Gnuplot  | [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)   |                      |        |
-| venn.js  |                                                     |                      |        |
-| pikchr   |                                                     |                      |        |
-|          |                                                     |                      |        |
+| penrose  |                                                     |                      |        |
+| ...      |                                                     |                      |        |
 
-Support as much as possible diagrams from https://stereobooster.com/posts/text-to-diagram/, basically everything that has WASM or node package.
+Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
+
+Out of scope:
+
+- https://plantuml.com/, requires Java
+- https://d2lang.com/, requires installation of binary. Can be supported if it would be distributed as [WASM](https://github.com/terrastruct/d2/issues/136)
 
 ### Experiments
 
 - [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
-- [x] @datt/rehype-starry-night
+- [x] [@datt/rehype-starry-night](/packages/rehype-starry-night/)
 - [x] @datt/rehype-color-chips
 - [x] demo
+- [ ] example of graphviz custom diagram
+  - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
+- [ ] example of gnuplot custom diagram
+  - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
+  - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
@@ -46,6 +57,12 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
     - on build pack all wasm binaries
     - auto release with github
     - https://github.com/wooorm/starry-night/blob/main/script/common.js
+- [ ] venn.js
+  - https://github.com/stereobooster/venn-isomorphic
+- [ ] svgbob
+  - https://github.com/agoose77/svgbob-wasm
+- [ ] pikchr
+  - https://github.com/fabiospampinato/pikchr-wasm
 
 ## TODO
 
@@ -53,7 +70,6 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] check if `@datt` organization available on npm
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
-- [ ] example of gnuplot custom diagram
 - [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
   - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
