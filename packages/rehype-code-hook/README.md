@@ -1,4 +1,4 @@
-# rehype-code-hook
+# @datt/rehype-code-hook
 
 Rehype plugin to make it easier to write custom processors for code e.g.:
 
@@ -102,10 +102,45 @@ rehypeCodeHook({ code, cache: new Map(), hashTostring: true });
 
 I checked it with [@datt/cache](/packages/cache/), but it suppose to work with any storage that has `Map` like interface. You may pass additional `salt` param to reset cache, for example when configuration of your plugin changed.
 
+## Tips
+
+### Meta string
+
 If you need to parse `meta` param you can use, for example:
 
 - https://github.com/Microflash/fenceparser
 - https://github.com/frencojobs/fenceparser
+
+### Astro
+
+If you want to use rehype plugin for `code` elements in Astro you need to **either** disable built-in highlighter
+
+```js
+export default defineConfig({
+  markdown: {
+    syntaxHighlight: false,
+  },
+});
+```
+
+**or** do workaround with `raw` nodes see [this comment](https://github.com/withastro/starlight/discussions/1259#discussioncomment-8515492)
+
+**or** you can use remark plugin [@datt/remark-code-hook](/packages/rehype-code-hook/) (not implemented yet)
+
+### Images instead of inline SVG
+
+My main use-case is to inline SVGs, but if you want to produce images instead you can use [data URLs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs). Something like this:
+
+```js
+{
+  code: () =>
+    `<img src="data:image/png;base64,${dataBuffer.toString("base64")}">`;
+}
+```
+
+If you want to convert SVG data URL use [`mini-svg-data-uri`](https://www.npmjs.com/package/mini-svg-data-uri) or similar.
+
+I didn't investigate how to render images aside with [vfile](https://github.com/vfile/vfile).
 
 ## TODO
 

@@ -10,17 +10,17 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 ## TODO
 
-- [x] [rehype-code-hook](/packages/rehype-code-hook/)
-- [x] [SQLiteCache](/packages/sqlitecache/)
-- [x] rehype-graphviz
+- [x] [@datt/rehype-code-hook](/packages/rehype-code-hook/)
+- [x] [@datt/sqlitecache](/packages/sqlitecache/)
+- [x] [@datt/cache](/packages/cache/)
+- [x] [@datt/rehype-graphviz](/packages/rehype-graphviz/)
+- [x] @datt/rehype-mermaid
+- [x] @datt/rehype-pintora
+- [x] @datt/rehype-gnuplot
+- [x] @datt/rehype-starry-night
+- [x] @datt/rehype-color-chips
+- [x] @datt/astro-graphviz
 - [x] astro demo
-- [x] astro-graphviz
-- [x] cache
-- [x] rehype-pintora
-- [x] rehype-mermaid
-- [x] rehype-gnuplot
-- [x] rehype-starry-night
-- [x] rehype-color-chips
 - [ ] write documentation
 - [ ] astro-mermaid
 - [ ] astro-gnuplot

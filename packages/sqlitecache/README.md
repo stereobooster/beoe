@@ -1,4 +1,4 @@
-# SQLiteCache
+# @datt/sqlitecache
 
 ## Motivational example
 
@@ -56,11 +56,9 @@ Here are some ideas to experiment with (but need proper benchmark first):
 
 ## TODO
 
-- cache suppose to reset when those changed:
-  - `zip`
-  - `unzip`
-  - `serialize`
-  - `deserialize`
+- cache suppose to reset when those changed: `zip`, `unzip`, `serialize`, `deserialize`
+  - or store them as part of the key, so one can use several versions at the same time
+- maybe store `created_at` for items
 - maybe drop `withMeta`?
-- maybe rename them to `compress`/[`decompress`](https://english.stackexchange.com/questions/56480/difference-between-uncompress-and-decompress)?
+- maybe rename `zip`/`unzip` to `compress`/[`decompress`](https://english.stackexchange.com/questions/56480/difference-between-uncompress-and-decompress)?
 - write "usage" section of documentation
