@@ -16,7 +16,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] [@datt/rehype-graphviz](/packages/rehype-graphviz/)
 - [x] [@datt/rehype-mermaid](/packages/rehype-mermaid/)
 - [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
-- [x] @datt/rehype-gnuplot
+- [x] [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)
 - [x] @datt/rehype-starry-night
 - [x] @datt/rehype-color-chips
 - [x] @datt/astro-graphviz
