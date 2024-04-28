@@ -1,6 +1,6 @@
 # @dat/rehype-gnuplot
 
-Rehype plugin to generate [Gnuplot](https://gnuplot.sourceforge.net/) diagrams (as inline SVGs) in place of code fences.
+Rehype plugin to generate [Gnuplot](https://gnuplot.sourceforge.net/) diagrams (as inline SVGs) in place of code fences. This:
 
 ````md
 ```gnuplot

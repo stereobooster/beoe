@@ -1,6 +1,30 @@
 # @datt/rehype-mermaid
 
-Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams (as inline SVGs) in place of code fences.
+Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams (as inline SVGs) in place of code fences. This:
+
+````md
+```mermaid
+flowchart LR
+  start --> stop
+```
+````
+
+will be converted to
+
+```html
+<div class="datt mermaid">
+  <svg>...</svg>
+</div>
+```
+
+which looks like this:
+
+```mermaid
+flowchart LR
+  start --> stop
+```
+
+## How is it different from `rehype-mermaid`?
 
 There is battle-tested and well maintained [rehype-mermaid](https://github.com/remcohaszing/rehype-mermaid). Both plugins use the same [mermaid-isomorphic](https://github.com/remcohaszing/mermaid-isomorphic) behind the scene.
 
