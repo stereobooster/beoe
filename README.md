@@ -67,7 +67,8 @@ Out of scope:
 ## TODO
 
 - [ ] remark-code-hook
-  - and it work with Astro out of the box
+  - and make it work with Astro out of the box
+- [ ] @datt/astro-graphviz - update readme
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
 - [ ] check if `@datt` organization available on npm

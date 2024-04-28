@@ -16,6 +16,10 @@ will be converted to
 </div>
 ```
 
+which can look like this:
+
+**TODO**: add screenshot
+
 ## Usage
 
 ```js

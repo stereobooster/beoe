@@ -16,7 +16,7 @@ will be converted to:
 
 which can look like this:
 
-`#bada55` (if Github supports it).
+**TODO**: add screenshot
 
 ## Status
 
