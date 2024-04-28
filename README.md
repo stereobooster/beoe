@@ -14,7 +14,7 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [x] [@datt/sqlitecache](/packages/sqlitecache/)
 - [x] [@datt/cache](/packages/cache/)
 - [x] [@datt/rehype-graphviz](/packages/rehype-graphviz/)
-- [x] @datt/rehype-mermaid
+- [x] [@datt/rehype-mermaid](/packages/rehype-mermaid/)
 - [x] @datt/rehype-pintora
 - [x] @datt/rehype-gnuplot
 - [x] @datt/rehype-starry-night
@@ -25,6 +25,8 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 - [ ] astro-mermaid
 - [ ] astro-gnuplot
 - [ ] example of gnuplot custom diagram
+- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
+  - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
 - [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
   - or maybe don't try to overcomplicate it
