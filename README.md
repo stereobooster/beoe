@@ -10,10 +10,10 @@ Support as much as possible diagrams from https://stereobooster.com/posts/text-t
 
 ## TODO
 
-- [x] [rehype-code-hook](packages/rehype-code-hook/)
+- [x] [rehype-code-hook](/packages/rehype-code-hook/)
+- [x] [SQLiteCache](/packages/sqlitecache/)
 - [x] rehype-graphviz
 - [x] astro demo
-- [x] SQLiteCache
 - [x] astro-graphviz
 - [x] cache
 - [x] rehype-pintora
