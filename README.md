@@ -43,11 +43,11 @@ Out of scope:
 - [x] [@datt/rehype-starry-night](/packages/rehype-starry-night/)
 - [x] [@datt/rehype-color-chips](/packages/rehype-color-chips/)
 - [x] [demo](/packages/demo/)
-- [ ] example of graphviz custom diagram
-  - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
   - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
+- [ ] example of graphviz custom diagram
+  - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
@@ -73,6 +73,7 @@ Out of scope:
 - [ ] configuration to add class to root wrapper element
   - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
     ](https://github.com/tailwindlabs/tailwindcss-typography)
+  - use figure instead of div for wrapper
 - [ ] remark-code-hook
   - and make it work with Astro out of the box
 - [ ] @datt/astro-graphviz - update readme
