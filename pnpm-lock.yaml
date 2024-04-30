@@ -301,18 +301,9 @@ importers:
 
   packages/remark-code-hook:
     dependencies:
-      '@types/hast':
-        specifier: ^3.0.4
-        version: 3.0.4
-      deterministic-object-hash:
-        specifier: ^2.0.2
-        version: 2.0.2
-      hast-util-from-html-isomorphic:
-        specifier: ^2.0.0
-        version: 2.0.0
-      hast-util-to-text:
-        specifier: ^4.0.2
-        version: 4.0.2
+      '@types/mdast':
+        specifier: ^4.0.3
+        version: 4.0.3
       unified:
         specifier: ^11.0.4
         version: 11.0.4
@@ -320,6 +311,9 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
     devDependencies:
+      rehype-raw:
+        specifier: ^7.0.0
+        version: 7.0.0
       remark-parse:
         specifier: ^11.0.0
         version: 11.0.0

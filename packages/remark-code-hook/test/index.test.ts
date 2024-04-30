@@ -2,20 +2,123 @@ import fs from "node:fs/promises";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
 import rehypeStringify from "rehype-stringify";
 import { expect, it, vi } from "vitest";
 
-import { rehypeCodeHook } from "../src/index.js";
+import { remerkCodeHook } from "../src/index.js";
 // it's ok to use direct import in test use file directly
 import { SQLiteCache } from "../../sqlitecache/src/index.js";
+
+/*
+| ........................ process ........................... |
+| .......... parse ... | ... run ... | ... stringify ..........|
+
+          +--------+                     +----------+
+Input ->- | Parser | ->- Syntax Tree ->- | Compiler | ->- Output
+          +--------+          |          +----------+
+                              X
+                              |
+                       +--------------+
+                       | Transformers |
+                       +--------------+  
+*/
+
+it("doesn't work at parse level", async () => {
+  const processor = unified()
+    .use(remarkParse)
+    .use(remerkCodeHook, {
+      code: () => ({ type: "text", value: "ABC" }),
+    });
+
+  const ast = processor.parse(
+    await fs.readFile(new URL("./fixtures/a.md", import.meta.url))
+  );
+
+  expect(ast).toMatchInlineSnapshot(`
+    {
+      "children": [
+        {
+          "lang": "js",
+          "meta": "{3-4} fileName=test /a/",
+          "position": {
+            "end": {
+              "column": 4,
+              "line": 3,
+              "offset": 38,
+            },
+            "start": {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "type": "code",
+          "value": "test",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 1,
+          "line": 4,
+          "offset": 39,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "root",
+    }
+  `);
+});
+
+it("works at transformation level", async () => {
+  const processor = unified()
+    .use(remarkParse)
+    .use(remerkCodeHook, {
+      code: () => ({ type: "text", value: "ABC" }),
+    });
+
+  const ast = processor.parse(
+    await fs.readFile(new URL("./fixtures/a.md", import.meta.url))
+  );
+
+  const astAfter = await processor.run(ast);
+
+  expect(astAfter).toMatchInlineSnapshot(`
+    {
+      "children": [
+        {
+          "type": "text",
+          "value": "ABC",
+        },
+      ],
+      "position": {
+        "end": {
+          "column": 1,
+          "line": 4,
+          "offset": 39,
+        },
+        "start": {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "root",
+    }
+  `);
+});
 
 it("does nothing if code returns undefined", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
+    .use(remerkCodeHook, {
       code: () => undefined,
     })
+    .use(remarkRehype)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -25,28 +128,24 @@ it("does nothing if code returns undefined", async () => {
 it("supports html strings", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
+    .use(remerkCodeHook, {
       code: () => "<b>html</b>",
     })
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
   expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
 });
 
-it("supports hast", async () => {
+it("supports mdast", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
-      code: () => ({
-        type: "element",
-        tagName: "i",
-        properties: {},
-        children: [{ type: "text", value: "hast" }],
-      }),
+    .use(remerkCodeHook, {
+      code: () => ({ type: "text", value: "Alpha bravo charlie." }),
     })
+    .use(remarkRehype)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -56,10 +155,10 @@ it("supports hast", async () => {
 it("supports promises with undefined", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
+    .use(remerkCodeHook, {
       code: () => Promise.resolve(undefined),
     })
+    .use(remarkRehype)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -69,29 +168,25 @@ it("supports promises with undefined", async () => {
 it("supports promises with html string", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
+    .use(remerkCodeHook, {
       code: () => Promise.resolve("<b>html</b>"),
     })
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
   expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
 });
 
-it("supports promises with hast", async () => {
+it("supports promises with mdast", async () => {
   const file = await unified()
     .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypeCodeHook, {
+    .use(remerkCodeHook, {
       code: () =>
-        Promise.resolve({
-          type: "element",
-          tagName: "i",
-          properties: {},
-          children: [{ type: "text", value: "hast" }],
-        }),
+        Promise.resolve({ type: "text", value: "Alpha bravo charlie." }),
     })
+    .use(remarkRehype)
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -103,13 +198,13 @@ it("passes props to callback for code-block", async () => {
 
   const file = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
   expect(code).toHaveBeenCalledWith({
-    code: "test\n",
+    code: "test",
     inline: false,
     language: "js",
     meta: "{3-4} fileName=test /a/",
@@ -121,8 +216,8 @@ it("passes props to callback for code-inline", async () => {
 
   const file = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/b.md", import.meta.url)));
 
@@ -138,12 +233,12 @@ it("passes error and adds location in markdown", async () => {
   await expect(() =>
     unified()
       .use(remarkParse)
-      .use(remarkRehype)
-      .use(rehypeCodeHook, {
+      .use(remerkCodeHook, {
         code: () => {
           throw new Error("whatever");
         },
       })
+      .use(remarkRehype)
       .use(rehypeStringify)
       .process("`test`")
   ).rejects.toThrowErrorMatchingInlineSnapshot(`[1:1-1:7: whatever]`);
@@ -153,10 +248,10 @@ it("passes error and adds location in markdown", async () => {
   await expect(() =>
     unified()
       .use(remarkParse)
-      .use(remarkRehype)
-      .use(rehypeCodeHook, {
+      .use(remerkCodeHook, {
         code: () => Promise.reject(new Error("whatever")),
       })
+      .use(remarkRehype)
       .use(rehypeStringify)
       .process("`test`")
   ).rejects.toThrowErrorMatchingInlineSnapshot(`[1:1-1:7: whatever]`);
@@ -169,8 +264,8 @@ it("caches undefined", async () => {
   // twice in the same run
   const file1 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code` `code`");
   expect(file1.toString()).toMatchInlineSnapshot(
@@ -180,8 +275,8 @@ it("caches undefined", async () => {
   // once in different run
   const file2 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
   expect(file2.toString()).toMatchInlineSnapshot(`"<p><code>code</code></p>"`);
@@ -196,20 +291,20 @@ it("can cache with Map", async () => {
   // twice in the same run
   const file1 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code` `code`");
-  expect(file1.toString()).toMatchInlineSnapshot(`"<p>test test</p>"`);
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p> </p>"`);
 
   // once in different run
   const file2 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p></p>"`);
 
   // but called only once instead of 3
   expect(code).toHaveBeenCalledOnce();
@@ -222,20 +317,20 @@ it("can cache with @datt/sqlitecache", async () => {
   // twice in the same run
   const file1 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code` `code`");
-  expect(file1.toString()).toMatchInlineSnapshot(`"<p>test test</p>"`);
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p> </p>"`);
 
   // once in different run
   const file2 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p>test</p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p></p>"`);
 
   // but called only once instead of 3
   expect(code).toHaveBeenCalledOnce();
@@ -246,21 +341,21 @@ it("cache reacts to callback change", async () => {
 
   const file1 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code: () => "1", cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code: () => "1", cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
 
-  expect(file1.toString()).toMatchInlineSnapshot(`"<p>1</p>"`);
+  expect(file1.toString()).toMatchInlineSnapshot(`"<p></p>"`);
 
   const file2 = await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code: () => "2", cache, hashTostring: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code: () => "2", cache, hashTostring: true })
     .use(rehypeStringify)
     .process("`code`");
 
-  expect(file2.toString()).toMatchInlineSnapshot(`"<p>2</p>"`);
+  expect(file2.toString()).toMatchInlineSnapshot(`"<p></p>"`);
 });
 
 it("calls hook only for given language", async () => {
@@ -268,8 +363,8 @@ it("calls hook only for given language", async () => {
 
   await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, language: "other" })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, language: "other" })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -277,8 +372,8 @@ it("calls hook only for given language", async () => {
 
   await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, language: "js" })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, language: "js" })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -290,8 +385,8 @@ it("calls hook only for inline or block", async () => {
 
   await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, inline: true })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, inline: true })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
@@ -299,8 +394,8 @@ it("calls hook only for inline or block", async () => {
 
   await unified()
     .use(remarkParse)
+    .use(remerkCodeHook, { code, inline: false })
     .use(remarkRehype)
-    .use(rehypeCodeHook, { code, inline: false })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 

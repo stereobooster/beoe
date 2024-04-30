@@ -17,8 +17,7 @@ There are still some pending TODOs. It can be rough on edges.
 - [x] [@datt/rehype-code-hook](/packages/rehype-code-hook/)
 - [x] [@datt/sqlitecache](/packages/sqlitecache/)
 - [x] [@datt/cache](/packages/cache/)
-- [ ] @datt/remark-code-hook
-  - because of https://github.com/withastro/starlight/discussions/1259#discussioncomment-9247236
+- [x] [@datt/remark-code-hook](/packages/remark-code-hook/)
 
 ### Diagrams
 

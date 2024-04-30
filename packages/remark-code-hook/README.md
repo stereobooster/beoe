@@ -1,7 +1,5 @@
 # @datt/remark-code-hook
 
-**WIP**: this is stub package, there is no actual code and need to re-check readme.
-
 Remark plugin to make it easier to write custom processors for code e.g.:
 
 ````md
@@ -78,9 +76,9 @@ If you have code like this:
 Now it is time to render your thing:
 
 - you can check `code`, `inline`, `language`, `meta` and if this is not the block you are looking for you can return `undefined` - and block would be unchanged
-- if you decided to render something you can return `string` (for example SVG or HTML), you can return HAST fragment or you can return promise of string or HAST
-  - if return value is HAST fragment it will replace whole code block
-  - if return value is string it would be converted to HAST and then will replace whole code block
+- if you decided to render something you can return `string` (for example SVG or HTML), you can return MDAST fragment or you can return promise of string or MDAST
+  - if return value is MDAST fragment it will replace whole code block
+  - if return value is string it would be interpreted as raw-html and will replace whole code block
   - if return value is promise it will wait until it resolves and do one of steps above
 
 You can configure your plugin to be called only for specific cases, for example:
@@ -105,4 +103,9 @@ If you need to parse `meta` param you can use, for example:
 - https://github.com/Microflash/fenceparser
 - https://github.com/frencojobs/fenceparser
 
-## TODO
+### Raw HTML
+
+If you want to return raw HTML in plugin you would need to use:
+
+- `.use(remarkRehype, { allowDangerousHtml: true })`
+- `.use(rehypeRaw)`

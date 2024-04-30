@@ -1,13 +1,10 @@
 import type { Plugin } from "unified";
-import type { Root, Node, Element } from "hast";
-import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
-import { toText } from "hast-util-to-text";
+import type { Root, Node } from "mdast";
+// import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 import { CONTINUE, SKIP, visit } from "unist-util-visit";
 // Other options: askorama/seqproto, pouya-eghbali/sia, deterministic-object-hash
 // I haven't benchmarked it
 import { serialize } from "node:v8";
-
-export { waitFor } from "./waitFor.js";
 
 function isNode(node: unknown): node is Node {
   return Boolean(typeof node === "object" && node !== null && "type" in node);
@@ -22,7 +19,7 @@ type NewNode = undefined | string | Node | Promise<undefined | string | Node>;
 function replace(
   newNode: NewNode,
   index: number | undefined,
-  parent: Root | Element | undefined
+  parent: Root | Node | undefined
 ) {
   if (newNode === undefined || index === undefined || parent === undefined) {
     // no new node - do nothing
@@ -31,7 +28,12 @@ function replace(
       replace(newNewNode, index, parent);
     });
   } else if (typeof newNode === "string") {
-    const element = fromHtmlIsomorphic(newNode, { fragment: true });
+    // const hChildren = fromHtmlIsomorphic(newNode, { fragment: true }).children;
+    const element = {
+      type: "html",
+      value: newNode,
+      // data: { hChildren },
+    };
     // @ts-expect-error
     parent.children[index] = element;
   } else if (isNode(newNode)) {
@@ -42,7 +44,7 @@ function replace(
   }
 }
 
-export type RehypeCodeHookProps = {
+export type RemerkCodeHookProps = {
   code: string;
   inline: boolean;
   language?: string;
@@ -59,8 +61,8 @@ export type MapLike<K = any, V = any> = {
  */
 const EMPTY_CACHE = null;
 
-export type RehypeCodeHookOptions = {
-  code: (x: RehypeCodeHookProps) => NewNode;
+export type RemerkCodeHookOptions = {
+  code: (x: RemerkCodeHookProps) => NewNode;
   cache?: MapLike;
   /**
    * if given hook will be called only for this language
@@ -80,7 +82,7 @@ export type RehypeCodeHookOptions = {
   hashTostring?: boolean;
 };
 
-export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
+export const remerkCodeHook: Plugin<[RemerkCodeHookOptions], Root> = (
   options
 ) => {
   const cb = options.code.toString();
@@ -88,44 +90,26 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
   return (ast, file) => {
     const promises: PromiseLike<unknown>[] = [];
 
-    visit(ast, "element", function (node, index, parent) {
-      let codeNode;
-      let inline = false;
-      if (
-        node.tagName === "pre" &&
-        node.children.length === 1 &&
-        // @ts-expect-error
-        node.children[0].tagName === "code"
-      ) {
-        codeNode = node.children[0];
-        inline = false;
-        // @ts-expect-error
-      } else if (node.tagName === "code" && parent?.tagName !== "pre") {
-        codeNode = node;
-        inline = true;
-      }
+    visit(ast, function (codeNode, index, parent) {
+      if (codeNode.type !== "code" && codeNode.type !== "inlineCode")
+        return CONTINUE;
 
-      if (!codeNode) return CONTINUE;
-
+      let inline = codeNode.type === "inlineCode";
       if (options.inline !== undefined && options.inline !== inline)
         return CONTINUE;
 
       // @ts-expect-error
-      const language = codeNode.properties.className?.[0]?.replace(
-        "language-",
-        ""
-      );
-
+      const language = codeNode.lang;
       if (options.language !== undefined && options.language !== language)
         return CONTINUE;
 
       try {
         const props = {
-          code: toText(codeNode, { whitespace: "pre" }),
+          code: codeNode.value,
           inline,
           language,
           // @ts-expect-error
-          meta: codeNode.data?.meta || codeNode.properties.meta,
+          meta: codeNode.meta,
         };
 
         let newNode: NewNode;
@@ -169,11 +153,13 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
 
         if (isThenable(result))
           promises.push(
-            result.catch((e) => file.fail(e, node.position, "rehypeCodeHook"))
+            result.catch((e) =>
+              file.fail(e, codeNode.position, "remerkCodeHook")
+            )
           );
       } catch (e: unknown) {
         // @ts-expect-error
-        file.fail(e, node.position, "rehypeCodeHook");
+        file.fail(e, codeNode.position, "remerkCodeHook");
       }
 
       return SKIP;
@@ -183,4 +169,4 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
   };
 };
 
-export default rehypeCodeHook;
+export default remerkCodeHook;
