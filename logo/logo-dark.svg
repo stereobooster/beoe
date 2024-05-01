@@ -93,9 +93,9 @@
 
   <line class="stroke stroke-blue" x1="222.43" y1="190.96" x2="95.01" y2="127.43" />
   <line class="stroke stroke-red" x1="63.4" y1="190.83" x2="222.43" y2="190.96" />
-  <line class="stroke stroke-yellow" x1="63.4" y1="190.83" x2="95.01" y2="127.43" />
+  
   <line class="stroke stroke-bg" x1="95.01" y1="127.43" x2="95.01" y2="349.86" />
-
+  <line class="stroke stroke-yellow" x1="63.4" y1="190.83" x2="95.01" y2="127.43" />
   <line
     class="stroke stroke-fg stroke-dotted"
     x1="95.01"
