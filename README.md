@@ -38,11 +38,6 @@ I implemented core packages and added some examples. But I still need to add mor
 
 Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
-Out of scope:
-
-- https://plantuml.com/, requires Java
-- https://d2lang.com/, requires installation of binary. Can be supported if it would be distributed as [WASM](https://github.com/terrastruct/d2/issues/136)
-
 ### Experiments
 
 - [x] [@beoe/rehype-pintora](/packages/rehype-mermaid/)
@@ -76,6 +71,7 @@ Out of scope:
 
 ## TODO
 
+- [ ] move experiments in separate folder
 - [ ] publish to npm and make repo public
 - [ ] @beoe/astro-mermaid
 - [ ] @beoe/astro-gnuplot
