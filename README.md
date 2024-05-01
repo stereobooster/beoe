@@ -78,7 +78,6 @@ Out of scope:
 
 - [ ] @beoe/astro-mermaid
 - [ ] @beoe/astro-gnuplot
-- [ ] configure github CI
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] publish to npm and make repo public
 - [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture in documentation
