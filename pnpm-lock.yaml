@@ -35,6 +35,9 @@ importers:
       '@beoe/rehype-graphviz':
         specifier: workspace:*
         version: link:../rehype-graphviz
+      '@hpcc-js/wasm':
+        specifier: ^2.16.1
+        version: 2.16.1
     devDependencies:
       astro:
         specifier: ^4.0.0
