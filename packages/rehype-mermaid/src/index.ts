@@ -1,6 +1,6 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
-import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import {
   createMermaidRenderer,
   type CreateMermaidRendererOptions,
@@ -30,7 +30,7 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     code: ({ code }) => {
       return renderDiagrams([code], renerOptions).then(([x]) => {
         if (x.status === "fulfilled") {
-          return `<figure class="datt mermaid ${rest.class || ""}">${
+          return `<figure class="beoe mermaid ${rest.class || ""}">${
             x.value.svg
           }</figure>`;
         } else {

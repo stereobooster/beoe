@@ -310,7 +310,7 @@ it("can cache with Map", async () => {
   expect(code).toHaveBeenCalledOnce();
 });
 
-it("can cache with @datt/sqlitecache", async () => {
+it("can cache with @beoe/sqlitecache", async () => {
   const code = vi.fn(() => "test");
   const cache = new SQLiteCache();
 

@@ -1,4 +1,4 @@
-import { SQLiteCache } from "@datt/sqlitecache";
+import { SQLiteCache } from "@beoe/sqlitecache";
 import process from "node:process";
 import { getConfig, Config, MapLike, defineConfig } from "./config.js";
 export { Config, defineConfig };

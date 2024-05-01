@@ -1,5 +1,5 @@
 {
-  "name": "@datt/rehype-code-hook",
+  "name": "@beoe/rehype-code-hook",
   "type": "module",
   "version": "0.0.1",
   "description": "rehype plugin for code fences",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/rehype-code-hook"
   },
   "sideEffects": false,

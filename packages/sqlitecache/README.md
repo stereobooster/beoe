@@ -1,4 +1,4 @@
-# @datt/sqlitecache
+# @beoe/sqlitecache
 
 ## Motivational example
 

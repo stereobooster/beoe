@@ -1,4 +1,4 @@
-# @datt/rehype-starry-night
+# @beoe/rehype-starry-night
 
 Rehype plugin to highlight code with the help of [starry-night](https://github.com/wooorm/starry-night). This:
 
@@ -22,12 +22,12 @@ which can look like this:
 
 ## Status
 
-Tried it out of curiosity (and it is kind of easy to do with `@datt/rehype-code-hook`). There are other plugins that has better support, for example [`@shikijs/rehype`](https://shiki.matsu.io/packages/rehype).
+Tried it out of curiosity (and it is kind of easy to do with `@beoe/rehype-code-hook`). There are other plugins that has better support, for example [`@shikijs/rehype`](https://shiki.matsu.io/packages/rehype).
 
 ## Usage
 
 ```js
-import rehypeStarryNight from "@datt/rehype-starry-night";
+import rehypeStarryNight from "@beoe/rehype-starry-night";
 
 const html = await unified()
   .use(remarkParse)

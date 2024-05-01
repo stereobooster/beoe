@@ -21,18 +21,18 @@ There are still some pending TODOs. It can be rough on edges.
 
 ### Core
 
-- [x] [@datt/rehype-code-hook](/packages/rehype-code-hook/)
-- [x] [@datt/sqlitecache](/packages/sqlitecache/)
-- [x] [@datt/cache](/packages/cache/)
-- [x] [@datt/remark-code-hook](/packages/remark-code-hook/)
+- [x] [@beoe/rehype-code-hook](/packages/rehype-code-hook/)
+- [x] [@beoe/sqlitecache](/packages/sqlitecache/)
+- [x] [@beoe/cache](/packages/cache/)
+- [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
 
 ### Diagrams
 
 |          | rehype                                              | Astro                                             | remark |
 | -------- | --------------------------------------------------- | ------------------------------------------------- | ------ |
-| Graphviz | [@datt/rehype-graphviz](/packages/rehype-graphviz/) | [@datt/astro-graphviz](/packages/astro-graphviz/) |        |
-| Mermaid  | [@datt/rehype-mermaid](/packages/rehype-mermaid/)   | @datt/astro-mermaid                               |        |
-| Gnuplot  | [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)   | @datt/astro-gnuplot                               |        |
+| Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/) | [@beoe/astro-graphviz](/packages/astro-graphviz/) |        |
+| Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   | @beoe/astro-mermaid                               |        |
+| Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   | @beoe/astro-gnuplot                               |        |
 | penrose  |                                                     |                                                   |        |
 | ...      |                                                     |                                                   |        |
 
@@ -45,9 +45,9 @@ Out of scope:
 
 ### Experiments
 
-- [x] [@datt/rehype-pintora](/packages/rehype-mermaid/)
-- [x] [@datt/rehype-starry-night](/packages/rehype-starry-night/)
-- [x] [@datt/rehype-color-chips](/packages/rehype-color-chips/)
+- [x] [@beoe/rehype-pintora](/packages/rehype-mermaid/)
+- [x] [@beoe/rehype-starry-night](/packages/rehype-starry-night/)
+- [x] [@beoe/rehype-color-chips](/packages/rehype-color-chips/)
 - [x] [demo](/packages/demo/)
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
@@ -76,15 +76,10 @@ Out of scope:
 
 ## TODO
 
-- [ ] @datt/astro-mermaid
-- [ ] @datt/astro-gnuplot
+- [ ] @beoe/astro-mermaid
+- [ ] @beoe/astro-gnuplot
 - [ ] configure github CI
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
-- [ ] rename from `@datt` to `@beoe`
-  - Byrne's Elements of Euclid
-  - https://www.c82.net/blog/?id=79
-  - https://www.c82.net/euclid/
-  - https://revista.proyectodescartes.org/Numeros/Revista_3_2022/docs/byrne_context.pdf
 - [ ] publish to npm and make repo public
 - [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture in documentation
   - maybe move it to this monorepo?

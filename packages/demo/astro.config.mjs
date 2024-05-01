@@ -2,13 +2,13 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import expressiveCode from "./expressiveCode.mjs";
 
-import { getCache } from "@datt/cache";
-import { rehypeGraphviz } from "@datt/astro-graphviz/rehype";
-import { rehypePintora } from "@datt/rehype-pintora";
-import { rehypeMermaid } from "@datt/rehype-mermaid";
-import { rehypeGnuplot } from "@datt/rehype-gnuplot";
-// import { rehypeStarryNight } from "@datt/rehype-starry-night";
-import { rehypeColorChips } from "@datt/rehype-color-chips";
+import { getCache } from "@beoe/cache";
+import { rehypeGraphviz } from "@beoe/astro-graphviz/rehype";
+import { rehypePintora } from "@beoe/rehype-pintora";
+import { rehypeMermaid } from "@beoe/rehype-mermaid";
+import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
+// import { rehypeStarryNight } from "@beoe/rehype-starry-night";
+import { rehypeColorChips } from "@beoe/rehype-color-chips";
 
 const cache = await getCache();
 const className = undefined; // "not-content"
@@ -18,9 +18,9 @@ export default defineConfig({
   integrations: [
     expressiveCode,
     starlight({
-      title: "DATT",
+      title: "BEOE",
       social: {
-        github: "https://github.com/stereobooster/datt",
+        github: "https://github.com/stereobooster/beoe",
       },
       sidebar: [
         {

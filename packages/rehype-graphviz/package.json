@@ -1,5 +1,5 @@
 {
-  "name": "@datt/rehype-graphviz",
+  "name": "@beoe/rehype-graphviz",
   "type": "module",
   "version": "0.0.1",
   "description": "rehype graphviz plugin",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/rehype-graphviz"
   },
   "sideEffects": false,
@@ -32,7 +32,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@datt/rehype-code-hook": "workspace:*",
+    "@beoe/rehype-code-hook": "workspace:*",
     "@hpcc-js/wasm": "^2.16.1",
     "html-minifier": "^4.0.0"
   },

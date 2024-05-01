@@ -11,7 +11,7 @@ plot [-10:10] sin(x)
 will be converted to
 
 ```html
-<figure class="datt gnuplot">
+<figure class="beoe gnuplot">
   <svg>...</svg>
 </figure>
 ```
@@ -23,7 +23,7 @@ which looks like this:
 ## Usage
 
 ```js
-import rehypeGnuplot from "@datt/rehype-gnuplot";
+import rehypeGnuplot from "@beoe/rehype-gnuplot";
 
 const html = await unified()
   .use(remarkParse)
@@ -33,7 +33,7 @@ const html = await unified()
   .process(`markdown`);
 ```
 
-It support caching the same way as [@datt/rehype-code-hook](/packages/rehype-code-hook/) does.
+It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
 
 ## Tips
 

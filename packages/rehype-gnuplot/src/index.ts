@@ -1,7 +1,7 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { processGnuplotSvg } from "./gnuplot.js";
-import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 
 // // @ts-ignore
 // import gnuplot from "gnuplot-wasm";
@@ -9,7 +9,7 @@ import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
 // const renderGnuplot = ({ code }: { code: string }) =>
 //   processGnuplotSvg(render(code).svg);
 
-import { waitFor } from "@datt/rehype-code-hook";
+import { waitFor } from "@beoe/rehype-code-hook";
 // because gnuplot-wasm doesn't provide TS signatures
 type R = (x: string) => { svg: string };
 /**

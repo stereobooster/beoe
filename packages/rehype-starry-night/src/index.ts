@@ -1,6 +1,6 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
-import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { common, createStarryNight } from "@wooorm/starry-night";
 import { h } from "hastscript";
 

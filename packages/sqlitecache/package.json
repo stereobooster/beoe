@@ -1,5 +1,5 @@
 {
-  "name": "@datt/sqlitecache",
+  "name": "@beoe/sqlitecache",
   "type": "module",
   "version": "0.0.1",
   "description": "persistent LRU TTL cache based on SQLite",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/sqlitecache"
   },
   "exports": {

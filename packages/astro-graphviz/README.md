@@ -1,15 +1,15 @@
-# @datt/astro-graphviz
+# @beoe/astro-graphviz
 
 Astro component to generate [Graphviz](https://graphviz.org/) diagrams as inline SVG.
 
-It uses [@datt/cache](/packages/cache/)
+It uses [@beoe/cache](/packages/cache/)
 
 ## Uage
 
 In MDX or Astro:
 
 ```mdx
-import { Graphviz } from "@datt/astro-graphviz";
+import { Graphviz } from "@beoe/astro-graphviz";
 
 <Graphviz
   code={`digraph finite_state_machine {
@@ -19,10 +19,10 @@ import { Graphviz } from "@datt/astro-graphviz";
 />
 ```
 
-It also provides rehype plugin (re-exports [@datt/rehype-graphviz](/packages/rehype-graphviz/)) with cache preconfigured:
+It also provides rehype plugin (re-exports [@beoe/rehype-graphviz](/packages/rehype-graphviz/)) with cache preconfigured:
 
 ```js
-import { rehypeGraphviz } from "@datt/astro-graphviz/rehype";
+import { rehypeGraphviz } from "@beoe/astro-graphviz/rehype";
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,8 +34,8 @@ export default defineConfig({
 
 ## Tips
 
-See [@datt/rehype-graphviz](/packages/rehype-graphviz/)
+See [@beoe/rehype-graphviz](/packages/rehype-graphviz/)
 
 ## TODO
 
-- add type declarations for `@datt/astro-graphviz/rehype`
+- add type declarations for `@beoe/astro-graphviz/rehype`

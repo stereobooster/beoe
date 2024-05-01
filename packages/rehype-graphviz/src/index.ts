@@ -1,14 +1,14 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { processGraphvizSvg } from "./graphviz.js";
-import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 
 // import { Graphviz } from "@hpcc-js/wasm";
 // const graphviz = await Graphviz.load();
 // export const renderGraphviz = ({ code }: { code: string }) =>
 //   processGraphvizSvg(graphviz.dot(code));
 
-import { waitFor } from "@datt/rehype-code-hook";
+import { waitFor } from "@beoe/rehype-code-hook";
 
 export type RenderGraphvizOptions = { code: string; class?: string };
 

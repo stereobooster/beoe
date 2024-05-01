@@ -3,7 +3,7 @@ import { mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { cwd } from "node:process";
 
-import { type SQLiteCacheOptions } from "@datt/sqlitecache";
+import { type SQLiteCacheOptions } from "@beoe/sqlitecache";
 
 export type MapLike<K = any, V = any> = {
   get(key: K): V | undefined;
@@ -21,7 +21,7 @@ export function defineConfig(cfg: Config) {
   return cfg;
 }
 
-const moduleName = "datt";
+const moduleName = "beoe";
 const explorer = cosmiconfig(moduleName, {
   searchPlaces: [
     // "package.json",
@@ -34,7 +34,7 @@ const explorer = cosmiconfig(moduleName, {
 
 export async function getConfig() {
   const defaultCfg: Config = {
-    database: join(cwd(), ".datt/datt.sqlite"),
+    database: join(cwd(), ".beoe/beoe.sqlite"),
     maxItems: 1024,
   };
 

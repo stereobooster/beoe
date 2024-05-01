@@ -1,5 +1,5 @@
 {
-  "name": "@datt/rehype-gnuplot",
+  "name": "@beoe/rehype-gnuplot",
   "type": "module",
   "version": "0.0.1",
   "description": "rehype gnuplot plugin",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/rehype-gnuplot"
   },
   "sideEffects": false,
@@ -32,7 +32,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@datt/rehype-code-hook": "workspace:*",
+    "@beoe/rehype-code-hook": "workspace:*",
     "gnuplot-wasm": "^0.0.1",
     "html-minifier": "^4.0.0"
   },

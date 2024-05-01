@@ -1,4 +1,4 @@
-# @datt/rehype-color-chips
+# @beoe/rehype-color-chips
 
 Rehype plugin to add "color chips" to inline code if it is a color. This:
 
@@ -20,14 +20,14 @@ which can look like this:
 
 ## Status
 
-Tried it out of curiosity (and it is kind of easy to do with `@datt/rehype-code-hook`). There are other plugins for this: [rehype-color-chips](https://github.com/shreshthmohan/rehype-color-chips).
+Tried it out of curiosity (and it is kind of easy to do with `@beoe/rehype-code-hook`). There are other plugins for this: [rehype-color-chips](https://github.com/shreshthmohan/rehype-color-chips).
 
 Because it was an experiment I used all possible color variations from `validate-color` (`validateHTMLColor`, `validateHTMLColorSpecialName`, `validateHTMLColorName`), which I assume can have quite expensive Regexp. In production it is, probably, better to use cheaper checks.
 
 ## Usage
 
 ```js
-import rehypeColorChips from "@datt/rehype-color-chips";
+import rehypeColorChips from "@beoe/rehype-color-chips";
 
 const html = await unified()
   .use(remarkParse)

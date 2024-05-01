@@ -1,4 +1,4 @@
-# @datt/rehype-graphviz
+# @beoe/rehype-graphviz
 
 Rehype plugin to generate [Graphviz](https://graphviz.org/) diagrams (as inline SVGs) in place of code fences. This
 
@@ -11,7 +11,7 @@ digraph G { Hello -> World }
 will be converted to
 
 ```html
-<figure class="datt graphviz">
+<figure class="beoe graphviz">
   <svg>...</svg>
 </figure>
 ```
@@ -23,7 +23,7 @@ which can look like this:
 ## Usage
 
 ```js
-import rehypeGraphviz from "@datt/rehype-graphviz";
+import rehypeGraphviz from "@beoe/rehype-graphviz";
 
 const html = await unified()
   .use(remarkParse)
@@ -33,7 +33,7 @@ const html = await unified()
   .process(`markdown`);
 ```
 
-It support caching the same way as [@datt/rehype-code-hook](/packages/rehype-code-hook/) does.
+It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
 
 ## Tips
 

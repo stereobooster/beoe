@@ -1,5 +1,5 @@
 {
-  "name": "@datt/astro-graphviz",
+  "name": "@beoe/astro-graphviz",
   "version": "0.0.1",
   "description": "astro graphviz component",
   "keywords": [
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/astro-graphviz"
   },
   "type": "module",
@@ -31,8 +31,8 @@
     "clean": "exit 0"
   },
   "dependencies": {
-    "@datt/cache": "workspace:*",
-    "@datt/rehype-graphviz": "workspace:*"
+    "@beoe/cache": "workspace:*",
+    "@beoe/rehype-graphviz": "workspace:*"
   },
   "devDependencies": {
     "astro": "^4.0.0"

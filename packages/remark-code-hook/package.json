@@ -1,5 +1,5 @@
 {
-  "name": "@datt/remark-code-hook",
+  "name": "@beoe/remark-code-hook",
   "type": "module",
   "version": "0.0.1",
   "description": "remark plugin for code fences",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/remark-code-hook"
   },
   "sideEffects": false,

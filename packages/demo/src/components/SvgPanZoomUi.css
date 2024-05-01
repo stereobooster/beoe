@@ -1,12 +1,12 @@
-.datt {
+.beoe {
   overflow: hidden;
   touch-action: pan-x pan-y;
   user-select: none;
   cursor: grab;
 }
 
-.datt svg,
-.datt img {
+.beoe svg,
+.beoe img {
   /* need to center smaller images or fix bug in zoom functionality */
   margin: auto;
   display: block;
@@ -15,17 +15,17 @@
   height: auto;
 }
 
-.datt img {
+.beoe img {
   pointer-events: none;
 }
 
 /* UI */
 
-.datt {
+.beoe {
   position: relative;
 }
 
-.datt .buttons {
+.beoe .buttons {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
@@ -34,12 +34,12 @@
   transition-duration: 300ms;
 }
 
-.datt:hover .buttons {
+.beoe:hover .buttons {
   opacity: 1;
 }
 
 @media (hover: none) {
-  .datt .buttons {
+  .beoe .buttons {
     display: none;
   }
 }

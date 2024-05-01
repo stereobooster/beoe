@@ -29,10 +29,10 @@ importers:
 
   packages/astro-graphviz:
     dependencies:
-      '@datt/cache':
+      '@beoe/cache':
         specifier: workspace:*
         version: link:../cache
-      '@datt/rehype-graphviz':
+      '@beoe/rehype-graphviz':
         specifier: workspace:*
         version: link:../rehype-graphviz
     devDependencies:
@@ -42,7 +42,7 @@ importers:
 
   packages/cache:
     dependencies:
-      '@datt/sqlitecache':
+      '@beoe/sqlitecache':
         specifier: workspace:*
         version: link:../sqlitecache
       cosmiconfig:
@@ -57,25 +57,25 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.22.0
         version: 0.22.0(astro@4.6.3)
-      '@datt/astro-graphviz':
+      '@beoe/astro-graphviz':
         specifier: workspace:*
         version: link:../astro-graphviz
-      '@datt/cache':
+      '@beoe/cache':
         specifier: workspace:*
         version: link:../cache
-      '@datt/rehype-color-chips':
+      '@beoe/rehype-color-chips':
         specifier: workspace:*
         version: link:../rehype-color-chips
-      '@datt/rehype-gnuplot':
+      '@beoe/rehype-gnuplot':
         specifier: workspace:*
         version: link:../rehype-gnuplot
-      '@datt/rehype-mermaid':
+      '@beoe/rehype-mermaid':
         specifier: workspace:*
         version: link:../rehype-mermaid
-      '@datt/rehype-pintora':
+      '@beoe/rehype-pintora':
         specifier: workspace:*
         version: link:../rehype-pintora
-      '@datt/rehype-starry-night':
+      '@beoe/rehype-starry-night':
         specifier: workspace:*
         version: link:../rehype-starry-night
       astro:
@@ -127,7 +127,7 @@ importers:
 
   packages/rehype-color-chips:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       hastscript:
@@ -155,7 +155,7 @@ importers:
 
   packages/rehype-gnuplot:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       gnuplot-wasm:
@@ -186,7 +186,7 @@ importers:
 
   packages/rehype-graphviz:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       '@hpcc-js/wasm':
@@ -217,7 +217,7 @@ importers:
 
   packages/rehype-mermaid:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       mermaid-isomorphic:
@@ -242,7 +242,7 @@ importers:
 
   packages/rehype-pintora:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       '@pintora/cli':
@@ -273,7 +273,7 @@ importers:
 
   packages/rehype-starry-night:
     dependencies:
-      '@datt/rehype-code-hook':
+      '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       '@wooorm/starry-night':

@@ -1,4 +1,4 @@
-# @datt/rehype-mermaid
+# @beoe/rehype-mermaid
 
 Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams (as inline SVGs) in place of code fences. This:
 
@@ -12,7 +12,7 @@ flowchart LR
 will be converted to
 
 ```html
-<figure class="datt mermaid">
+<figure class="beoe mermaid">
   <svg>...</svg>
 </figure>
 ```
@@ -33,7 +33,7 @@ Main **difference** is that this plugin supports cache, but less teted. Also it 
 ## Usage
 
 ```js
-import rehypeMermaid from "@datt/rehype-mermaid";
+import rehypeMermaid from "@beoe/rehype-mermaid";
 
 const html = await unified()
   .use(remarkParse)
@@ -43,7 +43,7 @@ const html = await unified()
   .process(`markdown`);
 ```
 
-It support caching the same way as [@datt/rehype-code-hook](/packages/rehype-code-hook/) does.
+It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
 
 ## TODO
 

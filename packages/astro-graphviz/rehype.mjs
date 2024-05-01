@@ -1,8 +1,8 @@
-import { getCache } from "@datt/cache";
+import { getCache } from "@beoe/cache";
 import {
   rehypeGraphviz as defaultRehypeGraphviz,
   graphvizSvg,
-} from "@datt/rehype-graphviz";
+} from "@beoe/rehype-graphviz";
 
 export { graphvizSvg };
 

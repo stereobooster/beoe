@@ -1,7 +1,7 @@
 import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { pintoraSvg } from "./pintora.js";
-import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
+import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 
 export { pintoraSvg };
 

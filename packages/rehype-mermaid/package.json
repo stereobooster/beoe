@@ -1,5 +1,5 @@
 {
-  "name": "@datt/rehype-mermaid",
+  "name": "@beoe/rehype-mermaid",
   "type": "module",
   "version": "0.0.1",
   "description": "rehype mermaid plugin",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stereobooster/datt.git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
     "directory": "packages/rehype-mermaid"
   },
   "sideEffects": false,
@@ -32,7 +32,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@datt/rehype-code-hook": "workspace:*",
+    "@beoe/rehype-code-hook": "workspace:*",
     "mermaid-isomorphic": "^2.1.2"
   },
   "devDependencies": {

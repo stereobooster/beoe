@@ -9,7 +9,7 @@ const minifyOptions = {
  * removes `<?xml version="1.0" encoding="utf-8"  standalone="no"?>`
  * removes `width="..." height="..."` from svg tag
  * minifies SVG with `html-minifier`
- * wraps in a figure with class `datt gnuplot`
+ * wraps in a figure with class `beoe gnuplot`
  *
  * Can also try SVGO
  */
@@ -18,5 +18,5 @@ export const processGnuplotSvg = (svg: string, className?: string) => {
   svg = minify(svg, minifyOptions);
   svg = svg.replace(/\s+width="\d+[^"]*"/, "");
   svg = svg.replace(/\s+height="\d+[^"]*"/, "");
-  return `<figure class="datt gnuplot ${className || ""}">${svg}</figure>`;
+  return `<figure class="beoe gnuplot ${className || ""}">${svg}</figure>`;
 };

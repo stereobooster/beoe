@@ -1,4 +1,4 @@
-# @datt/remark-code-hook
+# @beoe/remark-code-hook
 
 Remark plugin to make it easier to write custom processors for code e.g.:
 
@@ -26,7 +26,7 @@ This plugin is usefull if you want to create remark plugin to:
 Basic example looks like this:
 
 ```js
-import { remarkCodeHook } from "@datt/remark-code-hook";
+import { remarkCodeHook } from "@beoe/remark-code-hook";
 import { generateSvg } from "./generateSvg.js";
 
 export const rehypeExampleDiagram = (options = {}) => {
@@ -92,7 +92,7 @@ To enable caching you need to pass `Map`-like storage:
 remarkCodeHook({ code, cache: new Map(), hashTostring: true });
 ```
 
-I checked it with [@datt/cache](/packages/cache/), but it suppose to work with any storage that has `Map` like interface. You may pass additional `salt` param to reset cache, for example when configuration of your plugin changed.
+I checked it with [@beoe/cache](/packages/cache/), but it suppose to work with any storage that has `Map` like interface. You may pass additional `salt` param to reset cache, for example when configuration of your plugin changed.
 
 ## Tips
 

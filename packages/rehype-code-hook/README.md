@@ -1,4 +1,4 @@
-# @datt/rehype-code-hook
+# @beoe/rehype-code-hook
 
 Rehype plugin to make it easier to write custom processors for code e.g.:
 
@@ -34,7 +34,7 @@ This plugin is usefull if you want to create rehype plugin to:
 Basic example looks like this:
 
 ```js
-import { rehypeCodeHook } from "@datt/rehype-code-hook";
+import { rehypeCodeHook } from "@beoe/rehype-code-hook";
 import { generateSvg } from "./generateSvg.js";
 
 export const rehypeExampleDiagram = (options = {}) => {
@@ -100,7 +100,7 @@ To enable caching you need to pass `Map`-like storage:
 rehypeCodeHook({ code, cache: new Map(), hashTostring: true });
 ```
 
-I checked it with [@datt/cache](/packages/cache/), but it suppose to work with any storage that has `Map` like interface. You may pass additional `salt` param to reset cache, for example when configuration of your plugin changed.
+I checked it with [@beoe/cache](/packages/cache/), but it suppose to work with any storage that has `Map` like interface. You may pass additional `salt` param to reset cache, for example when configuration of your plugin changed.
 
 ## Tips
 
@@ -153,7 +153,7 @@ export default defineConfig({
 
 **or** do other workarounds see [this comment](https://github.com/withastro/starlight/discussions/1259#discussioncomment-8515492).
 
-**or** you can use remark plugin [@datt/remark-code-hook](/packages/rehype-code-hook/) (not implemented yet)
+**or** you can use remark plugin [@beoe/remark-code-hook](/packages/rehype-code-hook/) (not implemented yet)
 
 ### Images instead of inline SVG
 
