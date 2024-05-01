@@ -71,6 +71,7 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
+- [ ] fix `@beoe/astro-graphviz`
 - [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
 - [ ] publish to npm and make repo public
 - [ ] @beoe/astro-mermaid
