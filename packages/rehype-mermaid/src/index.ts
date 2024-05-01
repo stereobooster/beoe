@@ -10,6 +10,7 @@ import {
 export type RehypeMermaidConfig = RenderOptions &
   CreateMermaidRendererOptions & {
     cache?: MapLike;
+    class?: string;
   };
 
 export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
@@ -20,7 +21,7 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
   const renerOptions = { css, mermaidConfig, prefix };
   const createOptions = { browser, launchOptions };
   const renderDiagrams = createMermaidRenderer(createOptions);
-  const salt = { ...renerOptions, ...createOptions };
+  const salt = { ...renerOptions, ...createOptions, class: rest.class };
   // @ts-expect-error
   return rehypeCodeHook({
     ...rest,
@@ -29,7 +30,9 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     code: ({ code }) => {
       return renderDiagrams([code], renerOptions).then(([x]) => {
         if (x.status === "fulfilled") {
-          return `<figure class="datt mermaid">${x.value.svg}</figure>`;
+          return `<figure class="datt mermaid ${rest.class || ""}">${
+            x.value.svg
+          }</figure>`;
         } else {
           throw new Error(x.reason);
         }

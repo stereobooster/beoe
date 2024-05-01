@@ -20,7 +20,9 @@ const svg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 it("removes xml doctype", async () => {
   const result = processGraphvizSvg(svg);
 
-  expect(result).toMatchInlineSnapshot(`"<figure class="datt graphviz"><svg viewBox="0.00 0.00 79.41 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"><title>G</title><polygon fill="white" stroke="none" points="-4,4 -4,-112 75.41,-112 75.41,4 -4,4"/></g></svg></figure>"`);
+  expect(result).toMatchInlineSnapshot(
+    `"<figure class="datt graphviz "><svg viewBox="0.00 0.00 79.41 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"><title>G</title><polygon fill="white" stroke="none" points="-4,4 -4,-112 75.41,-112 75.41,4 -4,4"/></g></svg></figure>"`
+  );
 });
 
 it("removes width and height", async () => {
@@ -33,5 +35,11 @@ it("removes width and height", async () => {
 it("wraps in a figure with classes", async () => {
   const result = processGraphvizSvg(svg);
 
-  expect(result).toContain(`<figure class="datt graphviz">`);
+  expect(result).toContain(`<figure class="datt graphviz`);
+});
+
+it("is possible to add class", async () => {
+  const result = processGraphvizSvg(svg, "not-content");
+
+  expect(result).toContain(`<figure class="datt graphviz not-content`);
 });

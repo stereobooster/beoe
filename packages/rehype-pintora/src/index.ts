@@ -7,16 +7,19 @@ export { pintoraSvg };
 
 export type RehypePintoraConfig = {
   cache?: MapLike;
+  class?: string;
 };
 
 export const rehypePintora: Plugin<[RehypePintoraConfig?], Root> = (
   options = {}
 ) => {
+  const salt = { class: options.class };
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
+    salt,
     language: "pintora",
-    code: ({ code }) => pintoraSvg(code),
+    code: ({ code }) => pintoraSvg(code, options.class),
   });
 };
 

@@ -13,10 +13,10 @@ const minifyOptions = {
  *
  * Can also try SVGO
  */
-export const processGnuplotSvg = (svg: string) => {
+export const processGnuplotSvg = (svg: string, className?: string) => {
   svg = svg.split("\n").slice(1).join("\n");
   svg = minify(svg, minifyOptions);
   svg = svg.replace(/\s+width="\d+[^"]*"/, "");
   svg = svg.replace(/\s+height="\d+[^"]*"/, "");
-  return `<figure class="datt gnuplot">${svg}</figure>`;
+  return `<figure class="datt gnuplot ${className || ""}">${svg}</figure>`;
 };

@@ -23,25 +23,27 @@ export const renderGnuplot = waitFor(
     const gnuplot = (await import("gnuplot-wasm")).default;
     return (gnuplot() as Promise<{ render: R }>).then(({ render }) => render);
   },
-  (render) =>
-    ({ code }: { code: string }) =>
-      processGnuplotSvg(render(code).svg)
+  (render) => (o: { code: string; class?: string }) =>
+    processGnuplotSvg(render(o.code).svg, o.class)
 );
 
 export { processGnuplotSvg };
 
 export type RehypeGraphvizConfig = {
   cache?: MapLike;
+  class?: string;
 };
 
 export const rehypeGnuplot: Plugin<[RehypeGraphvizConfig?], Root> = (
   options = {}
 ) => {
+  const salt = { class: options.class };
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
+    salt,
     language: "gnuplot",
-    code: renderGnuplot,
+    code: ({ code }) => renderGnuplot({ code, class: options.class }),
   });
 };
 

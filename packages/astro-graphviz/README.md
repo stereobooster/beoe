@@ -35,3 +35,7 @@ export default defineConfig({
 ## Tips
 
 See [@datt/rehype-graphviz](/packages/rehype-graphviz/)
+
+## TODO
+
+- add type declarations for `@datt/astro-graphviz/rehype`

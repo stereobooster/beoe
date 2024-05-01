@@ -23,5 +23,5 @@ it.skip("removes width and height", async () => {
 it("wraps in a figure with classes", async () => {
   const result = await pintoraSvg(diagram);
 
-  expect(result).toContain(`<figure class="datt pintora">`);
+  expect(result).toContain(`<figure class="datt pintora`);
 });

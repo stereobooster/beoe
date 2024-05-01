@@ -1,18 +1,21 @@
 ---
-import { renderGraphviz } from "@datt/rehype-graphviz";
+import {
+  renderGraphviz,
+  type RenderGraphvizOptions,
+} from "@datt/rehype-graphviz";
 import { getCache } from "@datt/cache";
+import { serialize } from "node:v8";
 
 const cache = await getCache();
 
-interface Props {
-  code: string;
-}
+interface Props extends RenderGraphvizOptions {}
 
 let svg: string;
-svg = cache.get(Astro.props.code);
+const cacheKey = serialize(Astro.props);
+svg = cache.get(cacheKey);
 if (svg === undefined) {
-  svg = await renderGraphviz({ code: Astro.props.code });
-  cache.set(Astro.props.code, svg);
+  svg = await renderGraphviz(Astro.props);
+  cache.set(cacheKey, svg);
 }
 ---
 

@@ -9,6 +9,9 @@ import { rehypeCodeHook, type MapLike } from "@datt/rehype-code-hook";
 //   processGraphvizSvg(graphviz.dot(code));
 
 import { waitFor } from "@datt/rehype-code-hook";
+
+export type RenderGraphvizOptions = { code: string; class?: string };
+
 /**
  * If all graphviz diagrams are cached it would not even load module in memory.
  * If there are diagrams, it would load module and first few renders would be async,
@@ -20,25 +23,27 @@ export const renderGraphviz = waitFor(
     const Graphviz = (await import("@hpcc-js/wasm")).Graphviz;
     return await Graphviz.load();
   },
-  (graphviz) =>
-    ({ code }: { code: string }) =>
-      processGraphvizSvg(graphviz.dot(code))
+  (graphviz) => (o: RenderGraphvizOptions) =>
+    processGraphvizSvg(graphviz.dot(o.code), o.class)
 );
 
 export { processGraphvizSvg };
 
 export type RehypeGraphvizConfig = {
   cache?: MapLike;
+  class?: string;
 };
 
 export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig?], Root> = (
   options = {}
 ) => {
+  const salt = {  class: options.class };
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
+    salt,
     language: "dot",
-    code: renderGraphviz,
+    code: ({ code }) => renderGraphviz({ code, class: options.class }),
   });
 };
 

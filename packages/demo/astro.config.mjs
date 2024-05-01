@@ -11,6 +11,7 @@ import { rehypeGnuplot } from "@datt/rehype-gnuplot";
 import { rehypeColorChips } from "@datt/rehype-color-chips";
 
 const cache = await getCache();
+const className = undefined; // "not-content"
 
 // https://astro.build/config
 export default defineConfig({
@@ -35,7 +36,7 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      rehypeGraphviz,
+      [rehypeGraphviz, { class: className }],
       [
         // MDX:
         // without cache it renders 2927ms
@@ -46,10 +47,10 @@ export default defineConfig({
         //
         // Conclusion: don't overuse MDX
         rehypePintora,
-        { cache },
+        { cache, class: className },
       ],
-      [rehypeMermaid, { cache }],
-      [rehypeGnuplot, { cache }],
+      [rehypeMermaid, { cache, class: className }],
+      [rehypeGnuplot, { cache, class: className }],
       rehypeColorChips,
       // rehypeStarryNight,
     ],

@@ -9,6 +9,7 @@
 .datt img {
   /* need to center smaller images or fix bug in zoom functionality */
   margin: auto;
+  display: block;
   /* need to fit bigger images */
   max-width: 100%;
   height: auto;
