@@ -3,7 +3,7 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import { expect, it, vi } from "vitest";
+import { expect, it } from "vitest";
 
 import rehypePintora from "../src";
 
