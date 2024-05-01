@@ -34,7 +34,7 @@ const explorer = cosmiconfig(moduleName, {
 
 export async function getConfig() {
   const defaultCfg: Config = {
-    database: join(cwd(), ".beoe/beoe.sqlite"),
+    database: join(cwd(), "node_modules/.beoe/cache.sqlite"),
     maxItems: 1024,
   };
 

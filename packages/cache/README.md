@@ -4,13 +4,15 @@ Thin wrapper arround [@beoe/sqlitecache](/packages/sqlitecache/) so the same cac
 
 Because cache would be "hidden" inside other packages it exposes way to configure instance through local file (with cosmiconfig).
 
-By default it stores cache in `.beoe` folder. Add this folder to `.gitignore` or you can change where cache is stored using configuration (`beoe.config.mjs`):
+By default it stores cache in `node_modules/.beoe` folder. This will make it easy to use, `node_modules` often cached in CI and added to `.gitignore`. On the other hand I haven't seen this approach before, there can be downsides that I haven't thought about.
+
+You can change where cache is stored using configuration (`beoe.config.mjs`):
 
 ```mjs
 import { defineConfig } from "@beoe/cache";
 
 export default defineConfig({
-  database: "node_modules/datt_cache.sqlite",
+  database: "other_folder/cache.sqlite",
 });
 ```
 

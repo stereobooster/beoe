@@ -76,7 +76,6 @@ Out of scope:
 
 ## TODO
 
-- [ ] [@beoe/cache](/packages/cache/), maybe put it in `node_modules` by default?
 - [ ] rewrite this readme
 - [ ] publish to npm and make repo public
 - [ ] @beoe/astro-mermaid
