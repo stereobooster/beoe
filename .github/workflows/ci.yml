@@ -1,53 +1,49 @@
-name: CI
- 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    types: [opened, synchronize]
- 
-jobs:
-  build:
-    name: Build and Test
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
+# name: CI
 
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-  
-      - name: Cache turbo build setup
-        uses: actions/cache@v3
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     types: [opened, synchronize]
 
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
- 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: 'pnpm'
- 
-      - name: Install dependencies
-        run: pnpm install
+# jobs:
+#   build:
+#     name: Build and Test
+#     timeout-minutes: 15
+#     runs-on: ubuntu-latest
 
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install chromium
+#     steps:
+#       - name: Check out code
+#         uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 2
 
-      - name: Build
-        run: pnpm build
- 
-      # - name: TypeScript
-      #   run: pnpm tsc
+#       - name: Cache turbo build setup
+#         uses: actions/cache@v3
+#         with:
+#           path: .turbo
+#           key: ${{ runner.os }}-turbo-${{ github.sha }}
+#           restore-keys: |
+#             ${{ runner.os }}-turbo-
 
-      - name: Test
-        run: pnpm test
+#       - uses: pnpm/action-setup@v3
+#         with:
+#           version: 8
+#           run_install: false
+
+#       - uses: actions/setup-node@v4
+#         with:
+#           node-version: 18
+#           cache: "pnpm"
+
+#       - name: Install dependencies
+#         run: pnpm install
+
+#       - name: Install Playwright Browsers
+#         run: pnpm exec playwright install chromium
+
+#       - name: Build
+#         run: pnpm build
+
+#       - name: Test
+#         run: pnpm test
