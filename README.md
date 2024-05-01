@@ -40,9 +40,9 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ### Experiments
 
-- [x] [@beoe/rehype-pintora](/packages/rehype-mermaid/)
-- [x] [@beoe/rehype-starry-night](/packages/rehype-starry-night/)
-- [x] [@beoe/rehype-color-chips](/packages/rehype-color-chips/)
+- [x] [@beoe/rehype-pintora](/experiments/rehype-mermaid/)
+- [x] [@beoe/rehype-starry-night](/experiments/rehype-starry-night/)
+- [x] [@beoe/rehype-color-chips](/experiments/rehype-color-chips/)
 - [x] [demo](/packages/demo/)
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
