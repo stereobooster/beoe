@@ -76,6 +76,7 @@ Out of scope:
 
 ## TODO
 
+- [ ] [@beoe/cache](/packages/cache/), maybe put it in `node_modules` by default?
 - [ ] @beoe/astro-mermaid
 - [ ] @beoe/astro-gnuplot
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
