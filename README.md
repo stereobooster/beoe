@@ -77,13 +77,16 @@ Out of scope:
 ## TODO
 
 - [ ] [@beoe/cache](/packages/cache/), maybe put it in `node_modules` by default?
+- [ ] rewrite this readme
+- [ ] publish to npm and make repo public
 - [ ] @beoe/astro-mermaid
 - [ ] @beoe/astro-gnuplot
+- [ ] Github CI fails (even so localy everything works)
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
-- [ ] publish to npm and make repo public
-- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture in documentation
-  - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
+- [ ] maybe move to this monorepo [svg-pan-zoom-gesture](https://github.com/stereobooster/svg-pan-zoom-gesture)
+- [ ] maybe move to this monorepo [venn-isomorphic](https://github.com/stereobooster/venn-isomorphic)
+- [ ] maybe move to this monorepo [gnuplot-wasm](https://github.com/stereobooster/gnuplot-wasm)
 
 ## Logo
 
