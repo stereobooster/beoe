@@ -21,13 +21,13 @@ There are still some pending TODOs. It can be rough on edges.
 
 ### Diagrams
 
-|          | rehype                                              | Astro                | remark |
-| -------- | --------------------------------------------------- | -------------------- | ------ |
-| Graphviz | [@datt/rehype-graphviz](/packages/rehype-graphviz/) | @datt/astro-graphviz |        |
-| Mermaid  | [@datt/rehype-mermaid](/packages/rehype-mermaid/)   |                      |        |
-| Gnuplot  | [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)   |                      |        |
-| penrose  |                                                     |                      |        |
-| ...      |                                                     |                      |        |
+|          | rehype                                              | Astro                                             | remark |
+| -------- | --------------------------------------------------- | ------------------------------------------------- | ------ |
+| Graphviz | [@datt/rehype-graphviz](/packages/rehype-graphviz/) | [@datt/astro-graphviz](/packages/astro-graphviz/) |        |
+| Mermaid  | [@datt/rehype-mermaid](/packages/rehype-mermaid/)   | @datt/astro-mermaid                               |        |
+| Gnuplot  | [@datt/rehype-gnuplot](/packages/rehype-gnuplot/)   | @datt/astro-gnuplot                               |        |
+| penrose  |                                                     |                                                   |        |
+| ...      |                                                     |                                                   |        |
 
 Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
@@ -73,7 +73,6 @@ Out of scope:
   - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
     ](https://github.com/tailwindlabs/tailwindcss-typography)
   - use figure instead of div for wrapper
-- [ ] @datt/astro-graphviz - update readme
 - [ ] @datt/astro-mermaid
 - [ ] @datt/astro-gnuplot
 - [ ] check if `@datt` organization available on npm

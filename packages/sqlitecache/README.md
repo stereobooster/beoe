@@ -24,7 +24,7 @@ But why not something else? I didn't find anything better that fits following cr
 - **synchronous**. This disqualifies: RocksDB, LevelDB (at least their node bindings are asynchronous) and similar
 - **persistent**. This disqualifies: lru-native2, flru and similar
 
-So here we are... I didn't do any benchmarks yet
+So here we are... I didn't do any benchmarks though
 
 ## About the code
 
