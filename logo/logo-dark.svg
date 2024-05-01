@@ -1,0 +1,116 @@
+<svg viewBox="0 0 288 348" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root {
+      --fg: #fff;
+      --bg: #000;
+
+      --blue: #0e638e;
+      --red: #d42a20;
+      --yellow: #fac22b;
+    }
+
+    .stroke {
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .stroke-dotted {
+      stroke-dasharray: 5;
+      stroke-linecap: butt;
+    }
+
+    .fill-fg { fill: var(--fg); }
+    .fill-bg { fill: var(--bg); }
+    .fill-blue { fill: var(--blue); }
+    .fill-red { fill: var(--red); }
+    .fill-yellow { fill: var(--yellow); }
+
+    .stroke-fg { stroke: var(--fg); }
+    .stroke-blue { stroke: var(--blue); }
+    .stroke-red { stroke: var(--red); }
+    .stroke-bg { stroke: var(--bg); }
+    .stroke-yellow { stroke: var(--yellow); }
+  </style>
+  <rect class="fill-bg" x="0" y="0" width="288" height="348" />
+  <polyline
+    class="fill-yellow"
+    points="95.01,190.85 63.4,190.83 63.26,349.86 63.26,350 95.01,350 95.01,349.86 95.01,191.78 "
+  />
+  <polygon
+    class="fill-red"
+    points="285.97,63.53 158.54,0 95.01,127.43 137.34,148.54 "
+  />
+  <polygon
+    class="fill-red"
+    points="285.97,63.53 222.43,190.96 137.34,148.54 "
+  />
+  <path
+    class="fill-yellow"
+    d="M222.43,190.96l19.31-38.73c-5.79-2.89-12.32-4.53-19.24-4.53c-16.95,0-31.62,9.79-38.66,24.02C200.14,179.85,222.43,190.96,222.43,190.96z"
+  />
+  <polyline
+    class="fill-blue"
+    points="95.01,190.85 131.34,190.88 131.31,190.9 222.3,350 95.01,350 95.01,349.86 95.01,191.78 "
+  />
+  <polyline
+    class="fill-blue"
+    points="131.34,190.88 222.43,190.96 222.3,350 131.31,190.9 "
+  />
+  <rect
+    class="fill-fg"
+    x="12.08"
+    y="107.9"
+    transform="matrix(0.4462 -0.8949 0.8949 0.4462 -101.9575 121.8848)"
+    width="70.84"
+    height="70.84"
+  />
+  <path
+    class="fill-yellow"
+    d="M222.4,233.95l0.04-42.99c0,0-26.05-0.02-43.05-0.04C179.44,214.66,198.66,233.89,222.4,233.95z"
+  />
+  <path
+    class="fill-fg"
+    d="M183.84,171.72c-2.85,5.76-4.46,12.24-4.46,19.11c0,0.03,0,0.07,0,0.1l43.05,0.04L183.84,171.72z"
+  />
+
+  <line class="stroke stroke-bg" x1="285.97" y1="63.53" x2="222.43" y2="190.96" />
+  <line
+    class="stroke stroke-blue stroke-dotted"
+    x1="285.97"
+    y1="63.53"
+    x2="225.43"
+    y2="184.96"
+  />
+
+  <line class="stroke stroke-bg" x1="222.43" y1="190.96" x2="222.3" y2="350" />
+  <line
+    class="stroke stroke-red stroke-dotted"
+    x1="222.43"
+    y1="198.4"
+    x2="222.3"
+    y2="350"
+  />
+
+  <line class="stroke stroke-blue" x1="222.43" y1="190.96" x2="95.01" y2="127.43" />
+  <line class="stroke stroke-red" x1="63.4" y1="190.83" x2="222.43" y2="190.96" />
+  <line class="stroke stroke-yellow" x1="63.4" y1="190.83" x2="95.01" y2="127.43" />
+  <line class="stroke stroke-bg" x1="95.01" y1="127.43" x2="95.01" y2="349.86" />
+
+  <line
+    class="stroke stroke-fg stroke-dotted"
+    x1="95.01"
+    y1="128.4"
+    x2="95.01"
+    y2="349.86"
+  />
+  <line class="stroke stroke-fg" x1="95.01" y1="127.43" x2="222.3" y2="350" />
+  <line class="stroke stroke-fg" x1="63.4" y1="190.83" x2="285.97" y2="63.53" />
+
+  <polyline class="fill-bg" points="0,159.22 63.4,190.83 63.26,349.86 " />
+  <polyline class="fill-bg" points="31.61,95.82 95.01,127.43 158.54,0 " />
+  <rect class="fill-bg" x="58.98" y="350" width="171.59" height="12.83" />
+  <polygon
+    class="fill-bg"
+    points="158.54,-20 293.89,47.48 293.89,67.48 158.54,0 "
+  />
+</svg>

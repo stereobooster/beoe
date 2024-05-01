@@ -1,4 +1,11 @@
-# Diagram All The Things (datt)
+# BEOE
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="logo/logo-dark.svg">
+    <img alt="" src="logo/logo.svg" width="288" height="348">
+  </picture>
+</p>
 
 **Core idea**: if you have function that can produce diagram as SVG it should be trivial to use it in Astro (or other SSG that uses remark/rehype) to create diagrams - either as rehype (remark) plugin or as Astro component.
 
@@ -69,13 +76,20 @@ Out of scope:
 
 ## TODO
 
-- [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] @datt/astro-mermaid
 - [ ] @datt/astro-gnuplot
-- [ ] check if `@datt` organization available on npm
+- [ ] configure github CI
+- [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
+- [ ] rename from `@datt` to `@beoe`
+  - Byrne's Elements of Euclid
+  - https://www.c82.net/blog/?id=79
+  - https://www.c82.net/euclid/
+  - https://revista.proyectodescartes.org/Numeros/Revista_3_2022/docs/byrne_context.pdf
 - [ ] publish to npm and make repo public
 - [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture in documentation
   - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
-- [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
-  - or maybe don't try to overcomplicate it
+
+## Logo
+
+Logo is illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
