@@ -11,9 +11,9 @@ digraph G { Hello -> World }
 will be converted to
 
 ```html
-<div class="datt graphviz">
+<figure class="datt graphviz">
   <svg>...</svg>
-</div>
+</figure>
 ```
 
 which can look like this:

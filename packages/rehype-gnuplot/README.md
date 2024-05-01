@@ -11,9 +11,9 @@ plot [-10:10] sin(x)
 will be converted to
 
 ```html
-<div class="datt gnuplot">
+<figure class="datt gnuplot">
   <svg>...</svg>
-</div>
+</figure>
 ```
 
 which looks like this:

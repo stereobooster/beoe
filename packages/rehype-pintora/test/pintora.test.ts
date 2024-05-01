@@ -20,8 +20,8 @@ it.skip("removes width and height", async () => {
   expect(result).not.toContain(`svg height=`);
 });
 
-it("wraps in a div with classes", async () => {
+it("wraps in a figure with classes", async () => {
   const result = await pintoraSvg(diagram);
 
-  expect(result).toContain(`<div class="datt pintora">`);
+  expect(result).toContain(`<figure class="datt pintora">`);
 });

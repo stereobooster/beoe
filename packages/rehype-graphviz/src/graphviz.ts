@@ -10,7 +10,7 @@ const minifyOptions = {
  * removes `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"`
  * removes `width="..." height="..."` from svg tag
  * minifies SVG with `html-minifier`
- * wraps in a div with class `datt graphviz`
+ * wraps in a figure with class `datt graphviz`
  *
  * TODO: probably better to wrap in figure (can use title for figcaption)
  * Can also try SVGO
@@ -20,5 +20,5 @@ export const processGraphvizSvg = (svg: string) => {
   svg = minify(svg, minifyOptions);
   svg = svg.replace(/width="\d+[^"]+"\s+/, "");
   svg = svg.replace(/height="\d+[^"]+"\s+/, "");
-  return `<div class="datt graphviz">${svg}</div>`;
+  return `<figure class="datt graphviz">${svg}</figure>`;
 };

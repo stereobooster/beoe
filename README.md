@@ -72,7 +72,6 @@ Out of scope:
 - [ ] configuration to add class to root wrapper element
   - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
     ](https://github.com/tailwindlabs/tailwindcss-typography)
-  - use figure instead of div for wrapper
 - [ ] @datt/astro-mermaid
 - [ ] @datt/astro-gnuplot
 - [ ] check if `@datt` organization available on npm

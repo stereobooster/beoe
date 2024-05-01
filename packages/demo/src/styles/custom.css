@@ -20,4 +20,9 @@
 
 .mermaid svg {
   background: #fff;
+  line-height: 1;
+}
+
+.datt {
+  @apply not-content;
 }

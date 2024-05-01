@@ -12,9 +12,9 @@ flowchart LR
 will be converted to
 
 ```html
-<div class="datt mermaid">
+<figure class="datt mermaid">
   <svg>...</svg>
-</div>
+</figure>
 ```
 
 which can look like this:

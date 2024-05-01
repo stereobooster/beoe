@@ -9,9 +9,8 @@ const minifyOptions = {
  * removes `<?xml version="1.0" encoding="utf-8"  standalone="no"?>`
  * removes `width="..." height="..."` from svg tag
  * minifies SVG with `html-minifier`
- * wraps in a div with class `datt gnuplot`
- * 
- * TODO: probably better to wrap in figure (can use title for figcaption)
+ * wraps in a figure with class `datt gnuplot`
+ *
  * Can also try SVGO
  */
 export const processGnuplotSvg = (svg: string) => {
@@ -19,5 +18,5 @@ export const processGnuplotSvg = (svg: string) => {
   svg = minify(svg, minifyOptions);
   svg = svg.replace(/\s+width="\d+[^"]*"/, "");
   svg = svg.replace(/\s+height="\d+[^"]*"/, "");
-  return `<div class="datt gnuplot">${svg}</div>`;
+  return `<figure class="datt gnuplot">${svg}</figure>`;
 };

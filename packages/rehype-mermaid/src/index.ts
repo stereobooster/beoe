@@ -29,7 +29,7 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     code: ({ code }) => {
       return renderDiagrams([code], renerOptions).then(([x]) => {
         if (x.status === "fulfilled") {
-          return `<div class="datt mermaid">${x.value.svg}</div>`;
+          return `<figure class="datt mermaid">${x.value.svg}</figure>`;
         } else {
           throw new Error(x.reason);
         }
