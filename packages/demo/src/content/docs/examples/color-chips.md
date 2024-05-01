@@ -2,6 +2,10 @@
 title: color-chips
 ---
 
+:::caution
+rehype-color-chips is disabled for now
+:::
+
 ## rehype-color-chips
 
 - `#bada55`

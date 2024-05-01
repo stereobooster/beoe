@@ -8,7 +8,7 @@ import { rehypePintora } from "@beoe/rehype-pintora";
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 // import { rehypeStarryNight } from "@beoe/rehype-starry-night";
-import { rehypeColorChips } from "@beoe/rehype-color-chips";
+// import { rehypeColorChips } from "@beoe/rehype-color-chips";
 
 const cache = await getCache();
 const className = undefined; // "not-content"
@@ -51,7 +51,8 @@ export default defineConfig({
       ],
       [rehypeMermaid, { cache, class: className }],
       [rehypeGnuplot, { cache, class: className }],
-      rehypeColorChips,
+      // either tests fail or demo fails
+      // rehypeColorChips,
       // rehypeStarryNight,
     ],
   },
