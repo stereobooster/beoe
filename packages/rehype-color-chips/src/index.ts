@@ -16,15 +16,8 @@ export const rehypeColorChips: Plugin<[RehypeColorChipsConfig?], Root> = (
     ...options,
     inline: true,
     code: ({ language, code }) => {
-      if (
-        language !== undefined ||
-        !(
-          vc.validateHTMLColor(code) ||
-          vc.validateHTMLColorSpecialName(code) ||
-          vc.validateHTMLColorName(code)
-        )
-      )
-        return undefined;
+      // @ts-expect-error
+      if (language !== undefined || !vc(code)) return undefined;
 
       return h("code", [
         code,

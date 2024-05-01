@@ -17,7 +17,7 @@
     "vitest": "^1.5.2"
   },
   "scripts": {
-    "test": "turbo run test",
+    "test": "vitest",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "clean": "turbo run clean",
