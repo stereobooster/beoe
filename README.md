@@ -73,14 +73,12 @@ Out of scope:
   - important to be able to add `not-content` for everybody who uses [tailwindcss-typography
     ](https://github.com/tailwindlabs/tailwindcss-typography)
   - use figure instead of div for wrapper
-- [ ] remark-code-hook
-  - and make it work with Astro out of the box
 - [ ] @datt/astro-graphviz - update readme
-- [ ] astro-mermaid
-- [ ] astro-gnuplot
+- [ ] @datt/astro-mermaid
+- [ ] @datt/astro-gnuplot
 - [ ] check if `@datt` organization available on npm
 - [ ] publish to npm and make repo public
-- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture id documentation
+- [ ] mention https://github.com/stereobooster/svg-pan-zoom-gesture in documentation
   - maybe move it to this monorepo?
 - [ ] Do astro components need to render something in case of an error?
 - [ ] rehype-code-hook strategy: `replace`, `replace-child`, `append-child`, `preppend-child`, `append`, `preppend`
