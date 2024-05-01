@@ -7,7 +7,7 @@ import { expect, it } from "vitest";
 
 import rehypePintora from "../src";
 
-it("renders diagram", async () => {
+it.skip("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)

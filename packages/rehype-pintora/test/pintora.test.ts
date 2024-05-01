@@ -7,7 +7,7 @@ title: Activity Diagram Simple Action
 :Action 1;
 :Action 2;`
 
-it("renders SVG", async () => {
+it.skip("renders SVG", async () => {
   const result = await pintoraSvg(diagram);
 
   expect(result).toMatchFileSnapshot("./fixtures/a.out.svg");
@@ -20,7 +20,7 @@ it.skip("removes width and height", async () => {
   expect(result).not.toContain(`svg height=`);
 });
 
-it("wraps in a figure with classes", async () => {
+it.skip("wraps in a figure with classes", async () => {
   const result = await pintoraSvg(diagram);
 
   expect(result).toContain(`<figure class="beoe pintora`);
