@@ -1,0 +1,23 @@
+.gfm-color-chip {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: 0.3rem;
+  display: inline-block;
+  border-radius: 0.2rem;
+}
+
+.graphviz {
+  text {
+    fill: var(--sl-color-white);
+  }
+  [fill="black"] {
+    fill: var(--sl-color-white);
+  }
+  [stroke="black"] {
+    stroke: var(--sl-color-white);
+  }
+}
+
+.mermaid svg {
+  background: #fff;
+}

@@ -1,21 +1,39 @@
 import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
+import starlight from "@astrojs/starlight";
+import expressiveCode from "./expressiveCode.mjs";
+
 import { getCache } from "@datt/cache";
 import { rehypeGraphviz } from "@datt/astro-graphviz/rehype";
 import { rehypePintora } from "@datt/rehype-pintora";
 import { rehypeMermaid } from "@datt/rehype-mermaid";
 import { rehypeGnuplot } from "@datt/rehype-gnuplot";
-import { rehypeStarryNight } from "@datt/rehype-starry-night";
+// import { rehypeStarryNight } from "@datt/rehype-starry-night";
 import { rehypeColorChips } from "@datt/rehype-color-chips";
-// import { rehypeShiki, markdownConfigDefaults } from "@astrojs/markdown-remark";
 
 const cache = await getCache();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [
+    expressiveCode,
+    starlight({
+      title: "DATT",
+      social: {
+        github: "https://github.com/stereobooster/datt",
+      },
+      sidebar: [
+        {
+          label: "Examples",
+          autogenerate: { directory: "examples" },
+        },
+      ],
+      customCss: ["./src/styles/custom.css"],
+      components: {
+        PageFrame: "./src/components/PageFrame.astro",
+      },
+    }),
+  ],
   markdown: {
-    syntaxHighlight: false,
     rehypePlugins: [
       rehypeGraphviz,
       [
@@ -33,8 +51,7 @@ export default defineConfig({
       [rehypeMermaid, { cache }],
       [rehypeGnuplot, { cache }],
       rehypeColorChips,
-      rehypeStarryNight,
-      // [rehypeShiki, markdownConfigDefaults.shikiConfig],
+      // rehypeStarryNight,
     ],
   },
 });
