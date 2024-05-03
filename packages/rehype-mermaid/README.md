@@ -47,9 +47,6 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 
 ## TODO
 
-- BUG: with current implementation it would produce all diagrams with the same id `(mermaid-0)`, which results in styles clash
-  - can use `unique` prefix to resolve it
-- maybe extract CSS and produce two variants to support dark mode and light mode
 - maybe use `waitFor`
 - maybe remove `style="max-width: ..."`
 - test `mermaid-isomorphic` options (`css, mermaidConfig, prefix, browser, launchOptions`)
