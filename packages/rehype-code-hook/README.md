@@ -132,17 +132,11 @@ export default defineConfig({
 
 ### Starlight
 
-If you want to use rehype plugin for `code` elements in Starlight you need to **either** disable built-in highlighter (`expressiveCode` and `syntaxHighlight`):
+**Important** use v0.22+
 
 ```js
 export default defineConfig({
-  integrations: [
-    starlight({
-      expressiveCode: false,
-    }),
-  ],
   markdown: {
-    syntaxHighlight: false,
     rehypePlugins: [
       // you rehype plugin goes here
       // after you can insert code highlighter
@@ -150,10 +144,6 @@ export default defineConfig({
   },
 });
 ```
-
-**or** do other workarounds see [this comment](https://github.com/withastro/starlight/discussions/1259#discussioncomment-8515492).
-
-**or** you can use remark plugin [@beoe/remark-code-hook](/packages/rehype-code-hook/) (not implemented yet)
 
 ### Images instead of inline SVG
 

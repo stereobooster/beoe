@@ -11,14 +11,13 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
-    "@astrojs/starlight": "^0.22.0",
+    "@astrojs/starlight": "^0.22.1",
     "@beoe/astro-graphviz": "workspace:*",
     "@beoe/cache": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-mermaid": "workspace:*",
-    "astro": "^4.3.5",
-    "astro-expressive-code": "^0.35.2",
-    "sharp": "^0.32.5",
+    "astro": "^4.7.1",
+    "sharp": "^0.33.3",
     "svg-pan-zoom-gesture": "^0.0.2",
     "typescript": "^5.4.5"
   }

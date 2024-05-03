@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import expressiveCode from "./expressiveCode.mjs";
 
 import { getCache } from "@beoe/cache";
 import { rehypeGraphviz } from "@beoe/astro-graphviz/rehype";
@@ -13,7 +12,6 @@ const className = undefined; // "not-content"
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    expressiveCode,
     starlight({
       title: "BEOE",
       social: {
