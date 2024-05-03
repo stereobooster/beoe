@@ -28,13 +28,13 @@ I implemented core packages and added some examples. But I still need to add mor
 
 ### Diagrams
 
-|          | rehype                                              | Astro                                             | remark |
-| -------- | --------------------------------------------------- | ------------------------------------------------- | ------ |
-| Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/) | [@beoe/astro-graphviz](/packages/astro-graphviz/) |        |
-| Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   | @beoe/astro-mermaid                               |        |
-| Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   | @beoe/astro-gnuplot                               |        |
-| penrose  |                                                     |                                                   |        |
-| ...      |                                                     |                                                   |        |
+|          | rehype                                              | Astro |
+| -------- | --------------------------------------------------- | ----- |
+| Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/) |       |
+| Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   |       |
+| Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   |       |
+| penrose  |                                                     |       |
+| ...      |                                                     |       |
 
 Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
@@ -44,11 +44,6 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 - [x] [@beoe/rehype-starry-night](/experiments/rehype-starry-night/)
 - [x] [@beoe/rehype-color-chips](/experiments/rehype-color-chips/)
 - [x] [demo](/packages/demo/)
-- [ ] example of gnuplot custom diagram
-  - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
-  - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
-- [ ] example of graphviz custom diagram
-  - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
@@ -72,11 +67,17 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 ## TODO
 
 - [ ] fix `@beoe/astro-graphviz`
-- [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
+  - why I can't use `cache` package?
+- [ ] example of gnuplot custom diagram
+  - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
+  - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
+- [ ] example of graphviz custom diagram
+  - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] publish to npm and make repo public
 - [ ] @beoe/astro-mermaid
 - [ ] @beoe/astro-gnuplot
 - [ ] Github CI fails (localy everything works)
+- [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] Do astro components need to render something in case of an error?
 - [ ] maybe move to this monorepo [svg-pan-zoom-gesture](https://github.com/stereobooster/svg-pan-zoom-gesture)
