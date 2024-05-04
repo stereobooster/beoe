@@ -32,7 +32,10 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [
       [rehypeGraphviz, { class: className }],
-      [rehypeMermaid, { cache, class: className }],
+      [
+        rehypeMermaid,
+        { cache, class: className, strategy: "class-dark-mode" },
+      ],
       [rehypeGnuplot, { cache, class: className }],
     ],
   },

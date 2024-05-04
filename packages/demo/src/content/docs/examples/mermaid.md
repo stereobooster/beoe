@@ -93,6 +93,8 @@ classDiagram
     }
 ```
 
+**TODO**: this doesn't work with dark mode
+
 ```mermaid
 ---
 title: Simple sample
@@ -198,6 +200,8 @@ gitGraph
    commit
    commit
 ```
+
+**TODO**: this doesn't work with dark mode
 
 ```mermaid
 C4Context

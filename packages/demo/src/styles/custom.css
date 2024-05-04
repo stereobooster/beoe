@@ -18,11 +18,10 @@
   }
 }
 
-.mermaid svg {
-  background: #fff;
-  line-height: 1;
+html[data-theme="light"] .beoe-dark {
+  display: none;
 }
 
-.beoe {
-  @apply not-content;
+html[data-theme="dark"] .beoe-light {
+  display: none;
 }

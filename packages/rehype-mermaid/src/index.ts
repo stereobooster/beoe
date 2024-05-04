@@ -5,80 +5,150 @@ import {
   createMermaidRenderer,
   type CreateMermaidRendererOptions,
   type RenderOptions,
+  type RenderResult,
 } from "mermaid-isomorphic";
+import svgToMiniDataURI from "mini-svg-data-uri";
+import { optimize, type Config as SvgoConfig } from "svgo";
+import { h } from "hastscript";
 
 export type RehypeMermaidConfig = RenderOptions &
   CreateMermaidRendererOptions & {
     cache?: MapLike;
     class?: string;
+    svgo?: SvgoConfig | false;
+    strategy?: "inline" | "picture" | "class-dark-mode";
   };
+
+function pictureDarkMode(
+  light: RenderResult,
+  dark: RenderResult,
+  klas?: string
+) {
+  const imgLight = h("img", {
+    width: light.width,
+    height: light.height,
+    alt: light.description || light.title || "",
+    src: svgToMiniDataURI(light.svg),
+  });
+
+  const imgDark = h("source", {
+    width: dark.width,
+    height: dark.height,
+    src: svgToMiniDataURI(dark.svg),
+    media: `(prefers-color-scheme: dark)`,
+  });
+
+  return h(
+    "figure",
+    {
+      class: `beoe mermaid ${klas || ""}`,
+    },
+    h("picture", [imgLight, imgDark])
+  );
+}
+
+function classDarkMode(light: RenderResult, dark: RenderResult, klas?: string) {
+  const imgLight = h("img", {
+    width: light.width,
+    height: light.height,
+    alt: light.description || light.title || "",
+    src: svgToMiniDataURI(light.svg),
+    class: "beoe-light",
+  });
+
+  const imgDark = h("img", {
+    width: dark.width,
+    height: dark.height,
+    alt: dark.description || dark.title || "",
+    src: svgToMiniDataURI(dark.svg),
+    class: "beoe-dark",
+  });
+
+  return h(
+    "figure",
+    {
+      class: `beoe mermaid ${klas || ""}`,
+    },
+    [imgLight, imgDark]
+  );
+}
 
 export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
   options = {}
 ) => {
-  const { css, mermaidConfig, prefix, browser, launchOptions, ...rest } =
-    options;
+  const {
+    css,
+    mermaidConfig,
+    prefix,
+    browser,
+    launchOptions,
+    svgo,
+    strategy,
+    ...rest
+  } = options;
   const renerOptions = { css, mermaidConfig: mermaidConfig || {}, prefix };
   const createOptions = { browser, launchOptions };
   const renderDiagrams = createMermaidRenderer(createOptions);
-  const salt = { ...renerOptions, ...createOptions, class: rest.class };
+  const salt = {
+    ...renerOptions,
+    ...createOptions,
+    class: rest.class,
+    svgo,
+    strategy,
+  };
+
+  async function render(code: string, dark?: boolean) {
+    const config = structuredClone(renerOptions);
+    // otherwise all diagrams would have same ID and styles would collide
+    config.prefix = `m${Math.random().toString().replace(".", "")}`;
+
+    if (dark) {
+      // config.mermaidConfig.darkMode = true;
+      config.mermaidConfig.theme = "dark";
+    }
+
+    const [x] = await renderDiagrams([code], config);
+
+    if (x.status === "fulfilled") {
+      if (svgo !== false) {
+        x.value.svg = optimize(x.value.svg, svgo).data;
+      }
+      return x.value;
+    } else {
+      throw new Error(x.reason);
+    }
+  }
+
   // @ts-expect-error
   return rehypeCodeHook({
     ...rest,
     salt,
     language: "mermaid",
-    code: ({ code }) => {
-      const c = structuredClone(renerOptions);
-      // otherwise all diagrams would have same ID and styles would collide
-      c.prefix = `m${Math.random().toString().replace(".", "")}`;
-      return renderDiagrams([code], c).then(([x]) => {
-        if (x.status === "fulfilled") {
-          return `<figure class="beoe mermaid ${rest.class || ""}">${
-            x.value.svg
-          }</figure>`;
-        } else {
-          throw new Error(x.reason);
+    code: async ({ code }) => {
+      switch (strategy) {
+        case "class-dark-mode": {
+          const [light, dark] = await Promise.all([
+            render(code),
+            render(code, true),
+          ]);
+          return classDarkMode(light, dark, options.class);
         }
-      });
+        case "picture": {
+          const [light, dark] = await Promise.all([
+            render(code),
+            render(code, true),
+          ]);
+          return pictureDarkMode(light, dark, options.class);
+        }
+        default: {
+          const light = await render(code);
+          return `<figure class="beoe mermaid ${rest.class || ""}">${
+            light.svg
+          }</figure>`;
+        }
+      }
     },
   });
 };
 
 export default rehypeMermaid;
-
-// Tried to combine dark/light mode CSS in one style. It doesn't work
-// const dark = structuredClone(renerOptions);
-// dark.mermaidConfig.theme = "dark";
-//
-// code: ({ code }) => {
-//       return Promise.all([
-//         renderDiagrams([code], renerOptions),
-//         renderDiagrams([code], dark),
-//       ]).then(([[x], [y]]) => {
-//         if (x.status === "fulfilled" && y.status === "fulfilled") {
-//           const xStyle = /<style>([^<]*)<\/style>/.exec(x.value.svg);
-//           const yStyle = /<style>([^<]*)<\/style>/.exec(y.value.svg);
-//           // https://caniuse.com/css-nesting
-//           const joinedStyles = `<style>
-//           @media (prefers-color-scheme: light){
-//             :root:not([data-theme='dark']){
-//               ${xStyle?.[1]}
-//             }
-//           }
-//           @media (prefers-color-scheme: dark){
-//             :root:not([data-theme='light']){
-//               ${yStyle?.[1]}
-//             }
-//           }</style>`;
-//
-//           const svg = x.value.svg.replace(xStyle?.[0] || "", joinedStyles);
-//
-//           return `<figure class="beoe mermaid ${
-//             rest.class || ""
-//           }">${svg}</figure>`;
-//         } else {
-//           // @ts-expect-error
-//           throw new Error(x.reason || y.resaon);
-//         }
-//       });
-//     },
