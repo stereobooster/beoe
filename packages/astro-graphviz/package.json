@@ -1,7 +1,7 @@
 {
   "name": "@beoe/astro-graphviz",
   "version": "0.0.1",
-  "description": "astro graphviz component",
+  "description": "Astro graphviz component",
   "keywords": [
     "astro",
     "astro-component",

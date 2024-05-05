@@ -2,8 +2,6 @@
 
 Astro component to generate [Graphviz](https://graphviz.org/) diagrams as inline SVG.
 
-It uses [@beoe/cache](/packages/cache/)
-
 ## Uage
 
 In MDX or Astro:
@@ -38,4 +36,5 @@ See [@beoe/rehype-graphviz](/packages/rehype-graphviz/)
 
 ## TODO
 
+- use `@beoe/cache` in Astro component
 - add type declarations for `@beoe/astro-graphviz/rehype`
