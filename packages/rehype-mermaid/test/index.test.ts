@@ -31,6 +31,5 @@ it("renders diagram", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  console.log(file.toString());
   expect(file.toString()).toMatchFileSnapshot("./fixtures/a.html");
 });

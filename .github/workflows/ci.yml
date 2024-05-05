@@ -42,8 +42,12 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install chromium
 
+      - run: ls -la .turbo || exit 0
+
       - name: Build
         run: pnpm build --cache-dir=.turbo
+
+      - run: ls -la .turbo || exit 0
 
       - name: Test
         run: pnpm test
