@@ -2,16 +2,17 @@
   "name": "@beoe/cache",
   "type": "module",
   "version": "0.0.1",
-  "description": "persistent LRU TTL cache",
+  "description": "Shareable persistent LRU TTL cache based on SQLite",
   "keywords": [
-    "cache"
+    "cache",
+    "sqlite"
   ],
   "author": "stereobooster",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stereobooster/beoe.git",
-    "directory": "packages/sqlitecache"
+    "directory": "packages/cache"
   },
   "exports": {
     ".": {

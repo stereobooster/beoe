@@ -2,7 +2,7 @@
   "name": "@beoe/sqlitecache",
   "type": "module",
   "version": "0.0.1",
-  "description": "persistent LRU TTL cache based on SQLite",
+  "description": "Persistent LRU TTL cache based on SQLite",
   "keywords": [
     "cache",
     "sqlite"
