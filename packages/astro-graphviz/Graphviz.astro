@@ -1,7 +1,5 @@
 ---
-// Error: require is not defined in ES module scope, you can use import instead
-// but this error only happens in build
-// import { processGraphvizSvg } from "@beoe/rehype-graphviz";
+import { processGraphvizSvg } from "@beoe/rehype-graphviz";
 // Error: Command failed with exit code 1. (no details)
 // import { serialize } from "node:v8";
 // import { getCache } from "@beoe/cache";
@@ -20,12 +18,9 @@ let svg: string;
 // const cacheKey = serialize(Astro.props);
 // svg = cache.get(cacheKey);
 // if (svg === undefined) {
-// svg = processGraphvizSvg(graphviz.dot(Astro.props.code), Astro.props.class);
-svg = graphviz.dot(Astro.props.code);
+svg = processGraphvizSvg(graphviz.dot(Astro.props.code), Astro.props.class);
 //   cache.set(cacheKey, svg);
 // }
 ---
 
-<figure class={`beoe graphviz ${Astro.props.class || ""}`}>
-  <Fragment set:html={svg} />
-</figure>
+<Fragment set:html={svg} />
