@@ -18,6 +18,13 @@
   }
 }
 
+/* needed if you use strategy: "inline" */
+.mermaid svg {
+  background: #fff;
+  line-height: 1;
+}
+
+/* needed if you use strategy: "class-dark-mode" */
 html[data-theme="light"] .beoe-dark {
   display: none;
 }
@@ -25,3 +32,7 @@ html[data-theme="light"] .beoe-dark {
 html[data-theme="dark"] .beoe-light {
   display: none;
 }
+
+/* .beoe {
+  @apply not-content;
+} */

@@ -66,8 +66,6 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
-- [ ] implement dark mode for mermaid with picture/classes
-- [ ] SVGO?
 - [ ] fix `@beoe/astro-graphviz`
   - why I can't use `@beoe/cache` package?
 - [ ] example of gnuplot custom diagram

@@ -8,14 +8,18 @@ import {
   type RenderResult,
 } from "mermaid-isomorphic";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { optimize, type Config as SvgoConfig } from "svgo";
 import { h } from "hastscript";
+// SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
+import { optimize, type Config as SvgoConfig } from "svgo";
 
 export type RehypeMermaidConfig = RenderOptions &
   CreateMermaidRendererOptions & {
     cache?: MapLike;
     class?: string;
-    svgo?: SvgoConfig | false;
+    /**
+     * be carefull. It may break some diagrams. For example, stateDiagram-v2
+     */
+    svgo?: SvgoConfig | boolean;
     strategy?: "inline" | "picture" | "class-dark-mode";
   };
 
@@ -102,17 +106,14 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     // otherwise all diagrams would have same ID and styles would collide
     config.prefix = `m${Math.random().toString().replace(".", "")}`;
 
-    if (dark) {
-      // config.mermaidConfig.darkMode = true;
-      config.mermaidConfig.theme = "dark";
-    }
+    if (dark) config.mermaidConfig.theme = "dark";
 
     const [x] = await renderDiagrams([code], config);
 
     if (x.status === "fulfilled") {
-      if (svgo !== false) {
-        x.value.svg = optimize(x.value.svg, svgo).data;
-      }
+      if (svgo)
+        x.value.svg = optimize(x.value.svg, svgo === true ? {} : svgo).data;
+
       return x.value;
     } else {
       throw new Error(x.reason);
