@@ -12,6 +12,20 @@ import { h } from "hastscript";
 // SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
 import { optimize, type Config as SvgoConfig } from "svgo";
 
+const svgoConfig: SvgoConfig = {
+  plugins: [
+    {
+      name: "preset-default",
+      params: {
+        overrides: {
+          // disable a default plugin
+          removeViewBox: false,
+        },
+      },
+    },
+  ],
+};
+
 export type RehypeMermaidConfig = RenderOptions &
   CreateMermaidRendererOptions & {
     cache?: MapLike;
@@ -112,7 +126,7 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
 
     if (x.status === "fulfilled") {
       if (svgo)
-        x.value.svg = optimize(x.value.svg, svgo === true ? {} : svgo).data;
+        x.value.svg = optimize(x.value.svg, svgo === true ? svgoConfig : svgo).data;
 
       return x.value;
     } else {

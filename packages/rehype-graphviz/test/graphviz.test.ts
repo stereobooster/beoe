@@ -21,7 +21,7 @@ it("removes xml doctype", async () => {
   const result = processGraphvizSvg(svg);
 
   expect(result).toMatchInlineSnapshot(
-    `"<figure class="beoe graphviz "><svg viewBox="0.00 0.00 79.41 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)"><title>G</title><polygon fill="white" stroke="none" points="-4,4 -4,-112 75.41,-112 75.41,4 -4,4"/></g></svg></figure>"`
+    `"<figure class="beoe graphviz "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 79.41 116"><g class="graph" transform="translate(4 112)"><path fill="#fff" d="M-4 4v-116h79.41V4z"/></g></svg></figure>"`
   );
 });
 

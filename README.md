@@ -66,8 +66,8 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
-- [ ] make `@beoe/cache` usable in Astro components
 - [ ] reuse `processGraphvizSvg` in `@beoe/astro-graphviz`
+- [ ] make `@beoe/cache` usable in Astro components
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
   - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
@@ -83,6 +83,13 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 - [ ] maybe move to this monorepo [svg-pan-zoom-gesture](https://github.com/stereobooster/svg-pan-zoom-gesture)
 - [ ] maybe move to this monorepo [venn-isomorphic](https://github.com/stereobooster/venn-isomorphic)
 - [ ] maybe move to this monorepo [gnuplot-wasm](https://github.com/stereobooster/gnuplot-wasm)
+
+## Notes
+
+- https://github.com/svg/svgo alternatives
+  - https://www.npmjs.com/package/@minify-html/node
+  - https://github.com/pleshevskiy/node-svgcleaner
+  - https://github.com/RazrFalcon/svgcleaner
 
 ## Logo
 

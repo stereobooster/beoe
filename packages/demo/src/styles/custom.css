@@ -10,10 +10,12 @@
   text {
     fill: var(--sl-color-white);
   }
-  [fill="black"] {
+  [fill="black"],
+  [fill="#000"] {
     fill: var(--sl-color-white);
   }
-  [stroke="black"] {
+  [stroke="black"],
+  [stroke="#000"] {
     stroke: var(--sl-color-white);
   }
 }
