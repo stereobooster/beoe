@@ -19,10 +19,13 @@ jobs:
           fetch-depth: 2
 
       # https://stackoverflow.com/questions/60491837/saving-cache-on-job-failure-in-github-actions
-      - name: Cache turbo build setup
+      - name: Cache turbo build restore
         uses: actions/cache/restore@v3
         with:
+          path: .turbo
           key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
 
       - uses: pnpm/action-setup@v3
         with:
@@ -43,14 +46,12 @@ jobs:
       - name: Build
         run: pnpm build --cache-dir=.turbo
 
-      - name: Cache turbo build setup
+      - name: Cache turbo build save
         uses: actions/cache/save@v3
-        if: always()
+        # if: always()
         with:
           path: .turbo
           key: ${{ runner.os }}-turbo-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-turbo-
 
       - name: Test
         run: pnpm test
