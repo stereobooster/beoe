@@ -55,7 +55,7 @@ describe("SQLiteCache", () => {
   });
 
   it("Value equal after compression", () => {
-    const cache = new SQLiteCache({ compress: true });
+    const cache = new SQLiteCache({ useCompression: true });
     const testObj: any = {};
     for (let i = 0; i < 10000; i++) {
       testObj[i] = Math.random();
@@ -75,7 +75,7 @@ describe("SQLiteCache", () => {
       new SQLiteCache({ defaultTtlMs: "4" as any });
     }).toThrow("Invalid 'defaultTtlMs' configuration");
     expect(() => {
-      new SQLiteCache({ compress: "false" as any });
+      new SQLiteCache({ useCompression: "false" as any });
     }).toThrow("Invalid 'compress' configuration");
     expect(() => {
       new SQLiteCache({ maxItems: "7" as any });
@@ -97,7 +97,7 @@ describe("SQLiteCache", () => {
   });
 
   it("Setting cache value with compression and checking compression status", () => {
-    const cache = new SQLiteCache({ compress: true });
+    const cache = new SQLiteCache({ useCompression: true });
     const testObj = { a: 1, b: 2 };
     cache.set("test", testObj);
     const valueWithMeta = cache.get("test", true);
@@ -148,7 +148,7 @@ describe("SQLiteCache", () => {
       new SQLiteCache({ defaultTtlMs: "4" as any });
     }).toThrow("Invalid 'defaultTtlMs' configuration");
     expect(() => {
-      new SQLiteCache({ compress: "false" as any });
+      new SQLiteCache({ useCompression: "false" as any });
     }).toThrow("Invalid 'compress' configuration");
     expect(() => {
       new SQLiteCache({ maxItems: "7" as any });

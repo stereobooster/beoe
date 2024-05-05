@@ -57,11 +57,11 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
     - on build pack all wasm binaries
     - auto release with github
     - https://github.com/wooorm/starry-night/blob/main/script/common.js
-- [ ] venn.js
+- [ ] venn.js (Astro component)
   - https://github.com/stereobooster/venn-isomorphic
-- [ ] svgbob
+- [ ] svgbob (rehype)
   - https://github.com/agoose77/svgbob-wasm
-- [ ] pikchr
+- [ ] pikchr (rehype)
   - https://github.com/fabiospampinato/pikchr-wasm
 
 ## TODO
@@ -79,6 +79,7 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] Do astro components need to render something in case of an error?
 - [ ] maybe move to this monorepo [svg-pan-zoom-gesture](https://github.com/stereobooster/svg-pan-zoom-gesture)
+  - [ ] first double click should zoom x2
 - [ ] maybe move to this monorepo [venn-isomorphic](https://github.com/stereobooster/venn-isomorphic)
 - [ ] maybe move to this monorepo [gnuplot-wasm](https://github.com/stereobooster/gnuplot-wasm)
 

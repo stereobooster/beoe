@@ -47,7 +47,7 @@ Here are some ideas to experiment with (but need proper benchmark first):
   - There are more modern compression algorithms, for example:
     - LZ4: https://github.com/antoniomuso/lz4-napi or https://github.com/PSeitz/lz4-wasm
     - Zstandard: https://github.com/OneIdentity/zstd-js or https://github.com/bokuweb/zstd-wasm
-  - no need to change default, because it can be configured with `zip`/`unzip` options
+  - no need to change default, because it can be configured with `compress`/`decompress` options
 - Maybe support Bun and Deno, like in [great.db](https://www.npmjs.com/package/great.db)
 - Maybe support caching promises
   - untill promise resolved, cache would return the same promise from `flru`
@@ -56,9 +56,9 @@ Here are some ideas to experiment with (but need proper benchmark first):
 
 ## TODO
 
-- cache suppose to reset when those changed: `zip`, `unzip`, `serialize`, `deserialize`
+- cache suppose to reset when those changed: `compress`, `decompress`, `serialize`, `deserialize`
   - or store them as part of the key, so one can use several versions at the same time
+- test all new options: `compress`, `decompress`, `serialize`, `deserialize`, `readonly`
 - maybe store `created_at` for items
 - maybe drop `withMeta`?
-- maybe rename `zip`/`unzip` to `compress`/[`decompress`](https://english.stackexchange.com/questions/56480/difference-between-uncompress-and-decompress)?
 - write "usage" section of documentation

@@ -15,10 +15,10 @@ type SQLiteCacheConfiguration = {
   database: string;
   defaultTtlMs?: number;
   maxItems?: number;
-  compress: boolean;
+  useCompression: boolean;
   readonly: boolean;
-  zip: (x: InputType) => Buffer;
-  unzip: (x: InputType) => Buffer;
+  compress: (x: InputType) => Buffer;
+  decompress: (x: InputType) => Buffer;
   serialize: (x: unknown) => Buffer;
   deserialize: (x: Buffer) => any;
 };
@@ -96,13 +96,13 @@ const parseConfig = (config: SQLiteCacheOptions): SQLiteCacheConfiguration => {
   if (rawConfig.maxItems && typeof rawConfig.maxItems !== "number") {
     errors.push("'maxItems'");
   }
-  if (rawConfig.compress && typeof rawConfig.compress !== "boolean") {
+  if (rawConfig.useCompression && typeof rawConfig.useCompression !== "boolean") {
     errors.push("'compress'");
   }
-  if (rawConfig.zip && typeof rawConfig.zip !== "function") {
+  if (rawConfig.compress && typeof rawConfig.compress !== "function") {
     errors.push("'zip'");
   }
-  if (rawConfig.unzip && typeof rawConfig.unzip !== "function") {
+  if (rawConfig.decompress && typeof rawConfig.decompress !== "function") {
     errors.push("'unzip'");
   }
   if (errors.length > 0) {
@@ -112,10 +112,10 @@ const parseConfig = (config: SQLiteCacheOptions): SQLiteCacheConfiguration => {
     database: rawConfig.database ?? ":memory:",
     defaultTtlMs: rawConfig.defaultTtlMs,
     maxItems: rawConfig.maxItems,
-    compress: rawConfig.compress || false,
+    useCompression: rawConfig.useCompression || false,
     readonly: rawConfig.readonly || false,
-    zip: rawConfig.zip || gzipSync,
-    unzip: rawConfig.unzip || gunzipSync,
+    compress: rawConfig.compress || gzipSync,
+    decompress: rawConfig.decompress || gunzipSync,
     serialize: rawConfig.serialize || serializeDef,
     deserialize: rawConfig.deserialize || deserializeDef,
   };
@@ -169,7 +169,7 @@ export class SQLiteCache<TData = any> {
     }
     let value: any = (res as any).value;
     if ((res as any).compressed) {
-      value = this.configuration.unzip(value);
+      value = this.configuration.decompress(value);
     }
     const deserialized = this.configuration.deserialize(value);
 
@@ -209,11 +209,11 @@ export class SQLiteCache<TData = any> {
 
     const ttl = opts.ttlMs ?? this.configuration.defaultTtlMs;
     const expires = ttl !== undefined ? new Date(now() + ttl) : undefined;
-    let compression = opts.compress ?? this.configuration.compress ?? false;
+    let compression = opts.compress ?? this.configuration.useCompression ?? false;
     let valueBuffer = this.configuration.serialize(value);
 
     if (compression && valueBuffer.length >= COMPRESSION_MIN_LENGTH) {
-      const compressed = this.configuration.zip(valueBuffer);
+      const compressed = this.configuration.compress(valueBuffer);
       if (compressed.length >= valueBuffer.length) {
         compression = false;
       } else {
