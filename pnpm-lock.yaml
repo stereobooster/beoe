@@ -93,9 +93,6 @@ importers:
       '@types/hast':
         specifier: ^3.0.4
         version: 3.0.4
-      deterministic-object-hash:
-        specifier: ^2.0.2
-        version: 2.0.2
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
