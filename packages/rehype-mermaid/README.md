@@ -48,7 +48,5 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 ## TODO
 
 - write about dark mode
-- maybe use `waitFor`
-- maybe remove `style="max-width: ..."`
 - test `mermaid-isomorphic` options (`css, mermaidConfig, prefix, browser, launchOptions`)
 - write tips about styling with CSS

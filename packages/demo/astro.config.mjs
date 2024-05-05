@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 
 import { getCache } from "@beoe/cache";
-import { rehypeGraphviz } from "@beoe/astro-graphviz/rehype";
+import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 
@@ -31,7 +31,7 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      [rehypeGraphviz, { class: className }],
+      [rehypeGraphviz, { cache, class: className }],
       [rehypeMermaid, { cache, class: className, strategy: "class-dark-mode" }],
       [rehypeGnuplot, { cache, class: className }],
     ],

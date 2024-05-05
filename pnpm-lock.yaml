@@ -69,6 +69,9 @@ importers:
       '@beoe/rehype-gnuplot':
         specifier: workspace:*
         version: link:../rehype-gnuplot
+      '@beoe/rehype-graphviz':
+        specifier: workspace:*
+        version: link:../rehype-graphviz
       '@beoe/rehype-mermaid':
         specifier: workspace:*
         version: link:../rehype-mermaid
