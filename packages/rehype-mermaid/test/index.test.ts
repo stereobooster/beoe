@@ -14,6 +14,9 @@ beforeAll(() => {
     abs: Math.abs,
     max: Math.max,
     floor: Math.floor,
+    pow: Math.pow,
+    round: Math.round,
+    min: Math.min,
   };
 
   vi.stubGlobal("Math", m);
