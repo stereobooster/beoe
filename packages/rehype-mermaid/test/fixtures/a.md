@@ -1,4 +1,3 @@
 ```mermaid
-flowchart LR
-    id
+graph TD; A;
 ```
