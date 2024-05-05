@@ -1,7 +1,11 @@
 ---
-// I can't use internal modules - don't know why
+// Error: require is not defined in ES module scope, you can use import instead
+// but this error only happens in build
 // import { processGraphvizSvg } from "@beoe/rehype-graphviz";
+// Error: Command failed with exit code 1. (no details)
+// import { serialize } from "node:v8";
 // import { getCache } from "@beoe/cache";
+
 import { Graphviz } from "@hpcc-js/wasm";
 const graphviz = await Graphviz.load();
 
@@ -13,9 +17,10 @@ interface Props {
 }
 
 let svg: string;
-// const cacheKey = Astro.props.code;
+// const cacheKey = serialize(Astro.props);
 // svg = cache.get(cacheKey);
 // if (svg === undefined) {
+// svg = processGraphvizSvg(graphviz.dot(Astro.props.code), Astro.props.class);
 svg = graphviz.dot(Astro.props.code);
 //   cache.set(cacheKey, svg);
 // }

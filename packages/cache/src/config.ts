@@ -36,6 +36,7 @@ export async function getConfig() {
   const defaultCfg: Config = {
     database: join(cwd(), "node_modules/.beoe/cache.sqlite"),
     maxItems: 1024,
+    // readonly: true
   };
 
   let cfg: Partial<Config> = {};

@@ -16,6 +16,7 @@ type SQLiteCacheConfiguration = {
   defaultTtlMs?: number;
   maxItems?: number;
   compress: boolean;
+  readonly: boolean;
   zip: (x: InputType) => Buffer;
   unzip: (x: InputType) => Buffer;
   serialize: (x: unknown) => Buffer;
@@ -24,33 +25,49 @@ type SQLiteCacheConfiguration = {
 
 export type SQLiteCacheOptions = Partial<SQLiteCacheConfiguration>;
 
-function initSqliteCache(configuration: SQLiteCacheConfiguration) {
-  const db = new Database(configuration.database);
-  db.exec("PRAGMA journal_mode = WAL;");
-  db.transaction(() => {
-    db.prepare(
-      `CREATE TABLE IF NOT EXISTS cache (
+function initSqliteCache(
+  configuration: SQLiteCacheConfiguration,
+  readonly: boolean
+) {
+  // This sometimes crashes process and there is no way to catch it with try/catch
+  const db = new Database(configuration.database, {
+    readonly,
+    fileMustExist: readonly,
+    // timeout: 5000,
+    // verbose: console.log.bind(console),
+  });
+  if (!readonly) {
+    db.exec("PRAGMA journal_mode = WAL;");
+    db.transaction(() => {
+      db.prepare(
+        `CREATE TABLE IF NOT EXISTS cache (
           key TEXT PRIMARY KEY,
           value BLOB,
           expires INT,
           lastAccess INT,
           compressed BOOLEAN
         )`
-    ).run();
-    db.prepare(`CREATE UNIQUE INDEX IF NOT EXISTS key ON cache (key)`).run();
-    db.prepare(`CREATE INDEX IF NOT EXISTS expires ON cache (expires)`).run();
-    db.prepare(
-      `CREATE INDEX IF NOT EXISTS lastAccess ON cache (lastAccess)`
-    ).run();
-  })();
+      ).run();
+      db.prepare(`CREATE UNIQUE INDEX IF NOT EXISTS key ON cache (key)`).run();
+      db.prepare(`CREATE INDEX IF NOT EXISTS expires ON cache (expires)`).run();
+      db.prepare(
+        `CREATE INDEX IF NOT EXISTS lastAccess ON cache (lastAccess)`
+      ).run();
+    })();
+  }
   return {
     db,
-    getStatement: db.prepare(
-      `UPDATE OR IGNORE cache
+    getStatement: readonly
+      ? db.prepare(
+          `SELECT value, compressed FROm cache
+        WHERE key = $key AND (expires > $now OR expires IS NULL);`
+        )
+      : db.prepare(
+          `UPDATE OR IGNORE cache
         SET lastAccess = $now
         WHERE key = $key AND (expires > $now OR expires IS NULL)
         RETURNING value, compressed`
-    ),
+        ),
     setStatement: db.prepare(
       `INSERT OR REPLACE INTO cache
         (key, value, expires, lastAccess, compressed) VALUES ($key, $value, $expires, $now, $compressed)`
@@ -96,6 +113,7 @@ const parseConfig = (config: SQLiteCacheOptions): SQLiteCacheConfiguration => {
     defaultTtlMs: rawConfig.defaultTtlMs,
     maxItems: rawConfig.maxItems,
     compress: rawConfig.compress || false,
+    readonly: rawConfig.readonly || false,
     zip: rawConfig.zip || gzipSync,
     unzip: rawConfig.unzip || gunzipSync,
     serialize: rawConfig.serialize || serializeDef,
@@ -108,14 +126,18 @@ const parseConfig = (config: SQLiteCacheOptions): SQLiteCacheConfiguration => {
  */
 export class SQLiteCache<TData = any> {
   private readonly db: ReturnType<typeof initSqliteCache>;
-  private readonly checkInterval: NodeJS.Timeout;
+  private readonly checkInterval?: NodeJS.Timeout;
   private readonly configuration: SQLiteCacheConfiguration;
   isClosed: boolean = false;
+  isReadonly: boolean = true;
 
   constructor(configuration: SQLiteCacheOptions = emptyObj) {
     this.configuration = parseConfig(configuration);
-    this.db = initSqliteCache(this.configuration);
-    this.checkInterval = setInterval(this.checkForExpiredItems, 500);
+    this.isReadonly = this.configuration.readonly;
+    this.db = initSqliteCache(this.configuration, this.isReadonly);
+    if (!this.isReadonly) {
+      this.checkInterval = setInterval(this.checkForExpiredItems, 500);
+    }
   }
 
   /**
@@ -180,6 +202,10 @@ export class SQLiteCache<TData = any> {
     if (this.isClosed) {
       throw new Error("Cache is closed");
     }
+    if (this.isReadonly) {
+      throw new Error("Cache is read only");
+      // return false;
+    }
 
     const ttl = opts.ttlMs ?? this.configuration.defaultTtlMs;
     const expires = ttl !== undefined ? new Date(now() + ttl) : undefined;
@@ -222,6 +248,9 @@ export class SQLiteCache<TData = any> {
     if (this.isClosed) {
       throw new Error("Cache is closed");
     }
+    if (this.isReadonly) {
+      throw new Error("Cache is read only");
+    }
     this.db.deleteStatement.run({ key });
   }
 
@@ -232,6 +261,9 @@ export class SQLiteCache<TData = any> {
   public clear() {
     if (this.isClosed) {
       throw new Error("Cache is closed");
+    }
+    if (this.isReadonly) {
+      throw new Error("Cache is read only");
     }
     this.db.clearStatement.run(emptyObj);
   }
@@ -246,7 +278,7 @@ export class SQLiteCache<TData = any> {
   }
 
   private checkForExpiredItems = () => {
-    if (this.isClosed) {
+    if (this.isClosed || this.isReadonly) {
       return;
     }
 
