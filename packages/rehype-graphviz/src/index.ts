@@ -2,6 +2,7 @@ import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { processGraphvizSvg } from "./graphviz.js";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
+import { type Config as SvgoConfig } from "svgo";
 
 // import { type Engine } from "@hpcc-js/wasm";
 type Engine =
@@ -20,6 +21,7 @@ export type RenderGraphvizOptions = {
   class?: string;
   /* it is possible to change layout with in dot code itself */
   engine?: Engine;
+  svgo?: SvgoConfig | boolean;
 };
 
 // import { Graphviz } from "@hpcc-js/wasm";
@@ -45,7 +47,8 @@ export const renderGraphviz = waitFor(
   (graphviz) => (o: RenderGraphvizOptions) =>
     processGraphvizSvg(
       graphviz.layout(o.code, "svg", o.engine || "dot"),
-      o.class
+      o.class,
+      o.svgo
     )
 );
 
@@ -54,18 +57,20 @@ export { processGraphvizSvg };
 export type RehypeGraphvizConfig = {
   cache?: MapLike;
   class?: string;
+  svgo?: SvgoConfig | boolean;
 };
 
 export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig?], Root> = (
   options = {}
 ) => {
-  const salt = { class: options.class };
+  const salt = { class: options.class, svgo: options.svgo };
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
     salt,
     language: "dot",
-    code: ({ code }) => renderGraphviz({ code, class: options.class }),
+    code: ({ code }) =>
+      renderGraphviz({ code, class: options.class, svgo: options.svgo }),
   });
 };
 

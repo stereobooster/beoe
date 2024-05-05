@@ -18,8 +18,10 @@ const svgoConfig: SvgoConfig = {
       name: "preset-default",
       params: {
         overrides: {
-          // disable a default plugin
+          // we need viewbox for inline SVGs
           removeViewBox: false,
+          // this breaks statediagram
+          convertShapeToPath: false,
         },
       },
     },
@@ -134,10 +136,10 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     const [x] = await renderDiagrams([code], config);
 
     if (x.status === "fulfilled") {
-      if (svgo)
+      if (svgo !== false)
         x.value.svg = optimize(
           x.value.svg,
-          svgo === true ? svgoConfig : svgo
+          svgo === true || svgo === undefined ? svgoConfig : svgo
         ).data;
 
       return x.value;

@@ -29,10 +29,15 @@ const svgoConfig: SvgoConfig = {
 export const processGraphvizSvg = (
   svg: string,
   className?: string,
-  config?: SvgoConfig
+  config?: SvgoConfig | boolean
 ) => {
   svg = svg.split("\n").slice(6).join("\n");
-  svg = optimize(svg, config || svgoConfig).data;
+  if (config !== false) {
+    svg = optimize(
+      svg,
+      config === undefined || config === true ? svgoConfig : config
+    ).data;
+  }
   svg = svg.replace(/width="\d+[^"]+"\s+/, "");
   svg = svg.replace(/height="\d+[^"]+"\s+/, "");
   return `<figure class="beoe graphviz ${className || ""}">${svg}</figure>`;

@@ -2,6 +2,13 @@ import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { processGnuplotSvg } from "./gnuplot.js";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
+import { type Config as SvgoConfig } from "svgo";
+
+export type RenderGnuplotOptions = {
+  code: string;
+  class?: string;
+  svgo?: SvgoConfig | boolean;
+};
 
 // // @ts-ignore
 // import gnuplot from "gnuplot-wasm";
@@ -23,8 +30,8 @@ export const renderGnuplot = waitFor(
     const gnuplot = (await import("gnuplot-wasm")).default;
     return (gnuplot() as Promise<{ render: R }>).then(({ render }) => render);
   },
-  (render) => (o: { code: string; class?: string }) =>
-    processGnuplotSvg(render(o.code).svg, o.class)
+  (render) => (o: RenderGnuplotOptions) =>
+    processGnuplotSvg(render(o.code).svg, o.class, o.svgo)
 );
 
 export { processGnuplotSvg };
@@ -32,18 +39,20 @@ export { processGnuplotSvg };
 export type RehypeGraphvizConfig = {
   cache?: MapLike;
   class?: string;
+  svgo?: SvgoConfig | boolean;
 };
 
 export const rehypeGnuplot: Plugin<[RehypeGraphvizConfig?], Root> = (
   options = {}
 ) => {
-  const salt = { class: options.class };
+  const salt = { class: options.class, svgo: options.svgo };
   // @ts-expect-error
   return rehypeCodeHook({
     ...options,
     salt,
     language: "gnuplot",
-    code: ({ code }) => renderGnuplot({ code, class: options.class }),
+    code: ({ code }) =>
+      renderGnuplot({ code, class: options.class, svgo: options.svgo }),
   });
 };
 

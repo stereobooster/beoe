@@ -66,7 +66,6 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
-- [ ] expose svgo options
 - [ ] publish to npm and make repo public
 - [ ] make `@beoe/cache` usable in Astro components
   - [ ] `@beoe/astro-mermaid`

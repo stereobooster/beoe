@@ -24,10 +24,15 @@ const svgoConfig: SvgoConfig = {
 export const processGnuplotSvg = (
   svg: string,
   className?: string,
-  config?: SvgoConfig
+  config?: SvgoConfig | boolean
 ) => {
   svg = svg.split("\n").slice(1).join("\n");
-  svg = optimize(svg, config || svgoConfig).data;
+  if (config !== false) {
+    svg = optimize(
+      svg,
+      config === undefined || config === true ? svgoConfig : config
+    ).data;
+  }
   svg = svg.replace(/\s+width="\d+[^"]*"/, "");
   svg = svg.replace(/\s+height="\d+[^"]*"/, "");
   return `<figure class="beoe gnuplot ${className || ""}">${svg}</figure>`;
