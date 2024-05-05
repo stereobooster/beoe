@@ -66,15 +66,16 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
+- [ ] expose svgo options
+- [ ] publish to npm and make repo public
 - [ ] make `@beoe/cache` usable in Astro components
+  - [ ] `@beoe/astro-mermaid`
+  - [ ] `@beoe/astro-gnuplot`
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
   - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
 - [ ] example of graphviz custom diagram
   - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
-- [ ] publish to npm and make repo public
-- [ ] `@beoe/astro-mermaid`
-- [ ] `@beoe/astro-gnuplot`
 - [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] Do astro components need to render something in case of an error?

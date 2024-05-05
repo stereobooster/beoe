@@ -34,7 +34,11 @@ export type RehypeMermaidConfig = RenderOptions &
      * be carefull. It may break some diagrams. For example, stateDiagram-v2
      */
     svgo?: SvgoConfig | boolean;
-    strategy?: "inline" | "picture" | "class-dark-mode";
+    strategy?:
+      | "inline"
+      | "picture-dark-mode"
+      | "img-class-dark-mode"
+      | "inline-class-dark-mode";
   };
 
 function pictureDarkMode(
@@ -65,7 +69,11 @@ function pictureDarkMode(
   );
 }
 
-function classDarkMode(light: RenderResult, dark: RenderResult, klas?: string) {
+function imgClassDarkMode(
+  light: RenderResult,
+  dark: RenderResult,
+  klas?: string
+) {
   const imgLight = h("img", {
     width: light.width,
     height: light.height,
@@ -87,7 +95,8 @@ function classDarkMode(light: RenderResult, dark: RenderResult, klas?: string) {
     {
       class: `beoe mermaid ${klas || ""}`,
     },
-    [imgLight, imgDark]
+    // wrapp in additional div for svg-pan-zoom
+    [h("div", [imgLight, imgDark])]
   );
 }
 
@@ -126,7 +135,10 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
 
     if (x.status === "fulfilled") {
       if (svgo)
-        x.value.svg = optimize(x.value.svg, svgo === true ? svgoConfig : svgo).data;
+        x.value.svg = optimize(
+          x.value.svg,
+          svgo === true ? svgoConfig : svgo
+        ).data;
 
       return x.value;
     } else {
@@ -141,19 +153,29 @@ export const rehypeMermaid: Plugin<[RehypeMermaidConfig?], Root> = (
     language: "mermaid",
     code: async ({ code }) => {
       switch (strategy) {
-        case "class-dark-mode": {
+        case "img-class-dark-mode": {
           const [light, dark] = await Promise.all([
             render(code),
             render(code, true),
           ]);
-          return classDarkMode(light, dark, options.class);
+          return imgClassDarkMode(light, dark, options.class);
         }
-        case "picture": {
+        case "picture-dark-mode": {
           const [light, dark] = await Promise.all([
             render(code),
             render(code, true),
           ]);
           return pictureDarkMode(light, dark, options.class);
+        }
+        case "inline-class-dark-mode": {
+          const [light, dark] = await Promise.all([
+            render(code),
+            render(code, true),
+          ]);
+          return `<figure class="beoe mermaid ${rest.class || ""}"><div>
+          <div class="beoe-light">${light.svg}</div>
+          <div class="beoe-dark">${dark.svg}</div>
+          </div></figure>`;
         }
         default: {
           const light = await render(code);

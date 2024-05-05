@@ -22,11 +22,10 @@
 
 /* needed if you use strategy: "inline" */
 .mermaid svg {
-  background: #fff;
   line-height: 1;
 }
 
-/* needed if you use strategy: "class-dark-mode" */
+/* needed if you use strategy: "img-class-dark-mode" */
 html[data-theme="light"] .beoe-dark {
   display: none;
 }
