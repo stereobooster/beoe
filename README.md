@@ -73,9 +73,8 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 - [ ] example of graphviz custom diagram
   - https://astro-digital-garden.stereobooster.com/recipes/timeline-diagram/
 - [ ] publish to npm and make repo public
-- [ ] @beoe/astro-mermaid
-- [ ] @beoe/astro-gnuplot
-- [ ] Github CI fails (localy everything works)
+- [ ] `@beoe/astro-mermaid`
+- [ ] `@beoe/astro-gnuplot`
 - [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] Do astro components need to render something in case of an error?
