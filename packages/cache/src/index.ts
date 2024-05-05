@@ -13,15 +13,17 @@ const getCacheOriginal = async () => {
 
   const cache = new SQLiteCache(cfg);
 
-  // Not sure if this is the best way to do it...
-  process.on("exit", () => (cache as SQLiteCache).close());
-  // catches ctrl+c event
-  process.on("SIGINT", () => process.exit());
-  // catches "kill pid" (for example: nodemon restart)
-  process.on("SIGUSR1", () => process.exit());
-  process.on("SIGUSR2", () => process.exit());
-  // catches uncaught exceptions
-  process.on("uncaughtException", () => process.exit());
+  if (!cfg.readonly) {
+    // Not sure if this is the best way to do it...
+    process.on("exit", () => (cache as SQLiteCache).close());
+    // catches ctrl+c event
+    process.on("SIGINT", () => process.exit());
+    // catches "kill pid" (for example: nodemon restart)
+    process.on("SIGUSR1", () => process.exit());
+    process.on("SIGUSR2", () => process.exit());
+    // catches uncaught exceptions
+    process.on("uncaughtException", () => process.exit());
+  }
 
   return cache;
 };

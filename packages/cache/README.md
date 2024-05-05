@@ -1,5 +1,10 @@
 # @beoe/cache
 
+> [!WARNING]
+> One of ideas was to use this as shared cache inside Astro components. But for now it doesn't work. If it is used inside Astro component build process (prerendering) fails. Though it does work in rehype/remark plugins. And in Astro components in development mode.
+>
+> Probably would need to create custom Astro integration (virtual module), but hard to tell because I don't understand why it fails
+
 Thin wrapper arround [@beoe/sqlitecache](/packages/sqlitecache/) so the same cache can be shared between different rehype/remark plugins and Astro components
 
 Because cache would be "hidden" inside other packages it exposes way to configure instance through local file (with cosmiconfig).

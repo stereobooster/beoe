@@ -66,8 +66,8 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
-- [ ] fix `@beoe/astro-graphviz`
-  - why I can't use `@beoe/cache` package?
+- [ ] make `@beoe/cache` usable in Astro components
+- [ ] reuse `processGraphvizSvg` in `@beoe/astro-graphviz`
 - [ ] example of gnuplot custom diagram
   - any diagram which expects `input.dat`, for example https://gnuplot.sourceforge.net/demo_svg_5.4/histograms.html
   - maybe do it like [asciidoctor does for penrose](https://docs.asciidoctor.org/diagram-extension/latest/diagram_types/penrose/)?
