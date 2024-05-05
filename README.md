@@ -66,7 +66,7 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 ## TODO
 
-- [ ] publish to npm and make repo public
+- [ ] make repo public
 - [ ] make `@beoe/cache` usable in Astro components
   - [ ] `@beoe/astro-mermaid`
   - [ ] `@beoe/astro-gnuplot`
