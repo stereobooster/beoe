@@ -68,6 +68,7 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 
 - [ ] make repo public
 - [ ] make `@beoe/cache` usable in Astro components
+  - alternative approach pass it to the component as prop and the wrap whole component locally?
   - [ ] `@beoe/astro-mermaid`
   - [ ] `@beoe/astro-gnuplot`
 - [ ] example of gnuplot custom diagram
