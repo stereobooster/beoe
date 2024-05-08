@@ -9,7 +9,7 @@
 
 .beoe svg,
 .beoe img {
-  /* need to center smaller images or fix bug in zoom functionality */
+  /* need to center smaller images to fix bug in zoom functionality */
   margin: auto;
   display: block;
   /* need to fit bigger images */
@@ -46,7 +46,7 @@
   }
 }
 
-.touchscreen-warning {
+.beoe .touchscreen-warning {
   position: absolute;
   right: 0rem;
   bottom: 0rem;
@@ -59,12 +59,12 @@
   transition-duration: 300ms;
 }
 
-.touchscreen-warning.active {
+.beoe .touchscreen-warning.active {
   opacity: 1;
 }
 
 @media (hover: none) {
-  .touchscreen-warning {
+  .beoe .touchscreen-warning {
     display: flex;
     align-items: center;
     justify-content: center;

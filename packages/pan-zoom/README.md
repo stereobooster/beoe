@@ -25,7 +25,6 @@ Pay attention:
 ## Demo
 
 **TODO**: update demo - this is an old one
-**TODO**: deprecate old package
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/4bdb3997-ed5f-4506-bb77-95595d2e6562/deploy-status)](https://app.netlify.com/sites/svg-pan-zoom/deploys)
 
@@ -81,7 +80,7 @@ Additionally following CSS is required:
 
 .beoe svg,
 .beoe img {
-  /* need to center smaller images or fix bug in zoom functionality */
+  /* need to center smaller images to fix bug in zoom functionality */
   margin: auto;
   display: block;
   /* need to fit bigger images */

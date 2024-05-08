@@ -3,7 +3,7 @@ import { Coords, center, centerDiff, distance } from "./utils.js";
 
 export type PanZoomProps = {
   /**
-   * svg or img
+   * svg, img, picture, div or anything else
    */
   element: HTMLElement | SVGSVGElement;
   container: HTMLElement;
@@ -107,8 +107,22 @@ export class PanZoom {
       }
     };
 
-    const onDblClick = () => {
-      this.reset();
+    const onDblClick = (e: MouseEvent | TouchEvent) => {
+      // Maybe do zoom-in/zoom-out on single click with Cmd/Alt? 
+      if (e.altKey) {
+        // alt + DblClick = zoom out
+        this.#animate();
+        this.#scale(0.5, this.#getXY(e));
+        this.#render();
+      } else if (this.#curMatrix.isIdentity || e.metaKey) {
+        // "first" DblClick = zoom in
+        // Cmd + DblClick = zoom in
+        this.#animate();
+        this.#scale(2, this.#getXY(e));
+        this.#render();
+      } else {
+        this.reset();
+      }
     };
 
     this.#listeners = {

@@ -25,6 +25,7 @@ I implemented core packages and added some examples. But I still need to add mor
 - [x] [@beoe/sqlitecache](/packages/sqlitecache/)
 - [x] [@beoe/cache](/packages/cache/)
 - [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
+- [x] [@beoe/pan-zoom](/packages/pan-zoom/)
 
 ### Diagrams
 
@@ -67,6 +68,7 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 ## TODO
 
 - [ ] make repo public
+- [ ] deprecate old package for `svg-pan-zoom-gesture`
 - [ ] make `@beoe/cache` usable in Astro components
   - alternative approach pass it to the component as prop and the wrap whole component locally?
   - [ ] `@beoe/astro-mermaid`
@@ -79,8 +81,6 @@ Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
 - [ ] I think there is a problem with `turbo`. It has problems if there are more than 10 packages. Maybe try `Nx`?
 - [ ] write tip about `not-content` from [tailwindcss-typography](https://github.com/tailwindlabs/tailwindcss-typography)
 - [ ] Do astro components need to render something in case of an error?
-- [ ] maybe move to this monorepo [svg-pan-zoom-gesture](https://github.com/stereobooster/svg-pan-zoom-gesture)
-  - [ ] first double click should zoom x2
 - [ ] maybe move to this monorepo [venn-isomorphic](https://github.com/stereobooster/venn-isomorphic)
 - [ ] maybe move to this monorepo [gnuplot-wasm](https://github.com/stereobooster/gnuplot-wasm)
 
