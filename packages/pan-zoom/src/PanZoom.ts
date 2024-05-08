@@ -139,15 +139,17 @@ export class PanZoom {
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
+      if (mousedown) return;
       if (e.metaKey) {
-        this.#container.style.cursor = mousedown ? "grabbing" : "zoom-in";
+        this.#container.style.cursor = "zoom-in";
       } else if (e.altKey) {
-        this.#container.style.cursor = mousedown ? "grabbing" : "zoom-out";
+        this.#container.style.cursor = "zoom-out";
       }
     };
 
     const onKeyUp = () => {
-      this.#container.style.cursor = mousedown ? "grabbing" : "";
+      if (mousedown) return;
+      this.#container.style.cursor = "";
     };
 
     this.#listeners = {
