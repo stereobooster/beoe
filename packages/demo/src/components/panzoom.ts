@@ -1,9 +1,9 @@
-import "./SvgPanZoomUi.css";
-import { SvgPanZoomUi } from "svg-pan-zoom-gesture";
+import "@beoe/pan-zoom/css/PanZoomUi.css";
+import { PanZoomUi } from "@beoe/pan-zoom";
 
 document.querySelectorAll(".beoe").forEach((container) => {
   const element = container.firstElementChild;
   if (!element) return;
   // @ts-expect-error
-  new SvgPanZoomUi({ element, container }).on();
+  new PanZoomUi({ element, container }).on();
 });

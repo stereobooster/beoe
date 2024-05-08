@@ -1,3 +1,5 @@
+/* Core */
+
 .beoe {
   overflow: hidden;
   touch-action: pan-x pan-y;
@@ -9,7 +11,6 @@
 .beoe img {
   /* need to center smaller images or fix bug in zoom functionality */
   margin: auto;
-  display: block;
   /* need to fit bigger images */
   max-width: 100%;
   height: auto;
