@@ -29,6 +29,25 @@ export class PanZoom {
 
     let dragPosition: Coords = [];
 
+    const onDblClick = (e: MouseEvent | TouchEvent) => {
+      console.log(e);
+      // Maybe do zoom-in/zoom-out on single click with Cmd/Alt?
+      if (e.altKey) {
+        // alt + DblClick = zoom out
+        this.#animate();
+        this.#scale(0.5, this.#getXY(e));
+        this.#render();
+      } else if (this.#curMatrix.isIdentity || e.metaKey) {
+        // "first" DblClick = zoom in
+        // Cmd + DblClick = zoom in
+        this.#animate();
+        this.#scale(2, this.#getXY(e));
+        this.#render();
+      } else {
+        this.reset();
+      }
+    };
+
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       const xy = this.#getXY(e);
       if ("touches" in e) {
@@ -44,7 +63,7 @@ export class PanZoom {
             if (distance([xy[0], originXY[0]]) > 20) {
               tapedTwice = false;
             } else {
-              this.reset();
+              onDblClick(e);
             }
           } else {
             tapedTwice = true;
@@ -104,24 +123,6 @@ export class PanZoom {
         e.preventDefault();
         this.#scale(1 - e.deltaY * 0.01, this.#getXY(e));
         this.#render();
-      }
-    };
-
-    const onDblClick = (e: MouseEvent | TouchEvent) => {
-      // Maybe do zoom-in/zoom-out on single click with Cmd/Alt? 
-      if (e.altKey) {
-        // alt + DblClick = zoom out
-        this.#animate();
-        this.#scale(0.5, this.#getXY(e));
-        this.#render();
-      } else if (this.#curMatrix.isIdentity || e.metaKey) {
-        // "first" DblClick = zoom in
-        // Cmd + DblClick = zoom in
-        this.#animate();
-        this.#scale(2, this.#getXY(e));
-        this.#render();
-      } else {
-        this.reset();
       }
     };
 

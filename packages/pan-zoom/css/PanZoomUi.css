@@ -3,6 +3,7 @@
 .beoe {
   overflow: hidden;
   touch-action: pan-x pan-y;
+  -webkit-user-select: none;
   user-select: none;
   cursor: grab;
 }
@@ -57,6 +58,12 @@
   opacity: 0;
   transition-property: opacity;
   transition-duration: 300ms;
+  container-type: inline-size;
+}
+
+/* fit text to container */
+.beoe .touchscreen-warning p {
+  font-size: min(10cqw, 10cqh);
 }
 
 .beoe .touchscreen-warning.active {

@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { qrcode } from "vite-plugin-qrcode";
 
 import { getCache } from "@beoe/cache";
 import { rehypeGraphviz } from "@beoe/rehype-graphviz";
@@ -7,7 +8,8 @@ import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 
 const cache = await getCache();
-const className = undefined; // "not-content"
+// requerd for correct displaying mobile warning
+const className = "not-content"
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,5 +40,8 @@ export default defineConfig({
       ],
       [rehypeGnuplot, { cache, class: className }],
     ],
+  },
+  vite: {
+    plugins: [qrcode()],
   },
 });

@@ -64,10 +64,13 @@ export class PanZoomUi {
     });
     this.#buttons = buttons;
 
-    const warning = document.createElement("div");
+    const warningText = document.createElement("p");
+    warningText.innerText = message;
 
-    warning.innerText = message;
+    const warning = document.createElement("div");
     warning.className = classes.tsWarning;
+    warning.append(warningText);
+
     this.#instance.onOneFingerDrag((flag) =>
       flag
         ? warning.classList.add(classes.tsWarningActive)

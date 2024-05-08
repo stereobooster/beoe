@@ -20,6 +20,7 @@
     "@beoe/rehype-mermaid": "workspace:*",
     "astro": "^4.7.1",
     "sharp": "^0.33.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite-plugin-qrcode": "^0.2.3"
   }
 }
