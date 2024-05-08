@@ -15,6 +15,7 @@ export class PanZoom {
   #curMatrix = identity;
   #raf = 0;
   #listeners: Record<string, any>;
+  #docListeners: Record<string, any>;
   #oneFinger: boolean = false;
   #oneFingerCb?: (flag: boolean) => void;
 
@@ -30,16 +31,9 @@ export class PanZoom {
     let dragPosition: Coords = [];
 
     const onDblClick = (e: MouseEvent | TouchEvent) => {
-      console.log(e);
-      // Maybe do zoom-in/zoom-out on single click with Cmd/Alt?
-      if (e.altKey) {
-        // alt + DblClick = zoom out
-        this.#animate();
-        this.#scale(0.5, this.#getXY(e));
-        this.#render();
-      } else if (this.#curMatrix.isIdentity || e.metaKey) {
+      if (e.metaKey || e.altKey) return;
+      if (this.#curMatrix.isIdentity) {
         // "first" DblClick = zoom in
-        // Cmd + DblClick = zoom in
         this.#animate();
         this.#scale(2, this.#getXY(e));
         this.#render();
@@ -50,6 +44,18 @@ export class PanZoom {
 
     const onPointerDown = (e: MouseEvent | TouchEvent) => {
       const xy = this.#getXY(e);
+      if (e.metaKey) {
+        this.#animate();
+        this.#scale(2, xy);
+        this.#render();
+        return;
+      }
+      if (e.altKey) {
+        this.#animate();
+        this.#scale(0.5, xy);
+        this.#render();
+        return;
+      }
       if ("touches" in e) {
         mousedown = e.touches.length === 2;
         if (e.touches.length === 1) {
@@ -85,7 +91,13 @@ export class PanZoom {
         if (e.touches.length === 1) dragPosition = this.#getXY(e, false);
       } else {
         mousedown = false;
-        this.#container.style.cursor = "";
+        if (e.metaKey) {
+          this.#container.style.cursor = "zoom-in";
+        } else if (e.altKey) {
+          this.#container.style.cursor = "zoom-out";
+        } else {
+          this.#container.style.cursor = "";
+        }
       }
     };
 
@@ -126,6 +138,18 @@ export class PanZoom {
       }
     };
 
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.metaKey) {
+        this.#container.style.cursor = mousedown ? "grabbing" : "zoom-in";
+      } else if (e.altKey) {
+        this.#container.style.cursor = mousedown ? "grabbing" : "zoom-out";
+      }
+    };
+
+    const onKeyUp = () => {
+      this.#container.style.cursor = mousedown ? "grabbing" : "";
+    };
+
     this.#listeners = {
       touchstart: onPointerDown,
       touchend: onPointerUp,
@@ -137,6 +161,11 @@ export class PanZoom {
       mouseleave: onPointerUp,
       mousemove: onPointerMove,
       dblclick: onDblClick,
+    };
+
+    this.#docListeners = {
+      keydown: onKeyDown,
+      keyup: onKeyUp,
     };
   }
 
@@ -225,11 +254,17 @@ export class PanZoom {
       // Maybe I can scroll back?
       this.#container.addEventListener(name, handler);
     });
+    Object.entries(this.#docListeners).forEach(([name, handler]) => {
+      document.addEventListener(name, handler);
+    });
   }
 
   off() {
     Object.entries(this.#listeners).forEach(([name, handler]) => {
       this.#container.removeEventListener(name, handler);
+    });
+    Object.entries(this.#docListeners).forEach(([name, handler]) => {
+      document.removeEventListener(name, handler);
     });
   }
 }
