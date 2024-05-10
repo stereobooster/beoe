@@ -25,11 +25,14 @@
   - https://github.com/agoose77/svgbob-wasm
 - [ ] pikchr (rehype)
   - https://github.com/fabiospampinato/pikchr-wasm
+- [ ] Crazy idea: write transpiler from Mermaid to Graphviz. At least `flowchart` should be possible to convert
+  - There is [flow.jison](https://github.com/mermaid-js/mermaid/blob/3809732e48a0822fad596d0815a6dc0e166dda94/packages/mermaid/src/diagrams/flowchart/parser/flow.jison)
 
 ## TODO
 
 - [ ] make repo public
 - [ ] deprecate old package for `svg-pan-zoom-gesture`
+  - https://docs.npmjs.com/deprecating-and-undeprecating-packages-or-package-versions
 - [ ] make `@beoe/cache` usable in Astro components
   - alternative approach pass it to the component as prop and the wrap whole component locally?
   - [ ] `@beoe/astro-mermaid`
