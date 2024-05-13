@@ -30,9 +30,6 @@
 
 ## TODO
 
-- [ ] make repo public
-- [ ] deprecate old package for `svg-pan-zoom-gesture`
-  - https://docs.npmjs.com/deprecating-and-undeprecating-packages-or-package-versions
 - [ ] make `@beoe/cache` usable in Astro components
   - alternative approach pass it to the component as prop and the wrap whole component locally?
   - [ ] `@beoe/astro-mermaid`
