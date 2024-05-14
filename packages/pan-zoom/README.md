@@ -11,7 +11,7 @@ Small JS library to add **pan and zoom** functionality to **SVG** (inline or ima
 
 | intention | mouse                   | trackpad/touchpad | touchscren      |
 | --------- | ----------------------- | ----------------- | --------------- |
-| pan       | clik + move             | click + move      | two finger drag |
+| pan       | click + move            | click + move      | two finger drag |
 | zoom      | <kbd>Ctrl</kbd> + wheel | pinch             | pinch           |
 | reset     | double click            | double click      | double tap      |
 |           |                         |                   |                 |
@@ -21,6 +21,9 @@ Pay attention:
 
 - gestures intentionally selected to not interfere with the system's default scroll gestures, **to avoid "scroll traps"**
 - all actions are available through gestures, so it works without UI. You can add UI, though. Library exposes methods for this, like `pan(dx, dy)` and `zoom(scale)`
+- <kbd>Cmd</kbd> + click - zoom in
+- <kbd>Alt</kbd> + click - zoom out
+- First double click (tap) - zoom in x2
 
 ## Demo
 
