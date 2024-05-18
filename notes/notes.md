@@ -27,6 +27,15 @@
   - https://github.com/fabiospampinato/pikchr-wasm
 - [ ] Crazy idea: write transpiler from Mermaid to Graphviz. At least `flowchart` should be possible to convert
   - There is [flow.jison](https://github.com/mermaid-js/mermaid/blob/3809732e48a0822fad596d0815a6dc0e166dda94/packages/mermaid/src/diagrams/flowchart/parser/flow.jison)
+- [ ] regex syntax highliting
+  - https://github.com/slevithan/regex-colorizer
+- [ ] railroad diagrams
+  - https://github.com/tabatkins/railroad-diagrams
+  - https://github.com/warpdesign/brackets-regex-diagram
+  - https://github.com/klorenz/atom-regex-railroad-diagrams
+- [ ] ER diagram based on Graphviz
+  - https://github.com/troelskn/ergen/blob/master/ergen
+  - https://github.com/BurntSushi/erd
 
 ## TODO
 
