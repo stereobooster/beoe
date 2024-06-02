@@ -21,6 +21,8 @@
     - https://github.com/wooorm/starry-night/blob/main/script/common.js
 - [ ] venn.js (Astro component)
   - https://github.com/stereobooster/venn-isomorphic
+- [ ] edeap
+  - https://github.com/stereobooster/edeap
 - [ ] svgbob (rehype)
   - https://github.com/agoose77/svgbob-wasm
 - [ ] pikchr (rehype)
@@ -60,3 +62,18 @@
   - https://www.npmjs.com/package/@minify-html/node
   - https://github.com/pleshevskiy/node-svgcleaner
   - https://github.com/RazrFalcon/svgcleaner
+
+## textDimensions
+
+Alternatives to client-side `textDimensions`:
+
+- [resvg-js](https://github.com/yisibl/resvg-js)?
+- [canvas](https://github.com/Brooooooklyn/canvas)
+  - [measureText](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/measureText)
+
+npm packages:
+
+- [get-text-width](https://www.npmjs.com/package/get-text-width)
+- [js-server-text-width](https://github.com/Evgenus/js-server-text-width)
+- [text-width](https://www.npmjs.com/package/text-width)
+- [string-pixel-width](https://github.com/adambisek/string-pixel-width)
