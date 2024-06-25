@@ -26,6 +26,8 @@ But why not something else? I didn't find anything better that fits following cr
 
 So here we are... I didn't do any benchmarks though
 
+**UPD**: found new candidate [lmdb-js](https://github.com/kriszyp/lmdb-js)
+
 ## About the code
 
 This is **slightly** modified version of [bun-sqlite-cache](https://github.com/notskamr/bun-sqlite-cache), which is modified version of [cache-sqlite-lru-ttl](https://github.com/jkelin/cache-sqlite-lru-ttl). So most of the code written by the authors of original packages. Thank you.
