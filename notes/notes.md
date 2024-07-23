@@ -2,10 +2,6 @@
 
 ## Experiments
 
-- [x] [@beoe/rehype-pintora](/experiments/rehype-mermaid/)
-- [x] [@beoe/rehype-starry-night](/experiments/rehype-starry-night/)
-- [x] [@beoe/rehype-color-chips](/experiments/rehype-color-chips/)
-- [x] [demo](/packages/demo/)
 - [ ] rehype-tree-sitter
   - https://github.com/haze/rehype-tree-sitter
   - https://tree-sitter.github.io/tree-sitter/syntax-highlighting
@@ -15,10 +11,22 @@
   - https://tree-sitter.github.io/tree-sitter/creating-parsers#command-build
   - https://zed.dev/blog/language-extensions-part-1#challenges-with-packaging-parsers
   - https://www.npmjs.com/package/web-tree-sitter
+  - https://www.deusinmachina.net/p/zig-saves-the-day-for-cross-platform
   - npm package with dev dependencies on other packages providing WASM prebuilt binaries
     - on build pack all wasm binaries
     - auto release with github
     - https://github.com/wooorm/starry-night/blob/main/script/common.js
+  - grammars
+    - https://github.com/tree-sitter-grammars
+    - https://github.com/search?q=topic%3Atree-sitter+fork%3Atrue++language%3AC+grammar&type=repositories
+    - https://github.com/shikijs/textmate-grammars-themes/tree/main
+    - https://github.com/github-linguist/linguist/blob/master/grammars.yml
+  - https://github.com/zed-industries/extensions/blob/main/AUTHORING_EXTENSIONS.md
+    ```toml
+    [grammars.gleam]
+    repository = "https://github.com/gleam-lang/tree-sitter-gleam"
+    commit = "58b7cac8fc14c92b0677c542610d8738c373fa81"
+    ```
 - [ ] venn.js (Astro component)
   - https://github.com/stereobooster/venn-isomorphic
 - [ ] edeap
