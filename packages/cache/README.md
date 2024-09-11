@@ -33,3 +33,7 @@ const cache = await getCache();
 
 - tests
 - write documentation about configuration options
+
+## Alternatives
+
+- [astro-build-cache](https://github.com/jcayzac/copepod-modules/tree/main/packages/astro-build-cache)
