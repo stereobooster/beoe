@@ -31,7 +31,15 @@ function replace(
       replace(newNewNode, index, parent);
     });
   } else if (typeof newNode === "string") {
-    const element = fromHtmlIsomorphic(newNode, { fragment: true });
+    let element = fromHtmlIsomorphic(newNode, { fragment: true });
+    if (element.type === "root") {
+      if (element.children.length === 1) {
+        // @ts-expect-error
+        element = element.children[0];
+      } else {
+        console.warn("When you pass string to rehype-code-hook make sure it has only one root element")
+      }
+    }
     // @ts-expect-error
     parent.children[index] = element;
   } else if (isNode(newNode)) {
