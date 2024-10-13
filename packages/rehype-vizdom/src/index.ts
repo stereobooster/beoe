@@ -2,14 +2,13 @@ import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
-import { parse, toModel } from "@ts-graphviz/ast";
+import { fromDot } from "ts-graphviz";
 import { processVizdomSvg } from "./vizdom.js";
 import { DirectedGraph, VertexWeakRef } from "@vizdom/vizdom-ts-esm";
 
 export async function getSvg(code: string) {
   const graph = new DirectedGraph();
-  const ast = parse(code);
-  const model = toModel(ast);
+  const model = fromDot(code);
 
   const nodes: Record<string, VertexWeakRef> = {};
   model.nodes.forEach((node) => {
@@ -31,10 +30,28 @@ export async function getSvg(code: string) {
 
   model.edges.forEach((edge) => {
     const from = edge.targets[0];
-    const to = edge.targets[0];
+    const to = edge.targets[1];
 
     if (Array.isArray(from) || Array.isArray(to)) {
       throw new Error("what is it?");
+    }
+
+    if (!nodes[from.id]) {
+      nodes[from.id] = graph.new_vertex({
+        render: {
+          label: from.id,
+          id: from.id,
+        },
+      });
+    }
+
+    if (!nodes[to.id]) {
+      nodes[to.id] = graph.new_vertex({
+        render: {
+          label: to.id,
+          id: to.id,
+        },
+      });
     }
 
     graph.new_edge(nodes[from.id], nodes[to.id], {
@@ -84,8 +101,8 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
     salt,
     language: "vizdom",
     code: ({ code }) =>
-      getSvg(code).then((str) =>
-        processVizdomSvg(str, options.class, options.svgo)
+      getSvg(code).then(
+        (str) => processVizdomSvg(str, options.class, options.svgo)
       ),
   });
 };

@@ -31,7 +31,6 @@ export const processVizdomSvg = (
   className?: string,
   config?: SvgoConfig | boolean
 ) => {
-  svg = svg.split("\n").slice(6).join("\n");
   if (config !== false) {
     svg = optimize(
       svg,

@@ -1,3 +1,3 @@
-```dot
+```vizdom
 digraph G { Hello -> World }
 ```
