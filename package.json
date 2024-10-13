@@ -21,10 +21,10 @@
   },
   "scripts": {
     "test": "vitest",
-    "build": "turbo run build --concurrency 12",
-    "dev": "turbo run dev --concurrency 12",
-    "clean": "turbo run clean --concurrency 12",
-    "tsc": "turbo run tsc --concurrency 12"
+    "build": "turbo run build --concurrency 13",
+    "dev": "turbo run dev --concurrency 13",
+    "clean": "turbo run clean --concurrency 13",
+    "tsc": "turbo run tsc --concurrency 13"
   },
   "packageManager": "pnpm@9.2.0"
 }

@@ -7,9 +7,13 @@ import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 
+// import wasm from "vite-plugin-wasm";
+// import topLevelAwait from "vite-plugin-top-level-await";
+// import { rehypeVizdom } from "@beoe/rehype-vizdom";
+
 const cache = await getCache();
 // requerd for correct displaying mobile warning
-const className = "not-content"
+const className = "not-content";
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,9 +43,16 @@ export default defineConfig({
         { cache, class: className, strategy: "img-class-dark-mode" },
       ],
       [rehypeGnuplot, { cache, class: className }],
+      // [rehypeViszdom, { cache, class: className }],
     ],
   },
   vite: {
-    plugins: [qrcode()],
+    plugins: [
+      qrcode(),
+      // wasm(), topLevelAwait()
+    ],
+    optimizeDeps: {
+      exclude: ["@vizdom/vizdom-ts-esm"],
+    },
   },
 });

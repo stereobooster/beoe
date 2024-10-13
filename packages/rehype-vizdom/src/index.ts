@@ -82,7 +82,7 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
   return rehypeCodeHook({
     ...options,
     salt,
-    language: "dot",
+    language: "vizdom",
     code: ({ code }) =>
       getSvg(code).then((str) =>
         processVizdomSvg(str, options.class, options.svgo)
