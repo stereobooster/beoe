@@ -20,8 +20,6 @@ const svgoConfig: SvgoConfig = {
 };
 
 /**
- * removes `<?xml version="1.0" encoding="UTF-8" standalone="no"?>`
- * removes `<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"`
  * removes `width="..." height="..."` from svg tag
  * minifies SVG with `SVGO`
  * wraps in a figure with class `beoe vizdom`

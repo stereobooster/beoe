@@ -1,12 +1,12 @@
 # @beoe/rehype-vizdom
 
 > [!WARNING]
-> Doesn't work because `@vizdom/vizdom-ts-esm` uses [WebAssembly/ES Module Integration](https://github.com/WebAssembly/esm-integration/tree/main/proposals/esm-integration) proposal, which is not supported by [Vite](https://github.com/vitejs/vite/discussions/7763) and the plugin [doesn't seem to work with Vitest](https://github.com/Menci/vite-plugin-wasm/issues/56#issuecomment-2253169420)
+> Not published
 
 Rehype plugin to generate [Vizdom](https://github.com/vizdom-dev/vizdom) diagrams (as inline SVGs) in place of code fences. This
 
 ````md
-```dot
+```vizdom
 digraph G { Hello -> World }
 ```
 ````
@@ -72,7 +72,7 @@ Plus you can pass [class](https://vizdom.org/docs/attrs/class/) to Edges and Nod
 
 To remove background use:
 
-```dot
+```vizdom
 digraph G {
  bgcolor="transparent"
 }
@@ -82,7 +82,7 @@ digraph G {
 
 To remove `title` (which shows as tooltip when you hover mouse) use:
 
-```dot
+```vizdom
 digraph G {
  node[tooltip=" "]
 }
@@ -92,10 +92,14 @@ digraph G {
 
 Inline SVG can contain HTML links:
 
-```dot
+```vizdom
 digraph G {
  node[URL="https://example.com"]
 }
 ```
 
 ## TODO
+
+- [ ] Test with all examples from https://vizdom.dev/editor/view
+- [ ] add a way to pass "Layout Settings"
+- [ ] update readme
