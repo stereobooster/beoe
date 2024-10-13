@@ -34,6 +34,7 @@ I have implemented core packages and added some examples. However, I still need 
 | Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/) |       |
 | Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   |       |
 | Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   |       |
+| Vizdom   | [@beoe/rehype-vizdom](/packages/rehype-vizdom/)     |       |
 | Penrose  |                                                     |       |
 | ...      |                                                     |       |
 
