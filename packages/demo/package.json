@@ -10,17 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/starlight": "^0.27.1",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/starlight": "^0.28.3",
     "@beoe/astro-graphviz": "workspace:*",
     "@beoe/cache": "workspace:*",
     "@beoe/pan-zoom": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-graphviz": "workspace:*",
     "@beoe/rehype-mermaid": "workspace:*",
-    "astro": "4.15.4",
+    "astro": "4.16.2",
     "sharp": "^0.33.5",
-    "typescript": "^5.6.2",
+    "typescript": "^5.6.3",
     "vite-plugin-qrcode": "^0.2.3"
   }
 }
