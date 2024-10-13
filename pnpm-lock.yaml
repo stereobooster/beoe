@@ -257,9 +257,9 @@ importers:
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
-      '@vizdom/vizdom-ts-esm':
-        specifier: ^0.1.7
-        version: 0.1.7
+      '@stereobooster/vizdom-ts-esm':
+        specifier: 0.1.8
+        version: 0.1.8
       svgo:
         specifier: ^3.2.0
         version: 3.2.0
@@ -1432,6 +1432,9 @@ packages:
   '@shikijs/vscode-textmate@9.3.0':
     resolution: {integrity: sha512-jn7/7ky30idSkd/O5yDBfAnVt+JJpepofP/POZ1iMOxK59cOfqIgg/Dj0eFsjOTMw+4ycJN0uhZH/Eb0bs/EUA==}
 
+  '@stereobooster/vizdom-ts-esm@0.1.8':
+    resolution: {integrity: sha512-zvG3zWc5tlfSgRZSA+DocJS680QRZulCTTiutE0zZSvuLnZc553Sb1Ab2M7ft3sOusAx01l6JCV5anwvdL953A==}
+
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
@@ -1571,9 +1574,6 @@ packages:
 
   '@vitest/utils@2.1.2':
     resolution: {integrity: sha512-zMO2KdYy6mx56btx9JvAqAZ6EyS3g49krMPPrgOp1yxGZiA93HumGk+bZ5jIZtOg5/VBYl5eBmGRQHqq4FG6uQ==}
-
-  '@vizdom/vizdom-ts-esm@0.1.7':
-    resolution: {integrity: sha512-aWm89292YiViBBxhuy3qNVRhRDlBSV4ShiFAd7Ro8Cl0lXanPkQiUfgCoBRz02pJNoZAfLYLF5MLE7EtjeU2Sg==}
 
   '@volar/kit@2.4.6':
     resolution: {integrity: sha512-OaMtpmLns6IYD1nOSd0NdG/F5KzJ7Jr4B7TLeb4byPzu+ExuuRVeO56Dn1C7Frnw6bGudUQd90cpQAmxdB+RlQ==}
@@ -5376,6 +5376,8 @@ snapshots:
 
   '@shikijs/vscode-textmate@9.3.0': {}
 
+  '@stereobooster/vizdom-ts-esm@0.1.8': {}
+
   '@trysound/sax@0.2.0': {}
 
   '@ts-graphviz/adapter@2.0.5':
@@ -5531,8 +5533,6 @@ snapshots:
       '@vitest/pretty-format': 2.1.2
       loupe: 3.1.2
       tinyrainbow: 1.2.0
-
-  '@vizdom/vizdom-ts-esm@0.1.7': {}
 
   '@volar/kit@2.4.6(typescript@5.6.3)':
     dependencies:

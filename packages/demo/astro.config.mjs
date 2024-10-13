@@ -6,7 +6,7 @@ import { getCache } from "@beoe/cache";
 import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
-// import { rehypeVizdom } from "@beoe/rehype-vizdom";
+import { rehypeVizdom } from "@beoe/rehype-vizdom";
 
 const cache = await getCache();
 // requerd for correct displaying mobile warning
@@ -40,7 +40,7 @@ export default defineConfig({
         { cache, class: className, strategy: "img-class-dark-mode" },
       ],
       [rehypeGnuplot, { cache, class: className }],
-      // [rehypeVizdom, { class: className }],
+      [rehypeVizdom, { class: className }],
     ],
   },
   vite: {

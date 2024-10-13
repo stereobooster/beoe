@@ -4,7 +4,7 @@ import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
 import { fromDot } from "ts-graphviz";
 import { processVizdomSvg } from "./vizdom.js";
-import { DirectedGraph, VertexWeakRef } from "@vizdom/vizdom-ts-esm";
+import { DirectedGraph, VertexWeakRef } from "@stereobooster/vizdom-ts-esm";
 
 export async function getSvg(code: string) {
   const graph = new DirectedGraph();
