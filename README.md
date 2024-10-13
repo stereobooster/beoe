@@ -7,15 +7,15 @@
   </picture>
 </p>
 
-It should be easy to add diagrams to your markdown documentation. There are a lot of solutions which can render diagrams inside markdown, for example, see [asciidoctor](https://docs.asciidoctor.org/diagram-extension/latest/).
+It should be easy to add diagrams to your Markdown documentation. There are many solutions that can render diagrams inside Markdown; for example, see [Asciidoctor](https://docs.asciidoctor.org/diagram-extension/latest/).
 
-But if you want to add custom diagram it can be tedious to implement. **Core idea**: if you have function that can produce diagram as SVG it should be trivial to use it in Astro (or other SSG that uses remark/rehype).
+However, if you want to add a custom diagram, it can be tedious to implement. **Core idea**: If you have a function that can produce a diagram as SVG, it should be trivial to use it in Astro (or other SSGs that use remark/rehype).
 
-It should be easy to create documentation with a lot of diagrams, like in [**B**yrne's **E**lements **o**f **E**uclid](https://www.c82.net/euclid/).
+It should be easy to create documentation with many diagrams, like in [**B**yrne's **E**lements **o**f **E**uclid](https://www.c82.net/euclid/).
 
 ## Status
 
-I implemented core packages and added some examples. But I still need to add more tests, configure CI, create demo site and fix all the rest of TODOs
+I have implemented core packages and added some examples. However, I still need to add more tests, configure CI, create a demo site, and address the remaining TODOs.
 
 ## Packages
 
@@ -34,11 +34,11 @@ I implemented core packages and added some examples. But I still need to add mor
 | Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/) |       |
 | Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   |       |
 | Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   |       |
-| penrose  |                                                     |       |
+| Penrose  |                                                     |       |
 | ...      |                                                     |       |
 
-Ideas for other diagrams: https://stereobooster.com/posts/text-to-diagram/.
+Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text-to-diagram/).
 
 ## Logo
 
-Logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
+The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
