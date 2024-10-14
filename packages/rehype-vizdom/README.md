@@ -1,8 +1,5 @@
 # @beoe/rehype-vizdom
 
-> [!WARNING]
-> Not published
-
 Rehype plugin to generate [Vizdom](https://github.com/vizdom-dev/vizdom) diagrams (as inline SVGs) in place of code fences. This
 
 ````md
@@ -40,7 +37,7 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 
 ## Tips
 
-### Styling and dark mode
+### Dark mode
 
 You can add dark mode with something like this:
 
@@ -84,3 +81,7 @@ You can add dark mode with something like this:
 ## TODO
 
 - [ ] add a way to pass "Layout Settings"
+
+## Notes
+
+- Doesn't support some unicode chars, like `label="∅"`
