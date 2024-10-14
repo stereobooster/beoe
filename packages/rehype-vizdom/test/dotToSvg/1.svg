@@ -1,0 +1,65 @@
+<svg height="154.75142" viewBox="0 0 71.7285 154.75142" width="71.7285" xmlns="http://www.w3.org/2000/svg">
+<rect fill="transparent" height="154.75142" stroke="transparent" width="71.7285" x="0" y="0"/>
+<defs>
+<filter height="300%" id="red-glow" width="300%" x="-100%" y="-100%">
+<feFlood flood-color="red" flood-opacity="0.5" in="SourceGraphic"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComponentTransfer result="glow1">
+<feFuncA intercept="0" slope="4" type="linear"/>
+</feComponentTransfer>
+<feMerge>
+<feMergeNode in="glow1"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter height="300%" id="green-glow" width="300%" x="-100%" y="-100%">
+<feFlood flood-color="green" flood-opacity="0.5" in="SourceGraphic"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComponentTransfer result="glow1">
+<feFuncA intercept="0" slope="4" type="linear"/>
+</feComponentTransfer>
+<feMerge>
+<feMergeNode in="glow1"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+<filter height="300%" id="orange-glow" width="300%" x="-100%" y="-100%">
+<feFlood flood-color="orange" flood-opacity="0.5" in="SourceGraphic"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+<feGaussianBlur stdDeviation="5"/>
+<feComponentTransfer result="glow1">
+<feFuncA intercept="0" slope="4" type="linear"/>
+</feComponentTransfer>
+<feMerge>
+<feMergeNode in="glow1"/>
+<feMergeNode in="SourceGraphic"/>
+</feMerge>
+</filter>
+</defs>
+<g>
+<path d="M35.36425,45.801968 C35.36425,56.0833,35.36425,66.36463,35.36425,76.645966 C35.36425,86.9273,35.36425,97.20863,35.36425,107.48997" fill="none" stroke="black" stroke-width="1">
+<title>a -&gt; b</title>
+</path>
+<polygon fill="black" points="35.36425,107.48997 39.36425,97.48997 31.36425,97.48997 35.36425,107.48997" stroke="black" stroke-width="1">
+<title>a -&gt; b</title>
+</polygon>
+</g>
+<g>
+<ellipse cx="35.36425" cy="27.650984" fill="white" rx="25.078136" ry="17.650984" stroke="black" stroke-width="1">
+<title>a</title>
+</ellipse>
+<path d="M35.485626,25.140236 Q37.048126,25.140236,37.798126,25.827736 Q38.56375,26.515236,38.56375,28.015236 L38.56375,33.858986 L37.5325,33.858986 L37.266876,32.640236 L37.18875,32.640236 Q36.829376,33.108986,36.43875,33.421486 Q36.048126,33.733986,35.5325,33.87461 Q35.0325,34.015236,34.31375,34.015236 Q33.548126,34.015236,32.923126,33.74961 Q32.31375,33.46836,31.954374,32.90586 Q31.610624,32.34336,31.610624,31.46836 Q31.610624,30.202736,32.610626,29.49961 Q33.62625,28.796486,35.72,28.733986 L37.173126,28.68711 L37.173126,28.171486 Q37.173126,27.108986,36.704376,26.702736 Q36.25125,26.28086,35.4075,26.28086 Q34.735626,26.28086,34.12625,26.483986 Q33.516876,26.671486,32.985626,26.93711 L32.56375,25.87461 Q33.110626,25.577736,33.87625,25.358986 Q34.6575,25.140236,35.485626,25.140236 ZM35.9075,29.71836 Q34.298126,29.78086,33.673126,30.233986 Q33.06375,30.671486,33.06375,31.483986 Q33.06375,32.21836,33.50125,32.56211 Q33.954376,32.890236,34.641876,32.890236 Q35.72,32.890236,36.43875,32.296486 Q37.1575,31.68711,37.1575,30.43711 L37.1575,29.671486 Z" fill="black">
+<title>a</title>
+</path>
+</g>
+<g>
+<ellipse cx="35.36425" cy="125.87069" fill="white" rx="25.36425" ry="17.880724" stroke="black" stroke-width="1">
+<title>b</title>
+</ellipse>
+<path d="M33.209877,122.875565 Q33.209877,123.42244,33.178627,123.89119 Q33.163002,124.35994,33.131752,124.64119 L33.209877,124.64119 Q33.584877,124.094315,34.225502,123.73494 Q34.866127,123.35994,35.866127,123.35994 Q37.475502,123.35994,38.428627,124.469315 Q39.397377,125.57869,39.397377,127.79744 Q39.397377,129.26619,38.959877,130.26619 Q38.522377,131.25056,37.725502,131.75056 Q36.928627,132.23494,35.866127,132.23494 Q34.866127,132.23494,34.225502,131.87556 Q33.584877,131.50056,33.209877,130.98494 L33.100502,130.98494 L32.819252,132.07869 L31.803625,132.07869 L31.803625,119.92244 L33.209877,119.92244 ZM35.631752,124.531815 Q34.709877,124.531815,34.178627,124.875565 Q33.663002,125.219315,33.428627,125.938065 Q33.209877,126.64119,33.209877,127.73494 L33.209877,127.813065 Q33.209877,129.39119,33.725502,130.23494 Q34.256752,131.06306,35.663002,131.06306 Q36.819252,131.06306,37.381752,130.21931 Q37.944252,129.37556,37.944252,127.781815 Q37.944252,126.156815,37.381752,125.344315 Q36.819252,124.531815,35.631752,124.531815 Z" fill="black">
+<title>b</title>
+</path>
+</g>
+</svg>

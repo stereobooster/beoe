@@ -1,0 +1,25 @@
+digraph G {
+    // 17 -> 7 -> O;
+    // 4 -> SPACE;
+    // 10 -> IMAD -> 2 -> I;
+    // AD -> A;
+    // 6 -> 3 -> W;
+    // RT -> R;
+    // 7 -> 4 -> S;
+    // 2 -> M;
+    // IMAD -> AD -> D;
+    // 3 -> RT -> T;
+    // 17 -> 10 -> 6 -> E;
+    // This also works, but uses more friendly nodeIds
+    A -> B -> C;
+    D -> E;
+    G -> H -> I -> J;
+    L -> N;
+    O -> P -> Q;
+    R -> S;
+    B -> D -> F;
+    I -> K;
+    H -> L -> M;
+    P -> R -> T;
+    A -> G -> O -> U;
+}

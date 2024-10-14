@@ -1,0 +1,14 @@
+digraph shapes {
+    rankdir=LR
+    0 [shape=plaintext label="no shape"]
+    1 [shape=box label=box]
+    2 [shape=rect label=rect]
+    3 [shape=rectangle label=rectangle]
+    4 [shape=square label=square]
+    5 [shape=oval label=oval]
+    6 [shape=ellipse label=ellipse]
+    7 [shape=circle label=circle]
+    8 [shape=triangle label=triangle]
+    9 [shape=diamond label=diamond]
+    10 [shape=default label=default]
+}
