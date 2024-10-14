@@ -20,6 +20,31 @@
   }
 }
 
+.vizdom {
+  text {
+    fill: var(--sl-color-white);
+  }
+  :not([fill]) {
+    fill: var(--sl-color-white);
+  }
+  [fill="black"],
+  [fill="#000"] {
+    fill: var(--sl-color-white);
+  }
+  [stroke="black"],
+  [stroke="#000"] {
+    stroke: var(--sl-color-white);
+  }
+  [fill="white"],
+  [fill="#fff"] {
+    fill: var(--sl-color-black);
+  }
+  [stroke="white"],
+  [stroke="#fff"] {
+    stroke: var(--sl-color-black);
+  }
+}
+
 /* needed if you use strategy: "inline" */
 .mermaid svg {
   line-height: 1;

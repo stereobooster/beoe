@@ -26,12 +26,12 @@ which can look like this:
 ## Usage
 
 ```js
-import rehypeGraphviz from "@beoe/rehype-vizdom";
+import rehypeVizdom from "@beoe/rehype-vizdom";
 
 const html = await unified()
   .use(remarkParse)
   .use(remarkRehype)
-  .use(rehypeGraphviz)
+  .use(rehypeVizdom)
   .use(rehypeStringify)
   .process(`markdown`);
 ```
@@ -46,60 +46,41 @@ You can add dark mode with something like this:
 
 ```css
 :root {
-  --color-variable: #000;
+  --sl-color-white: #000;
+  --sl-color-black: #fff;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-variable: #fff;
+    --sl-color-white: #fff;
+    --sl-color-black: #000;
   }
 }
 .vizdom {
   text {
-    fill: var(--color-variable);
+    fill: var(--sl-color-white);
   }
-  [fill="black"] {
-    fill: var(--color-variable);
+  :not([fill]) {
+    fill: var(--sl-color-white);
   }
-  [stroke="black"] {
-    stroke: var(--color-variable);
+  [fill="black"],
+  [fill="#000"] {
+    fill: var(--sl-color-white);
   }
-}
-```
-
-Plus you can pass [class](https://vizdom.org/docs/attrs/class/) to Edges and Nodes to implement advanced styling.
-
-### Transparent background
-
-To remove background use:
-
-```vizdom
-digraph G {
- bgcolor="transparent"
-}
-```
-
-### To remove title
-
-To remove `title` (which shows as tooltip when you hover mouse) use:
-
-```vizdom
-digraph G {
- node[tooltip=" "]
-}
-```
-
-### You can add links
-
-Inline SVG can contain HTML links:
-
-```vizdom
-digraph G {
- node[URL="https://example.com"]
+  [stroke="black"],
+  [stroke="#000"] {
+    stroke: var(--sl-color-white);
+  }
+  [fill="white"],
+  [fill="#fff"] {
+    fill: var(--sl-color-black);
+  }
+  [stroke="white"],
+  [stroke="#fff"] {
+    stroke: var(--sl-color-black);
+  }
 }
 ```
 
 ## TODO
 
-- [ ] Test with all examples from https://vizdom.dev/editor/view
 - [ ] add a way to pass "Layout Settings"
-- [ ] update readme
