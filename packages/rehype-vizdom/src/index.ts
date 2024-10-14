@@ -3,7 +3,16 @@ import type { Root } from "hast";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
 import { processVizdomSvg } from "./vizdom.js";
-import { dotToSvg } from "./dotToSvg.js";
+
+import { DotParser } from "@stereobooster/vizdom-ts-esm";
+
+export async function dotToSvg(code: string) {
+  const parser = new DotParser();
+  const dotGraph = parser.parse(code);
+  const directedGraph = dotGraph.to_directed();
+  const positioned = directedGraph.layout();
+  return await positioned.to_svg().to_string();
+}
 
 export type RenderVizdomOptions = {
   code: string;
