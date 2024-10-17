@@ -4,7 +4,7 @@ import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
 import { processVizdomSvg } from "./vizdom.js";
 
-import { DotParser } from "@stereobooster/vizdom-ts-esm";
+import { DotParser } from "@vizdom/vizdom-ts-node";
 
 export async function dotToSvg(code: string) {
   const parser = new DotParser();

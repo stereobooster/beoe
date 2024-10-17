@@ -53,9 +53,6 @@ You can add dark mode with something like this:
   }
 }
 .vizdom {
-  text {
-    fill: var(--sl-color-white);
-  }
   :not([fill]) {
     fill: var(--sl-color-white);
   }

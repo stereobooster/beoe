@@ -35,7 +35,6 @@ export const processVizdomSvg = (
       config === undefined || config === true ? svgoConfig : config
     ).data;
   }
-  svg = svg.replace(/width="\d+[^"]+"\s+/, "");
-  svg = svg.replace(/height="\d+[^"]+"\s+/, "");
+  
   return `<figure class="beoe vizdom ${className || ""}">${svg}</figure>`;
 };
