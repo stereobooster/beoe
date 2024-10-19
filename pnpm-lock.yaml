@@ -72,9 +72,6 @@ importers:
       '@beoe/rehype-graphviz':
         specifier: workspace:*
         version: link:../rehype-graphviz
-      '@beoe/rehype-mermaid':
-        specifier: workspace:*
-        version: link:../rehype-mermaid
       '@beoe/rehype-vizdom':
         specifier: workspace:*
         version: link:../rehype-vizdom

@@ -3,8 +3,10 @@ import starlight from "@astrojs/starlight";
 import { qrcode } from "vite-plugin-qrcode";
 
 import { getCache } from "@beoe/cache";
+// can't deploy Playwright on netlify
+// "@beoe/rehype-mermaid": "workspace:*",
+// import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGraphviz } from "@beoe/rehype-graphviz";
-import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 import { rehypeVizdom } from "@beoe/rehype-vizdom";
 
@@ -35,10 +37,10 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [
       [rehypeGraphviz, { cache, class: className }],
-      [
-        rehypeMermaid,
-        { cache, class: className, strategy: "img-class-dark-mode" },
-      ],
+      // [
+      //   rehypeMermaid,
+      //   { cache, class: className, strategy: "img-class-dark-mode" },
+      // ],
       [rehypeGnuplot, { cache, class: className }],
       [rehypeVizdom, { class: className, svgo: false, dataGraph: true }],
     ],

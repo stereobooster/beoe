@@ -17,7 +17,6 @@
     "@beoe/pan-zoom": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-graphviz": "workspace:*",
-    "@beoe/rehype-mermaid": "workspace:*",
     "@beoe/rehype-vizdom": "workspace:*",
     "astro": "4.16.2",
     "graphology": "^0.25.4",
