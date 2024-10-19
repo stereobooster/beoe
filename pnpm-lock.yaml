@@ -90,6 +90,15 @@ importers:
       graphology-traversal:
         specifier: ^0.3.1
         version: 0.3.1(graphology-types@0.24.7)
+      netlify-plugin-playwright-cache:
+        specifier: ^0.0.1
+        version: 0.0.1
+      playwright:
+        specifier: ^1.48.0
+        version: 1.48.0
+      playwright-chromium:
+        specifier: ^1.48.1
+        version: 1.48.1
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -2465,6 +2474,9 @@ packages:
     resolution: {integrity: sha512-Z4SmBUweYa09+o6pG+eASabEpP6QkQ70yHj351pQoEXIs8uHbaU2DWVmzBANKgflPa47A50PtB2+NgRpQvr7vA==}
     engines: {node: '>= 10'}
 
+  netlify-plugin-playwright-cache@0.0.1:
+    resolution: {integrity: sha512-FECC4DtoYKpGGUNevxXVTE0GdD5LYSWwTPJpHv/WW4VlviTle8QlKBvF3Exfm48TDvZCUR3ofX1Zz+cJWOWBWA==}
+
   nlcst-to-string@4.0.0:
     resolution: {integrity: sha512-YKLBCcUYKAg0FNlOBT6aI91qFmSiFKiluk655WzPF+DDMA02qIyy8uiRqI8QXtcFpEvll12LpL5MXqEmAZ+dcA==}
 
@@ -2599,6 +2611,11 @@ packages:
   plantuml@0.0.2:
     resolution: {integrity: sha512-3YzQJUO1Yg+mDckTm3Ht5Q8bmtN8g3M9LD8fXqiqHDW3vzUpHrUe9lxVY6AT1I50w7FdOned0hhJno4JBIku2g==}
 
+  playwright-chromium@1.48.1:
+    resolution: {integrity: sha512-KUrivSfq8LgOKxA1PO7MdYQ2PP10ZzPf0pedKxJ6LPCsUhckU6chGFum3svuo5HiRtBR0pEK+RPny0HcIRxDeQ==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   playwright-core@1.43.1:
     resolution: {integrity: sha512-EI36Mto2Vrx6VF7rm708qSnesVQKbxEWvPrfA1IPY6HgczBplDx7ENtx+K2n4kJ41sLLkuGfmb0ZLSSXlDhqPg==}
     engines: {node: '>=16'}
@@ -2606,6 +2623,11 @@ packages:
 
   playwright-core@1.48.0:
     resolution: {integrity: sha512-RBvzjM9rdpP7UUFrQzRwR8L/xR4HyC1QXMzGYTbf1vjw25/ya9NRAVnXi/0fvFopjebvyPzsmoK58xxeEOaVvA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
+  playwright-core@1.48.1:
+    resolution: {integrity: sha512-Yw/t4VAFX/bBr1OzwCuOMZkY1Cnb4z/doAFSwf4huqAGWmf9eMNjmK7NiOljCdLmxeRYcGPPmcDgU0zOlzP0YA==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -6213,6 +6235,8 @@ snapshots:
 
   neotraverse@0.6.18: {}
 
+  netlify-plugin-playwright-cache@0.0.1: {}
+
   nlcst-to-string@4.0.0:
     dependencies:
       '@types/nlcst': 2.0.3
@@ -6366,9 +6390,15 @@ snapshots:
       execa: 4.1.0
       get-stream: 5.2.0
 
+  playwright-chromium@1.48.1:
+    dependencies:
+      playwright-core: 1.48.1
+
   playwright-core@1.43.1: {}
 
   playwright-core@1.48.0: {}
+
+  playwright-core@1.48.1: {}
 
   playwright@1.48.0:
     dependencies:
