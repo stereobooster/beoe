@@ -1,5 +1,6 @@
 ---
 title: gnuplot
+draft: true
 ---
 
 ## rehype-gnuplot

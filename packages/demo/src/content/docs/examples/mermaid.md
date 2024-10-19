@@ -1,5 +1,6 @@
 ---
 title: mermaid
+draft: true
 ---
 
 ## rehype-mermaid
