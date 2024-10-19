@@ -77,10 +77,10 @@ You can add dark mode with something like this:
 
 ## TODO
 
-- [ ] figure out why SVGO removes links
-- [ ] option to disable titles?
+- [ ] another script: to select several nodes and draw path between them
 - [ ] documentation about "animation" script
-  - note: animation for reverse edges
+  - note about animation for reverse edges
+- [ ] lightweight alternative to graphology
 - [ ] search text in graph
   - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
 

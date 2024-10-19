@@ -14,7 +14,17 @@ const svgoConfig: SvgoConfig = {
         overrides: {
           // disable a default plugin
           removeViewBox: false,
+          cleanupIds: false,
         },
+      },
+    },
+    // @ts-ignore
+    {
+      name: "removeAttrs",
+      params: {
+        attrs: ".*;(title|xlink:title)",
+        elemSeparator: ";",
+        preserveCurrentColor: false,
       },
     },
   ],

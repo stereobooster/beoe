@@ -42,7 +42,7 @@ export default defineConfig({
       //   { cache, class: className, strategy: "img-class-dark-mode" },
       // ],
       [rehypeGnuplot, { cache, class: className }],
-      [rehypeVizdom, { class: className, svgo: false, dataGraph: true }],
+      [rehypeVizdom, { class: className, dataGraph: true }],
     ],
   },
   vite: {
