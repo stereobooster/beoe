@@ -33,7 +33,8 @@
   },
   "dependencies": {
     "@beoe/rehype-code-hook": "workspace:*",
-    "@vizdom/vizdom-ts-node": "^0.1.15",
+    "@vizdom/vizdom-ts-node": "^0.1.16",
+    "hast-util-from-html-isomorphic": "^2.0.0",
     "svgo": "^3.3.2"
   },
   "devDependencies": {

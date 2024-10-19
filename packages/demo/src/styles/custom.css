@@ -45,6 +45,26 @@
   }
 }
 
+@keyframes dash {
+  from {
+    stroke-dashoffset: 40;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.vizdom {
+  /* .active a { filter: url(#red-glow); } */
+  .active.edge a path:first-child {
+    stroke-dasharray: 5 5;
+    animation-name: dash;
+    animation-duration: 1000ms;
+    stroke-dashoffset: 0;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+
 /* needed if you use strategy: "inline" */
 .mermaid svg {
   line-height: 1;

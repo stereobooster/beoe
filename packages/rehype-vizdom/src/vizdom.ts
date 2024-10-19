@@ -1,3 +1,4 @@
+import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 // SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
 import { optimize, type Config as SvgoConfig } from "svgo";
 
@@ -20,14 +21,14 @@ const svgoConfig: SvgoConfig = {
 };
 
 /**
- * removes `width="..." height="..."` from svg tag
  * minifies SVG with `SVGO`
  * wraps in a figure with class `beoe vizdom`
  */
 export const processVizdomSvg = (
   svg: string,
   className?: string,
-  config?: SvgoConfig | boolean
+  config?: SvgoConfig | boolean,
+  graph?: any
 ) => {
   if (config !== false) {
     svg = optimize(
@@ -35,6 +36,14 @@ export const processVizdomSvg = (
       config === undefined || config === true ? svgoConfig : config
     ).data;
   }
-  
-  return `<figure class="beoe vizdom ${className || ""}">${svg}</figure>`;
+  const element = fromHtmlIsomorphic(svg, { fragment: true });
+  return {
+    type: "element",
+    tagName: "figure",
+    properties: {
+      class: `beoe vizdom ${className || ""}`,
+      "data-graph": graph ? JSON.stringify(graph) : undefined,
+    },
+    children: element.children,
+  };
 };

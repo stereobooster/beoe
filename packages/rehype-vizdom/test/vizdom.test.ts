@@ -13,11 +13,12 @@ const svg = `<svg viewBox="0.00 0.00 79.41 116.00" xmlns="http://www.w3.org/2000
 it("wraps in a figure with classes", async () => {
   const result = processVizdomSvg(svg);
 
-  expect(result).toContain(`<figure class="beoe vizdom`);
+  expect(result.type).toEqual("element");
+  expect(result.tagName).toEqual("figure");
 });
 
 it("is possible to add class", async () => {
   const result = processVizdomSvg(svg, "not-content");
 
-  expect(result).toContain(`<figure class="beoe vizdom not-content`);
+  expect(result.properties.class).toEqual("beoe vizdom not-content");
 });

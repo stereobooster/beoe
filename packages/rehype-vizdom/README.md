@@ -77,7 +77,12 @@ You can add dark mode with something like this:
 
 ## TODO
 
-- [ ] add a way to pass "Layout Settings"
+- [ ] figure out why SVGO removes links
+- [ ] option to disable titles?
+- [ ] documentation about "animation" script
+  - note: animation for reverse edges
+- [ ] search text in graph
+  - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
 
 ## Notes
 
