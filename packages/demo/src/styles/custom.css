@@ -63,6 +63,10 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
   }
+
+  .node rect {
+    rx: 7px;
+  }
 }
 
 /* needed if you use strategy: "inline" */

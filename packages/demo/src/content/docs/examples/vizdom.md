@@ -7,7 +7,7 @@ title: vizdom
 ### works with dark mode
 
 ```vizdom
-digraph TD { 
+digraph TD {
     cluster=true
     node [shape=box]
     subgraph Watcher {

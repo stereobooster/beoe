@@ -12,9 +12,12 @@ const svgoConfig: SvgoConfig = {
       name: "preset-default",
       params: {
         overrides: {
-          // disable a default plugin
+          // we need viewBox because width and height are removed
           removeViewBox: false,
+          // we need ids for client-side interactivity
           cleanupIds: false,
+          // this allows to style rects
+          convertShapeToPath: false,
         },
       },
     },

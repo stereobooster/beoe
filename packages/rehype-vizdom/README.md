@@ -77,6 +77,7 @@ You can add dark mode with something like this:
 
 ## TODO
 
+- [ ] option to add css class from meta string
 - [ ] another script: to select several nodes and draw path between them
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
