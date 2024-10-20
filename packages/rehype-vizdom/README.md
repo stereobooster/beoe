@@ -81,13 +81,15 @@ You can add dark mode with something like this:
 - [ ] another script: to select several nodes and draw path between them
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
-- [ ] lightweight alternative to graphology
-  - https://www.npmjs.com/package/graph-data-structure
-  - https://www.npmjs.com/package/@dagrejs/graphlib
-  - https://www.npmjs.com/search?q=graph-theory
 - [ ] search text in graph
   - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
 
 ## Notes
 
 - Doesn't support some unicode chars, like `label="∅"`
+- Client-side JS library
+  - graphology is about 70kb uncompressed
+  - `@dagrejs/graphlib` is about 12kb
+  - [graph-data-structure](https://www.npmjs.com/package/graph-data-structure) is about 4kb (but it doesn't support ids for edges)
+  - [DirectedGraph](https://data-structure-typed-docs.vercel.app/classes/DirectedGraph.html) is about 40kb
+  - [Other options](https://www.npmjs.com/search?q=graph-theory)

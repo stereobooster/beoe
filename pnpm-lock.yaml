@@ -75,15 +75,12 @@ importers:
       '@beoe/rehype-vizdom':
         specifier: workspace:*
         version: link:../rehype-vizdom
+      '@dagrejs/graphlib':
+        specifier: ^2.2.4
+        version: 2.2.4
       astro:
         specifier: 4.16.2
         version: 4.16.2(@types/node@22.7.7)(rollup@4.24.0)(typescript@5.6.3)
-      graphology:
-        specifier: ^0.25.4
-        version: 0.25.4(graphology-types@0.24.7)
-      graphology-traversal:
-        specifier: ^0.3.1
-        version: 0.3.1(graphology-types@0.24.7)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -92,7 +89,7 @@ importers:
         version: 5.6.3
       vite-plugin-qrcode:
         specifier: ^0.2.3
-        version: 0.2.3(vite@5.4.9(@types/node@22.7.7))
+        version: 0.2.3(vite@5.4.8(@types/node@22.7.7))
 
   packages/pan-zoom:
     devDependencies:
@@ -489,6 +486,10 @@ packages:
   '@ctrl/tinycolor@4.1.0':
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
+
+  '@dagrejs/graphlib@2.2.4':
+    resolution: {integrity: sha512-mepCf/e9+SKYy1d02/UkvSy6+6MoyXhVxP8lLDfA7BPE1X1d4dR0sZznmbM8/XVJ1GPM+Svnx7Xj6ZweByWUkw==}
+    engines: {node: '>17.0.0'}
 
   '@emmetio/abbreviation@2.3.3':
     resolution: {integrity: sha512-mgv58UrU3rh4YgbE/TzgLQwJ3pFsHHhCLqY20aJq+9comytTXUDNGG/SMtSeMJdkpxgXSXunBGLD8Boka3JyVA==}
@@ -1694,10 +1695,6 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
-  events@3.3.0:
-    resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
-    engines: {node: '>=0.8.x'}
-
   execa@4.1.0:
     resolution: {integrity: sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==}
     engines: {node: '>=10'}
@@ -1800,29 +1797,6 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-
-  graphology-indices@0.17.0:
-    resolution: {integrity: sha512-A7RXuKQvdqSWOpn7ZVQo4S33O0vCfPBnUSf7FwE0zNCasqwZVUaCXePuWo5HBpWw68KJcwObZDHpFk6HKH6MYQ==}
-    peerDependencies:
-      graphology-types: '>=0.20.0'
-
-  graphology-traversal@0.3.1:
-    resolution: {integrity: sha512-lGLrLKEDKtNgAKgHVhVftKf3cb/nuWwuVPQZHXRnN90JWn0RSjco/s+NB2ARSlMapEMlbnPgv6j++427yTnU3Q==}
-    peerDependencies:
-      graphology-types: '>=0.20.0'
-
-  graphology-types@0.24.7:
-    resolution: {integrity: sha512-tdcqOOpwArNjEr0gNQKCXwaNCWnQJrog14nJNQPeemcLnXQUUGrsCWpWkVKt46zLjcS6/KGoayeJfHHyPDlvwA==}
-
-  graphology-utils@2.5.2:
-    resolution: {integrity: sha512-ckHg8MXrXJkOARk56ZaSCM1g1Wihe2d6iTmz1enGOz4W/l831MBCKSayeFQfowgF8wd+PQ4rlch/56Vs/VZLDQ==}
-    peerDependencies:
-      graphology-types: '>=0.23.0'
-
-  graphology@0.25.4:
-    resolution: {integrity: sha512-33g0Ol9nkWdD6ulw687viS8YJQBxqG5LWII6FI6nul0pq6iM2t5EKquOTFDbyTblRB3O9I+7KX4xI8u5ffekAQ==}
-    peerDependencies:
-      graphology-types: '>=0.24.0'
 
   gray-matter@4.0.3:
     resolution: {integrity: sha512-5v6yZd4JK3eMI3FqqCouswVqwugaA9r4dNZB1wwcmrD02QkV5H0y7XBQW8QwQqEaZY1pM9aqORSORhJRdNK44Q==}
@@ -2425,9 +2399,6 @@ packages:
   mkdirp-classic@0.5.3:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==}
 
-  mnemonist@0.39.8:
-    resolution: {integrity: sha512-vyWo2K3fjrUw8YeeZ1zF0fy6Mu59RHokURlld8ymdUPjMlD9EC9ov1/YPqTgqRvUN9nTr3Gqfz29LYAmu0PHPQ==}
-
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -2473,9 +2444,6 @@ packages:
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
-
-  obliterator@2.0.4:
-    resolution: {integrity: sha512-lgHwxlxV1qIg1Eap7LgIeoBWIMFibOjbrYPIPJZcI1mmGAI2m3lNYpK12Y+GBdPQ0U1hRwSord7GIaawz962qQ==}
 
   once@1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
@@ -3158,37 +3126,6 @@ packages:
       terser:
         optional: true
 
-  vite@5.4.9:
-    resolution: {integrity: sha512-20OVpJHh0PAM0oSOELa5GaZNWeDjcAvQjGXy2Uyr+Tp+/D2/Hdz6NLgpJLsarPTA2QJ6v8mX2P1ZfbsSKvdMkg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      sass-embedded: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      sass-embedded:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-
   vitefu@1.0.2:
     resolution: {integrity: sha512-0/iAvbXyM3RiPPJ4lyD4w6Mjgtf4ejTK6TPvTNG3H32PLwuT0N/ZjJLiXug7ETE/LWtTeHw9WRv7uX/tIKYyKg==}
     peerDependencies:
@@ -3721,6 +3658,8 @@ snapshots:
   '@braintree/sanitize-url@6.0.4': {}
 
   '@ctrl/tinycolor@4.1.0': {}
+
+  '@dagrejs/graphlib@2.2.4': {}
 
   '@emmetio/abbreviation@2.3.3':
     dependencies:
@@ -4952,8 +4891,6 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
-  events@3.3.0: {}
-
   execa@4.1.0:
     dependencies:
       cross-spawn: 7.0.3
@@ -5049,30 +4986,6 @@ snapshots:
   gnuplot-wasm@0.0.1: {}
 
   graceful-fs@4.2.11: {}
-
-  graphology-indices@0.17.0(graphology-types@0.24.7):
-    dependencies:
-      graphology-types: 0.24.7
-      graphology-utils: 2.5.2(graphology-types@0.24.7)
-      mnemonist: 0.39.8
-
-  graphology-traversal@0.3.1(graphology-types@0.24.7):
-    dependencies:
-      graphology-indices: 0.17.0(graphology-types@0.24.7)
-      graphology-types: 0.24.7
-      graphology-utils: 2.5.2(graphology-types@0.24.7)
-
-  graphology-types@0.24.7: {}
-
-  graphology-utils@2.5.2(graphology-types@0.24.7):
-    dependencies:
-      graphology-types: 0.24.7
-
-  graphology@0.25.4(graphology-types@0.24.7):
-    dependencies:
-      events: 3.3.0
-      graphology-types: 0.24.7
-      obliterator: 2.0.4
 
   gray-matter@4.0.3:
     dependencies:
@@ -6202,10 +6115,6 @@ snapshots:
 
   mkdirp-classic@0.5.3: {}
 
-  mnemonist@0.39.8:
-    dependencies:
-      obliterator: 2.0.4
-
   mri@1.2.0: {}
 
   mrmime@2.0.0: {}
@@ -6239,8 +6148,6 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
-
-  obliterator@2.0.4: {}
 
   once@1.4.0:
     dependencies:
@@ -7023,10 +6930,10 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-qrcode@0.2.3(vite@5.4.9(@types/node@22.7.7)):
+  vite-plugin-qrcode@0.2.3(vite@5.4.8(@types/node@22.7.7)):
     dependencies:
       qrcode-terminal: 0.12.0
-      vite: 5.4.9(@types/node@22.7.7)
+      vite: 5.4.8(@types/node@22.7.7)
 
   vite-tsconfig-paths@5.0.1(typescript@5.6.3)(vite@5.4.8(@types/node@22.7.5)):
     dependencies:
@@ -7049,15 +6956,6 @@ snapshots:
       fsevents: 2.3.3
 
   vite@5.4.8(@types/node@22.7.7):
-    dependencies:
-      esbuild: 0.21.5
-      postcss: 8.4.47
-      rollup: 4.24.0
-    optionalDependencies:
-      '@types/node': 22.7.7
-      fsevents: 2.3.3
-
-  vite@5.4.9(@types/node@22.7.7):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.47

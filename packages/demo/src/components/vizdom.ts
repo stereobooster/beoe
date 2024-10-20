@@ -1,22 +1,19 @@
-import { MultiGraph } from "graphology";
-import { bfsFromNode } from "graphology-traversal";
+import { json } from "@dagrejs/graphlib";
 
-// highlight nodes and edges in graphviz on hover
+// highlight nodes and edges in vizdom on hover
 document.querySelectorAll(".vizdom").forEach((container) => {
   const data = container.getAttribute("data-graph")
     ? JSON.parse(container.getAttribute("data-graph")!)
     : null;
 
   if (data) {
-    const graph = new MultiGraph();
-    graph.import(data);
-
+    const graph = json.read(data);
     let current: string | null = null;
     container.addEventListener("mouseover", (e) => {
       // @ts-expect-error
       const node = e.target?.closest(".node");
       if (node) {
-        const id = node.getAttribute("id");
+        const id = node.getAttribute("id").replace("node-", "");
         if (current == id) return;
         container
           .querySelectorAll(".node")
@@ -24,10 +21,11 @@ document.querySelectorAll(".vizdom").forEach((container) => {
         container
           .querySelectorAll(".edge")
           .forEach((node) => node.classList.remove("active"));
-        bfsFromNode(graph, id, (node, _attr, _depth) => {
-          container.querySelector(`#${node}`)?.classList.add("active");
-          graph.outEdges(node).forEach((edge) => {
-            container.querySelector(`#${edge}`)?.classList.add("active");
+
+        [id, ...(graph.successors(id) || [])].forEach((node) => {
+          container.querySelector(`#node-${node}`)?.classList.add("active");
+          graph.outEdges(node)?.forEach(({ name }) => {
+            container.querySelector(`#edge-${name}`)?.classList.add("active");
           });
         });
         current = id;

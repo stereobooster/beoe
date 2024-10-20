@@ -13,28 +13,47 @@ export async function dotToSvg(code: string) {
   const positioned = directedGraph.layout();
   const obj = positioned.to_json().to_obj();
   // JSON in Graphology format
+  // const graph = {
+  //   attributes: { name: "g" },
+  //   options: { allowSelfLoops: true, multi: true, type: "directed" },
+  //   nodes: obj.nodes.map((node) => ({
+  //     key: `node-${node.unique_id}`,
+  //     // attributes: {
+  //     //   label: node.label,
+  //     //   x: node.x,
+  //     //   y: node.y,
+  //     //   width: node.width,
+  //     //   height: node.width,
+  //     //   // url: node.url,
+  //     // },
+  //   })),
+  //   edges: obj.edges.map((edge) => ({
+  //     key: `edge-${edge.unique_id}`,
+  //     source: `node-${edge.source}`,
+  //     target: `node-${edge.target}`,
+  //     // attributes: {
+  //     //   label: edge.label,
+  //     //   // url: edge.url,
+  //     // },
+  //   })),
+  // };
+
+  // JSON in Dagre format
   const graph = {
-    attributes: { name: "g" },
-    options: { allowSelfLoops: true, multi: true, type: "directed" },
+    options: {
+      directed: true,
+      multigraph: true,
+      compound: false,
+    },
     nodes: obj.nodes.map((node) => ({
-      key: `node-${node.unique_id}`,
-      // attributes: {
-      //   label: node.label,
-      //   x: node.x,
-      //   y: node.y,
-      //   width: node.width,
-      //   height: node.width,
-      //   // url: node.url,
-      // },
+      v: node.unique_id,
+      // value: {},
     })),
     edges: obj.edges.map((edge) => ({
-      key: `edge-${edge.unique_id}`,
-      source: `node-${edge.source}`,
-      target: `node-${edge.target}`,
-      // attributes: {
-      //   label: edge.label,
-      //   // url: edge.url,
-      // },
+      v: edge.source,
+      w: edge.target,
+      name: edge.unique_id,
+      // value: {},
     })),
   };
   const svg = await positioned.to_svg().to_string();
@@ -56,7 +75,7 @@ export type RehypeVizdomConfig = {
   cache?: MapLike;
   class?: string;
   svgo?: SvgoConfig | boolean;
-  // if true adds data-graph to each figure with JSON in Graphology format
+  // if true adds data-graph to each figure with JSON representation of graph
   dataGraph?: boolean;
 };
 
