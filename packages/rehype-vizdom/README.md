@@ -78,6 +78,7 @@ You can add dark mode with something like this:
 ## TODO
 
 - [ ] option to add css class from meta string
+  - this would allow to tweak client-side interactivity depending on CSS class
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
 - [ ] search text in graph
