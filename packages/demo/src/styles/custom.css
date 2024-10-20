@@ -67,6 +67,10 @@
   .node rect {
     rx: 7px;
   }
+
+  .node {
+    cursor: pointer;
+  }
 }
 
 /* needed if you use strategy: "inline" */

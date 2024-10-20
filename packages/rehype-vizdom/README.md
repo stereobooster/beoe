@@ -78,11 +78,11 @@ You can add dark mode with something like this:
 ## TODO
 
 - [ ] option to add css class from meta string
-- [ ] another script: to select several nodes and draw path between them
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
 - [ ] search text in graph
   - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
+- [ ] maybe script to [find shortest path between two selected nodes](https://github.com/dagrejs/graphlib/wiki/API-Reference#alg-dijkstra)?
 
 ## Notes
 
