@@ -1,4 +1,6 @@
-import { json, alg } from "@dagrejs/graphlib";
+import { json, alg, type Path } from "@dagrejs/graphlib";
+
+type D = { [node: string]: Path };
 
 // interactivity for vizdom diagrams
 document.querySelectorAll(".vizdom").forEach((container) => {
@@ -12,7 +14,10 @@ document.querySelectorAll(".vizdom").forEach((container) => {
   function clear() {
     container
       .querySelectorAll(".node")
-      .forEach((node) => node.classList.remove("active"));
+      .forEach((node) => {
+        node.classList.remove("active");
+        node.classList.remove("selected")
+      });
     container
       .querySelectorAll(".edge")
       .forEach((node) => node.classList.remove("active"));
@@ -27,32 +32,69 @@ document.querySelectorAll(".vizdom").forEach((container) => {
     });
   }
 
-  let currentSelected: string | null = null;
+  function walkPath(d: D, node: string) {
+    container.querySelector(`#node-${node}`)?.classList.add("active");
+    if (d[node].distance === 0 || d[node].distance === Infinity) return;
+    graph.outEdges(d[node].predecessor, node)?.forEach(({ name }) => {
+      container.querySelector(`#edge-${name}`)?.classList.add("active");
+    });
+    walkPath(d, d[node].predecessor);
+  }
+
+  let selected = new Set<string>();
+  // highlight selected
+  // if two nodes selected will show shortest path
   container.addEventListener("click", (e) => {
     // @ts-expect-error
     const node = e.target?.closest(".node");
     if (!node) return;
     const id = node.getAttribute("id").replace("node-", "");
     clear();
-    if (currentSelected == id) {
-      currentSelected = null;
+    
+    if (selected.has(id)) {
+      selected.delete(id);
+    } else {
+      if (selected.size < 2) {
+        selected.add(id);
+      } else {
+        selected.delete([...selected][0])
+        selected.add(id)
+      }
+    }
+    if (selected.size === 0) return;
+    if (selected.size === 1) {
+      const id = [...selected][0]
+      container.querySelector(`#node-${id}`)?.classList.add("selected");
+      highlight(id);
       return;
     }
-    currentSelected = id;
-    highlight(id)
+
+    const [a, b] = [...selected];
+    container.querySelector(`#node-${a}`)?.classList.add("selected");
+    container.querySelector(`#node-${b}`)?.classList.add("selected");
+    const first = alg.dijkstra(graph, a);
+    if (first[b].distance != Infinity) {
+      walkPath(first, b);
+      return;
+    }
+    const second = alg.dijkstra(graph, b);
+    if (second[a].distance != Infinity) {
+      walkPath(second, a);
+      return;
+    }
   });
 
   // highlight on hover
   let currentHover: string | null = null;
   container.addEventListener("mouseover", (e) => {
-    if (currentSelected !== null) return;
+    if (selected.size > 0) return;
     // @ts-expect-error
     const node = e.target?.closest(".node");
     if (node) {
       const id = node.getAttribute("id").replace("node-", "");
       if (currentHover == id) return;
       clear();
-      highlight(id)
+      highlight(id);
       currentHover = id;
     } else {
       if (currentHover == null) return;

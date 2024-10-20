@@ -71,6 +71,10 @@
   .node {
     cursor: pointer;
   }
+
+  .node.selected a *:first-child {
+    stroke-width: 2px;
+  }
 }
 
 /* needed if you use strategy: "inline" */

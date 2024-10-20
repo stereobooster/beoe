@@ -82,7 +82,6 @@ You can add dark mode with something like this:
   - note about animation for reverse edges
 - [ ] search text in graph
   - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
-- [ ] maybe script to [find shortest path between two selected nodes](https://github.com/dagrejs/graphlib/wiki/API-Reference#alg-dijkstra)?
 
 ## Notes
 
