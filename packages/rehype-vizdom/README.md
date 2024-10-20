@@ -82,6 +82,9 @@ You can add dark mode with something like this:
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
 - [ ] lightweight alternative to graphology
+  - https://www.npmjs.com/package/graph-data-structure
+  - https://www.npmjs.com/package/@dagrejs/graphlib
+  - https://www.npmjs.com/search?q=graph-theory
 - [ ] search text in graph
   - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
 
