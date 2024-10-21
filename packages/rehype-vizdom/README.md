@@ -77,6 +77,7 @@ You can add dark mode with something like this:
 
 ## TODO
 
+- [ ] document new options
 - [ ] documentation about "animation" script
   - note about animation for reverse edges
 - [ ] search text in graph

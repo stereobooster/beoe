@@ -97,6 +97,7 @@ digraph G {
 
 ## TODO
 
+- document new options
 - expose options to load font metrics and images
   - `Warning: no hard-coded metrics for 'Helvetica,Arial,sans-serif'.  Falling back to 'Times' metrics`
 - check `tred` and `unflatten` functions

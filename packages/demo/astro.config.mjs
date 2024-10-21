@@ -36,8 +36,8 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      [rehypeGraphviz, { class: className }],
-      [rehypeVizdom, { class: className }],
+      [rehypeGraphviz, { cache, class: className }],
+      [rehypeVizdom, { cache, class: className }],
       // [
       //   rehypeMermaid,
       //   { cache, class: className, strategy: "img-class-dark-mode" },
