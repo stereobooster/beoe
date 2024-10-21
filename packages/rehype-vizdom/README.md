@@ -75,16 +75,153 @@ You can add dark mode with something like this:
 }
 ```
 
-## TODO
+### Add CSS class to diagram
 
-- [ ] document new options
-- [ ] documentation about "animation" script
-  - note about animation for reverse edges
-- [ ] search text in graph
-  - See [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
+You have two options:
+
+- either globally
+  ```js
+  .use(rehypeVizdom, { class: "something" })
+  ```
+- or locally
+  ````md
+  ```vizdom class=something
+  digraph G { Hello -> World }
+  ```
+  ````
+
+### Rounded corners for rectangles
+
+1. Disable `svgo` or provide your own configuration with `convertShapeToPath: false`
+   - either globally
+     ```js
+     .use(rehypeVizdom, { svgo: false })
+     ```
+   - or locally
+     ````md
+     ```vizdom svgo=false
+     digraph G { Hello -> World }
+     ```
+     ````
+2. Add CSS
+   ```css
+   .vizdom {
+     .node rect {
+       rx: 7px;
+     }
+   }
+   ```
+
+### Client side interactivity
+
+1. Set option to generate `data-graph` HTML attribute
+   - either globally
+     ```js
+     .use(rehypeVizdom, { datagraph: 'dagre' })
+     ```
+   - or locally
+     ````md
+     ```vizdom datagraph=dagre
+     digraph G { Hello -> World }
+     ```
+     ````
+2. Add JS
+
+   ```ts
+   import { json, alg, type Path } from "@dagrejs/graphlib";
+
+   type D = { [node: string]: Path };
+
+   document.querySelectorAll(".vizdom").forEach((container) => {
+     const data = container.getAttribute("data-graph")
+       ? JSON.parse(container.getAttribute("data-graph")!)
+       : null;
+
+     if (!data) return;
+     const graph = json.read(data);
+
+     function clear() {
+       container.querySelectorAll(".node").forEach((node) => {
+         node.classList.remove("active");
+         node.classList.remove("selected");
+       });
+       container
+         .querySelectorAll(".edge")
+         .forEach((node) => node.classList.remove("active"));
+     }
+
+     function highlight(id: string) {
+       alg.postorder(graph, [id]).forEach((node) => {
+         container.querySelector(`#node-${node}`)?.classList.add("active");
+         graph.outEdges(node)?.forEach(({ name }) => {
+           container.querySelector(`#edge-${name}`)?.classList.add("active");
+         });
+       });
+     }
+
+     // highlight on hover
+     let currentHover: string | null = null;
+     container.addEventListener("mouseover", (e) => {
+       // @ts-expect-error
+       const node = e.target?.closest(".node");
+       if (node) {
+         const id = node.getAttribute("id").replace("node-", "");
+         if (currentHover == id) return;
+         clear();
+         highlight(id);
+         currentHover = id;
+       } else {
+         if (currentHover == null) return;
+         clear();
+         currentHover = null;
+       }
+     });
+   });
+   ```
+
+3. Add CSS
+
+   ```css
+   @keyframes dash {
+     from {
+       stroke-dashoffset: 40;
+     }
+     to {
+       stroke-dashoffset: 0;
+     }
+   }
+   .vizdom[data-graph] {
+     .edge.active a path:first-child {
+       stroke-dasharray: 5 5;
+       animation-name: dash;
+       animation-duration: 1000ms;
+       stroke-dashoffset: 0;
+       animation-iteration-count: infinite;
+       animation-timing-function: linear;
+     }
+
+     .node {
+       cursor: pointer;
+     }
+
+     .node.selected a *:first-child {
+       stroke-width: 2px;
+     }
+   }
+
+   @media (prefers-reduced-motion) {
+     .vizdom[data-graph] {
+       .edge.active a path:first-child {
+         animation-duration: 4000ms;
+       }
+     }
+   }
+   ```
 
 ## Notes
 
+- Text is transformed to path, so <kbd>Cmd</kbd> + <kbd>F</kbd> doesn't work
+  - alternatively one can generate JSON representation of graph and search through labels with [text-search](https://github.com/stereobooster/facets/blob/main/notes/text-search.md#candidates)
 - Doesn't support some unicode chars, like `label="∅"`
 - Client-side JS library
   - graphology is about 70kb uncompressed

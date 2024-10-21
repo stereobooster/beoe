@@ -71,6 +71,15 @@
     stroke-width: 2px;
   }
 }
+
+@media (prefers-reduced-motion) {
+  .vizdom[data-graph] {
+    .edge.active a path:first-child {
+      animation-duration: 4000ms;
+    }
+  }
+}
+
 /* this works if disable svgo option to convert everything to paths */
 .vizdom {
   .node rect {
@@ -98,6 +107,14 @@
 
   .node.selected *:first-child {
     stroke-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .graphviz[data-graph] {
+    .edge.active path:first-child {
+      animation-duration: 4000ms;
+    }
   }
 }
 
