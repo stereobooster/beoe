@@ -3,13 +3,16 @@ import type { Root } from "hast";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
 import { processVizdomSvg } from "./vizdom.js";
-
 import { DotParser } from "@vizdom/vizdom-ts-node";
+import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+
+const processMeta = (meta?: string): Record<string, any> =>
+  meta ? parseMeta(lexMeta(meta)) : {};
 
 // it is possible to add other formats, like Graphology etc.
 type GraphFormat = "dagre" | "graphology";
 
-export async function dotToSvg(code: string, graphFormat?: GraphFormat) {
+async function dotToSvg(code: string, graphFormat?: GraphFormat) {
   const parser = new DotParser();
   const dotGraph = parser.parse(code);
   const directedGraph = dotGraph.to_directed();
@@ -102,15 +105,20 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
     ...options,
     salt,
     language: "vizdom",
-    code: ({ code }) =>
-      dotToSvg(code, options.dataGraph).then(({ svg, graph }) =>
-        processVizdomSvg(
-          svg,
-          options.class,
-          options.svgo,
-          options.dataGraph ? graph : undefined
-        )
-      ),
+    code: ({ code, meta }) => {
+      const metaOptions = processMeta(meta);
+      const dataGraph =
+        metaOptions.datagraph !== undefined
+          ? metaOptions.datagraph
+          : options.dataGraph;
+      const cssClass = `${options.class || ""} ${metaOptions.class || ""}`;
+      const svgo =
+        metaOptions.svgo !== undefined ? metaOptions.svgo : options.svgo;
+
+      return dotToSvg(code, dataGraph).then(({ svg, graph }) =>
+        processVizdomSvg(svg, cssClass, svgo, dataGraph ? graph : undefined)
+      );
+    },
   });
 };
 

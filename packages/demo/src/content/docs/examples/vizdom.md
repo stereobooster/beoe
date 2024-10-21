@@ -60,7 +60,7 @@ digraph TD {
 
 ### doesn't work with dark mode
 
-```vizdom
+```vizdom class=something dataGraph=false 
 digraph Twelve_colors {
     label="Twelve colors. Neato layout"
     labelloc="b"
