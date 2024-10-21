@@ -21,9 +21,6 @@
 }
 
 .vizdom {
-  text {
-    fill: var(--sl-color-white);
-  }
   :not([fill]) {
     fill: var(--sl-color-white);
   }
