@@ -4,7 +4,7 @@ title: vizdom
 
 ## Simple
 
-```vizdom dataGraph=dagre
+```vizdom dataGraph=dagre svgo=false
 digraph TD {
     cluster=true
     node [shape=box]

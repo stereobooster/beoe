@@ -90,6 +90,20 @@ You have two options:
   ```
   ````
 
+If you're using `@tailwindcss/typography`, it is probably a good idea to add `not-content` globally.
+
+### Add links
+
+Inline SVG can contain HTML links:
+
+````md
+```vizdom
+digraph G {
+ node[URL="https://example.com"]
+}
+```
+````
+
 ### Rounded corners for rectangles
 
 1. Disable `svgo` or provide your own configuration with `convertShapeToPath: false`
@@ -113,6 +127,8 @@ You have two options:
    ```
 
 ### Client side interactivity
+
+[demo](https://beoe.stereobooster.com/examples/vizdom/)
 
 1. Set option to generate `data-graph` HTML attribute
    - either globally
