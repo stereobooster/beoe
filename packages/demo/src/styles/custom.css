@@ -54,18 +54,17 @@
   }
 }
 .vizdom {
-  /* .active a { filter: url(#red-glow); } */
-  .active.edge a path:first-child {
+  .node rect {
+    rx: 7px;
+  }
+
+  .edge.active a path:first-child {
     stroke-dasharray: 5 5;
     animation-name: dash;
     animation-duration: 1000ms;
     stroke-dashoffset: 0;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-  }
-
-  .node rect {
-    rx: 7px;
   }
 
   .node {

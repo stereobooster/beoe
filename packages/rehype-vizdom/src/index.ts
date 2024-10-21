@@ -6,57 +6,67 @@ import { processVizdomSvg } from "./vizdom.js";
 
 import { DotParser } from "@vizdom/vizdom-ts-node";
 
-export async function dotToSvg(code: string) {
+// it is possible to add other formats, like Graphology etc.
+type GraphFormat = "dagre" | "graphology";
+
+export async function dotToSvg(code: string, graphFormat?: GraphFormat) {
   const parser = new DotParser();
   const dotGraph = parser.parse(code);
   const directedGraph = dotGraph.to_directed();
   const positioned = directedGraph.layout();
-  const obj = positioned.to_json().to_obj();
-  // JSON in Graphology format
-  // const graph = {
-  //   attributes: { name: "g" },
-  //   options: { allowSelfLoops: true, multi: true, type: "directed" },
-  //   nodes: obj.nodes.map((node) => ({
-  //     key: `node-${node.unique_id}`,
-  //     // attributes: {
-  //     //   label: node.label,
-  //     //   x: node.x,
-  //     //   y: node.y,
-  //     //   width: node.width,
-  //     //   height: node.width,
-  //     //   // url: node.url,
-  //     // },
-  //   })),
-  //   edges: obj.edges.map((edge) => ({
-  //     key: `edge-${edge.unique_id}`,
-  //     source: `node-${edge.source}`,
-  //     target: `node-${edge.target}`,
-  //     // attributes: {
-  //     //   label: edge.label,
-  //     //   // url: edge.url,
-  //     // },
-  //   })),
-  // };
-
-  // JSON in Dagre format
-  const graph = {
-    options: {
-      directed: true,
-      multigraph: true,
-      compound: false,
-    },
-    nodes: obj.nodes.map((node) => ({
-      v: node.unique_id,
-      // value: {},
-    })),
-    edges: obj.edges.map((edge) => ({
-      v: edge.source,
-      w: edge.target,
-      name: edge.unique_id,
-      // value: {},
-    })),
-  };
   const svg = await positioned.to_svg().to_string();
+
+  let graph;
+  if (graphFormat) {
+    const obj = positioned.to_json().to_obj();
+    if (graphFormat === "graphology") {
+      graph = {
+        attributes: { name: "g" },
+        options: { allowSelfLoops: true, multi: true, type: "directed" },
+        nodes: obj.nodes.map((node) => ({
+          key: node.unique_id,
+          // attributes: {
+          //   label: node.label,
+          //   x: node.x,
+          //   y: node.y,
+          //   width: node.width,
+          //   height: node.width,
+          //   url: node.url,
+          // },
+        })),
+        edges: obj.edges.map((edge) => ({
+          key: edge.unique_id,
+          source: edge.source,
+          target: edge.target,
+          // attributes: {
+          //   label: edge.label,
+          //   url: edge.url,
+          // },
+        })),
+      };
+    }
+
+    if (graphFormat === "dagre") {
+      graph = {
+        options: {
+          directed: true,
+          multigraph: true,
+          compound: false,
+        },
+        nodes: obj.nodes.map((node) => ({
+          v: node.unique_id,
+          // value: {},
+        })),
+        edges: obj.edges.map((edge) => ({
+          v: edge.source,
+          w: edge.target,
+          name: edge.unique_id,
+          // value: {},
+        })),
+      };
+    }
+  }
+
   return {
     svg,
     graph,
@@ -75,8 +85,8 @@ export type RehypeVizdomConfig = {
   cache?: MapLike;
   class?: string;
   svgo?: SvgoConfig | boolean;
-  // if true adds data-graph to each figure with JSON representation of graph
-  dataGraph?: boolean;
+  // adds data-graph to each figure with JSON representation of graph
+  dataGraph?: GraphFormat;
 };
 
 export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
@@ -93,7 +103,7 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
     salt,
     language: "vizdom",
     code: ({ code }) =>
-      dotToSvg(code).then(({ svg, graph }) =>
+      dotToSvg(code, options.dataGraph).then(({ svg, graph }) =>
         processVizdomSvg(
           svg,
           options.class,

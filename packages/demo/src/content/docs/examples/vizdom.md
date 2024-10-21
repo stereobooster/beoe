@@ -12,7 +12,7 @@ digraph TD {
     node [shape=box]
     subgraph Watcher {
         label="watch"
-        Watch [label="FS Notifier" URL="https://example.com"]
+        Watch [label="FS Notifier"]
     }
     Watch -> TailW [label="*.rs & input.css"]
     Watch -> Sass [label="*.sass & *.scss"]
@@ -53,7 +53,7 @@ digraph TD {
     WOC -> Server [label="target/server/app\nsite/**"]
     WOC -> Live [label="site/pkg/app.css,\nclient & server change"]
     Live -> Browser [label="Reload all or\nupdate app.css"]
-    Browser[URL="https://example.com"];
+    Browser;
     Server -> Browser [style=dashed, arrowhead=none]
 }
 ```
