@@ -17,7 +17,7 @@ const svgoConfig: SvgoConfig = {
           // we need ids for client-side interactivity
           cleanupIds: false,
           // this allows to style rects
-          convertShapeToPath: false,
+          // convertShapeToPath: false,
         },
       },
     },
@@ -44,6 +44,8 @@ export const processVizdomSvg = (
   graph?: any
 ) => {
   if (config !== false) {
+    // @ts-expect-error
+    svgoConfig.plugins[0].params.overrides.cleanupIds = !graph;
     svg = optimize(
       svg,
       config === undefined || config === true ? svgoConfig : config
@@ -54,7 +56,7 @@ export const processVizdomSvg = (
     type: "element",
     tagName: "figure",
     properties: {
-      class: `beoe vizdom ${className || ""}`,
+      class: `beoe vizdom ${className || ""}`.trim(),
       "data-graph": graph ? JSON.stringify(graph) : undefined,
     },
     children: element.children,

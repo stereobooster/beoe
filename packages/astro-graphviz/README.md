@@ -1,5 +1,8 @@
 # @beoe/astro-graphviz
 
+> [!WARNING]
+> this is broken
+
 Astro component to generate [Graphviz](https://graphviz.org/) diagrams as inline SVG.
 
 ## Uage

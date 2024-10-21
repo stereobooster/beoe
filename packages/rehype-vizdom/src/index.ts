@@ -12,7 +12,7 @@ const processMeta = (meta?: string): Record<string, any> =>
 // it is possible to add other formats, like Graphology etc.
 type GraphFormat = "dagre" | "graphology";
 
-async function dotToSvg(code: string, graphFormat?: GraphFormat) {
+async function dotToSvg(code: string, dataGraph?: GraphFormat) {
   const parser = new DotParser();
   const dotGraph = parser.parse(code);
   const directedGraph = dotGraph.to_directed();
@@ -20,9 +20,9 @@ async function dotToSvg(code: string, graphFormat?: GraphFormat) {
   const svg = await positioned.to_svg().to_string();
 
   let graph;
-  if (graphFormat) {
+  if (dataGraph) {
     const obj = positioned.to_json().to_obj();
-    if (graphFormat === "graphology") {
+    if (dataGraph === "graphology") {
       graph = {
         attributes: { name: "g" },
         options: { allowSelfLoops: true, multi: true, type: "directed" },
@@ -49,7 +49,7 @@ async function dotToSvg(code: string, graphFormat?: GraphFormat) {
       };
     }
 
-    if (graphFormat === "dagre") {
+    if (dataGraph === "dagre") {
       graph = {
         options: {
           directed: true,
@@ -111,7 +111,9 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
         metaOptions.datagraph !== undefined
           ? metaOptions.datagraph
           : options.dataGraph;
-      const cssClass = `${options.class || ""} ${metaOptions.class || ""}`;
+      const cssClass = `${options.class || ""} ${
+        metaOptions.class || ""
+      }`.trim();
       const svgo =
         metaOptions.svgo !== undefined ? metaOptions.svgo : options.svgo;
 

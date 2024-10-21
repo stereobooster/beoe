@@ -36,13 +36,13 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      [rehypeGraphviz, { cache, class: className }],
+      [rehypeGraphviz, { class: className }],
+      [rehypeVizdom, { class: className }],
       // [
       //   rehypeMermaid,
       //   { cache, class: className, strategy: "img-class-dark-mode" },
       // ],
       [rehypeGnuplot, { cache, class: className }],
-      [rehypeVizdom, { class: className, dataGraph: "dagre" }],
     ],
   },
   vite: {

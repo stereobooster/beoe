@@ -1,3 +1,4 @@
+import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 // SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
 import { optimize, type Config as SvgoConfig } from "svgo";
 
@@ -11,9 +12,22 @@ const svgoConfig: SvgoConfig = {
       name: "preset-default",
       params: {
         overrides: {
-          // disable a default plugin
+          // we need viewBox because width and height are removed
           removeViewBox: false,
+          // we need ids for client-side interactivity
+          cleanupIds: false,
+          // this allows to style rects
+          // convertShapeToPath: false,
         },
+      },
+    },
+    // @ts-ignore
+    {
+      name: "removeAttrs",
+      params: {
+        attrs: ".*;(title|xlink:title)",
+        elemSeparator: ";",
+        preserveCurrentColor: false,
       },
     },
   ],
@@ -29,10 +43,13 @@ const svgoConfig: SvgoConfig = {
 export const processGraphvizSvg = (
   svg: string,
   className?: string,
-  config?: SvgoConfig | boolean
+  config?: SvgoConfig | boolean,
+  graph?: any
 ) => {
   svg = svg.split("\n").slice(6).join("\n");
   if (config !== false) {
+    // @ts-expect-error
+    svgoConfig.plugins[0].params.overrides.cleanupIds = !graph;
     svg = optimize(
       svg,
       config === undefined || config === true ? svgoConfig : config
@@ -40,5 +57,14 @@ export const processGraphvizSvg = (
   }
   svg = svg.replace(/width="\d+[^"]+"\s+/, "");
   svg = svg.replace(/height="\d+[^"]+"\s+/, "");
-  return `<figure class="beoe graphviz ${className || ""}">${svg}</figure>`;
+  const element = fromHtmlIsomorphic(svg, { fragment: true });
+  return {
+    type: "element",
+    tagName: "figure",
+    properties: {
+      class: `beoe graphviz ${className || ""}`.trim(),
+      "data-graph": graph ? JSON.stringify(graph) : undefined,
+    },
+    children: element.children,
+  };
 };

@@ -99,8 +99,5 @@ digraph G {
 
 - expose options to load font metrics and images
   - `Warning: no hard-coded metrics for 'Helvetica,Arial,sans-serif'.  Falling back to 'Times' metrics`
-- SVGO option to to remove tooltips
-- add option expose graph as JSON
-  - https://hpcc-systems.github.io/hpcc-js-wasm/graphviz/src/graphviz/classes/Graphviz.html
-  - https://graphviz.gitlab.io/docs/outputs/json/
 - check `tred` and `unflatten` functions
+  - https://hpcc-systems.github.io/hpcc-js-wasm/graphviz/src/graphviz/classes/Graphviz.html

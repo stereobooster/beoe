@@ -71,9 +71,33 @@
     stroke-width: 2px;
   }
 }
+/* this works if disable svgo option to convert everything to paths */
 .vizdom {
   .node rect {
     rx: 7px;
+  }
+}
+
+.graphviz[data-graph] {
+  .edge.active path:first-child {
+    stroke-dasharray: 5 5;
+    animation-name: dash;
+    animation-duration: 1000ms;
+    stroke-dashoffset: 0;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .node {
+    cursor: pointer;
+  }
+
+  .node *:first-child {
+    fill: var(--sl-color-black);
+  }
+
+  .node.selected *:first-child {
+    stroke-width: 2px;
   }
 }
 

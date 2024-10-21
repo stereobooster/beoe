@@ -18,6 +18,7 @@ let svg: string;
 // const cacheKey = serialize(Astro.props);
 // svg = cache.get(cacheKey);
 // if (svg === undefined) {
+// TODO: this is broken
 svg = processGraphvizSvg(graphviz.dot(Astro.props.code), Astro.props.class);
 //   cache.set(cacheKey, svg);
 // }
