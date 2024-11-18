@@ -60,6 +60,10 @@
     animation-timing-function: linear;
   }
 
+  .shadow {
+    opacity: 0.4;
+  }
+
   .node {
     cursor: pointer;
   }

@@ -4,7 +4,9 @@ title: vizdom
 
 ## Simple
 
-```vizdom dataGraph=dagre svgo=false
+**Interactivity**: shadow out. Try 👇 hover nodes.
+
+```vizdom dataGraph=dagre svgo=false class=shadow
 digraph TD {
     cluster=true
     node [shape=box]
@@ -58,7 +60,9 @@ digraph TD {
 
 ## Same example as Graphviz
 
-```vizdom dataGraph=dagre
+**Interactivity**: ants. Try 👇 hover or click nodes.
+
+```vizdom dataGraph=dagre class=ants
 digraph finite_state_machine {
     bgcolor="transparent";
     fontname="Helvetica,Arial,sans-serif";

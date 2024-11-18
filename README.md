@@ -35,6 +35,7 @@ I have implemented core packages and added some examples. However, I still need 
 | Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)   |       |
 | Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   |       |
 | Vizdom   | [@beoe/rehype-vizdom](/packages/rehype-vizdom/)     |       |
+| D2       |                                                     |       |
 | Penrose  |                                                     |       |
 | ...      |                                                     |       |
 
