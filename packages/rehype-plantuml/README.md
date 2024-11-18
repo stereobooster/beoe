@@ -18,7 +18,7 @@ will be converted to
 
 which can look like this:
 
-<img width="115" height="121" src="./example.svg" alt="example of how generated graph looks">
+<img width="115" height="121" src="./example.svg" alt="example of how generated diagram looks">
 
 ## PlantUML installation options
 
