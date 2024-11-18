@@ -60,7 +60,6 @@ document.querySelectorAll(".graphviz").forEach((container) => {
     const node = e.target?.closest(".node");
     if (!node) return;
     const id = node.getAttribute("id").replace("node", "");
-    console.log(id);
     clear();
 
     if (selected.has(id)) {
