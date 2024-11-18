@@ -1,6 +1,6 @@
-# @beoe/rehype-mermaid
+# @beoe/rehype-plantuml
 
-Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams (as inline SVGs) in place of code fences. This:
+Rehype plugin to generate [plantuml](https://www.plantuml.com/) diagrams (as inline SVGs) in place of code fences. This:
 
 ````md
 ```plantuml
@@ -24,7 +24,7 @@ which can look like this:
 
 There are several ways how to run PlantUML
 
-- with public server e.g. `https://www.plantuml.com/plantuml/png/`
+- with public server e.g. `https://www.plantuml.com/plantuml/svg/`
   - for example, see [remark-simple-plantuml](https://github.com/akebifiky/remark-simple-plantuml)
 - with docker
 - install PlantUML locally e.g. install Java, Graphviz and download copy of `plantuml.jar`

@@ -77,7 +77,7 @@ export const rehypePlantuml: Plugin<[RehypePlantumlConfig?], Root> = (
           return h(
             "figure",
             {
-              class: `beoe mermaid ${rest.class || ""}`,
+              class: `beoe plantuml ${rest.class || ""}`,
             },
             // wrapp in additional div for svg-pan-zoom
             h("img", {
@@ -90,7 +90,7 @@ export const rehypePlantuml: Plugin<[RehypePlantumlConfig?], Root> = (
         }
         default: {
           const { svg } = await render(code);
-          return `<figure class="beoe mermaid ${
+          return `<figure class="beoe plantuml ${
             rest.class || ""
           }">${svg}</figure>`;
         }
