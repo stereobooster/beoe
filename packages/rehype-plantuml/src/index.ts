@@ -79,7 +79,7 @@ export const rehypePlantuml: Plugin<[RehypePlantumlConfig?], Root> = (
             {
               class: `beoe plantuml ${rest.class || ""}`,
             },
-            // wrapp in additional div for svg-pan-zoom
+            // wrap in additional div for svg-pan-zoom
             h("img", {
               width,
               height,

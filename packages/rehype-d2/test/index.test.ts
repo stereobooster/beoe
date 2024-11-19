@@ -7,9 +7,7 @@ import { expect, it } from "vitest";
 
 import rehypeD2 from "../src";
 
-// snapshots are different in CI and locally
-
-it.skip("renders diagram", async () => {
+it("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
@@ -20,7 +18,7 @@ it.skip("renders diagram", async () => {
   expect(file.toString()).toMatchFileSnapshot("./fixtures/a-inline.html");
 });
 
-it.skip("renders diagram", async () => {
+it("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)

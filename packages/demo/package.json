@@ -15,6 +15,7 @@
     "@beoe/astro-graphviz": "workspace:*",
     "@beoe/cache": "workspace:*",
     "@beoe/pan-zoom": "workspace:*",
+    "@beoe/rehype-d2": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-graphviz": "workspace:*",
     "@beoe/rehype-vizdom": "workspace:*",

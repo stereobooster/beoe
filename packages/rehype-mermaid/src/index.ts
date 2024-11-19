@@ -97,7 +97,7 @@ function imgClassDarkMode(
     {
       class: `beoe mermaid ${klas || ""}`,
     },
-    // wrapp in additional div for svg-pan-zoom
+    // wrap in additional div for svg-pan-zoom
     [h("div", [imgLight, imgDark])]
   );
 }

@@ -7,10 +7,11 @@ export function exec(
   stdin?: string,
   cwd?: string
 ) {
-  return new Promise<string[]>((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     const child = spawn(command, args, {
       cwd,
       stdio: [],
+      windowsHide: true,
     });
 
     const output: string[] = [];
@@ -40,7 +41,7 @@ export function exec(
         return;
       }
 
-      resolve(output);
+      resolve(output.join(""));
     });
 
     if (stdin) {
@@ -50,18 +51,28 @@ export function exec(
   });
 }
 
-// extraArgs.push(`--dark-theme=${attributes.darkTheme ?? config.theme.dark}`);
-// await exec(
-//   "d2",
-//   [
-//     `--layout=${attributes.layout ?? config.layout}`,
-//     `--theme=${attributes.theme ?? config.theme.default}`,
-//     `--sketch=${attributes.sketch ?? config.sketch}`,
-//     `--pad=${attributes.pad ?? config.pad}`,
-//     ...extraArgs,
-//     "-",
-//     outputPath,
-//   ],
-//   input,
-//   cwd
-// );
+export type D2Options = {
+  theme?: string;
+  darkTheme?: string;
+  layout?: string;
+  pad?: number;
+  scale?: number;
+  sketch?: boolean;
+  bundle?: boolean;
+  center?: boolean;
+};
+
+export function d2(code: string, options?: D2Options) {
+  const args = [];
+
+  if (options?.theme) args.push(`--theme=${options.theme}`);
+  // if (options?.darkTheme) args.push(`--dark-theme=${options.darkTheme}`);
+  if (options?.layout) args.push(`--layout=${options.layout}`);
+  if (options?.pad !== undefined) args.push(`--pad=${options.pad}`);
+  if (options?.scale) args.push(`--scale=${options.scale}`);
+  if (options?.sketch) args.push(`--sketch`);
+  if (options?.bundle) args.push(`--bundle`);
+  if (options?.center) args.push(`--center`);
+
+  return exec("d2", [...args, "-"], code);
+}

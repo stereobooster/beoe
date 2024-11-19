@@ -36,3 +36,8 @@ const html = await unified()
 ```
 
 It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
+
+## TODO
+
+- [ ] documentation
+- [ ] note about `d2` executable
