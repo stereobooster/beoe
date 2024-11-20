@@ -24,22 +24,6 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@types/node@22.7.5)
 
-  packages/astro-graphviz:
-    dependencies:
-      '@beoe/cache':
-        specifier: workspace:*
-        version: link:../cache
-      '@beoe/rehype-graphviz':
-        specifier: workspace:*
-        version: link:../rehype-graphviz
-      '@hpcc-js/wasm':
-        specifier: ^2.16.1
-        version: 2.16.1
-    devDependencies:
-      astro:
-        specifier: ^4.16.1
-        version: 4.16.2(@types/node@22.7.7)(rollup@4.24.0)(typescript@5.6.3)
-
   packages/cache:
     dependencies:
       '@beoe/sqlitecache':
@@ -57,9 +41,6 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.28.3
         version: 0.28.3(astro@4.16.2(@types/node@22.7.7)(rollup@4.24.0)(typescript@5.6.3))
-      '@beoe/astro-graphviz':
-        specifier: workspace:*
-        version: link:../astro-graphviz
       '@beoe/cache':
         specifier: workspace:*
         version: link:../cache

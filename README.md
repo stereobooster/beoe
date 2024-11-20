@@ -29,15 +29,15 @@ I have implemented core packages and added some examples. However, I still need 
 
 ### Diagrams
 
-|          | rehype                                                      | Astro |
-| -------- | ----------------------------------------------------------- | ----- |
-| Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/)         |       |
-| Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)           |       |
-| Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)           |       |
-| Vizdom   | [@beoe/rehype-vizdom](/packages/rehype-vizdom/)             |       |
-| D2       | [@beoe/rehype-d2](/packages/rehype-d2/) (not published yet) |       |
-| Penrose  |                                                             |       |
-| ...      |                                                             |       |
+|          | rehype                                                      |
+| -------- | ----------------------------------------------------------- |
+| Graphviz | [@beoe/rehype-graphviz](/packages/rehype-graphviz/)         |
+| Mermaid  | [@beoe/rehype-mermaid](/packages/rehype-mermaid/)           |
+| Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)           |
+| Vizdom   | [@beoe/rehype-vizdom](/packages/rehype-vizdom/)             |
+| D2       | [@beoe/rehype-d2](/packages/rehype-d2/) (not published yet) |
+| Penrose  |                                                             |
+| ...      |                                                             |
 
 Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text-to-diagram/).
 
