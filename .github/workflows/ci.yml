@@ -40,9 +40,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Playwright Browsers
-        run: pnpmx playwright install chromium
-
       - name: Build
         run: pnpm build --cache-dir=.turbo
 
@@ -52,6 +49,10 @@ jobs:
         with:
           path: .turbo
           key: ${{ runner.os }}-turbo-${{ github.sha }}
+
+      # for Mermaid
+      - name: Install Playwright Browsers
+        run: pnpx playwright install chromium
 
       # for PlantUML
       # - uses: actions/setup-java@v4
