@@ -49,3 +49,4 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 - [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)
 - [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
 - [ ] [Class-based dark mode](https://github.com/terrastruct/d2/discussions/2225)
+- [ ] Link resolution callback
