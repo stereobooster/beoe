@@ -34,9 +34,9 @@ direction: right
 a2 -> b -> c -> d -> e
 ```
 
-### `img-class-dark-mode`
+### `strategy=inline`
 
-```d2 theme=101 darkTheme=200 strategy=img-class-dark-mode
+```d2 strategy=inline
 direction: right
 a -> b -> c -> d -> e
 ```

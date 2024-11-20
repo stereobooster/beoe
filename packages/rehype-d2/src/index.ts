@@ -2,11 +2,10 @@ import type { Plugin } from "unified";
 import type { Root } from "hast";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { d2, D2Options } from "./d2.js";
-import svgToMiniDataURI from "mini-svg-data-uri";
-import { h } from "hastscript";
 // SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
 import { optimize, type Config as SvgoConfig } from "svgo";
 import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+import { Strategy, svgStrategyCbAsync } from "./svgStrategy.js";
 
 const processMeta = (meta?: string): Record<string, any> =>
   meta ? parseMeta(lexMeta(meta)) : {};
@@ -32,30 +31,14 @@ export type RehypeD2Config = {
    * be carefull. It may break some diagrams
    */
   svgo?: SvgoConfig | boolean;
-  strategy?: "inline" | "img" | "img-class-dark-mode";
+  strategy?: Strategy;
   d2Options?: D2Options;
 };
 
 type RenderOptions = D2Options & {
   svgo?: SvgoConfig | boolean;
-  strategy?: "inline" | "img" | "img-class-dark-mode";
+  strategy?: Strategy;
 };
-
-function image({
-  svg,
-  ...rest
-}: {
-  width?: string;
-  height?: string;
-  alt?: string;
-  svg: string;
-  class?: string;
-}) {
-  return h("img", {
-    src: svgToMiniDataURI(svg),
-    ...rest,
-  });
-}
 
 export const rehypeD2: Plugin<[RehypeD2Config?], Root> = (options = {}) => {
   const {
@@ -65,7 +48,7 @@ export const rehypeD2: Plugin<[RehypeD2Config?], Root> = (options = {}) => {
     ...rest
   } = options;
 
-  const salt = options;
+  const salt = { svgoDefault, strategyDefault, defaultOptions };
 
   const render = async (code: string, options: RenderOptions) => {
     let svg = await d2(code, { ...(defaultOptions || {}), ...options });
@@ -97,65 +80,26 @@ export const rehypeD2: Plugin<[RehypeD2Config?], Root> = (options = {}) => {
     code: async ({ code, meta }) => {
       const metaOptions = processMeta(meta);
       const strategy = metaOptions.strategy ?? strategyDefault;
-      const cssClass = `${options.class || ""} ${
+      const cssClass = `d2 ${options.class || ""} ${
         metaOptions.class || ""
       }`.trim();
 
-      switch (strategy) {
-        case "img": {
-          const { svg, width, height } = await render(code, metaOptions);
-          return h(
-            "figure",
-            {
-              class: `beoe d2 ${cssClass}`,
-            },
-            [image({ svg, width, height })]
-          );
-        }
-        case "img-class-dark-mode": {
-          const {
-            svg: svgLight,
-            width,
-            height,
-          } = await render(code, metaOptions);
-          const { svg: svgDark } = await render(code, {
+      return svgStrategyCbAsync(strategy, cssClass, async (darkMode) => {
+        let darkSvg: string | undefined;
+        const {
+          svg: lightSvg,
+          width,
+          height,
+        } = await render(code, metaOptions);
+        if (darkMode) {
+          const res = await render(code, {
             ...metaOptions,
-            theme: metaOptions.darktheme ?? defaultOptions?.darkTheme,
+            theme: metaOptions.darktheme ?? defaultOptions?.darkTheme ?? 200,
           });
-
-          return h(
-            "figure",
-            {
-              class: `beoe d2 ${cssClass}`,
-            },
-            // wrap in additional div for svg-pan-zoom
-            [
-              h("div", [
-                image({ svg: svgLight, width, height, class: "beoe-light" }),
-                image({ svg: svgDark, width, height, class: "beoe-dark" }),
-              ]),
-            ]
-          );
+          darkSvg = res.svg;
         }
-        // this doesn't work
-        // case "inline-class-dark-mode": {
-        //   const { svg: svgLight } = await render(code, metaOptions);
-        //   const { svg: svgDark } = await render(code, {
-        //     ...metaOptions,
-        //     theme: metaOptions.darktheme ?? defaultOptions?.darkTheme,
-        //   });
-        //   return `<figure class="beoe d2 ${cssClass}">
-        //     <div>
-        //       <div class="beoe-light">${svgLight}</div>
-        //       <div class="beoe-dark">${svgDark}</div>
-        //     </div>
-        //   </figure>`;
-        // }
-        default: {
-          const { svg } = await render(code, metaOptions);
-          return `<figure class="beoe d2 ${cssClass}">${svg}</figure>`;
-        }
-      }
+        return { lightSvg, width, height, darkSvg };
+      });
     },
   });
 };

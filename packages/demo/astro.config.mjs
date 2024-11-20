@@ -44,7 +44,7 @@ export default defineConfig({
       //   { cache, class: className, strategy: "img-class-dark-mode" },
       // ],
       [rehypeGnuplot, { cache, class: className }],
-      [rehypeD2, {}], //, { cache, class: className }],
+      [rehypeD2, { cache, strategy: "img-class-dark-mode", class: className }],
     ],
   },
   vite: {

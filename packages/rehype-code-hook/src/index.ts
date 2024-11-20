@@ -37,7 +37,9 @@ function replace(
         // @ts-expect-error
         element = element.children[0];
       } else {
-        console.warn("When you pass string to rehype-code-hook make sure it has only one root element")
+        console.warn(
+          "When you pass string to rehype-code-hook make sure it has only one root element"
+        );
       }
     }
     // @ts-expect-error
@@ -138,36 +140,41 @@ export const rehypeCodeHook: Plugin<[RehypeCodeHookOptions], Root> = (
 
         let newNode: NewNode;
         if (options.cache) {
-          let propsWithSalt: string | Buffer = serialize({
-            ...props,
-            cb,
-            salt: options.salt,
-          });
-          if (options.hashTostring === true) {
-            propsWithSalt = propsWithSalt.toString();
-          }
-          newNode = options.cache.get(propsWithSalt);
-          if (newNode === EMPTY_CACHE) return CONTINUE;
-          if (newNode === undefined) {
-            newNode = options.code(props);
-            if (isThenable(newNode)) {
-              // while promise not resilved there will be cache misses
-              // TODO: should I cache promises in memory until they setled?
-              newNode.then((x) => {
-                if (x === undefined) {
-                  options.cache!.set(propsWithSalt, EMPTY_CACHE);
-                } else {
-                  options.cache!.set(propsWithSalt, x);
-                }
-                return x;
-              });
-            } else {
-              if (newNode === undefined) {
-                options.cache.set(propsWithSalt, EMPTY_CACHE);
+          try {
+            let propsWithSalt: string | Buffer = serialize({
+              ...props,
+              cb,
+              salt: options.salt,
+            });
+            if (options.hashTostring === true) {
+              propsWithSalt = propsWithSalt.toString();
+            }
+            newNode = options.cache.get(propsWithSalt);
+            if (newNode === EMPTY_CACHE) return CONTINUE;
+            if (newNode === undefined) {
+              newNode = options.code(props);
+              if (isThenable(newNode)) {
+                // while promise not resilved there will be cache misses
+                // TODO: should I cache promises in memory until they setled?
+                newNode.then((x) => {
+                  if (x === undefined) {
+                    options.cache!.set(propsWithSalt, EMPTY_CACHE);
+                  } else {
+                    options.cache!.set(propsWithSalt, x);
+                  }
+                  return x;
+                });
               } else {
-                options.cache.set(propsWithSalt, newNode);
+                if (newNode === undefined) {
+                  options.cache.set(propsWithSalt, EMPTY_CACHE);
+                } else {
+                  options.cache.set(propsWithSalt, newNode);
+                }
               }
             }
+          } catch (e) {
+            console.warn(`Can't serialize key for cache ${e}`);
+            newNode = options.code(props);
           }
         } else {
           newNode = options.code(props);

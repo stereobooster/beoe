@@ -44,3 +44,10 @@ Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text
 ## Logo
 
 The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
+
+## TODO
+
+- [ ] try to implement external file strategy (with vfile)
+- [ ] reuse [svgStrategy](packages/rehype-d2/src/svgStrategy.ts) in all plugins
+- [ ] add `processMeta` to all plugins, so it would be possible to configure `class` and `strategy`
+- [ ] maybe rename strategies
