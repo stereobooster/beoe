@@ -40,16 +40,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build --cache-dir=.turbo
-
-      - name: Cache turbo build save
-        uses: actions/cache/save@v3
-        # if: always()
-        with:
-          path: .turbo
-          key: ${{ runner.os }}-turbo-${{ github.sha }}
-
       # for Mermaid
       - name: Install Playwright Browsers
         run: pnpx playwright install chromium
@@ -63,6 +53,16 @@ jobs:
 
       # for d2
       - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+
+      - name: Build
+        run: pnpm build --cache-dir=.turbo
+
+      - name: Cache turbo build save
+        uses: actions/cache/save@v3
+        # if: always()
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
 
       - name: Test
         run: pnpm test
