@@ -40,3 +40,12 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 ## TODO
 
 - [ ] documentation for options
+
+## Awaited features
+
+- [ ] [Support link in connections](https://github.com/terrastruct/d2/pull/1955)
+- [ ] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
+- [ ] [Remove embeded fonts](https://github.com/terrastruct/d2/discussions/132)
+- [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)
+- [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
+- [ ] [Class-based dark mode](https://github.com/terrastruct/d2/discussions/2225)
