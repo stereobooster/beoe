@@ -18,7 +18,7 @@ will be converted to
 
 which can look like this:
 
-<img width="" height="" src="./example.svg" alt="example of how generated diagram looks">
+<img width="74" height="255" src="./example.svg" alt="example of how generated diagram looks">
 
 ## Usage
 
