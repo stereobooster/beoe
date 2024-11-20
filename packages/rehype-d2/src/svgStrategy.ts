@@ -83,7 +83,7 @@ export function svgStrategy({
         ]
       );
     }
-    case "img-class-dark-mode": {
+    case "picture-dark-mode": {
       if (!darkSvg)
         return figure(cssClass, [image({ svg: lightSvg, width, height })]);
 
