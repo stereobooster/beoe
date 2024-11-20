@@ -39,5 +39,4 @@ It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-cod
 
 ## TODO
 
-- [ ] documentation
-- [ ] publish
+- [ ] documentation for options
