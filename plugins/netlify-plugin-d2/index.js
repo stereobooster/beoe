@@ -1,3 +1,3 @@
 export const onPreBuild = async function ({ utils: { run } }) {
-  await run.command("brew install d2");
+  await run.command("HOMEBREW_NO_AUTO_UPDATE=1 brew install d2");
 };
