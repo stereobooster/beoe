@@ -28,6 +28,10 @@ export default defineConfig({
           label: "Examples",
           autogenerate: { directory: "examples" },
         },
+        {
+          label: "Notes",
+          autogenerate: { directory: "notes" },
+        },
       ],
       customCss: ["./src/styles/custom.css"],
       components: {
