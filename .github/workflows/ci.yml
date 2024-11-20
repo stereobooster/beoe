@@ -60,5 +60,8 @@ jobs:
       #     java-version: "21"
       # - uses: ts-graphviz/setup-graphviz@v2
 
+      # for d2
+      - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
+
       - name: Test
         run: pnpm test

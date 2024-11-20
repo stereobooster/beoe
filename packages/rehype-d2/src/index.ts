@@ -32,13 +32,13 @@ export type RehypeD2Config = {
    * be carefull. It may break some diagrams
    */
   svgo?: SvgoConfig | boolean;
-  strategy?: "inline" | "img";
+  strategy?: "inline" | "img" | "img-class-dark-mode";
   d2Options?: D2Options;
 };
 
 type RenderOptions = D2Options & {
   svgo?: SvgoConfig | boolean;
-  strategy?: "inline" | "img";
+  strategy?: "inline" | "img" | "img-class-dark-mode";
 };
 
 function image({
