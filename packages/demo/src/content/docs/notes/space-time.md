@@ -2,6 +2,9 @@
 title: Space and time classification
 ---
 
+Time dimension - shows relationship in time i.e. earlier (prior to), later (afterwards)
+Spaces dimension - shows relationship in space i.e. above, under, in front, behind, etc.
+
 ## Space
 
 ### Mermaid
@@ -30,7 +33,14 @@ title: Space and time classification
 - [Gantt diagrams](https://mermaid.js.org/syntax/gantt.html)
 - [Timeline Diagram](https://mermaid.js.org/syntax/timeline.html)
 
+### Other
+
+- Flowchart (algorith) diagram, aka workflow, aka process
+- UML Activity Diagram
+
 ## Space + Time
+
+Sequence diagrams - space dimension is horizontal line, time dimension is on vertical line.
 
 ### Mermaid
 
