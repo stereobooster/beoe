@@ -6,7 +6,7 @@ title: vizdom
 
 **Interactivity**: shadow out. Try 👇 hover nodes.
 
-```vizdom dataGraph=dagre svgo=false class=shadow
+```vizdom dataGraph=dagre class=shadow
 digraph TD {
     cluster=true
     node [shape=box]

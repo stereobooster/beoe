@@ -1,5 +1,28 @@
 import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
+import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+
+function processMeta(meta?: string): Record<string, any> {
+  return meta ? parseMeta(lexMeta(meta)) : {};
+}
+
+export function metaWithDefaults<T extends Record<string, any>>(
+  defClass: string,
+  def: T,
+  meta?: string
+): { [K in keyof T as `${Lowercase<string & K>}`]: T[K] } & {
+  class: string;
+  darktheme?: string;
+} {
+  const metaOptions = processMeta(meta);
+  return {
+    ...Object.fromEntries(
+      Object.entries(def).map(([k, v]) => [k.toLowerCase(), v])
+    ),
+    ...metaOptions,
+    class: `${defClass} ${def.class || ""} ${metaOptions.class || ""}`.trim(),
+  } as any;
+}
 
 function image({
   svg,
@@ -113,7 +136,7 @@ export function svgStrategy({
 
 type SvgStrategyCb = (darkMode: boolean) => SvgStrategyCbResult;
 export function svgStrategyCb(
-  strategy: Strategy,
+  strategy: Strategy | undefined,
   cssClass: string,
   cb: SvgStrategyCb
 ) {
@@ -128,7 +151,7 @@ export function svgStrategyCb(
 
 type SvgStrategyCbAsync = (darkMode: boolean) => Promise<SvgStrategyCbResult>;
 export async function svgStrategyCbAsync(
-  strategy: Strategy,
+  strategy: Strategy | undefined,
   cssClass: string,
   cb: SvgStrategyCbAsync
 ) {
