@@ -1,11 +1,22 @@
-.gfm-color-chip {
-  width: 0.7rem;
-  height: 0.7rem;
-  margin-left: 0.3rem;
-  display: inline-block;
-  border-radius: 0.2rem;
+/* needed if you use strategy: "inline" */
+.mermaid svg {
+  line-height: 1;
 }
 
+/* needed if you use strategy: "img-class-dark-mode" */
+html[data-theme="light"] .beoe-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .beoe-light {
+  display: none;
+}
+
+/* .beoe {
+  @apply not-content;
+} */
+
+/* dark mode */
 .graphviz {
   text {
     fill: var(--sl-color-white);
@@ -20,6 +31,38 @@
   }
 }
 
+/* ants interactivity */
+.graphviz[data-graph] {
+  .edge.active path:first-child {
+    stroke-dasharray: 5 5;
+    animation-name: dash;
+    animation-duration: 1000ms;
+    stroke-dashoffset: 0;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .node {
+    cursor: default;
+  }
+
+  .node *:first-child {
+    fill: var(--sl-color-black);
+  }
+
+  .node.selected *:first-child {
+    stroke-width: 2px;
+  }
+}
+@media (prefers-reduced-motion) {
+  .graphviz[data-graph] {
+    .edge.active path:first-child {
+      animation-duration: 4000ms;
+    }
+  }
+}
+
+/* dark mode */
 .vizdom {
   :not([fill]) {
     fill: var(--sl-color-white);
@@ -40,8 +83,24 @@
   [stroke="#fff"] {
     stroke: var(--sl-color-black);
   }
+  /* this works if disable svgo option to convert everything to paths */
+  .node rect {
+    rx: 7px;
+  }
 }
 
+/* shadow interactivity */
+.vizdom[data-graph].shadow {
+  .shadow {
+    opacity: 0.4;
+  }
+
+  .node {
+    cursor: default;
+  }
+}
+
+/* ants interactivity */
 @keyframes dash {
   from {
     stroke-dashoffset: 40;
@@ -50,7 +109,7 @@
     stroke-dashoffset: 0;
   }
 }
-.vizdom[data-graph] {
+.vizdom[data-graph].ants {
   .edge.active a path:first-child {
     stroke-dasharray: 5 5;
     animation-name: dash;
@@ -60,79 +119,18 @@
     animation-timing-function: linear;
   }
 
-  .shadow {
-    opacity: 0.4;
+  .node.selected a *:first-child {
+    stroke-width: 2px;
   }
 
   .node {
     cursor: pointer;
   }
-
-  .node.selected a *:first-child {
-    stroke-width: 2px;
-  }
 }
-
 @media (prefers-reduced-motion) {
-  .vizdom[data-graph] {
+  .vizdom[data-graph].ants {
     .edge.active a path:first-child {
       animation-duration: 4000ms;
     }
   }
 }
-
-/* this works if disable svgo option to convert everything to paths */
-.vizdom {
-  .node rect {
-    rx: 7px;
-  }
-}
-
-.graphviz[data-graph] {
-  .edge.active path:first-child {
-    stroke-dasharray: 5 5;
-    animation-name: dash;
-    animation-duration: 1000ms;
-    stroke-dashoffset: 0;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-
-  .node {
-    cursor: pointer;
-  }
-
-  .node *:first-child {
-    fill: var(--sl-color-black);
-  }
-
-  .node.selected *:first-child {
-    stroke-width: 2px;
-  }
-}
-
-@media (prefers-reduced-motion) {
-  .graphviz[data-graph] {
-    .edge.active path:first-child {
-      animation-duration: 4000ms;
-    }
-  }
-}
-
-/* needed if you use strategy: "inline" */
-.mermaid svg {
-  line-height: 1;
-}
-
-/* needed if you use strategy: "img-class-dark-mode" */
-html[data-theme="light"] .beoe-dark {
-  display: none;
-}
-
-html[data-theme="dark"] .beoe-light {
-  display: none;
-}
-
-/* .beoe {
-  @apply not-content;
-} */
