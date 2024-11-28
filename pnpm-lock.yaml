@@ -290,6 +290,12 @@ importers:
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
+      hastscript:
+        specifier: ^9.0.0
+        version: 9.0.0
+      mini-svg-data-uri:
+        specifier: ^1.4.4
+        version: 1.4.4
       svgo:
         specifier: ^3.3.2
         version: 3.3.2

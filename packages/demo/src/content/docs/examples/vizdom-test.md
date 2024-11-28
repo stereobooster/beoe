@@ -7,55 +7,21 @@ draft: true
 
 ### works with dark mode
 
-```vizdom dataGraph=dagre
+```vizdom
 digraph TD {
-    cluster=true
-    node [shape=box]
-    subgraph Watcher {
-        label="watch"
-        Watch [label="FS Notifier"]
-    }
-    Watch -> TailW [label="*.rs & input.css"]
-    Watch -> Sass [label="*.sass & *.scss"]
-    Watch -> Append [label="*.css"]
-    Watch -> WASM [label="*.rs"]
-    Watch -> BIN [label="*.rs"]
-    Watch -> Mirror [label="assets/**"]
-    subgraph style {
-        label=style
-        TailW [label="Tailwind CSS"]
-        Sass
-        CSSProc [label="CSS Processor\nLightning CSS"]
-        Append [label="append"]
-    }
-    TailW -> Append
-    Sass -> Append
-    Append -> CSSProc
-    subgraph rust {
-        label=rust
-        WASM [label="Client WASM"]
-        BIN [label="Server BIN"]
-    }
-    subgraph asset {
-        label=asset
-        Mirror
-    }
-    subgraph update {
-        label=update
-        WOC [label="target/site/\nWrite-on-change FS"]
-        Live [label="Live Reload"]
-        Server
-    }
-    Mirror -> WOC [label="site/**"]
-    WASM -> WOC [label="site/pkg/app.wasm"]
-    BIN -> WOC [label="server/app"]
-    CSSProc -> WOC [label="site/pkg/app.css"]
-    Live -> Server [label="Port scan", style=dashed]
-    WOC -> Server [label="target/server/app\nsite/**"]
-    WOC -> Live [label="site/pkg/app.css,\nclient & server change"]
-    Live -> Browser [label="Reload all or\nupdate app.css"]
-    Browser;
-    Server -> Browser [style=dashed, arrowhead=none]
+  node [shape=box]
+  rankdir="LR"
+  a -> b -> c -> d -> e -> f -> g
+}
+```
+
+### `strategy=img`
+
+```vizdom strategy=img
+digraph TD {
+  node [shape=box]
+  rankdir="LR"
+  a -> b -> c -> d -> e -> f -> g
 }
 ```
 
