@@ -3,10 +3,11 @@ import type { Root } from "hast";
 import { processGraphvizSvg } from "./graphviz.js";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
-import { lex as lexMeta, parse as parseMeta } from "@beoe/fenceparser";
+import parse from "@beoe/fenceparser";
 
-const processMeta = (meta?: string): Record<string, any> =>
-  meta ? parseMeta(lexMeta(meta)) : {};
+function processMeta(meta?: string): Record<string, any> {
+  return meta ? parse(meta, { lowerCase: false }) : {};
+}
 
 // it is possible to add other formats, like Graphology etc.
 type GraphFormat = "dagre" | "graphology";
@@ -137,7 +138,9 @@ export const rehypeGraphviz: Plugin<[RehypeGraphvizConfig?], Root> = (
         metaOptions.datagraph !== undefined
           ? metaOptions.datagraph
           : options.dataGraph;
-      const cssClass = `${options.class || ""} ${metaOptions.class || ""}`.trim();
+      const cssClass = `${options.class || ""} ${
+        metaOptions.class || ""
+      }`.trim();
       const svgo =
         metaOptions.svgo !== undefined ? metaOptions.svgo : options.svgo;
 

@@ -46,7 +46,7 @@ export const rehypeD2: Plugin<[RehypeD2Config?], Root> = (options = {}) => {
         if (darkMode) {
           const res = await render(code, {
             ...opts,
-            theme: opts.darktheme ?? defaults.d2Options?.darkTheme ?? "200",
+            theme: opts.darkTheme ?? defaults.d2Options?.darkTheme ?? "200",
           });
           darkSvg = res.svg;
         }

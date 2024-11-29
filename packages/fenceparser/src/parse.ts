@@ -47,7 +47,9 @@ const HIGHLIGHT = 'highlight'
 export const isQuotedString = (s: string | number): s is string =>
   typeof s === 'string' && /^(['"]).*\1$/.test(s)
 
-export const parse = (input: ReturnType<typeof lex>): OBJECT => {
+export type ParseOptions = { lowerCase?: boolean }
+
+export const parse = (input: ReturnType<typeof lex>, opts: ParseOptions = {}): OBJECT => {
   let current = 0
   const output = new Map<IDENTIFIER, VALUE>()
 
@@ -144,7 +146,8 @@ export const parse = (input: ReturnType<typeof lex>): OBJECT => {
   function walk() {
     while (!ending()) {
       const [key, value] = peek() === '{' ? highlight() : assignment()
-      output.set(String(key).toLowerCase(), value)
+      output.set(
+        opts.lowerCase === false ? String(key) : String(key).toLowerCase(), value)
     }
 
     return output

@@ -1,29 +1,23 @@
 import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { lex as lexMeta, parse as parseMeta } from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
+import parse from "@beoe/fenceparser";
 
 function processMeta(meta?: string): Record<string, any> {
-  return meta ? parseMeta(lexMeta(meta)) : {};
+  return meta ? parse(meta, { lowerCase: false }) : {};
 }
-
-export type LowercaseRec<T extends Record<string, any>> = {
-  [K in keyof T as `${Lowercase<string & K>}`]: T[K];
-};
 
 export function metaWithDefaults<T extends Record<string, any>>(
   defClass: string,
   def: T,
   meta?: string
-): { [K in keyof T as `${Lowercase<string & K>}`]: T[K] } & {
+): T & {
   class: string;
-  darktheme?: string;
+  darkTheme?: string;
 } {
   const metaOptions = processMeta(meta);
   return {
-    ...Object.fromEntries(
-      Object.entries(def).map(([k, v]) => [k.toLowerCase(), v])
-    ),
+    ...def,
     ...metaOptions,
     class: `${defClass} ${def.class || ""} ${metaOptions.class || ""}`.trim(),
   } as any;

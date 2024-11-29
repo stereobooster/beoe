@@ -20,3 +20,12 @@ describe(`${n} tests with ordering permutations`, () => {
     })
   }
 })
+
+describe('lowerCase', () => {
+  it('lower-cases options by default', () => {
+    expect(parse('Test=Test')).toEqual({test: "Test"})
+  })
+  it('lower-cases options by default', () => {
+    expect(parse('Test=Test', {lowerCase: false})).toEqual({Test: "Test"})
+  })
+})

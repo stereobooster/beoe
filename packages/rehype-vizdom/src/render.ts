@@ -1,5 +1,5 @@
 import { optimize, type Config as SvgoConfig } from "svgo";
-import { LowercaseRec, Strategy } from "./svgStrategy.js";
+import { Strategy } from "./svgStrategy.js";
 import { DotParser } from "@vizdom/vizdom-ts-node";
 
 // it is possible to add other formats, like Graphology etc.
@@ -40,7 +40,7 @@ export type RenderOptions = {
   strategy?: Strategy;
 };
 
-export const render = async (code: string, options: LowercaseRec<RenderOptions>) => {
+export const render = async (code: string, options: RenderOptions) => {
   const parser = new DotParser();
   const dotGraph = parser.parse(code);
   const directedGraph = dotGraph.to_directed();
@@ -48,9 +48,9 @@ export const render = async (code: string, options: LowercaseRec<RenderOptions>)
   let svg = await positioned.to_svg().to_string();
 
   let graph;
-  if (options.datagraph) {
+  if (options.dataGraph) {
     const obj = positioned.to_json().to_obj();
-    if (options.datagraph === "graphology") {
+    if (options.dataGraph === "graphology") {
       graph = {
         attributes: { name: "g" },
         options: { allowSelfLoops: true, multi: true, type: "directed" },
@@ -77,7 +77,7 @@ export const render = async (code: string, options: LowercaseRec<RenderOptions>)
       };
     }
 
-    if (options.datagraph === "dagre") {
+    if (options.dataGraph === "dagre") {
       graph = {
         options: {
           directed: true,
@@ -100,7 +100,7 @@ export const render = async (code: string, options: LowercaseRec<RenderOptions>)
 
   if (options.svgo !== false) {
     // @ts-expect-error
-    svgoConfig.plugins[0].params.overrides.cleanupIds = !options.datagraph;
+    svgoConfig.plugins[0].params.overrides.cleanupIds = !options.dataGraph;
     svg = optimize(
       svg,
       options.svgo === undefined || options.svgo === true
