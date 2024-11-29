@@ -1,6 +1,6 @@
 import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+import { lex as lexMeta, parse as parseMeta } from "@beoe/fenceparser";
 
 function processMeta(meta?: string): Record<string, any> {
   return meta ? parseMeta(lexMeta(meta)) : {};

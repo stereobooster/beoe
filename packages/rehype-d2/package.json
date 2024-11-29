@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@beoe/rehype-code-hook": "workspace:*",
-    "fenceparser": "^2.2.0",
+    "@beoe/fenceparser":  "workspace:*",
     "hastscript": "^9.0.0",
     "mini-svg-data-uri": "^1.4.4",
     "d2": "^0.0.2",

@@ -75,6 +75,8 @@ importers:
         specifier: ^0.2.3
         version: 0.2.3(vite@5.4.8(@types/node@22.7.7))
 
+  packages/fenceparser: {}
+
   packages/pan-zoom:
     devDependencies:
       mathjs:
@@ -109,17 +111,48 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
 
+  packages/rehype-code-hook-img:
+    dependencies:
+      '@beoe/fenceparser':
+        specifier: workspace:*
+        version: link:../fenceparser
+      '@beoe/rehype-code-hook':
+        specifier: workspace:*
+        version: link:../rehype-code-hook
+      hast-util-from-html-isomorphic:
+        specifier: ^2.0.0
+        version: 2.0.0
+      hastscript:
+        specifier: ^9.0.0
+        version: 9.0.0
+      mini-svg-data-uri:
+        specifier: ^1.4.4
+        version: 1.4.4
+      svgo:
+        specifier: ^3.3.2
+        version: 3.3.2
+    devDependencies:
+      rehype-stringify:
+        specifier: ^10.0.0
+        version: 10.0.1
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      remark-rehype:
+        specifier: ^11.1.0
+        version: 11.1.1
+
   packages/rehype-d2:
     dependencies:
+      '@beoe/fenceparser':
+        specifier: workspace:*
+        version: link:../fenceparser
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       d2:
         specifier: ^0.0.2
         version: 0.0.2
-      fenceparser:
-        specifier: ^2.2.0
-        version: 2.2.0
       hastscript:
         specifier: ^9.0.0
         version: 9.0.0
@@ -176,15 +209,15 @@ importers:
 
   packages/rehype-graphviz:
     dependencies:
+      '@beoe/fenceparser':
+        specifier: workspace:*
+        version: link:../fenceparser
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       '@hpcc-js/wasm':
         specifier: ^2.16.1
         version: 2.16.1
-      fenceparser:
-        specifier: ^2.2.0
-        version: 2.2.0
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
@@ -278,15 +311,15 @@ importers:
 
   packages/rehype-vizdom:
     dependencies:
+      '@beoe/fenceparser':
+        specifier: workspace:*
+        version: link:../fenceparser
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
       '@vizdom/vizdom-ts-node':
         specifier: ^0.1.17
         version: 0.1.17
-      fenceparser:
-        specifier: ^2.2.0
-        version: 2.2.0
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1820,9 +1853,6 @@ packages:
 
   fastq@1.17.1:
     resolution: {integrity: sha512-sRVD3lWVIXWg6By68ZN7vho9a1pQcN/WBFaAAsDDFzlJjvoGx0P8z7V1t72grFJfJhu3YPZBuu25f7Kaw2jN1w==}
-
-  fenceparser@2.2.0:
-    resolution: {integrity: sha512-fdXOPciCALTWvooKxyRUmYERiw1L1mzqVsfpk5F9kGr3NoT/Sdwew4BqGctY6xZpUXiZ7dXXPb27Om2nmUmHMg==}
 
   file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
@@ -5167,8 +5197,6 @@ snapshots:
   fastq@1.17.1:
     dependencies:
       reusify: 1.0.4
-
-  fenceparser@2.2.0: {}
 
   file-uri-to-path@1.0.0: {}
 

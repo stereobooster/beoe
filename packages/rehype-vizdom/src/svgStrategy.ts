@@ -1,6 +1,6 @@
 import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
-import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+import { lex as lexMeta, parse as parseMeta } from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 
 function processMeta(meta?: string): Record<string, any> {

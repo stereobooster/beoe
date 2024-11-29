@@ -1,0 +1,34 @@
+{
+  "name": "@beoe/fenceparser",
+  "version": "2.2.0",
+  "description": "A well-tested parser for parsing metadata out of fenced code blocks in Markdown",
+  "keywords": [
+    "markdown"
+  ],
+  "license": "MIT",
+  "author": "Frenco <hey@frenco.dev>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
+    "directory": "packages/fenceparser"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "exit 0",
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  }
+}

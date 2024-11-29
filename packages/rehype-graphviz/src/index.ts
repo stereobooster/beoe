@@ -3,7 +3,7 @@ import type { Root } from "hast";
 import { processGraphvizSvg } from "./graphviz.js";
 import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
-import { lex as lexMeta, parse as parseMeta } from "fenceparser";
+import { lex as lexMeta, parse as parseMeta } from "@beoe/fenceparser";
 
 const processMeta = (meta?: string): Record<string, any> =>
   meta ? parseMeta(lexMeta(meta)) : {};
