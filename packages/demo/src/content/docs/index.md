@@ -48,7 +48,7 @@ title: Diagram All The Things
     - class based. Two images with two classes and only one shown at a time depending on the theme
     - `prefers-color-scheme`: `picture` + `source media="(prefers-color-scheme: dark)` + `img`
   - no DOM footprint
-  - lighter HTML compared to previous strategy
+  - lighter weight of HTML compared to previous strategy
 - **cons**
   - no interactivity
   - some tools don't support dark theme out of the box (`graphviz`, `vizdom`, `gnuplot`)

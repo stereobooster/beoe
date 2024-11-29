@@ -32,6 +32,10 @@ digraph finite_state_machine {
 
 ## With interactivity
 
+:::caution
+This has bugs. Try to select 6 and 7
+:::
+
 ```dot dataGraph=dagre
 digraph finite_state_machine {
     bgcolor="transparent";

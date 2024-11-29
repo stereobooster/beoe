@@ -27,7 +27,12 @@ export const rehypeVizdom: Plugin<[RehypeVizdomConfig?], Root> = (
       const opts = metaWithDefaults(language, defaults, meta);
 
       return svgStrategyCbAsync(opts.strategy, opts.class, async () => {
-        const { svg: lightSvg, width, height, graph } = await render(code, opts);
+        const {
+          svg: lightSvg,
+          width,
+          height,
+          graph,
+        } = await render(code, opts);
         return { lightSvg, width, height, graph };
       });
     },

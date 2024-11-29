@@ -192,3 +192,5 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+
+packages/rehype-code-hook-img

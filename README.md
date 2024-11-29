@@ -48,6 +48,7 @@ The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First S
 ## TODO
 
 - rehype-code-hook-img maybe
+  - [ ] https://github.com/frencojobs/fenceparser fork without downcasing
   - [ ] reuse [svgStrategy](packages/rehype-d2/src/svgStrategy.ts) in all plugins
   - [ ] add `processMeta` to all plugins, so it would be possible to configure `class` and `strategy`
   - [ ] try to implement external file strategy (with vfile)
