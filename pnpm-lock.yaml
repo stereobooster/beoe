@@ -119,6 +119,9 @@ importers:
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
+      '@types/hast':
+        specifier: ^3.0.4
+        version: 3.0.4
       hast-util-from-html-isomorphic:
         specifier: ^2.0.0
         version: 2.0.0
@@ -131,6 +134,9 @@ importers:
       svgo:
         specifier: ^3.3.2
         version: 3.3.2
+      unified:
+        specifier: ^11.0.4
+        version: 11.0.5
     devDependencies:
       rehype-stringify:
         specifier: ^10.0.0
