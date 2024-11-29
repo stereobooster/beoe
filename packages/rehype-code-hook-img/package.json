@@ -1,0 +1,46 @@
+{
+  "name": "@beoe/rehype-code-hook-img",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "rehype plugin for code fences",
+  "keywords": [
+    "rehype"
+  ],
+  "author": "stereobooster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
+    "directory": "packages/rehype-code-hook-img"
+  },
+  "sideEffects": false,
+  "exports": {
+    "types": "./dist/index.d.js",
+    "default": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "vitest",
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@beoe/rehype-code-hook": "workspace:*",
+    "@beoe/fenceparser": "workspace:*",
+    "hast-util-from-html-isomorphic": "^2.0.0",
+    "svgo": "^3.3.2",
+    "hastscript": "^9.0.0",
+    "mini-svg-data-uri": "^1.4.4"
+  },
+  "devDependencies": {
+    "rehype-stringify": "^10.0.0",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.0"
+  }
+}
