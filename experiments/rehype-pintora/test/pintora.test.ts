@@ -10,7 +10,7 @@ title: Activity Diagram Simple Action
 it.skip("renders SVG", async () => {
   const result = await pintoraSvg(diagram);
 
-  expect(result).toMatchFileSnapshot("./fixtures/a.out.svg");
+  await expect(result).toMatchFileSnapshot("./fixtures/a.out.svg");
 });
 
 it.skip("removes width and height", async () => {

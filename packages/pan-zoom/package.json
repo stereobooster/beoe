@@ -44,7 +44,6 @@
     "tsc": "tsc"
   },
   "devDependencies": {
-    "mathjs": "^12.4.0"
-  },
-  "dependencies": {}
+    "mathjs": "^14.0.0"
+  }
 }

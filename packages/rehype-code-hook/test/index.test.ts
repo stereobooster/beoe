@@ -19,7 +19,7 @@ it("does nothing if code returns undefined", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a1.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a1.out.html");
 });
 
 it("supports html strings", async () => {
@@ -32,7 +32,7 @@ it("supports html strings", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
 });
 
 it("supports hast", async () => {
@@ -50,7 +50,7 @@ it("supports hast", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a3.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a3.out.html");
 });
 
 it("supports promises with undefined", async () => {
@@ -63,7 +63,7 @@ it("supports promises with undefined", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a1.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a1.out.html");
 });
 
 it("supports promises with html string", async () => {
@@ -76,7 +76,7 @@ it("supports promises with html string", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a2.out.html");
 });
 
 it("supports promises with hast", async () => {
@@ -95,7 +95,7 @@ it("supports promises with hast", async () => {
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 
-  expect(file.toString()).toMatchFileSnapshot("./fixtures/a3.out.html");
+  await expect(file.toString()).toMatchFileSnapshot("./fixtures/a3.out.html");
 });
 
 it("passes props to callback for code-block", async () => {

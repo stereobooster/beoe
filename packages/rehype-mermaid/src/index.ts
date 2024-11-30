@@ -36,9 +36,9 @@ async function render(
   code: string,
   options: RehypeMermaidConfig & BaseOptions
 ) {
-  const { css, mermaidConfig, prefix, browser, launchOptions, darkMode } =
+  const { css, mermaidConfig, prefix, browserType, launchOptions, darkMode } =
     options;
-  const createOptions = { browser, launchOptions };
+  const createOptions = { browserType, launchOptions };
   const renerOptions = { css, mermaidConfig: mermaidConfig || {}, prefix };
 
   if (!renderDiagrams) renderDiagrams = createMermaidRenderer(createOptions);

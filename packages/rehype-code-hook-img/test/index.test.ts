@@ -20,7 +20,9 @@ async function example({ input, output, testHook, options }: Example) {
       await fs.readFile(new URL(`./fixtures/${input}.md`, import.meta.url))
     );
 
-  expect(file.toString()).toMatchFileSnapshot(`./fixtures/${output}.out.html`);
+  await expect(file.toString()).toMatchFileSnapshot(
+    `./fixtures/${output}.out.html`
+  );
 }
 
 const testHook = rehypeCodeHookImg({

@@ -7,21 +7,24 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "pnpm dlx playwright install chromium"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.28.3",
+    "@astrojs/starlight": "^0.29.2",
     "@beoe/cache": "workspace:*",
     "@beoe/pan-zoom": "workspace:*",
     "@beoe/rehype-d2": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-graphviz": "workspace:*",
+    "@beoe/rehype-mermaid": "workspace:*",
     "@beoe/rehype-vizdom": "workspace:*",
     "@dagrejs/graphlib": "^2.2.4",
-    "astro": "4.16.2",
+    "astro": "4.16.16",
+    "playwright": "^1.49.0",
     "sharp": "^0.33.5",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.2",
     "vite-plugin-qrcode": "^0.2.3"
   }
 }
