@@ -1,0 +1,3 @@
+```test strategy=img
+test
+```
