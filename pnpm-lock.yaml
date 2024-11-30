@@ -203,21 +203,15 @@ importers:
 
   packages/rehype-graphviz:
     dependencies:
-      '@beoe/fenceparser':
-        specifier: workspace:*
-        version: link:../fenceparser
       '@beoe/rehype-code-hook':
         specifier: workspace:*
         version: link:../rehype-code-hook
+      '@beoe/rehype-code-hook-img':
+        specifier: workspace:*
+        version: link:../rehype-code-hook-img
       '@hpcc-js/wasm':
         specifier: ^2.16.1
         version: 2.16.1
-      hast-util-from-html-isomorphic:
-        specifier: ^2.0.0
-        version: 2.0.0
-      svgo:
-        specifier: ^3.2.0
-        version: 3.2.0
     devDependencies:
       '@types/hast':
         specifier: ^3.0.4
@@ -265,21 +259,12 @@ importers:
 
   packages/rehype-plantuml:
     dependencies:
-      '@beoe/rehype-code-hook':
+      '@beoe/rehype-code-hook-img':
         specifier: workspace:*
-        version: link:../rehype-code-hook
-      hastscript:
-        specifier: ^9.0.0
-        version: 9.0.0
-      mini-svg-data-uri:
-        specifier: ^1.4.4
-        version: 1.4.4
+        version: link:../rehype-code-hook-img
       plantuml:
         specifier: ^0.0.2
         version: 0.0.2
-      svgo:
-        specifier: ^3.2.0
-        version: 3.2.0
     devDependencies:
       '@types/hast':
         specifier: ^3.0.4
@@ -3050,11 +3035,6 @@ packages:
   supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
-
-  svgo@3.2.0:
-    resolution: {integrity: sha512-4PP6CMW/V7l/GmKRKzsLR8xxjdHTV4IMvhTnpuHwwBazSIlw5W/5SmPjN8Dwyt7lKbSJrRDgp4t9ph0HgChFBQ==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
 
   svgo@3.3.2:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
@@ -7014,16 +6994,6 @@ snapshots:
   supports-color@5.5.0:
     dependencies:
       has-flag: 3.0.0
-
-  svgo@3.2.0:
-    dependencies:
-      '@trysound/sax': 0.2.0
-      commander: 7.2.0
-      css-select: 5.1.0
-      css-tree: 2.3.1
-      css-what: 6.1.0
-      csso: 5.0.5
-      picocolors: 1.0.0
 
   svgo@3.3.2:
     dependencies:

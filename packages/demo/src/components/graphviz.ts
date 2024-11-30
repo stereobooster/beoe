@@ -4,8 +4,8 @@ type D = { [node: string]: Path };
 
 // interactivity for graphviz diagrams
 document.querySelectorAll(".graphviz").forEach((container) => {
-  const data = container.getAttribute("data-graph")
-    ? JSON.parse(container.getAttribute("data-graph")!)
+  const data = container.getAttribute("data-beoe")
+    ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
 
   if (!data) return;
