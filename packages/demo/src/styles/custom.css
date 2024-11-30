@@ -32,7 +32,7 @@ html[data-theme="dark"] .beoe-light {
 }
 
 /* ants interactivity */
-.graphviz[data-graph] {
+.graphviz[data-beoe] {
   .edge.active path:first-child {
     stroke-dasharray: 5 5;
     animation-name: dash;
@@ -55,7 +55,7 @@ html[data-theme="dark"] .beoe-light {
   }
 }
 @media (prefers-reduced-motion) {
-  .graphviz[data-graph] {
+  .graphviz[data-beoe] {
     .edge.active path:first-child {
       animation-duration: 4000ms;
     }
@@ -90,7 +90,7 @@ html[data-theme="dark"] .beoe-light {
 }
 
 /* shadow interactivity */
-.vizdom[data-graph].shadow {
+.vizdom[data-beoe].shadow {
   .shadow {
     opacity: 0.4;
   }
@@ -109,7 +109,7 @@ html[data-theme="dark"] .beoe-light {
     stroke-dashoffset: 0;
   }
 }
-.vizdom[data-graph].ants {
+.vizdom[data-beoe].ants {
   .edge.active a path:first-child {
     stroke-dasharray: 5 5;
     animation-name: dash;
@@ -128,7 +128,7 @@ html[data-theme="dark"] .beoe-light {
   }
 }
 @media (prefers-reduced-motion) {
-  .vizdom[data-graph].ants {
+  .vizdom[data-beoe].ants {
     .edge.active a path:first-child {
       animation-duration: 4000ms;
     }

@@ -1,8 +1,10 @@
-import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
+import { rehypeCodeHook } from "@beoe/rehype-code-hook";
 import { metaWithDefaults, svgStrategy } from "./utils.js";
-import { Cb, CbInput } from "./types.js";
+import { BasePluginOptions, BaseOptions, Cb, CbInput } from "./types.js";
 import type { Plugin } from "unified";
 import type { Root } from "hast";
+
+export type { BaseOptions, BasePluginOptions };
 
 export type RehypeCodeHookImgOptions<T extends CbInput> = {
   render: Cb<T>;
@@ -17,7 +19,7 @@ export const rehypeCodeHookImg = <T extends CbInput>(
 ) => {
   const { render, language } = options;
 
-  const hook: Plugin<[(T & { cache?: MapLike })?], Root> = (
+  const hook: Plugin<[(T & BasePluginOptions)?], Root> = (
     { cache, ...defaults } = {} as T
   ) => {
     // @ts-expect-error
@@ -25,8 +27,15 @@ export const rehypeCodeHookImg = <T extends CbInput>(
       salt: defaults,
       language,
       code: ({ code, meta }) => {
-        const opts = metaWithDefaults(language, defaults as any as T, meta);
-        const result = render(code, opts);
+        const opts = metaWithDefaults(
+          language,
+          defaults as any as T & BasePluginOptions,
+          meta
+        );
+        const darkMode =
+          opts.strategy === "img-class-dark-mode" ||
+          opts.strategy === "picture-dark-mode";
+        const result = render(code, { ...opts, darkMode });
         return "then" in result
           ? result.then((x) => svgStrategy(opts, x))
           : svgStrategy(opts, result);

@@ -150,24 +150,12 @@ importers:
 
   packages/rehype-d2:
     dependencies:
-      '@beoe/fenceparser':
+      '@beoe/rehype-code-hook-img':
         specifier: workspace:*
-        version: link:../fenceparser
-      '@beoe/rehype-code-hook':
-        specifier: workspace:*
-        version: link:../rehype-code-hook
+        version: link:../rehype-code-hook-img
       d2:
         specifier: ^0.0.2
         version: 0.0.2
-      hastscript:
-        specifier: ^9.0.0
-        version: 9.0.0
-      mini-svg-data-uri:
-        specifier: ^1.4.4
-        version: 1.4.4
-      svgo:
-        specifier: ^3.2.0
-        version: 3.3.2
     devDependencies:
       '@types/hast':
         specifier: ^3.0.4
@@ -317,27 +305,12 @@ importers:
 
   packages/rehype-vizdom:
     dependencies:
-      '@beoe/fenceparser':
+      '@beoe/rehype-code-hook-img':
         specifier: workspace:*
-        version: link:../fenceparser
-      '@beoe/rehype-code-hook':
-        specifier: workspace:*
-        version: link:../rehype-code-hook
+        version: link:../rehype-code-hook-img
       '@vizdom/vizdom-ts-node':
         specifier: ^0.1.17
         version: 0.1.17
-      hast-util-from-html-isomorphic:
-        specifier: ^2.0.0
-        version: 2.0.0
-      hastscript:
-        specifier: ^9.0.0
-        version: 9.0.0
-      mini-svg-data-uri:
-        specifier: ^1.4.4
-        version: 1.4.4
-      svgo:
-        specifier: ^3.3.2
-        version: 3.3.2
     devDependencies:
       '@types/hast':
         specifier: ^3.0.4

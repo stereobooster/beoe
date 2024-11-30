@@ -4,8 +4,8 @@ type D = { [node: string]: Path };
 
 // interactivity for vizdom diagrams
 document.querySelectorAll(".vizdom.ants").forEach((container) => {
-  const data = container.getAttribute("data-graph")
-    ? JSON.parse(container.getAttribute("data-graph")!)
+  const data = container.getAttribute("data-beoe")
+    ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
 
   if (!data) return;
@@ -130,8 +130,8 @@ document.querySelectorAll(".vizdom.ants").forEach((container) => {
 
 // interactivity for vizdom diagrams
 document.querySelectorAll(".vizdom.shadow").forEach((container) => {
-  const data = container.getAttribute("data-graph")
-    ? JSON.parse(container.getAttribute("data-graph")!)
+  const data = container.getAttribute("data-beoe")
+    ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
 
   if (!data) return;

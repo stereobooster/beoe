@@ -2,7 +2,7 @@ import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import parse from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
-import { CbInputBase, Result } from "./types.js";
+import { BasePluginOptions, Result } from "./types.js";
 import { optimize, type Config as SvgoConfig } from "svgo";
 
 const svgoConfig: SvgoConfig = {
@@ -36,11 +36,9 @@ function processMeta(meta?: string): Record<string, any> {
   return meta ? parse(meta, { lowerCase: false }) : {};
 }
 
-export function metaWithDefaults<T extends Record<string, any> & CbInputBase>(
-  defClass: string,
-  def: T,
-  meta?: string
-): T {
+export function metaWithDefaults<
+  T extends Record<string, any> & BasePluginOptions
+>(defClass: string, def: T, meta?: string): T {
   const metaOptions = processMeta(meta);
   return {
     ...def,
@@ -78,10 +76,12 @@ function figure(className: string | undefined, children: any[]) {
 }
 
 export function svgStrategy(
-  { class: className, strategy, svgo }: CbInputBase,
+  { class: className, strategy, svgo }: BasePluginOptions,
   { svg, data, darkSvg, width, height }: Result
 ) {
   if (svgo !== false) {
+    // @ts-expect-error
+    svgoConfig.plugins[0].params.overrides.cleanupIds = !data;
     svg = optimize(
       svg,
       svgo === undefined || svgo === true ? svgoConfig : svgo
@@ -92,6 +92,17 @@ export function svgStrategy(
         svgo === undefined || svgo === true ? svgoConfig : svgo
       ).data;
     }
+  }
+
+  if (width === undefined || height === undefined) {
+    const widthMatch = svg.match(/width="(\d+[^"]+)"\s+/);
+    width = widthMatch ? widthMatch[1] : undefined;
+
+    const heightMatch = svg.match(/height="(\d+[^"]+)"\s+/);
+    height = heightMatch ? heightMatch[1] : undefined;
+
+    svg = svg.replace(/width="\d+[^"]+"\s+/, "");
+    svg = svg.replace(/height="\d+[^"]+"\s+/, "");
   }
 
   switch (strategy) {

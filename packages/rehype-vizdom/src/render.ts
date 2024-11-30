@@ -1,57 +1,26 @@
-import { optimize, type Config as SvgoConfig } from "svgo";
-import { Strategy } from "./svgStrategy.js";
 import { DotParser } from "@vizdom/vizdom-ts-node";
 
-// it is possible to add other formats, like Graphology etc.
-export type GraphFormat = "dagre" | "graphology";
+/**
+ * it is possible to add other formats
+ */
+export type DataFormat = "dagre" | "graphology";
 
-const svgoConfig: SvgoConfig = {
-  plugins: [
-    {
-      name: "preset-default",
-      params: {
-        overrides: {
-          // we need viewBox because width and height are removed
-          removeViewBox: false,
-          // we need ids for client-side interactivity
-          cleanupIds: false,
-          // this allows to style rects
-          // convertShapeToPath: false,
-        },
-      },
-    },
-    // @ts-ignore
-    {
-      name: "removeAttrs",
-      params: {
-        attrs: ".*;(title|xlink:title)",
-        elemSeparator: ";",
-        preserveCurrentColor: false,
-      },
-    },
-  ],
+export type RehypeVizdomConfig = {
+  dataGraph: DataFormat
 };
 
-export type RenderOptions = {
-  class?: string;
-  svgo?: SvgoConfig | boolean;
-  // adds data-graph to each figure with JSON representation of graph
-  dataGraph?: GraphFormat;
-  strategy?: Strategy;
-};
-
-export const render = async (code: string, options: RenderOptions) => {
+export const render = async (code: string, options: RehypeVizdomConfig) => {
   const parser = new DotParser();
   const dotGraph = parser.parse(code);
   const directedGraph = dotGraph.to_directed();
   const positioned = directedGraph.layout();
-  let svg = await positioned.to_svg().to_string();
+  const svg = await positioned.to_svg().to_string();
 
-  let graph;
+  let data;
   if (options.dataGraph) {
     const obj = positioned.to_json().to_obj();
     if (options.dataGraph === "graphology") {
-      graph = {
+      data = {
         attributes: { name: "g" },
         options: { allowSelfLoops: true, multi: true, type: "directed" },
         nodes: obj.nodes.map((node) => ({
@@ -78,7 +47,7 @@ export const render = async (code: string, options: RenderOptions) => {
     }
 
     if (options.dataGraph === "dagre") {
-      graph = {
+      data = {
         options: {
           directed: true,
           multigraph: true,
@@ -98,24 +67,5 @@ export const render = async (code: string, options: RenderOptions) => {
     }
   }
 
-  if (options.svgo !== false) {
-    // @ts-expect-error
-    svgoConfig.plugins[0].params.overrides.cleanupIds = !options.dataGraph;
-    svg = optimize(
-      svg,
-      options.svgo === undefined || options.svgo === true
-        ? svgoConfig
-        : options.svgo
-    ).data;
-  }
-
-  const widthMatch = svg.match(/width="(\d+[^"]+)"\s+/);
-  const width = widthMatch ? widthMatch[1] : undefined;
-
-  const heightMatch = svg.match(/height="(\d+[^"]+)"\s+/);
-  const height = heightMatch ? heightMatch[1] : undefined;
-
-  svg = svg.replace(/width="\d+[^"]+"\s+/, "");
-  svg = svg.replace(/height="\d+[^"]+"\s+/, "");
-  return { svg, width, height, graph };
+  return { svg, data };
 };

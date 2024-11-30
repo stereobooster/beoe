@@ -1,59 +1,28 @@
+// @ts-expect-error The inferred type of '...' cannot be named without a reference to
 import type { Plugin } from "unified";
+// @ts-expect-error The inferred type of '...' cannot be named without a reference to
 import type { Root } from "hast";
-import { rehypeCodeHook, type MapLike } from "@beoe/rehype-code-hook";
-import { D2Options } from "./d2.js";
-// SVGO is an experiment. I'm not sure it can compress a lot, plus it can break some diagrams
-import { type Config as SvgoConfig } from "svgo";
-import {
-  Strategy,
-  svgStrategyCbAsync,
-  metaWithDefaults,
-} from "./svgStrategy.js";
-import { render } from "./render.js";
+import { rehypeCodeHookImg } from "@beoe/rehype-code-hook-img";
+import { D2Options, d2 } from "./d2.js";
 
 export type RehypeD2Config = {
-  cache?: MapLike;
-  class?: string;
-  /**
-   * be carefull. It may break some diagrams
-   */
-  svgo?: SvgoConfig | boolean;
-  strategy?: Strategy;
   d2Options?: D2Options;
 };
 
-export const rehypeD2: Plugin<[RehypeD2Config?], Root> = (options = {}) => {
-  const { svgo, strategy, d2Options, ...rest } = options;
-  const defaults = {
-    svgo,
-    strategy,
-    d2Options,
-  };
-  const salt = defaults;
-  const language = "d2";
-
-  // @ts-expect-error
-  return rehypeCodeHook({
-    ...rest,
-    salt,
-    language,
-    code: async ({ code, meta }) => {
-      const opts = metaWithDefaults(language, defaults, meta);
-
-      return svgStrategyCbAsync(opts.strategy, opts.class, async (darkMode) => {
-        let darkSvg: string | undefined;
-        const { svg: lightSvg, width, height } = await render(code, opts);
-        if (darkMode) {
-          const res = await render(code, {
-            ...opts,
-            theme: opts.darkTheme ?? defaults.d2Options?.darkTheme ?? "200",
-          });
-          darkSvg = res.svg;
-        }
-        return { lightSvg, width, height, darkSvg };
-      });
-    },
-  });
-};
+export const rehypeD2 = rehypeCodeHookImg<RehypeD2Config>({
+  language: "d2",
+  render: async (code: string, opts) => {
+    const { darkMode, d2Options, ...rest } = opts;
+    const newD2Options = { ...d2Options, ...rest };
+    const svg = await d2(code, newD2Options);
+    const darkSvg = darkMode
+      ? await d2(code, {
+          ...d2Options,
+          theme: newD2Options?.darkTheme ?? "200",
+        })
+      : undefined;
+    return { svg, darkSvg };
+  },
+});
 
 export default rehypeD2;

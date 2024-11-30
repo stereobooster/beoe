@@ -1,3 +1,4 @@
+import { MapLike } from "@beoe/rehype-code-hook";
 import { type Config as SvgoConfig } from "svgo";
 
 export type jsonifiable =
@@ -30,17 +31,16 @@ export type Result = {
   data?: jsonifiable;
 };
 
-export type CbInputBase = {
+export type BaseOptions = {
+  darkMode?: boolean;
+};
+
+export type BasePluginOptions = {
   class?: string;
   svgo?: SvgoConfig | boolean;
   strategy?: Strategy;
-  format?: DataFormat;
+  cache?: MapLike;
 };
-
-/**
- * it is possible to add other formats
- */
-export type DataFormat = "dagre" | "graphology";
 
 /**
  * maybe rename img to data-uri
@@ -65,6 +65,9 @@ export type Strategy =
 
 export type CbResult = Result | Promise<Result>;
 
-export type CbInput = Record<string, any> & CbInputBase;
+export type CbInput = Record<string, any>;
 
-export type Cb<T extends CbInput> = (codes: string, opt: T) => CbResult;
+export type Cb<T extends CbInput> = (
+  codes: string,
+  opt: T & BaseOptions
+) => CbResult;
