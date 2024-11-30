@@ -1,22 +1,33 @@
 ---
 title: mermaid
-draft: true
 ---
 
 ## rehype-mermaid
 
+### flow chart
+
 ```mermaid
-graph LR
-    accTitle: Big Decisions
-    accDescr: Bob's Burgers process for making big decisions
-    A[Identify Big Decision] --> B{Make Big Decision}
-    B --> D[Be done]
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+    one --> two
+    three --> two
+    two --> c2
 ```
 
-```mermaid strategy=inline class=not-content
-graph LR
-    accTitle: Big Decisions
-    accDescr: Bob's Burgers process for making big decisions
-    A[Identify Big Decision] --> B{Make Big Decision}
-    B --> D[Be done]
+### sequence diagram
+
+```mermaid
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
 ```

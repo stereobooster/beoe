@@ -6,12 +6,19 @@ draft: true
 ## rehype-mermaid
 
 ```mermaid
----
-title: Node with text
-acc_title: Accessible node text
----
-flowchart LR
-    id1[This is the text in the box]
+graph LR
+    accTitle: Big Decisions
+    accDescr: Bob's Burgers process for making big decisions
+    A[Identify Big Decision] --> B{Make Big Decision}
+    B --> D[Be done]
+```
+
+```mermaid strategy=inline class=not-content
+graph LR
+    accTitle: Big Decisions
+    accDescr: Bob's Burgers process for making big decisions
+    A[Identify Big Decision] --> B{Make Big Decision}
+    B --> D[Be done]
 ```
 
 ```mermaid
@@ -44,13 +51,6 @@ flowchart TB
     one --> two
     three --> two
     two --> c2
-```
-
-```mermaid
-sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice-)John: See you later!
 ```
 
 ```mermaid

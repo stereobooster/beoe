@@ -3,8 +3,6 @@ import starlight from "@astrojs/starlight";
 import { qrcode } from "vite-plugin-qrcode";
 
 import { getCache } from "@beoe/cache";
-// can't deploy Playwright on Netlify
-// "@beoe/rehype-mermaid": "workspace:*",
 import { rehypeMermaid } from "@beoe/rehype-mermaid";
 import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
