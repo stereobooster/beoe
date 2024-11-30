@@ -46,13 +46,3 @@ Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text
 The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
 
 ## TODO
-
-- rehype-code-hook-img maybe
-  - [ ] reuse [svgStrategy](packages/rehype-d2/src/svgStrategy.ts) in all plugins
-  - [ ] add `processMeta` to all plugins, so it would be possible to configure `class` and `strategy`
-  - [ ] try to implement external file strategy (with vfile)
-    - `basePath: "src/.generated"`?
-    - https://docs.astro.build/en/guides/images/#images-in-markdown-files
-    - `loading="lazy" decoding="async"`
-    - [`~/.generated/*`](https://github.com/withastro/astro/issues/6490)
-  - [ ] maybe rename strategies
