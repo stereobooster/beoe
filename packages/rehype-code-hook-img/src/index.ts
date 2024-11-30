@@ -12,23 +12,24 @@ export type RehypeCodeHookImgOptions<T extends CbInput> = {
    * if given hook will be called only for this language
    */
   language: string;
-};
+} & Omit<BasePluginOptions, "cache">;
 
 export const rehypeCodeHookImg = <T extends CbInput>(
   options: RehypeCodeHookImgOptions<T>
 ) => {
-  const { render, language } = options;
+  const { render, language, class: pluginDefaultClass, ...pluginDefaults } = options;
 
   const hook: Plugin<[(T & BasePluginOptions)?], Root> = (
     { cache, ...defaults } = {} as T
   ) => {
+    defaults = { ...pluginDefaults, ...defaults };
     // @ts-expect-error
     return rehypeCodeHook({
       salt: defaults,
       language,
       code: ({ code, meta }) => {
         const opts = metaWithDefaults(
-          language,
+          pluginDefaultClass || language,
           defaults as any as T & BasePluginOptions,
           meta
         );

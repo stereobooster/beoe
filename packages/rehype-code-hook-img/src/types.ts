@@ -29,6 +29,12 @@ export type Result = {
    * used for `data-beoe` to pass JSON representation of diagram for interactivity
    */
   data?: jsonifiable;
+  /**
+   * used for img `alt`
+   */
+  alt?: string;
+  // maybe aria-describedby?
+  // maybe figcaption?
 };
 
 export type BaseOptions = {
@@ -68,6 +74,6 @@ export type CbResult = Result | Promise<Result>;
 export type CbInput = Record<string, any>;
 
 export type Cb<T extends CbInput> = (
-  codes: string,
+  code: string,
   opt: T & BaseOptions
 ) => CbResult;

@@ -32,11 +32,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@beoe/rehype-code-hook": "workspace:*",
-    "hastscript": "^9.0.0",
+    "@beoe/rehype-code-hook-img": "workspace:*",
     "mermaid-isomorphic": "^2.1.2",
-    "mini-svg-data-uri": "^1.4.4",
-    "svgo": "^3.2.0"
+    "svgo": "^3.3.2"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",

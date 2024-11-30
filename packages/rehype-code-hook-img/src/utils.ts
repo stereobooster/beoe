@@ -77,7 +77,7 @@ function figure(className: string | undefined, children: any[]) {
 
 export function svgStrategy(
   { class: className, strategy, svgo }: BasePluginOptions,
-  { svg, data, darkSvg, width, height }: Result
+  { svg, data, darkSvg, width, height, alt }: Result
 ) {
   if (svgo !== false) {
     // @ts-expect-error
@@ -95,38 +95,36 @@ export function svgStrategy(
   }
 
   if (width === undefined || height === undefined) {
-    const widthMatch = svg.match(/width="(\d+[^"]+)"\s+/);
+    const widthMatch = svg.match(/width="(\d+[^"]*)"\s+/);
     width = widthMatch ? widthMatch[1] : undefined;
 
-    const heightMatch = svg.match(/height="(\d+[^"]+)"\s+/);
+    const heightMatch = svg.match(/height="(\d+[^"]*)"\s+/);
     height = heightMatch ? heightMatch[1] : undefined;
-
-    svg = svg.replace(/width="\d+[^"]+"\s+/, "");
-    svg = svg.replace(/height="\d+[^"]+"\s+/, "");
   }
 
   switch (strategy) {
     case "img": {
-      return figure(className, [image({ svg, width, height })]);
+      return figure(className, [image({ svg, width, height, alt })]);
     }
     case "img-class-dark-mode": {
-      if (!darkSvg) return figure(className, [image({ svg, width, height })]);
+      if (!darkSvg)
+        return figure(className, [image({ svg, width, height, alt })]);
 
       return figure(
         className,
         // wrap in additional div for svg-pan-zoom
         [
           h("div", [
-            image({ svg, width, height, class: "beoe-light" }),
-            image({ svg: darkSvg, width, height, class: "beoe-dark" }),
+            image({ svg, width, height, alt, class: "beoe-light" }),
+            image({ svg: darkSvg, width, height, alt, class: "beoe-dark" }),
           ]),
         ]
       );
     }
     case "picture-dark-mode": {
-      if (!darkSvg) return figure(className, [image({ svg, width, height })]);
+      if (!darkSvg) return figure(className, [image({ svg, width, height, alt })]);
 
-      const imgLight = image({ svg, width, height });
+      const imgLight = image({ svg, width, height, alt });
       const imgDark = h("source", {
         width,
         height,
@@ -137,6 +135,9 @@ export function svgStrategy(
       return figure(className, [h("picture", [imgLight, imgDark])]);
     }
     default: {
+      svg = svg.replace(new RegExp(`width="${width}[^"]*"\\s+`), "");
+      svg = svg.replace(new RegExp(`height="${height}[^"]*"\\s+`), "");
+
       const element = fromHtmlIsomorphic(svg, { fragment: true });
       return {
         type: "element",
