@@ -29,7 +29,7 @@ digraph finite_state_machine {
     8 -> 5 [label = "S(a)"];
 }
 ```
-
+ 
 ## With interactivity
 
 :::caution

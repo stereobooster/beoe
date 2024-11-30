@@ -46,6 +46,14 @@ export type BasePluginOptions = {
   svgo?: SvgoConfig | boolean;
   strategy?: Strategy;
   cache?: MapLike;
+  /**
+   * required for file-based strategy
+   */
+  fsPath?: string;
+  /**
+   * required for file-based strategy
+   */
+  webPath?: string;
 };
 
 /**
@@ -67,7 +75,13 @@ export type Strategy =
   /**
    * SVG as data-uri in two imgs with light and dark classes
    */
-  | "img-class-dark-mode";
+  | "img-class-dark-mode"
+  /**
+   * Experiment
+   */
+  | "f-img"
+  | "f-picture-dark-mode"
+  | "f-img-class-dark-mode";
 
 export type CbResult = Result | Promise<Result>;
 

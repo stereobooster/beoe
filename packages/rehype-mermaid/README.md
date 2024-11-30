@@ -45,6 +45,18 @@ const html = await unified()
 
 It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
 
+## Tips
+
+### Playwright
+
+You need to install `playwright` as well. Also you probably need something like this:
+
+```json
+"scripts": {
+  "postinstall": "playwright install chromium"
+}
+```
+
 ## TODO
 
 - write about dark mode

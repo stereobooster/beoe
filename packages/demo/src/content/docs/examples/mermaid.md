@@ -2,9 +2,7 @@
 title: mermaid
 ---
 
-## rehype-mermaid
-
-### flow chart
+## flow chart
 
 ```mermaid
 flowchart TB
@@ -23,7 +21,7 @@ flowchart TB
     two --> c2
 ```
 
-### sequence diagram
+## sequence diagram
 
 ```mermaid
 sequenceDiagram

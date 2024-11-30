@@ -4,6 +4,9 @@ import parse from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 import { BasePluginOptions, Result } from "./types.js";
 import { optimize, type Config as SvgoConfig } from "svgo";
+import path from "node:path";
+import fs from "node:fs/promises";
+import { xxh32 } from "@node-rs/xxhash";
 
 const svgoConfig: SvgoConfig = {
   plugins: [
@@ -51,16 +54,19 @@ export function metaWithDefaults<
 
 function image({
   svg,
+  url,
   ...rest
 }: {
+  svg?: string;
+  url?: string;
   width?: string | number;
   height?: string | number;
   alt?: string;
-  svg: string;
   class?: string;
 }) {
   return h("img", {
-    src: svgToMiniDataURI(svg),
+    src: url ?? svgToMiniDataURI(svg!),
+    ...(url ? { loading: "lazy", decoding: "async" } : {}),
     ...rest,
   });
 }
@@ -76,7 +82,7 @@ function figure(className: string | undefined, children: any[]) {
 }
 
 export function svgStrategy(
-  { class: className, strategy, svgo }: BasePluginOptions,
+  { class: className, strategy, svgo, fsPath, webPath }: BasePluginOptions,
   { svg, data, darkSvg, width, height, alt }: Result
 ) {
   if (svgo !== false) {
@@ -95,20 +101,35 @@ export function svgStrategy(
   }
 
   if (width === undefined || height === undefined) {
-    const widthMatch = svg.match(/width="(\d+[^"]*)"\s+/);
+    const widthMatch = svg.match(/width="(\d+)[^"]*"\s+/);
     width = widthMatch ? widthMatch[1] : undefined;
 
-    const heightMatch = svg.match(/height="(\d+[^"]*)"\s+/);
+    const heightMatch = svg.match(/height="(\d+)[^"]*"\s+/);
     height = heightMatch ? heightMatch[1] : undefined;
   }
 
+  const getImage = () =>
+    figure(className, [image({ svg, width, height, alt })]);
+
+  const fileUrl = (svg: string) => {
+    if (!fsPath || !webPath) return "";
+
+    const name = `${xxh32(svg).toString(36)}.svg`;
+    const filePath = path.join(fsPath, name);
+    const url = path.posix.join(webPath, name);
+    fs.mkdir(fsPath, { recursive: true }).then(() =>
+      fs.writeFile(filePath, svg)
+    );
+
+    return url;
+  };
+
   switch (strategy) {
     case "img": {
-      return figure(className, [image({ svg, width, height, alt })]);
+      return getImage();
     }
     case "img-class-dark-mode": {
-      if (!darkSvg)
-        return figure(className, [image({ svg, width, height, alt })]);
+      if (!darkSvg) return getImage();
 
       return figure(
         className,
@@ -122,13 +143,57 @@ export function svgStrategy(
       );
     }
     case "picture-dark-mode": {
-      if (!darkSvg) return figure(className, [image({ svg, width, height, alt })]);
+      if (!darkSvg) return getImage();
 
       const imgLight = image({ svg, width, height, alt });
       const imgDark = h("source", {
         width,
         height,
         src: svgToMiniDataURI(darkSvg),
+        media: `(prefers-color-scheme: dark)`,
+      });
+
+      return figure(className, [h("picture", [imgLight, imgDark])]);
+    }
+    case "f-img": {
+      if (!fsPath || !webPath) return getImage();
+      const url = fileUrl(svg);
+      return figure(className, [image({ width, height, alt, url })]);
+    }
+    case "f-img-class-dark-mode": {
+      if (!darkSvg || !fsPath || !webPath) return getImage();
+
+      const url = fileUrl(svg);
+      const darkUrl = fileUrl(darkSvg);
+
+      return figure(
+        className,
+        // wrap in additional div for svg-pan-zoom
+        [
+          h("div", [
+            image({ width, height, alt, class: "beoe-light", url }),
+            image({
+              width,
+              height,
+              alt,
+              class: "beoe-dark",
+              url: darkUrl,
+            }),
+          ]),
+        ]
+      );
+    }
+    case "f-picture-dark-mode": {
+      if (!darkSvg || !fsPath || !webPath) return getImage();
+
+      const url = fileUrl(svg);
+      const darkUrl = fileUrl(darkSvg);
+
+      const imgLight = image({ width, height, alt, url });
+      const imgDark = h("source", {
+        width,
+        height,
+        src: darkUrl,
         media: `(prefers-color-scheme: dark)`,
       });
 

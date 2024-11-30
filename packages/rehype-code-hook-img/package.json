@@ -33,6 +33,7 @@
   "dependencies": {
     "@beoe/fenceparser": "workspace:*",
     "@beoe/rehype-code-hook": "workspace:*",
+    "@node-rs/xxhash": "^1.7.4",
     "@types/hast": "^3.0.4",
     "hast-util-from-html-isomorphic": "^2.0.0",
     "hastscript": "^9.0.0",

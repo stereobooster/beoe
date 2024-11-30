@@ -12,6 +12,12 @@ import { rehypeD2 } from "@beoe/rehype-d2";
 const cache = await getCache();
 // requerd for correct displaying mobile warning
 const className = "not-content";
+const conf = {
+  cache,
+  strategy: "f-img-class-dark-mode",
+  fsPath: "public/.beoe",
+  webPath: "/.beoe",
+};
 
 // https://astro.build/config
 export default defineConfig({
@@ -41,9 +47,9 @@ export default defineConfig({
     rehypePlugins: [
       [rehypeGraphviz, { cache, class: className }],
       [rehypeVizdom, { cache, class: className }],
-      [rehypeMermaid, { cache, strategy: "img-class-dark-mode" }],
-      [rehypeGnuplot, { cache, strategy: "img" }],
-      [rehypeD2, { cache, strategy: "img-class-dark-mode" }],
+      [rehypeMermaid, conf],
+      [rehypeGnuplot, { ...conf, strategy: "f-img" }],
+      [rehypeD2, conf],
     ],
   },
   vite: {

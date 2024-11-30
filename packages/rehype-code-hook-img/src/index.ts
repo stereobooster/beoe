@@ -17,7 +17,12 @@ export type RehypeCodeHookImgOptions<T extends CbInput> = {
 export const rehypeCodeHookImg = <T extends CbInput>(
   options: RehypeCodeHookImgOptions<T>
 ) => {
-  const { render, language, class: pluginDefaultClass, ...pluginDefaults } = options;
+  const {
+    render,
+    language,
+    class: pluginDefaultClass,
+    ...pluginDefaults
+  } = options;
 
   const hook: Plugin<[(T & BasePluginOptions)?], Root> = (
     { cache, ...defaults } = {} as T
@@ -35,7 +40,9 @@ export const rehypeCodeHookImg = <T extends CbInput>(
         );
         const darkMode =
           opts.strategy === "img-class-dark-mode" ||
-          opts.strategy === "picture-dark-mode";
+          opts.strategy === "picture-dark-mode" ||
+          opts.strategy === "f-img-class-dark-mode" ||
+          opts.strategy === "f-picture-dark-mode";
         const result = render(code, { ...opts, darkMode });
         return "then" in result
           ? result.then((x) => svgStrategy(opts, x))
