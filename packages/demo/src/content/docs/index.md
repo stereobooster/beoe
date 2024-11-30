@@ -2,7 +2,7 @@
 title: Diagram All The Things
 ---
 
-## pros and cons
+## Strategies
 
 ### inline svg
 
@@ -53,59 +53,3 @@ title: Diagram All The Things
   - no interactivity
   - some tools don't support dark theme out of the box (`graphviz`, `vizdom`, `gnuplot`)
   - harder to integrate - need to resolve where to write file, how to do cache busting...
-
-## architecture
-
-```vizdom
-digraph TD {
-  cluster=true
-  node [shape=box]
-
-  rehypePlugin -> defaults
-
-  codeFence -> code
-  codeFence -> meta
-
-  merge -> svgo
-  merge -> class
-  merge -> graphStrategy
-  merge -> strategy
-
-  subgraph configParts {
-    label=configParts
-    meta -> parseMeta -> merge
-    defaults -> merge
-  }
-
-  svgo[label="svgo config"]
-
-  strategy -> render
-
-  graphStrategy -> render
-  code -> render -> hw
-
-  subgraph renderParts {
-    render
-    render -> svg
-    render -> g
-
-    svg[label="light, dark"]
-    g[label="graph"]
-
-    svg -> optimize
-    svgo -> optimize
-  }
-
-  hw[label="height, width"]
-
-  subgraph mdastParts {
-    toMdast
-  }
-
-  optimize -> toMdast
-  class -> toMdast
-  hw -> toMdast
-  g -> toMdast
-  strategy -> toMdast
-}
-```

@@ -1,5 +1,11 @@
 # fenceparser
 
+## 2.3.0
+
+### Minor Changes
+
+- added option to preserve case of key-words. Previously it was always lowercasing key-words
+
 ## 2.2.0
 
 ### Minor Changes
