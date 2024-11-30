@@ -111,15 +111,14 @@ export function svgStrategy(
   const getImage = () =>
     figure(className, [image({ svg, width, height, alt })]);
 
-  const fileUrl = (svg: string) => {
+  const fileUrl = async (svg: string) => {
     if (!fsPath || !webPath) return "";
 
     const name = `${xxh32(svg).toString(36)}.svg`;
     const filePath = path.join(fsPath, name);
     const url = path.posix.join(webPath, name);
-    fs.mkdir(fsPath, { recursive: true }).then(() =>
-      fs.writeFile(filePath, svg)
-    );
+    await fs.mkdir(fsPath, { recursive: true });
+    await fs.writeFile(filePath, svg);
 
     return url;
   };
@@ -157,47 +156,50 @@ export function svgStrategy(
     }
     case "f-img": {
       if (!fsPath || !webPath) return getImage();
-      const url = fileUrl(svg);
-      return figure(className, [image({ width, height, alt, url })]);
+
+      return fileUrl(svg).then((url) =>
+        figure(className, [image({ width, height, alt, url })])
+      );
     }
     case "f-img-class-dark-mode": {
       if (!darkSvg || !fsPath || !webPath) return getImage();
 
-      const url = fileUrl(svg);
-      const darkUrl = fileUrl(darkSvg);
-
-      return figure(
-        className,
-        // wrap in additional div for svg-pan-zoom
-        [
-          h("div", [
-            image({ width, height, alt, class: "beoe-light", url }),
-            image({
-              width,
-              height,
-              alt,
-              class: "beoe-dark",
-              url: darkUrl,
-            }),
-          ]),
-        ]
+      return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+        ([url, darkUrl]) =>
+          figure(
+            className,
+            // wrap in additional div for svg-pan-zoom
+            [
+              h("div", [
+                image({ width, height, alt, class: "beoe-light", url }),
+                image({
+                  width,
+                  height,
+                  alt,
+                  class: "beoe-dark",
+                  url: darkUrl,
+                }),
+              ]),
+            ]
+          )
       );
     }
     case "f-picture-dark-mode": {
       if (!darkSvg || !fsPath || !webPath) return getImage();
 
-      const url = fileUrl(svg);
-      const darkUrl = fileUrl(darkSvg);
+      return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+        ([url, darkUrl]) => {
+          const imgLight = image({ width, height, alt, url });
+          const imgDark = h("source", {
+            width,
+            height,
+            src: darkUrl,
+            media: `(prefers-color-scheme: dark)`,
+          });
 
-      const imgLight = image({ width, height, alt, url });
-      const imgDark = h("source", {
-        width,
-        height,
-        src: darkUrl,
-        media: `(prefers-color-scheme: dark)`,
-      });
-
-      return figure(className, [h("picture", [imgLight, imgDark])]);
+          return figure(className, [h("picture", [imgLight, imgDark])]);
+        }
+      );
     }
     default: {
       svg = svg.replace(new RegExp(`width="${width}[^"]*"\\s+`), "");
