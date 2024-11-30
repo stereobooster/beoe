@@ -1,7 +1,7 @@
 {
   "name": "@beoe/cache",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Shareable persistent LRU TTL cache based on SQLite",
   "keywords": [
     "cache",

@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-code-hook",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "rehype plugin for code fences",
   "keywords": [
     "rehype"
