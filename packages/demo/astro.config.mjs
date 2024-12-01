@@ -13,10 +13,10 @@ const cache = await getCache();
 // requerd for correct displaying mobile warning
 const className = "not-content";
 const conf = {
-  cache,
-  strategy: "img-class-dark-mode",
-  fsPath: "public/.beoe",
-  webPath: "/.beoe",
+  // cache,
+  strategy: "f-img-class-dark-mode",
+  fsPath: "public/beoe",
+  webPath: "/beoe",
 };
 
 // https://astro.build/config
@@ -48,7 +48,7 @@ export default defineConfig({
       [rehypeGraphviz, { cache, class: className }],
       [rehypeVizdom, { cache, class: className }],
       [rehypeMermaid, conf],
-      [rehypeGnuplot, { ...conf, strategy: "img" }],
+      [rehypeGnuplot, { ...conf, strategy: "f-img" }],
       [rehypeD2, conf],
     ],
   },
