@@ -14,7 +14,7 @@ const cache = await getCache();
 const className = "not-content";
 const conf = {
   cache,
-  strategy: "f-img-class-dark-mode",
+  strategy: "img-class-dark-mode",
   fsPath: "public/.beoe",
   webPath: "/.beoe",
 };
@@ -48,7 +48,7 @@ export default defineConfig({
       [rehypeGraphviz, { cache, class: className }],
       [rehypeVizdom, { cache, class: className }],
       [rehypeMermaid, conf],
-      [rehypeGnuplot, { ...conf, strategy: "f-img" }],
+      [rehypeGnuplot, { ...conf, strategy: "img" }],
       [rehypeD2, conf],
     ],
   },
