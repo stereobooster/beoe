@@ -13,8 +13,9 @@ const cache = await getCache();
 // requerd for correct displaying mobile warning
 const className = "not-content";
 const conf = {
-  // cache,
+  cache,
   strategy: "f-img-class-dark-mode",
+  // do not use .beoe for Netlify deployments
   fsPath: "public/beoe",
   webPath: "/beoe",
 };
@@ -48,7 +49,7 @@ export default defineConfig({
       [rehypeGraphviz, { cache, class: className }],
       [rehypeVizdom, { cache, class: className }],
       [rehypeMermaid, conf],
-      [rehypeGnuplot, { ...conf, strategy: "f-img" }],
+      [rehypeGnuplot, conf],
       [rehypeD2, conf],
     ],
   },
