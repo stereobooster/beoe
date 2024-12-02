@@ -2,7 +2,7 @@
   <style>
     :root {
       --fg: #fff;
-      --bg: #0d1117;
+      --bg: hsl(224, 10%, 10%);
 
       --blue: #0e638e;
       --red: #d42a20;

@@ -1,0 +1,40 @@
+---
+title: "BEOE"
+template: splash
+hero:
+  image:
+    html: <div>
+      <img src="/logo.svg" class="beoe-light" akt="" width="288" height="348">
+      <img src="/logo-dark.svg" class="beoe-dark" akt="" width="288" height="348">
+      </div>
+  title: "BEOE"
+  tagline: Easily add diagrams to Markdown using Rehype, Remark plugins, and more.
+  actions:
+    - text: Tell me more
+      link: /getting-started/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/stereobooster/beoe
+      icon: external
+      variant: minimal
+---
+
+import { CardGrid, Card } from "@astrojs/starlight/components";
+
+<CardGrid stagger>
+  <Card title="Many options" icon="list-format">
+    A versatile diagramming options, such as **Mermaid**, **D2**, **PlantUML**, and more enabling
+    users to create, edit, and visualize a wide range of diagram types.
+  </Card>
+  <Card title="Dark mode" icon="moon">
+    Supports both traditional dark mode via prefers-color-scheme and class-based dark mode, similar to this website.
+  </Card>
+  <Card title="No need for client-side JavaScript" icon="rocket">
+    All diagrams are server-generated (SSG), ensuring functionality without JavaScript, which enhances load times and overall performance.
+  </Card>
+  <Card title="And more..." icon="puzzle">
+    - Supports caching to accelerate the re-rendering of markdown files
+    - Provides pan and zoom functionality for diagrams
+    - Allows adding interactivity to diagrams as a progressive enhancement
+  </Card>
+</CardGrid>

@@ -1,8 +1,8 @@
 <svg viewBox="0 0 288 348" xmlns="http://www.w3.org/2000/svg">
   <style>
     :root {
-      --fg: #fff;
-      --bg: #0d1117;
+      --bg: #fff;
+      --fg: #000;
 
       --blue: #0e638e;
       --red: #d42a20;
@@ -103,6 +103,7 @@
     x2="95.01"
     y2="349.86"
   />
+  
   <line class="stroke stroke-fg" x1="95.01" y1="127.43" x2="222.3" y2="350" />
   <line class="stroke stroke-fg" x1="63.4" y1="190.83" x2="285.97" y2="63.53" />
 

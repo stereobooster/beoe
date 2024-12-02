@@ -1,5 +1,5 @@
 ---
-title: Diagram All The Things
+title: Getting started
 ---
 
 ## TODO
@@ -15,7 +15,6 @@ title: Diagram All The Things
   - `alt` (not implemented yet)
 - [ ] documentation and examples about interactivity
 - [ ] tips about styles and other things
-- [ ] revamp site, maybe `template: splash hero: ...` for index page
 - [ ] publish new version
 
 ## Strategy
@@ -124,7 +123,7 @@ html[data-theme="dark"] .beoe-light {
 <img alt="..." />
 ```
 
-I can add option to [figcaption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) as well.
+I can add option for [figcaption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) as well.
 
 ## Old notes
 
