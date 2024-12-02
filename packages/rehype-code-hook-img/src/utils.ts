@@ -144,7 +144,7 @@ export function svgStrategy(
 
   switch (strategy) {
     case "data-url": {
-      if (darkScheme == "class" && darkSvg)
+      if (darkScheme === "class" && darkSvg)
         return figure(
           className,
           // wrap in additional div for svg-pan-zoom
@@ -156,7 +156,7 @@ export function svgStrategy(
           ]
         );
 
-      if (darkScheme == "media" && darkSvg) {
+      if (darkScheme === "media" && darkSvg) {
         const imgLight = image({ svg, width, height, alt });
         const imgDark = h("source", {
           width,
@@ -173,7 +173,7 @@ export function svgStrategy(
     case "file": {
       if (fsPath == undefined || webPath == undefined) return;
 
-      if (darkScheme == "class" && darkSvg) {
+      if (darkScheme === "class" && darkSvg) {
         return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
           ([url, darkUrl]) =>
             figure(
@@ -195,7 +195,7 @@ export function svgStrategy(
         );
       }
 
-      if (darkScheme == "media" && darkSvg)
+      if (darkScheme === "media" && darkSvg)
         return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
           ([url, darkUrl]) => {
             const imgLight = image({ width, height, alt, url });
@@ -215,7 +215,7 @@ export function svgStrategy(
       );
     }
     default: {
-      if (darkScheme == "class" && darkSvg) {
+      if (darkScheme === "class" && darkSvg) {
         const element = fromHtmlIsomorphic(removeWidthHeight(svg), {
           fragment: true,
         });
@@ -237,7 +237,7 @@ export function svgStrategy(
         );
       }
 
-      if (darkScheme == "media") {
+      if (darkScheme === "media") {
         console.warn("darkScheme media doesn't work for inline strategy");
       }
 

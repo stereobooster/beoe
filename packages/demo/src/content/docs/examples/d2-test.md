@@ -36,7 +36,7 @@ a2 -> b -> c -> d -> e
 
 ### `strategy=inline`
 
-```d2 strategy=inline
+```d2 strategy=inline darkScheme=false
 direction: right
 a -> b -> c -> d -> e
 ```
