@@ -46,15 +46,18 @@ export type BasePluginOptions = {
   svgo?: SvgoConfig | boolean;
   strategy?: Strategy;
   cache?: MapLike;
+  darkScheme?: Scheme;
   /**
-   * required for file-based strategy
+   * required for `file` strategy
    */
   fsPath?: string;
   /**
-   * required for file-based strategy
+   * required for `file` strategy
    */
   webPath?: string;
 };
+
+export type Scheme = "class" | "media";
 
 /**
  * maybe rename img to data-uri
@@ -65,23 +68,28 @@ export type Strategy =
    */
   | "inline"
   /**
+   * SVG in `src` as [data-url](https://developer.mozilla.org/en-US/docs/Web/URI/Schemes/data)
+   */
+  | "data-url"
+  /**
+   * SVG stored as standalone file
+   */
+  | "file"
+  /**
    * SVG as data-uri in img
+   * @deprecated
    */
   | "img"
   /**
    * SVG as data-uri in img and source inside of a picture
+   * @deprecated
    */
   | "picture-dark-mode"
   /**
    * SVG as data-uri in two imgs with light and dark classes
+   * @deprecated
    */
-  | "img-class-dark-mode"
-  /**
-   * Experiment
-   */
-  | "f-img"
-  | "f-picture-dark-mode"
-  | "f-img-class-dark-mode";
+  | "img-class-dark-mode";
 
 export type CbResult = Result | Promise<Result>;
 

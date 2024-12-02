@@ -2,7 +2,131 @@
 title: Diagram All The Things
 ---
 
-## Strategies
+## TODO
+
+- [ ] documentation about shared options
+  - `strategy`
+  - `darkScheme`
+  - `cache`
+  - `class`
+  - `svgo`
+- [ ] documentation about meta
+  - `strategy`, `class`
+  - `alt` (not implemented yet)
+- [ ] documentation and examples about interactivity
+- [ ] tips about styles and other things
+- [ ] revamp site, maybe `template: splash hero: ...` for index page
+- [ ] publish new version
+
+## Strategy
+
+### `inline`
+
+**Default strategy**.
+
+```html
+<figure class="beoe"><svg>...</svg></figure>
+```
+
+### `data-url`
+
+```html
+<figure class="beoe">
+  <img src="data:image/svg+xml,..." width="..." height="..." />
+</figure>
+```
+
+### `file`
+
+```html
+<figure class="beoe">
+  <img src="/path/to.svg" width="..." height="..." />
+</figure>
+```
+
+## Dark scheme
+
+### none
+
+**Default**.
+
+```html
+<figure class="beoe">only one image</figure>
+```
+
+### `class`
+
+```html
+<figure class="beoe">
+  <div>
+    <img class="beoe-light" src="..." />
+    <img class="beoe-dark" src="..." />
+  </div>
+</figure>
+```
+
+You would need to add CSS, something like this:
+
+```CSS
+html[data-theme="light"] .beoe-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .beoe-light {
+  display: none;
+}
+```
+
+### `media`
+
+```html
+<figure class="beoe">
+  <picture>
+    <img src="..." />
+    <source media="(prefers-color-scheme: dark)" src="..." />
+  </picture>
+</figure>
+```
+
+## Strategy vs dark scheme
+
+|            | `class` | `media` |
+| ---------- | ------- | ------- |
+| `inline`   | maybe   | no      |
+| `data-url` | yes     | yes     |
+| `file`     | yes     | yes     |
+
+## Strategy pros and cons
+
+|                        | `inline`     | `data-url` | `file` |
+| ---------------------- | ------------ | ---------- | ------ |
+| Interactivity          | possible     | no         | no     |
+| CSS conflicts          | probably yes | no         | no     |
+| Can be styled with CSS | yes          | no         | no     |
+| DOM footprint          | high         | low        | low    |
+| HTML footprint         | high         | high       | low    |
+
+## Interactivity
+
+- Links (`<a href="...">`)
+- Search text in the diagram (<Kbd>Cmd</kbd> + <Kbd>F</kbd>)
+- With JS, for example, if we inline JSON data
+
+## Accessibility
+
+````md
+```some alt="..."
+
+```
+````
+
+```html
+<img alt="..." />
+```
+
+I can add option to [figcaption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) as well.
+
+## Old notes
 
 ### inline
 
@@ -53,101 +177,3 @@ title: Diagram All The Things
   - no interactivity
   - some tools don't support dark theme out of the box (`graphviz`, `vizdom`, `gnuplot`)
   - harder to integrate - need to resolve where to write file, how to do cache busting...
-
----
-
-# TODO
-
-## Strategy
-
-### `inline`
-
-**Default strategy**.
-
-```html
-<figure class="beoe"><svg>...</svg></figure>
-```
-
-### `data-url`
-
-```html
-<figure class="beoe">
-  <img src="data:image/svg+xml,..." width="..." height="..." alt="..." />
-</figure>
-```
-
-### `file`
-
-```html
-<figure class="beoe">
-  <img src="/path/to.svg" width="..." height="..." alt="..." />
-</figure>
-```
-
-## Dark scheme
-
-### none
-
-**Default**.
-
-```html
-<figure class="beoe">only one image</figure>
-```
-
-### `class`
-
-```html
-<figure class="beoe">
-  <div>
-    <img class="beoe-light" src="..." />
-    <img class="beoe-dark" src="..." />
-  </div>
-</figure>
-```
-
-You would need to add CSS, something like this
-
-```CSS
-html[data-theme="light"] .beoe-dark {
-  display: none;
-}
-
-html[data-theme="dark"] .beoe-light {
-  display: none;
-}
-```
-
-### `media`
-
-```html
-<figure class="beoe">
-  <picture>
-    <img src="..." />
-    <source media="(prefers-color-scheme: dark)" src="..." />
-  </picture>
-</figure>
-```
-
-## Strategy vs dark scheme
-
-|            | `class` | `media` |
-| ---------- | ------- | ------- |
-| `inline`   | maybe   | no      |
-| `data-url` | yes     | yes     |
-| `file`     | yes     | yes     |
-
-## Strategy pros and cons
-
-|                        | `inline`     | `data-url` | `file` |
-| ---------------------- | ------------ | ---------- | ------ |
-| Interactivity          | possible     | no         | no     |
-| CSS conflicts          | probably yes | no         | no     |
-| Can be styled with CSS | yes          | no         | no     |
-| DOM footprint          | high         | low        | low    |
-| HTML footprint         | high         | high       | low    |
-
-## Interactivity
-
-- Links (`<a href="...">`)
-- Search text in the diagram (<Kbd>Cmd</kbd> + <Kbd>F</kbd>)
-- With JS, for example, if we inline JSON data

@@ -82,7 +82,14 @@ function figure(className: string | undefined, children: any[]) {
 }
 
 export function svgStrategy(
-  { class: className, strategy, svgo, fsPath, webPath }: BasePluginOptions,
+  {
+    class: className,
+    strategy,
+    svgo,
+    fsPath,
+    webPath,
+    darkScheme,
+  }: BasePluginOptions,
   { svg, data, darkSvg, width, height, alt }: Result
 ) {
   if (svgo !== false) {
@@ -123,98 +130,128 @@ export function svgStrategy(
     return url;
   };
 
+  const removeWidthHeight = (svg: string) =>
+    svg
+      .replace(new RegExp(`width="${width}[^"]*"\\s+`), "")
+      .replace(new RegExp(`height="${height}[^"]*"\\s+`), "");
+
+  if (strategy == "file" && (fsPath == undefined || webPath == undefined)) {
+    console.warn(
+      "file strategy requires fsPath and webPath. Falling back to data-url"
+    );
+    strategy = "data-url";
+  }
+
   switch (strategy) {
-    case "img": {
+    case "data-url": {
+      if (darkScheme == "class" && darkSvg)
+        return figure(
+          className,
+          // wrap in additional div for svg-pan-zoom
+          [
+            h("div", [
+              image({ svg, width, height, alt, class: "beoe-light" }),
+              image({ svg: darkSvg, width, height, alt, class: "beoe-dark" }),
+            ]),
+          ]
+        );
+
+      if (darkScheme == "media" && darkSvg) {
+        const imgLight = image({ svg, width, height, alt });
+        const imgDark = h("source", {
+          width,
+          height,
+          src: svgToMiniDataURI(darkSvg),
+          media: `(prefers-color-scheme: dark)`,
+        });
+
+        return figure(className, [h("picture", [imgLight, imgDark])]);
+      }
+
       return getImage();
     }
-    case "img-class-dark-mode": {
-      if (!darkSvg) return getImage();
+    case "file": {
+      if (fsPath == undefined || webPath == undefined) return;
 
-      return figure(
-        className,
-        // wrap in additional div for svg-pan-zoom
-        [
-          h("div", [
-            image({ svg, width, height, alt, class: "beoe-light" }),
-            image({ svg: darkSvg, width, height, alt, class: "beoe-dark" }),
-          ]),
-        ]
-      );
-    }
-    case "picture-dark-mode": {
-      if (!darkSvg) return getImage();
+      if (darkScheme == "class" && darkSvg) {
+        return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+          ([url, darkUrl]) =>
+            figure(
+              className,
+              // wrap in additional div for svg-pan-zoom
+              [
+                h("div", [
+                  image({ width, height, alt, class: "beoe-light", url }),
+                  image({
+                    width,
+                    height,
+                    alt,
+                    class: "beoe-dark",
+                    url: darkUrl,
+                  }),
+                ]),
+              ]
+            )
+        );
+      }
 
-      const imgLight = image({ svg, width, height, alt });
-      const imgDark = h("source", {
-        width,
-        height,
-        src: svgToMiniDataURI(darkSvg),
-        media: `(prefers-color-scheme: dark)`,
-      });
+      if (darkScheme == "media" && darkSvg)
+        return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+          ([url, darkUrl]) => {
+            const imgLight = image({ width, height, alt, url });
+            const imgDark = h("source", {
+              width,
+              height,
+              src: darkUrl,
+              media: `(prefers-color-scheme: dark)`,
+            });
 
-      return figure(className, [h("picture", [imgLight, imgDark])]);
-    }
-    case "f-img": {
-      if (!fsPath || !webPath) return getImage();
+            return figure(className, [h("picture", [imgLight, imgDark])]);
+          }
+        );
 
       return fileUrl(svg).then((url) =>
         figure(className, [image({ width, height, alt, url })])
       );
     }
-    case "f-img-class-dark-mode": {
-      if (!darkSvg || !fsPath || !webPath) return getImage();
-
-      return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
-        ([url, darkUrl]) =>
-          figure(
-            className,
-            // wrap in additional div for svg-pan-zoom
-            [
-              h("div", [
-                image({ width, height, alt, class: "beoe-light", url }),
-                image({
-                  width,
-                  height,
-                  alt,
-                  class: "beoe-dark",
-                  url: darkUrl,
-                }),
-              ]),
-            ]
-          )
-      );
-    }
-    case "f-picture-dark-mode": {
-      if (!darkSvg || !fsPath || !webPath) return getImage();
-
-      return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
-        ([url, darkUrl]) => {
-          const imgLight = image({ width, height, alt, url });
-          const imgDark = h("source", {
-            width,
-            height,
-            src: darkUrl,
-            media: `(prefers-color-scheme: dark)`,
-          });
-
-          return figure(className, [h("picture", [imgLight, imgDark])]);
-        }
-      );
-    }
     default: {
-      svg = svg.replace(new RegExp(`width="${width}[^"]*"\\s+`), "");
-      svg = svg.replace(new RegExp(`height="${height}[^"]*"\\s+`), "");
+      if (darkScheme == "class" && darkSvg) {
+        const element = fromHtmlIsomorphic(removeWidthHeight(svg), {
+          fragment: true,
+        });
+        const darkElement = fromHtmlIsomorphic(removeWidthHeight(darkSvg), {
+          fragment: true,
+        });
+        return h(
+          "figure",
+          {
+            class: className,
+            "data-beoe": data ? JSON.stringify(data) : undefined,
+          },
+          [
+            h("div", [
+              h("div", { class: "beoe-light" }, element.children),
+              h("div", { class: "beoe-dark" }, darkElement.children),
+            ]),
+          ]
+        );
+      }
 
-      const element = fromHtmlIsomorphic(svg, { fragment: true });
-      return {
-        type: "element",
-        tagName: "figure",
-        properties: {
+      if (darkScheme == "media") {
+        console.warn("darkScheme media doesn't work for inline strategy");
+      }
+
+      const element = fromHtmlIsomorphic(removeWidthHeight(svg), {
+        fragment: true,
+      });
+      return h(
+        "figure",
+        {
           class: className,
           "data-beoe": data ? JSON.stringify(data) : undefined,
         },
-        children: element.children,
-      };
+        element.children
+      );
     }
   }
 }

@@ -14,7 +14,8 @@ const cache = await getCache();
 const className = "not-content";
 const conf = {
   cache,
-  strategy: "f-img-class-dark-mode",
+  strategy: "file",
+  darkScheme: "class",
   // do not use .beoe for Netlify deployments
   fsPath: "public/beoe",
   webPath: "/beoe",

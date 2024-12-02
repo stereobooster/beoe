@@ -38,11 +38,27 @@ export const rehypeCodeHookImg = <T extends CbInput>(
           defaults as any as T & BasePluginOptions,
           meta
         );
-        const darkMode =
-          opts.strategy === "img-class-dark-mode" ||
-          opts.strategy === "picture-dark-mode" ||
-          opts.strategy === "f-img-class-dark-mode" ||
-          opts.strategy === "f-picture-dark-mode";
+
+        if (opts.strategy === "img") {
+          opts.strategy = "data-url";
+          console.warn("img strategy is deprecated, use data-url instead");
+        }
+        if (opts.strategy === "img-class-dark-mode") {
+          opts.strategy = "data-url";
+          opts.darkScheme = "class";
+          console.warn(
+            "img-class-dark-mode strategy is deprecated, use data-url instead + darkScheme class"
+          );
+        }
+        if (opts.strategy === "picture-dark-mode") {
+          opts.strategy = "data-url";
+          opts.darkScheme = "media";
+          console.warn(
+            "img-class-dark-mode strategy is deprecated, use data-url instead + darkScheme media"
+          );
+        }
+
+        const darkMode = opts.darkScheme != undefined;
         const result = render(code, { ...opts, darkMode });
         return "then" in result
           ? result.then((x) => svgStrategy(opts, x))

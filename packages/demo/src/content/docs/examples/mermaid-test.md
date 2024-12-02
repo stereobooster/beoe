@@ -3,17 +3,23 @@ title: mermaid test
 draft: true
 ---
 
-## rehype-mermaid
 
-```mermaid
-graph LR
-    accTitle: Big Decisions
-    accDescr: Bob's Burgers process for making big decisions
-    A[Identify Big Decision] --> B{Make Big Decision}
-    B --> D[Be done]
-```
+## links
 
 ```mermaid strategy=inline class=not-content
+flowchart LR
+    A-->B
+    B-->C
+    C-->D
+    click A callback "Tooltip for a callback"
+    click B "https://www.github.com" "This is a tooltip for a link"
+    click C call callback() "Tooltip for a callback"
+    click D href "https://www.github.com" "This is a tooltip for a link"
+```
+
+## other
+
+```mermaid
 graph LR
     accTitle: Big Decisions
     accDescr: Bob's Burgers process for making big decisions
