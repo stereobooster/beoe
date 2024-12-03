@@ -6,16 +6,13 @@ sidebar:
 
 ## TODO
 
-- [ ] documentation about shared options
-  - `strategy`
-  - `darkScheme`
-  - `cache`
-  - `class`
-  - `svgo`
-- [ ] documentation about meta
-  - `strategy`, `class`
-  - `alt` (not implemented yet)
-- [ ] documentation and examples about interactivity
+- [ ] pages for each diagram type
+  - Vizdom
+  - Graphviz
+  - Mermaid
+  - D2
+  - Gnuplot
+  - PlantUML
 - [ ] tips about styles and other things
 - [ ] publish new version
 

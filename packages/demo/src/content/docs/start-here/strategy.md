@@ -60,12 +60,9 @@ diagram text
 WIP
 :::
 
-- **cons**
-  - CSS conflicts
-    - CSS from website can affect diagram
-      - potential solution `.not-content`
-    - CSS from diagram can affect website (d2 diagrams)
-      - this can break dark theme or other diagrams on the same page
-      - potential solution use unique prefix to make sure there is no clash
-  - Dark theme can be limited (black and white)
-
+- CSS conflicts
+  - CSS from website can affect diagram
+    - potential solution `.not-content`
+  - CSS from diagram can affect website (d2 diagrams)
+    - this can break dark theme or other diagrams on the same page
+    - potential solution use unique prefix to make sure there is no clash
