@@ -31,6 +31,10 @@ export default defineConfig({
       },
       sidebar: [
         {
+          label: "Start here",
+          autogenerate: { directory: "start-here" },
+        },
+        {
           label: "Examples",
           autogenerate: { directory: "examples" },
         },

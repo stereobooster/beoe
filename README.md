@@ -26,6 +26,7 @@ I have implemented core packages and added some examples. However, I still need 
 - [x] [@beoe/cache](/packages/cache/)
 - [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
 - [x] [@beoe/pan-zoom](/packages/pan-zoom/)
+- [x] [@beoe/fenceparser](/packages/fenceparser/)
 
 ### Diagrams
 

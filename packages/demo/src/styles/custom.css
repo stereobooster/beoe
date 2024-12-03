@@ -134,3 +134,8 @@ html[data-theme="dark"] .beoe-light {
     }
   }
 }
+
+/* for demo */
+.graphviz .style-me path {
+  fill: lightblue;
+}
