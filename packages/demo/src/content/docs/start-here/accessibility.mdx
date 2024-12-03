@@ -1,0 +1,72 @@
+---
+title: Accessibility
+---
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+## Alt
+
+Works only with `strategy=file` and `strategy=data-url`.
+
+<Tabs>
+  <TabItem label="Markdown">
+````md
+```d2 strategy=file pad=20 alt="testing alt"
+direction: right
+a -> b -> c -> d -> e
+```
+````
+  </TabItem>
+  <TabItem label="Diagram">
+```d2 strategy=file pad=20 alt="testing alt"
+direction: right
+a -> b -> c -> d -> e
+```
+
+  </TabItem>
+  <TabItem label="Resulting HTML">
+```html
+...
+<img alt="testing alt" .../>
+...
+```
+  </TabItem>
+</Tabs>
+
+## Figcaption
+
+[figcaption](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption) can be implemented.
+
+## Mermaid
+
+Mermaid has special params for accessibility
+
+<Tabs>
+  <TabItem label="Markdown">
+````md
+```mermaid strategy=inline
+graph LR
+  accTitle: Big Decisions
+  accDescr: Bob's Burgers process for making big decisions
+  a --> b
+```
+````
+  </TabItem>
+  <TabItem label="HTML">
+
+```xml
+<svg>
+  <desc>Bob's Burgers process for making big decisions</desc>
+</svg>
+```
+  </TabItem>
+  <TabItem label="Diagram">
+```mermaid strategy=inline
+graph LR
+  accTitle: Big Decisions
+  accDescr: Bob's Burgers process for making big decisions
+  a --> b
+```
+  </TabItem>
+</Tabs>
+

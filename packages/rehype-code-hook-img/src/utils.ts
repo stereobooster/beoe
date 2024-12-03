@@ -89,9 +89,12 @@ export function svgStrategy(
     fsPath,
     webPath,
     darkScheme,
-  }: BasePluginOptions,
+    alt: optsAlt,
+  }: BasePluginOptions & { alt?: string },
   { svg, data, darkSvg, width, height, alt }: Result
 ) {
+  alt ??= optsAlt;
+
   if (svgo !== false) {
     // @ts-expect-error
     svgoConfig.plugins[0].params.overrides.cleanupIds = !data;
