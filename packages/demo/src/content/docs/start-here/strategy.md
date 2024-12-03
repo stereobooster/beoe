@@ -12,7 +12,7 @@ use(rehypeDiagram, {
 });
 ```
 
-**or** for each diagram separately
+**or** local configuration
 
 ````md
 ```some-diagram strategy=...
@@ -46,6 +46,20 @@ diagram text
 </figure>
 ```
 
+**Note**: this strategy requires to additional options:
+
+```js
+use(rehypeDiagram, {
+  strategy: "file",
+  // where to store files on the disk
+  fsPath: "public/beoe",
+  // path to files in a browser
+  webPath: "/beoe",
+});
+```
+
+**Note**: if you deploy to Netlify, do not use path that starts with `.`.
+
 ## Pros and cons
 
 |                        | `inline`     | `data-url` | `file` |
@@ -55,14 +69,3 @@ diagram text
 | Can be styled with CSS | yes          | no         | no     |
 | DOM footprint          | high         | low        | low    |
 | HTML footprint         | high         | high       | low    |
-
-:::caution
-WIP
-:::
-
-- CSS conflicts
-  - CSS from website can affect diagram
-    - potential solution `.not-content`
-  - CSS from diagram can affect website (d2 diagrams)
-    - this can break dark theme or other diagrams on the same page
-    - potential solution use unique prefix to make sure there is no clash

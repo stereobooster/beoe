@@ -33,15 +33,18 @@ export default defineConfig({
         {
           label: "Start here",
           autogenerate: { directory: "start-here" },
-        },
-        {
-          label: "Examples",
-          autogenerate: { directory: "examples" },
+        },{
+          label: "Diagrams",
+          autogenerate: { directory: "diagrams" },
         },
         {
           label: "Notes",
           autogenerate: { directory: "notes" },
         },
+        // {
+        //   label: "Examples",
+        //   autogenerate: { directory: "examples" },
+        // },
       ],
       customCss: ["./src/styles/custom.css"],
       components: {

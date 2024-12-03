@@ -12,7 +12,7 @@ use(rehypeDiagram, {
 });
 ```
 
-**or** for each diagram separately
+**or** local configuration
 
 ````md
 ```some-diagram darkScheme=...
@@ -24,7 +24,7 @@ diagram text
 
 ## Options
 
-### none
+### `undefined`
 
 **Default**.
 
@@ -74,4 +74,25 @@ html[data-theme="dark"] .beoe-light {
 | `data-url` | yes       | yes     |
 | `file`     | yes       | yes     |
 
-(1) - for example, works for Mermaid, but doesn't work for D2
+(1) - for example, works for Mermaid, but doesn't work for D2:
+
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+<Tabs>
+  <TabItem label="Diagram">
+
+```d2 strategy=inline darkScheme=class pad=20
+direction: right
+a -> b -> c -> d -> e
+```
+  </TabItem>
+  <TabItem label="Markdown">
+
+````md
+```d2 strategy=inline darkScheme=class pad=20
+direction: right
+a -> b -> c -> d -> e
+```
+````
+  </TabItem>
+</Tabs>

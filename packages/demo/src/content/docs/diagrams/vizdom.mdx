@@ -1,0 +1,176 @@
+---
+title: "@beoe/rehype-vizdom"
+---
+
+import { PackageManagers } from "starlight-package-managers";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Rehype plugin to generate [Vizdom](https://vizdom.dev/) diagrams in place of code fences. Example:
+
+<Tabs>
+  <TabItem label="Diagram">
+
+```vizdom dataGraph=dagre class=shadow
+digraph TD {
+    cluster=true
+    node [shape=box]
+    subgraph Watcher {
+        label="watch"
+        Watch [label="FS Notifier"]
+    }
+    Watch -> TailW [label="*.rs & input.css"]
+    Watch -> Sass [label="*.sass & *.scss"]
+    Watch -> Append [label="*.css"]
+    Watch -> WASM [label="*.rs"]
+    Watch -> BIN [label="*.rs"]
+    Watch -> Mirror [label="assets/**"]
+    subgraph style {
+        label=style
+        TailW [label="Tailwind CSS"]
+        Sass
+        CSSProc [label="CSS Processor\nLightning CSS"]
+        Append [label="append"]
+    }
+    TailW -> Append
+    Sass -> Append
+    Append -> CSSProc
+    subgraph rust {
+        label=rust
+        WASM [label="Client WASM"]
+        BIN [label="Server BIN"]
+    }
+    subgraph asset {
+        label=asset
+        Mirror
+    }
+    subgraph update {
+        label=update
+        WOC [label="target/site/\nWrite-on-change FS"]
+        Live [label="Live Reload"]
+        Server
+    }
+    Mirror -> WOC [label="site/**"]
+    WASM -> WOC [label="site/pkg/app.wasm"]
+    BIN -> WOC [label="server/app"]
+    CSSProc -> WOC [label="site/pkg/app.css"]
+    Live -> Server [label="Port scan", style=dashed]
+    WOC -> Server [label="target/server/app\nsite/**"]
+    WOC -> Live [label="site/pkg/app.css,\nclient & server change"]
+    Live -> Browser [label="Reload all or\nupdate app.css"]
+    Browser;
+    Server -> Browser [style=dashed, arrowhead=none]
+}
+```
+ 
+  </TabItem>
+  <TabItem label="Markdown">
+
+````md
+```vizdom dataGraph=dagre class=shadow
+digraph TD {
+    cluster=true
+    node [shape=box]
+    subgraph Watcher {
+        label="watch"
+        Watch [label="FS Notifier"]
+    }
+    Watch -> TailW [label="*.rs & input.css"]
+    Watch -> Sass [label="*.sass & *.scss"]
+    Watch -> Append [label="*.css"]
+    Watch -> WASM [label="*.rs"]
+    Watch -> BIN [label="*.rs"]
+    Watch -> Mirror [label="assets/**"]
+    subgraph style {
+        label=style
+        TailW [label="Tailwind CSS"]
+        Sass
+        CSSProc [label="CSS Processor\nLightning CSS"]
+        Append [label="append"]
+    }
+    TailW -> Append
+    Sass -> Append
+    Append -> CSSProc
+    subgraph rust {
+        label=rust
+        WASM [label="Client WASM"]
+        BIN [label="Server BIN"]
+    }
+    subgraph asset {
+        label=asset
+        Mirror
+    }
+    subgraph update {
+        label=update
+        WOC [label="target/site/\nWrite-on-change FS"]
+        Live [label="Live Reload"]
+        Server
+    }
+    Mirror -> WOC [label="site/**"]
+    WASM -> WOC [label="site/pkg/app.wasm"]
+    BIN -> WOC [label="server/app"]
+    CSSProc -> WOC [label="site/pkg/app.css"]
+    Live -> Server [label="Port scan", style=dashed]
+    WOC -> Server [label="target/server/app\nsite/**"]
+    WOC -> Live [label="site/pkg/app.css,\nclient & server change"]
+    Live -> Browser [label="Reload all or\nupdate app.css"]
+    Browser;
+    Server -> Browser [style=dashed, arrowhead=none]
+}
+```
+````
+
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<PackageManagers pkg="@beoe/rehype-vizdom" />
+
+## Usage
+
+```js
+import rehypeVizdom from "@beoe/rehype-vizdom";
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeVizdom, {
+    /* options */
+  })
+  .use(rehypeStringify)
+  .process(`markdown`);
+```
+
+It supports caching the same way as `@beoe/rehype-code-hook` does.
+
+### Configuration
+
+You probaly want to use `inline` strategy and implement dark scheme via CSS:
+
+```css
+.vizdom {
+  :not([fill]) {
+    fill: var(--sl-color-white);
+  }
+  [fill="black"],
+  [fill="#000"] {
+    fill: var(--sl-color-white);
+  }
+  [stroke="black"],
+  [stroke="#000"] {
+    stroke: var(--sl-color-white);
+  }
+  [fill="white"],
+  [fill="#fff"] {
+    fill: var(--sl-color-black);
+  }
+  [stroke="white"],
+  [stroke="#fff"] {
+    stroke: var(--sl-color-black);
+  }
+}
+```
+
+### Tip
+
+`inline` strategy allows to use [interactivity](/start-here/interactivity/).

@@ -1,6 +1,6 @@
 # @beoe/rehype-mermaid
 
-Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams (as inline SVGs) in place of code fences. This:
+Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams in place of code fences. This:
 
 ````md
 ```mermaid
@@ -28,7 +28,7 @@ flowchart LR
 
 There is battle-tested and well maintained [rehype-mermaid](https://github.com/remcohaszing/rehype-mermaid). Both plugins use the same [mermaid-isomorphic](https://github.com/remcohaszing/mermaid-isomorphic) behind the scene.
 
-Main **difference** is that this plugin supports cache, but less teted. Also it supports only "inline-svg" strategy - rehype-mermaid's default strategy.
+Main **difference** is that this plugin supports cache, but less teted.
 
 ## Usage
 
@@ -60,5 +60,3 @@ You need to install `playwright` as well. Also you probably need something like 
 ## TODO
 
 - write about dark mode
-- test `mermaid-isomorphic` options (`css, mermaidConfig, prefix, browser, launchOptions`)
-- write tips about styling with CSS

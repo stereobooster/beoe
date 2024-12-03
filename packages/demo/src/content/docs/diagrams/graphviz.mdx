@@ -1,8 +1,14 @@
 ---
-title: graphviz
+title: "@beoe/rehype-graphviz"
 ---
 
-## Simple
+import { PackageManagers } from "starlight-package-managers";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Rehype plugin to generate [Graphviz](https://graphviz.org/) diagrams in place of code fences. Example:
+
+<Tabs>
+  <TabItem label="Diagram">
 
 ```dot
 digraph finite_state_machine {
@@ -30,13 +36,11 @@ digraph finite_state_machine {
 }
 ```
  
-## With interactivity
+  </TabItem>
+  <TabItem label="Markdown">
 
-:::caution
-This has bugs. Try to select 6 and 7
-:::
-
-```dot dataGraph=dagre
+````md
+```dot
 digraph finite_state_machine {
     bgcolor="transparent";
     fontname="Helvetica,Arial,sans-serif";
@@ -61,3 +65,52 @@ digraph finite_state_machine {
     8 -> 5 [label = "S(a)"];
 }
 ```
+````
+
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<PackageManagers pkg="@beoe/rehype-graphviz" />
+
+## Usage
+
+```js
+import rehypeGraphviz from "@beoe/rehype-graphviz";
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeGraphviz, {
+    /* options */
+  })
+  .use(rehypeStringify)
+  .process(`markdown`);
+```
+
+It supports caching the same way as `@beoe/rehype-code-hook` does.
+
+### Configuration
+
+You probaly want to use `inline` strategy and implement dark scheme via CSS:
+
+```css
+.graphviz {
+  text {
+    fill: var(--sl-color-white);
+  }
+  [fill="black"],
+  [fill="#000"] {
+    fill: var(--sl-color-white);
+  }
+  [stroke="black"],
+  [stroke="#000"] {
+    stroke: var(--sl-color-white);
+  }
+}
+```
+
+### Tip
+
+`inline` strategy allows to use [interactivity](/start-here/interactivity/).

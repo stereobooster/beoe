@@ -1,0 +1,68 @@
+---
+title: "@beoe/rehype-mermaid"
+---
+
+import { PackageManagers } from "starlight-package-managers";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Rehype plugin to generate [Mermaid](https://mermaid.js.org/) diagrams in place of code fences. Example:
+
+<Tabs>
+  <TabItem label="Diagram">
+  
+```mermaid 
+flowchart LR 
+start --> stop
+```
+
+  </TabItem>
+  <TabItem label="Markdown">
+
+````md
+```mermaid
+flowchart LR
+start --> stop
+```
+````
+
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<PackageManagers pkg="@beoe/rehype-mermaid playwright" />
+
+You may want also add this to `package.json`:
+
+```json
+"scripts": {
+  "postinstall": "playwright install chromium"
+}
+```
+
+## Usage
+
+```js
+import rehypeMermaid from "@beoe/rehype-mermaid";
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeMermaid, {
+    /* options */
+  })
+  .use(rehypeStringify)
+  .process(`markdown`);
+```
+
+It supports caching the same way as `@beoe/rehype-code-hook` does.
+
+### Configuration
+
+You probaly want to use `file` strategy and one of dark schemes (`class` or `media`). Unless you need interactivity.
+
+## How is it different from `rehype-mermaid`?
+
+There is battle-tested and well maintained [rehype-mermaid](https://github.com/remcohaszing/rehype-mermaid). Both plugins use the same [mermaid-isomorphic](https://github.com/remcohaszing/mermaid-isomorphic) behind the scene.
+
+**TODO** list differences

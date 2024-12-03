@@ -1,0 +1,64 @@
+---
+title: "@beoe/rehype-d2"
+---
+
+import { PackageManagers } from "starlight-package-managers";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Rehype plugin to generate [D2](https://d2lang.com/) diagrams in place of code fences. Example:
+
+<Tabs>
+  <TabItem label="Diagram">
+
+```d2 pad=10
+direction: right
+x.y.z -> a.b.c: Label
+```
+
+  </TabItem>
+  <TabItem label="Markdown">
+
+````md
+```d2 pad=10
+direction: right
+x.y.z -> a.b.c: Label
+```
+````
+
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<PackageManagers pkg="@beoe/rehype-d2" />
+
+You need to install D2 as well:
+
+```sh
+curl -fsSL https://d2lang.com/install.sh | sh -s --
+```
+
+## Usage
+
+```js
+import rehypeD2 from "@beoe/rehype-d2";
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeD2, {
+    /* options */
+  })
+  .use(rehypeStringify)
+  .process(`markdown`);
+```
+
+It supports caching the same way as `@beoe/rehype-code-hook` does.
+
+### Configuration
+
+You probaly want to use `file` strategy and one of dark schemes (`class` or `media`). Unless you need interactivity.
+
+## Tips
+
+### Note about Netlify
