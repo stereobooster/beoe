@@ -15,6 +15,7 @@
     "directory": "packages/rehype-gnuplot"
   },
   "sideEffects": false,
+  "homepage": "https://beoe.stereobooster.com/diagrams/gnuplot/",
   "exports": {
     "types": "./dist/index.d.js",
     "default": "./dist/index.js"

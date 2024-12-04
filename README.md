@@ -15,18 +15,9 @@ It should be easy to create documentation with many diagrams, like in [**B**yrne
 
 ## Status
 
-I have implemented core packages and added some examples. However, I still need to add more tests, configure CI, create a demo site, and address the remaining TODOs.
+I have implemented core packages and added some examples. However, I still need to add more tests, and address the remaining TODOs.
 
 ## Packages
-
-### Core
-
-- [x] [@beoe/rehype-code-hook](/packages/rehype-code-hook/)
-- [x] [@beoe/sqlitecache](/packages/sqlitecache/)
-- [x] [@beoe/cache](/packages/cache/)
-- [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
-- [x] [@beoe/pan-zoom](/packages/pan-zoom/)
-- [x] [@beoe/fenceparser](/packages/fenceparser/)
 
 ### Diagrams
 
@@ -42,11 +33,19 @@ I have implemented core packages and added some examples. However, I still need 
 
 Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text-to-diagram/).
 
+### Core
+
+- [x] [@beoe/rehype-code-hook](/packages/rehype-code-hook/)
+- [x] [@beoe/sqlitecache](/packages/sqlitecache/)
+- [x] [@beoe/cache](/packages/cache/)
+- [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
+- [x] [@beoe/pan-zoom](/packages/pan-zoom/)
+- [x] [@beoe/fenceparser](/packages/fenceparser/)
+
 ## Logo
 
 The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
 
 ## TODO
 
-- update readmes for all packages. Point to online documentation and remove duplication
 - online example for pan-zoom

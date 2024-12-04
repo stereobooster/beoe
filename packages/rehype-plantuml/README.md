@@ -1,6 +1,6 @@
 # @beoe/rehype-plantuml
 
-Rehype plugin to generate [plantuml](https://www.plantuml.com/) diagrams (as inline SVGs) in place of code fences. This:
+Rehype plugin to generate [plantuml](https://www.plantuml.com/) diagrams in place of code fences. This:
 
 ````md
 ```plantuml

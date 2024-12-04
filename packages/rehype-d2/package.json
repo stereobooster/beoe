@@ -15,6 +15,7 @@
     "directory": "packages/rehype-d2"
   },
   "sideEffects": false,
+  "homepage": "https://beoe.stereobooster.com/diagrams/d2/",
   "exports": {
     "types": "./dist/index.d.js",
     "default": "./dist/index.js"

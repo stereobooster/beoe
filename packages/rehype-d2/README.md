@@ -1,6 +1,6 @@
 # @beoe/rehype-d2
 
-Rehype plugin to generate [d2](https://d2lang.com) diagrams (as inline SVGs) in place of code fences. This:
+Rehype plugin to generate [d2](https://d2lang.com) diagrams in place of code fences. This:
 
 ````md
 ```d2
@@ -35,11 +35,7 @@ const html = await unified()
   .process(`markdown`);
 ```
 
-It support caching the same way as [@beoe/rehype-code-hook](/packages/rehype-code-hook/) does.
-
-## TODO
-
-- [ ] documentation for options
+[Online documentation](https://beoe.stereobooster.com/diagrams/d2/) provides more details.
 
 ## Awaited features
 
