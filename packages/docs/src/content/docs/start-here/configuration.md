@@ -16,7 +16,7 @@ All configurations can be set either globally or locally (via fence-code meta). 
 
 Also you won't be able to set `cache` and `svgo` via local configurations, except disabling them with `false` value.
 
-## Global configurations
+## Global configuration
 
 For example,
 
@@ -32,29 +32,10 @@ use(rehypeDiagram, {
 });
 ```
 
-## Local configurations
+## Local configuration
 
 ````md
 ```some-diagram strategy=inline darkTheme=false class=interactive
-...
-```
-````
-
-## Other configurations
-
-Often plugins would have additional options, for example, D2 also has `d2Options`
-
-```js
-import { getCache } from "@beoe/cache";
-const cache = await getCache();
-
-use(rehypeD2, {
-  d2Options: { pad: 20 },
-});
-```
-
-````md
-```d2 pad=50
 ...
 ```
 ````
