@@ -1,11 +1,34 @@
-# @beoe/pan-zoom
+---
+title: "@beoe/pan-zoom"
+---
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="logo/logo-dark.svg">
-    <img alt="" src="logo/logo.svg" width="200" height="200">
-  </picture>
-</p>
+```gnuplot
+set grid nopolar
+set grid xtics nomxtics ytics nomytics noztics nomztics nortics nomrtics \
+ nox2tics nomx2tics noy2tics nomy2tics nocbtics nomcbtics
+set grid layerdefault   lt 0 linecolor 0 linewidth 0.500,  lt 0 linecolor 0 linewidth 0.500
+set samples 21, 21
+set isosamples 11, 11
+set style data lines
+set title "3D surface from a function"
+set xlabel "X axis"
+set xlabel  offset character -3, -2, 0 font "" textcolor lt -1 norotate
+set xrange [ -10.0000 : 10.0000 ] noreverse nowriteback
+set x2range [ * : * ] noreverse writeback
+set ylabel "Y axis"
+set ylabel  offset character 3, -2, 0 font "" textcolor lt -1 rotate
+set yrange [ -10.0000 : 10.0000 ] noreverse nowriteback
+set y2range [ * : * ] noreverse writeback
+set zlabel "Z axis"
+set zlabel  offset character -5, 0, 0 font "" textcolor lt -1 norotate
+set zrange [ * : * ] noreverse writeback
+set cbrange [ * : * ] noreverse writeback
+set rrange [ * : * ] noreverse writeback
+set colorbox vertical origin screen 0.9, 0.2 size screen 0.05, 0.6 front  noinvert bdefault
+NO_ANIMATION = 1
+## Last datafile plotted: "$grid"
+splot x**2+y**2, x**2-y**2
+```
 
 Small JS library to add **pan and zoom** functionality to **SVG** (inline or image). It supports **gestures** for all types of devices:
 
@@ -24,10 +47,6 @@ Pay attention:
 - <kbd>Cmd</kbd> + click - zoom in
 - <kbd>Alt</kbd> + click - zoom out
 - First double click (tap) - zoom in x2
-
-## Demo
-
-[pan-zoom demo](https://beoe.stereobooster.com/other/pan-zoom/)
 
 ## Usage
 
@@ -160,22 +179,3 @@ Be aware that some CSS will cause pixelation of SVG on zoom (bug in Safari), for
 - `will-change: transform;`
 - `transform: matrix3d(...);`
 - `transition-property: transform;` (it setles after animation, though)
-
-## Alternatives
-
-There are a lot of solutions for this task:
-
-- https://github.com/bumbu/svg-pan-zoom
-- https://jillix.github.io/svg.pan-zoom.js/
-- https://github.com/anvaka/panzoom
-- https://www.npmjs.com/package/svg-pan-zoom-container
-- https://svgjs.dev/docs/3.0/plugins/svg-panzoom-js/
-- https://www.npmjs.com/package/react-svg-pan-zoom
-- https://timmywil.com/panzoom/
-- https://www.jqueryscript.net/other/SVG-Pan-Zoom-jQuery-SVGPanZoom.html
-- https://www.d3indepth.com/zoom-and-pan/
-- https://www.npmjs.com/package/react-zoom-pan-pinch
-
-## Logo
-
-spread by Tomas Knopp from <a href="https://thenounproject.com/browse/icons/term/spread/" target="_blank" title="spread Icons">Noun Project</a> (CC BY 3.0)

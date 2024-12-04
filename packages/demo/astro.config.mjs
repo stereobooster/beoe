@@ -33,9 +33,14 @@ export default defineConfig({
         {
           label: "Start here",
           autogenerate: { directory: "start-here" },
-        },{
+        },
+        {
           label: "Diagrams",
           autogenerate: { directory: "diagrams" },
+        },
+        {
+          label: "Other",
+          autogenerate: { directory: "other" },
         },
         {
           label: "Notes",

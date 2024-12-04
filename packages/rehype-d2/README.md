@@ -36,13 +36,3 @@ const html = await unified()
 ```
 
 [Online documentation](https://beoe.stereobooster.com/diagrams/d2/) provides more details.
-
-## Awaited features
-
-- [ ] [Support link in connections](https://github.com/terrastruct/d2/pull/1955)
-- [ ] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
-- [ ] [Remove embeded fonts](https://github.com/terrastruct/d2/discussions/132)
-- [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)
-- [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
-- [ ] [Class-based dark mode](https://github.com/terrastruct/d2/discussions/2225)
-- [ ] Link resolution callback
