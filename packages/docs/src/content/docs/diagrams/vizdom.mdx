@@ -175,12 +175,20 @@ You probaly want to use [`inline`](/start-here/strategy/#inline) strategy and im
 
 `inline` strategy allows to use [interactivity](/start-here/interactivity/).
 
+### `graphFormat`
+
+`graphFormat` specifies format of a graph to pass to `data-beoe` attribute. If value is falsy no data is passed. Currently supports two formats: `graphology` and `dagre`.
+
+`data-beoe` meant to be used on client side for interactivity. You can grab it parse as JSON and pass "graph" library, for example:
+
+- `@dagrejs/graphlib` is about 12kb
+- graphology is about 70kb uncompressed
+- [graph-data-structure](https://www.npmjs.com/package/graph-data-structure) is about 4kb (but it doesn't support ids for edges)
+- [DirectedGraph](https://data-structure-typed-docs.vercel.app/classes/DirectedGraph.html) is about 40kb
+- [Other options](https://www.npmjs.com/search?q=graph-theory)
+
 ## Issues
 
 - [ ] [HTML classes are not supported](https://github.com/vizdom-dev/vizdom/issues/11)
 - [ ] [Text is transformed to path, so <kbd>Cmd</kbd> + <kbd>F</kbd> doesn't work](https://github.com/vizdom-dev/vizdom/issues/12)
 - [ ] Doesn't support some unicode chars, like `label="∅"`
-
-## TODO
-
-- [ ] Add documentation for `graphFormat`
