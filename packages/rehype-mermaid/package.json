@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-mermaid",
   "type": "module",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "rehype mermaid plugin",
   "keywords": [
     "rehype",
