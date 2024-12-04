@@ -26,7 +26,7 @@ const cache = await getCache();
 
 use(rehypeDiagram, {
   strategy: "file",
-  darkTheme: "class",
+  darkScheme: "class",
   class: "something",
   cache,
 });
@@ -35,7 +35,7 @@ use(rehypeDiagram, {
 ## Local configuration
 
 ````md
-```some-diagram strategy=inline darkTheme=false class=interactive
+```some-diagram strategy=inline darkScheme=false class=interactive
 ...
 ```
 ````

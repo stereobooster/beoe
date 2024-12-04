@@ -58,6 +58,8 @@ use(rehypeDiagram, {
 });
 ```
 
+add `fsPath` (`public/beoe`) to `.gitignore`
+
 **Note**: if you deploy to Netlify, do not use path that starts with `.`.
 
 ## Pros and cons
