@@ -10,7 +10,7 @@ Rehype plugin to generate [Vizdom](https://vizdom.dev/) diagrams in place of cod
 <Tabs>
   <TabItem label="Diagram">
 
-```vizdom dataGraph=dagre class=shadow
+```vizdom graphFormat=dagre class=shadow
 digraph TD {
     cluster=true
     node [shape=box]
@@ -66,7 +66,7 @@ digraph TD {
   <TabItem label="Markdown">
 
 ````md
-```vizdom dataGraph=dagre class=shadow
+```vizdom graphFormat=dagre class=shadow
 digraph TD {
     cluster=true
     node [shape=box]
@@ -183,4 +183,4 @@ You probaly want to use [`inline`](/start-here/strategy/#inline) strategy and im
 
 ## TODO
 
-- [ ] Maybe rename `dataGraph` to `graphFormat`. And documentation for it
+- [ ] Add documentation for `graphFormat`

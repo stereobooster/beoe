@@ -7,7 +7,7 @@ draft: true
 
 **Interactivity**: ants. Try 👇 hover or click nodes.
 
-```vizdom dataGraph=dagre class=ants
+```vizdom graphFormat=dagre class=ants
 digraph finite_state_machine {
     bgcolor="transparent";
     fontname="Helvetica,Arial,sans-serif";

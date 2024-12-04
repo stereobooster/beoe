@@ -6,7 +6,7 @@ import { DotParser } from "@vizdom/vizdom-ts-node";
 export type DataFormat = "dagre" | "graphology";
 
 export type RehypeVizdomConfig = {
-  dataGraph: DataFormat
+  graphFormat: DataFormat
 };
 
 export const render = async (code: string, options: RehypeVizdomConfig) => {
@@ -17,9 +17,9 @@ export const render = async (code: string, options: RehypeVizdomConfig) => {
   const svg = await positioned.to_svg().to_string();
 
   let data;
-  if (options.dataGraph) {
+  if (options.graphFormat) {
     const obj = positioned.to_json().to_obj();
-    if (options.dataGraph === "graphology") {
+    if (options.graphFormat === "graphology") {
       data = {
         attributes: { name: "g" },
         options: { allowSelfLoops: true, multi: true, type: "directed" },
@@ -46,7 +46,7 @@ export const render = async (code: string, options: RehypeVizdomConfig) => {
       };
     }
 
-    if (options.dataGraph === "dagre") {
+    if (options.graphFormat === "dagre") {
       data = {
         options: {
           directed: true,

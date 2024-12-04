@@ -17,7 +17,7 @@ type Engine =
   | "nop2";
 
 export type RehypeGraphvizConfig = {
-  dataGraph: DataFormat;
+  graphFormat: DataFormat;
   engine: Engine;
 };
 
@@ -38,9 +38,9 @@ export const renderGraphviz = waitFor(
     return await Graphviz.load();
   },
   (graphviz) =>
-    ({ code, engine, dataGraph }: RenderGraphvizOptions) => {
+    ({ code, engine, graphFormat }: RenderGraphvizOptions) => {
       let data;
-      if (dataGraph) {
+      if (graphFormat) {
         // without this I can't get consistent ids for JSON and SVG outputs
         code = graphviz.unflatten(code);
         code = graphviz.nop(code);
@@ -49,7 +49,7 @@ export const renderGraphviz = waitFor(
           graphviz.layout(code, "dot_json", engine || "dot")
         );
 
-        if (dataGraph === "graphology") {
+        if (graphFormat === "graphology") {
           data = {
             attributes: { name: "g" },
             options: {
@@ -68,7 +68,7 @@ export const renderGraphviz = waitFor(
           };
         }
 
-        if (dataGraph === "dagre") {
+        if (graphFormat === "dagre") {
           data = {
             options: {
               directed: obj.directed,
