@@ -48,7 +48,7 @@ If you **have container** element in HTML:
 import { PanZoom } from "@beoe/pan-zoom";
 
 document.querySelectorAll(".beoe").forEach((container) => {
-  const element = container.querySelector("svg, img[src$='.svg' i]");
+  const element = container.firstElementChild;
   if (!element) return;
   new PanZoom({ element, container }).on();
 });

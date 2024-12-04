@@ -47,3 +47,6 @@ Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text
 The logo is an illustration from [Oliver Byrne's Elements of Euclid: The First Six Books with Coloured Diagrams and Symbols](https://www.c82.net/euclid/).
 
 ## TODO
+
+- update readmes for all packages. Point to online documentation and remove duplication
+- online example for pan-zoom

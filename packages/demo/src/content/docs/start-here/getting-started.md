@@ -4,8 +4,6 @@ sidebar:
   order: 1
 ---
 
-## Basic
-
 Basic idea. You have Markdown like this:
 
 ````md
@@ -14,7 +12,7 @@ diagram text
 ```
 ````
 
-..and you will get an output like this (image of your diagram):
+...and you will get an output like this (image of your diagram):
 
 ```html
 <svg>...</svg>
@@ -26,4 +24,4 @@ or
 <img src="..." />
 ```
 
-Diagrams can be embedded in HTML differently, each with its own advantages and trade-offs. [Read more here](/start-here/strategy/)
+Diagrams can be embedded in HTML differently, each with its own advantages and trade-offs. [Read more here](/start-here/strategy/).

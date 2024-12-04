@@ -287,7 +287,6 @@ direction: right
 a -> b -> c -> d -> e
 ```
 
-
 ## UML class
 
 ```d2

@@ -14,7 +14,7 @@ All Rehype diagram plugins support (at least) following configurations:
 
 All configurations can be set either globally or locally (via fence-code meta). Global configurations applies to all diagrams. Local configurations applies only to one diagram. Local configurations always override global, with exception for `class` option (it applies all provided classes).
 
-Also you want be able to set `cache` and `svgo` via local configurations, excpet disabling them with `false` value.
+Also you won't be able to set `cache` and `svgo` via local configurations, except disabling them with `false` value.
 
 ## Global configurations
 
@@ -27,7 +27,7 @@ const cache = await getCache();
 use(rehypeDiagram, {
   strategy: "file",
   darkTheme: "class",
-  class: "not-content",
+  class: "something",
   cache,
 });
 ```

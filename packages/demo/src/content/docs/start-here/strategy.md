@@ -62,10 +62,11 @@ use(rehypeDiagram, {
 
 ## Pros and cons
 
-|                        | `inline`     | `data-url` | `file` |
-| ---------------------- | ------------ | ---------- | ------ |
-| Interactivity          | possible     | no         | no     |
-| CSS conflicts          | probably yes | no         | no     |
-| Can be styled with CSS | yes          | no         | no     |
-| DOM footprint          | high         | low        | low    |
-| HTML footprint         | high         | high       | low    |
+|                                                         | `inline`     | `data-url` | `file` |
+| ------------------------------------------------------- | ------------ | ---------- | ------ |
+| [Interactivity](/start-here/interactivity/)             | yes          | no         | no     |
+| [Can be styled with CSS](/start-here/styling-with-css/) | yes          | no         | no     |
+| CSS conflicts                                           | probably yes | no         | no     |
+| [`<img alt="..." >`](/start-here/accessibility/)        | no           | yes        | yes    |
+| DOM footprint                                           | high         | low        | low    |
+| HTML footprint                                          | high         | high       | low    |
