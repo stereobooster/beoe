@@ -41,6 +41,7 @@ Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text
 - [x] [@beoe/remark-code-hook](/packages/remark-code-hook/)
 - [x] [@beoe/pan-zoom](/packages/pan-zoom/)
 - [x] [@beoe/fenceparser](/packages/fenceparser/)
+- [x] [docs](/packages/docs/) [![Netlify Status](https://api.netlify.com/api/v1/badges/14126476-0cdb-4802-9a5b-e7f598221650/deploy-status)](https://app.netlify.com/sites/beoe/deploys)
 
 ## Logo
 

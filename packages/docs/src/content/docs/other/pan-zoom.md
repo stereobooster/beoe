@@ -179,3 +179,7 @@ Be aware that some CSS will cause pixelation of SVG on zoom (bug in Safari), for
 - `will-change: transform;`
 - `transform: matrix3d(...);`
 - `transition-property: transform;` (it setles after animation, though)
+
+## TODO
+
+- [ ] some kind of threshold for small images (pan-zoom UI looks weird for small images)

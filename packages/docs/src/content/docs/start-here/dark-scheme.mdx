@@ -66,11 +66,11 @@ html[data-theme="dark"] .beoe-light {
 
 ## Strategy vs dark scheme
 
-|            | `class`   | `media` |
-| ---------- | --------- | ------- |
-| `inline`   | maybe (1) | no      |
-| `data-url` | yes       | yes     |
-| `file`     | yes       | yes     |
+|                                              | `class`   | `media` |
+| -------------------------------------------- | --------- | ------- |
+| [`inline`](/start-here/strategy/#inline)     | maybe (1) | no      |
+| [`data-url`](/start-here/strategy/#data-url) | yes       | yes     |
+| [`file`](/start-here/strategy/#file)         | yes       | yes     |
 
 (1) - for example, works for Mermaid, but doesn't work for D2 (check with light mode):
 
@@ -83,6 +83,7 @@ import { Tabs, TabItem } from "@astrojs/starlight/components";
 direction: right
 a -> b -> c -> d -> e
 ```
+
   </TabItem>
   <TabItem label="Markdown">
 
@@ -92,5 +93,6 @@ direction: right
 a -> b -> c -> d -> e
 ```
 ````
+
   </TabItem>
 </Tabs>
