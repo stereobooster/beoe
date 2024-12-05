@@ -182,4 +182,8 @@ Be aware that some CSS will cause pixelation of SVG on zoom (bug in Safari), for
 
 ## TODO
 
-- [ ] some kind of threshold for small images (pan-zoom UI looks weird for small images)
+- [ ] Do not stretch images if they are smaller than viewport
+- [ ] Do not show PanZoom UI for small images
+- [ ] Prevent clicks on drag or pan
+- [ ] minimap and full-screen mode, like in [reactflow](https://reactflow.dev/examples/nodes/custom-node)
+- [ ] Create a Rehype plugin to wrap images in a container (`<figure class="beoe"></figure>`) to avoid creating it on the client side.
