@@ -34,11 +34,22 @@ Works only with strategy [`inline`](/start-here/strategy/#inline).
 }
 ```
 
-Graphviz allows to expose HTML classes, that can be used for further styling:
+Graphviz and Vizdom allow to expose HTML classes, that can be used for further styling:
 
 <Tabs>
-  <TabItem label="Diagram">
+  <TabItem label="Grapviz">
 ```dot strategy=inline
+digraph g {
+  bgcolor="transparent";
+  rankdir=LR;
+  node [shape=rect];
+  a -> b -> c -> d -> e -> f
+  a[class="style-me"]
+}
+```
+  </TabItem>
+  <TabItem label="Vizdom">
+```vizdom strategy=inline
 digraph g {
   bgcolor="transparent";
   rankdir=LR;
@@ -63,8 +74,9 @@ digraph g {
 .graphviz .style-me path {
   fill: lightblue;
 }
+.vizdom .style-me :first-child {
+  fill: lightblue;
+}
 ```
   </TabItem>
 </Tabs>
-
-**⚠️ Note**: this doesn't work for Vizdom.

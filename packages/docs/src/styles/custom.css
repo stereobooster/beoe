@@ -130,3 +130,6 @@ html[data-theme="dark"] .beoe-light {
 .graphviz .style-me path {
   fill: lightblue;
 }
+.vizdom .style-me :first-child {
+  fill: lightblue;
+}

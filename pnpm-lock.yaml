@@ -300,8 +300,8 @@ importers:
         specifier: workspace:*
         version: link:../rehype-code-hook-img
       '@vizdom/vizdom-ts-node':
-        specifier: ^0.1.17
-        version: 0.1.17
+        specifier: ^0.1.18
+        version: 0.1.18
     devDependencies:
       '@types/hast':
         specifier: ^3.0.4
@@ -1446,8 +1446,8 @@ packages:
   '@vitest/utils@2.1.6':
     resolution: {integrity: sha512-ixNkFy3k4vokOUTU2blIUvOgKq/N2PW8vKIjZZYsGJCMX69MRa9J2sKqX5hY/k5O5Gty3YJChepkqZ3KM9LyIQ==}
 
-  '@vizdom/vizdom-ts-node@0.1.17':
-    resolution: {integrity: sha512-VnA+DyXOjMzOxOSY/5CF3l9bpJxyidPbLd4GEz8MD/Dd1I6f0iiMf5oRscLmjJUE56jBm0Otujz8IExovGbV9Q==}
+  '@vizdom/vizdom-ts-node@0.1.18':
+    resolution: {integrity: sha512-Cz9uSe9aWk+IGm+Mgul2mbHDEitHVb1AKt8qsLsWFsngOad6DygsVdNDWY2NbYLVgBk19VGeVOkr15Qf83TCHQ==}
 
   '@volar/kit@2.4.10':
     resolution: {integrity: sha512-ul+rLeO9RlFDgkY/FhPWMnpFqAsjvjkKz8VZeOY5YCJMwTblmmSBlNJtFNxSBx9t/k1q80nEthLyxiJ50ZbIAg==}
@@ -4898,7 +4898,7 @@ snapshots:
       loupe: 3.1.2
       tinyrainbow: 1.2.0
 
-  '@vizdom/vizdom-ts-node@0.1.17': {}
+  '@vizdom/vizdom-ts-node@0.1.18': {}
 
   '@volar/kit@2.4.10(typescript@5.7.2)':
     dependencies:
