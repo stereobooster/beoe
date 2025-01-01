@@ -88,11 +88,19 @@ add `fsPath` (`public/beoe`) to `.gitignore`
 
 **Note**: if you deploy to Netlify, do not use path that starts with `.`.
 
+**Note**:
+
+- there is also `allowfullscreen`, `loading=lazy`, `role=img`
+- I wonder if there will be issues with fitting image or if it would allow navigation of top frame
+  - `target=_top` + `allow-top-navigation`
+- link preview won't work
+- maybe there will be issues with `@beoe/pan-zoom`
+
 ## Pros and cons
 
 |                                                         | `inline`     | `data-url` | `file` | `iframe` (1)  |
 | ------------------------------------------------------- | ------------ | ---------- | ------ | ------------- |
-| [Interactivity](/start-here/interactivity/)             | yes          | no         | no     | yes           |
+| [Interactivity](/start-here/interactivity/)             | yes          | no         | no     | probably yes  |
 | [Can be styled with CSS](/start-here/styling-with-css/) | yes          | no         | no     | no            |
 | CSS conflicts                                           | probably yes | no         | no     | no            |
 | [`<img alt="..." >`](/start-here/accessibility/)        | no           | yes        | yes    | yes (`title`) |
