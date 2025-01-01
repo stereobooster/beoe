@@ -64,11 +64,13 @@ add `fsPath` (`public/beoe`) to `.gitignore`
 
 ## Pros and cons
 
-|                                                         | `inline`     | `data-url` | `file` |
-| ------------------------------------------------------- | ------------ | ---------- | ------ |
-| [Interactivity](/start-here/interactivity/)             | yes          | no         | no     |
-| [Can be styled with CSS](/start-here/styling-with-css/) | yes          | no         | no     |
-| CSS conflicts                                           | probably yes | no         | no     |
-| [`<img alt="..." >`](/start-here/accessibility/)        | no           | yes        | yes    |
-| DOM footprint                                           | high         | low        | low    |
-| HTML footprint                                          | high         | high       | low    |
+|                                                         | `inline`     | `data-url` | `file` | `iframe` (1)  |
+| ------------------------------------------------------- | ------------ | ---------- | ------ | ------------- |
+| [Interactivity](/start-here/interactivity/)             | yes          | no         | no     | yes           |
+| [Can be styled with CSS](/start-here/styling-with-css/) | yes          | no         | no     | no            |
+| CSS conflicts                                           | probably yes | no         | no     | no            |
+| [`<img alt="..." >`](/start-here/accessibility/)        | no           | yes        | yes    | yes (`title`) |
+| DOM footprint                                           | high         | low        | low    | low           |
+| HTML footprint                                          | high         | high       | low    | low           |
+
+1: `iframe` is the new idea. **Not implemented**
