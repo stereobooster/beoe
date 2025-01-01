@@ -62,6 +62,32 @@ add `fsPath` (`public/beoe`) to `.gitignore`
 
 **Note**: if you deploy to Netlify, do not use path that starts with `.`.
 
+### `iframe`
+
+`iframe` is the new idea. **Not implemented**
+
+```html
+<figure class="beoe">
+  <iframe src="/path/to.svg" width="..." height="..." title="..."></iframe>
+</figure>
+```
+
+**Note**: this strategy requires to additional options:
+
+```js
+use(rehypeDiagram, {
+  strategy: "iframe",
+  // where to store files on the disk
+  fsPath: "public/beoe",
+  // path to files in a browser
+  webPath: "/beoe",
+});
+```
+
+add `fsPath` (`public/beoe`) to `.gitignore`
+
+**Note**: if you deploy to Netlify, do not use path that starts with `.`.
+
 ## Pros and cons
 
 |                                                         | `inline`     | `data-url` | `file` | `iframe` (1)  |
