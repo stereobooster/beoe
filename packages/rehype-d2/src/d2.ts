@@ -7,12 +7,12 @@ export type D2Options = {
   themeID?: number;
 };
 
-const d2Instance = new D2();
-
 export async function d2(
   code: string,
   options?: D2Options
 ): Promise<string> {
+  const d2Instance = new D2();
   const result = await d2Instance.compile(code, options);
-  return await d2Instance.render(result.diagram, options);
+  const svg = await d2Instance.render(result.diagram, options);
+  return svg
 }
