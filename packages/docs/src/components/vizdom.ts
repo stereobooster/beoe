@@ -186,17 +186,17 @@ document.querySelectorAll(".d2.shadow").forEach((container) => {
 
   function clear() {
     container
-      .querySelectorAll(".shape,.connection")
+      .querySelectorAll("g[id]")
       .forEach((node) => node.classList.remove("shadow"));
   }
 
   function highlight(id: string) {
     container
-      .querySelectorAll(".shape,.connection")
+      .querySelectorAll("g[id]")
       .forEach((node) => node.classList.add("shadow"));
     alg.postorder(graph, [id]).forEach((node) => {
       container
-        .querySelector(`#${CSS.escape(node)} .shape`)
+        .querySelector(`#${CSS.escape(node)}`)
         ?.classList.remove("shadow");
       graph.outEdges(node)?.forEach(({ name }) => {
         container
