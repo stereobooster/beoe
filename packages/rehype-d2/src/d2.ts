@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-ignore https://github.com/terrastruct/d2/issues/2286
 import { D2 } from "@terrastruct/d2";
 
 export type D2Options = {
