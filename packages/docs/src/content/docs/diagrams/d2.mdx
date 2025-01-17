@@ -10,18 +10,18 @@ Rehype plugin to generate [D2](https://d2lang.com/) diagrams in place of code fe
 <Tabs>
   <TabItem label="Diagram">
 
-```d2
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow
 direction: right
-x.y.z -> a.b.c: Label
+a -> b -> c -> d -> e
 ```
 
   </TabItem>
   <TabItem label="Markdown">
 
 ````md
-```d2
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow
 direction: right
-x.y.z -> a.b.c: Label
+a -> b -> c -> d -> e
 ```
 ````
 

@@ -30,7 +30,7 @@ export const render = async (code: string, options: RehypeVizdomConfig) => {
           //   x: node.x,
           //   y: node.y,
           //   width: node.width,
-          //   height: node.width,
+          //   height: node.height,
           //   url: node.url,
           // },
         })),

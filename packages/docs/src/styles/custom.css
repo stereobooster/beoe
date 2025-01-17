@@ -133,3 +133,13 @@ html[data-theme="dark"] .beoe-light {
 .vizdom .style-me :first-child {
   fill: lightblue;
 }
+
+.d2[data-beoe].shadow {
+  .shadow {
+    opacity: 0.4;
+  }
+
+  .shape {
+    cursor: default;
+  }
+}
