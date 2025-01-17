@@ -22,8 +22,6 @@ which can look like this:
 
 ## Usage
 
-You need to install [D2](https://d2lang.com/tour/install) in order to use this plugin. **But** they are working on [WASM version](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029), so hopefully this will change soon.
-
 ```js
 import rehypeD2 from "@beoe/rehype-d2";
 

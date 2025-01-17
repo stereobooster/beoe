@@ -10,7 +10,7 @@ Rehype plugin to generate [D2](https://d2lang.com/) diagrams in place of code fe
 <Tabs>
   <TabItem label="Diagram">
 
-```d2 pad=10
+```d2
 direction: right
 x.y.z -> a.b.c: Label
 ```
@@ -19,7 +19,7 @@ x.y.z -> a.b.c: Label
   <TabItem label="Markdown">
 
 ````md
-```d2 pad=10
+```d2
 direction: right
 x.y.z -> a.b.c: Label
 ```
@@ -31,12 +31,6 @@ x.y.z -> a.b.c: Label
 ## Installation
 
 <PackageManagers pkg="@beoe/rehype-d2" />
-
-You need to install D2 as well:
-
-```sh
-curl -fsSL https://d2lang.com/install.sh | sh -s --
-```
 
 ## Usage
 
@@ -82,35 +76,12 @@ export type D2Options = {
    * Set the diagram layout engine to the passed string. For a
    * list of available options, run layout.
    */
-  layout?: string;
-  /**
-   * @default 100
-   * Pixels padded around the rendered diagram.
-   */
-  pad?: number;
-  /**
-   * @default -1
-   * Scale the output. E.g., 0.5 to halve the default size.
-   * Default -1 means that SVG's will fit to screen and all others
-   * will use their default render size. Setting to 1 turns off
-   * SVG fitting to screen.
-   */
-  scale?: number;
+  layout?: "dagre" | "elk";
   /**
    * @default false
    * Renders the diagram to look like it was sketched by hand.
    */
   sketch?: boolean;
-  /**
-   * @default true
-   * Bundle all assets and layers into the output svg.
-   */
-  bundle?: boolean;
-  /**
-   * Center the SVG in the containing viewbox, such as your
-   * browser screen.
-   */
-  center?: boolean;
 };
 ```
 
@@ -118,30 +89,25 @@ You can set it globally:
 
 ```ts
 use(rehypeD2, {
-  d2Options: { pad: 20 },
+  d2Options: { layout: "dagre" },
 });
 ```
 
 Or locally:
 
 ````md
-```d2 pad=10
+```d2
 ...
 ```
 ````
 
-## Tips
-
-### Note about Netlify
-
-You can create small Netlify plugin to install D2. See example [here](https://github.com/stereobooster/beoe/tree/main/plugins/netlify-plugin-d2)
-
 ## Issues
 
-- [ ] [Support links in connections](https://github.com/terrastruct/d2/pull/1955)
-- [ ] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
+- [x] [Support links in connections](https://github.com/terrastruct/d2/pull/1955)
+- [x] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
+- [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
+- [ ] [Class-based dark mode](https://github.com/terrastruct/d2/pull/1803)
 - [ ] [Remove embeded fonts](https://github.com/terrastruct/d2/discussions/132)
 - [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)
-- [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
-- [ ] [Class-based dark mode](https://github.com/terrastruct/d2/discussions/2225)
+- [ ] [d2js: full options args](https://github.com/terrastruct/d2/issues/2297), like `pad`
 - [ ] Link resolution callback
