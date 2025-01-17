@@ -13,7 +13,7 @@ const cache = await getCache();
 // requerd for correct displaying mobile warning
 const className = "not-content";
 const conf = {
-  // cache,
+  cache,
   strategy: "file",
   darkScheme: "class",
   // do not use .beoe for Netlify deployments
