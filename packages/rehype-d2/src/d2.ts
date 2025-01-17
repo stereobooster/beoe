@@ -1,3 +1,5 @@
+// @ts-ignore
+import { D2 } from "@terrastruct/d2";
 import { spawn } from "node:child_process";
 
 // https://github.com/stereobooster/venn-nodejs/blob/main/index.js
@@ -71,7 +73,7 @@ export type D2Options = {
    * Set the diagram layout engine to the passed string. For a
    * list of available options, run layout.
    */
-  layout?: string;
+  layout?: "dagre" | "elk";
   /**
    * @default 100
    * Pixels padded around the rendered diagram.
@@ -115,4 +117,17 @@ export function d2(code: string, options?: D2Options) {
   if (options?.center) args.push(`--center`);
 
   return exec("d2", [...args, "-"], code);
+}
+
+export type CompileOptions = {
+  layout?: "dagre" | "elk";
+  sketch?: boolean;
+};
+const d2Instance = new D2();
+export async function d2New(
+  code: string,
+  options?: CompileOptions
+): Promise<string> {
+  const result = await d2Instance.compile(code, options);
+  return await d2Instance.render(result.diagram);
 }
