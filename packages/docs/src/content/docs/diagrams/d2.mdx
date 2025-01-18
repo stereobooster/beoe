@@ -10,18 +10,18 @@ Rehype plugin to generate [D2](https://d2lang.com/) diagrams in place of code fe
 <Tabs>
   <TabItem label="Diagram">
 
-```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+```d2
 direction: right
-a -> b -> c -> d -> e
+x.y.z -> a.b.c: Label
 ```
 
   </TabItem>
   <TabItem label="Markdown">
 
 ````md
-```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+```d2
 direction: right
-a -> b -> c -> d -> e
+x.y.z -> a.b.c: Label
 ```
 ````
 
@@ -105,7 +105,7 @@ Or locally:
 
 - [x] [Support links in connections](https://github.com/terrastruct/d2/pull/1955)
 - [x] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
-- [ ] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
+- [x] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
 - [ ] [Class-based dark mode](https://github.com/terrastruct/d2/pull/1803)
 - [ ] [Remove embeded fonts](https://github.com/terrastruct/d2/discussions/132)
 - [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)
