@@ -282,7 +282,7 @@ a2 -> b -> c -> d -> e
 
 ### `strategy=inline`
 
-```d2 strategy=inline darkScheme=false
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
 direction: right
 a -> b -> c -> d -> e
 ```

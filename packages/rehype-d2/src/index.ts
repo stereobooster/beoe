@@ -21,15 +21,18 @@ export const rehypeD2 = rehypeCodeHookImg<RehypeD2Config>({
       // @ts-ignore
       newD2Options.themeID = parseFloat(newD2Options.theme);
     }
-    const svg = await d2(code, newD2Options);
-    const darkSvg = darkMode
-      ? await d2(code, {
+    const { svg, data } = await d2(code, newD2Options);
+    let darkSvg;
+    if (darkMode) {
+      darkSvg = (
+        await d2(code, {
           ...newD2Options,
           // @ts-ignore
           themeID: parseFloat(newD2Options?.darkTheme ?? "200"),
         })
-      : undefined;
-    return { svg, darkSvg };
+      ).svg;
+    }
+    return { svg, darkSvg, data };
   },
 });
 
