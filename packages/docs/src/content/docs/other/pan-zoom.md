@@ -182,6 +182,7 @@ Be aware that some CSS will cause pixelation of SVG on zoom (bug in Safari), for
 
 ## TODO
 
+- [ ] Show UI for 5-10 seconds after cursor move, then hide it. Like controls in video player
 - [ ] Do not stretch images if they are smaller than viewport
 - [ ] Do not show PanZoom UI for small images
 - [ ] Prevent clicks on drag or pan
