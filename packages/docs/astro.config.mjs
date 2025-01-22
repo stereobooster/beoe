@@ -19,6 +19,8 @@ const conf = {
   // do not use .beoe for Netlify deployments
   fsPath: "public/beoe",
   webPath: "/beoe",
+  // for D2
+  shared: "shared/**/*.d2",
 };
 
 // https://astro.build/config

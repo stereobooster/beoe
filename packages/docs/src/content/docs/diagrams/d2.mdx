@@ -82,6 +82,12 @@ export type D2Options = {
    * Renders the diagram to look like it was sketched by hand.
    */
   sketch?: boolean;
+  /**
+   * @default undefined
+   * Glob pattern for files to be used for [`import`](https://d2lang.com/tour/imports/).
+   * `GlobOptions` are from [tinyglobby](https://github.com/SuperchupuDev/tinyglobby#options).
+   */
+  shared?: string | string[] | GlobOptions;
 };
 ```
 
@@ -106,6 +112,7 @@ Or locally:
 - [x] [Support links in connections](https://github.com/terrastruct/d2/pull/1955)
 - [x] [JS package](https://github.com/terrastruct/d2/discussions/234#discussioncomment-11286029)
 - [x] [Export JSON graph](https://github.com/terrastruct/d2/discussions/2224)
+- [x] [support `import`](https://github.com/terrastruct/d2/issues/2301)
 - [ ] [Class-based dark mode](https://github.com/terrastruct/d2/pull/1803)
 - [ ] [Remove embeded fonts](https://github.com/terrastruct/d2/discussions/132)
 - [ ] [Smaller embeded icons](https://github.com/terrastruct/d2/discussions/2223)

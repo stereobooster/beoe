@@ -1,7 +1,23 @@
 ---
 title: d2 test
-draft: true
 ---
+
+## Interesting ones
+
+### Interactive example
+
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+direction: right
+a -> b -> c -> d -> e
+```
+
+### import
+
+```d2
+direction: right
+a:@"shared/x.d2"
+a -> b
+```
 
 ## containers
 
@@ -282,7 +298,7 @@ a2 -> b -> c -> d -> e
 
 ### `strategy=inline`
 
-```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+```d2 strategy=inline darkScheme=false
 direction: right
 a -> b -> c -> d -> e
 ```
