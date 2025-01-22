@@ -450,11 +450,103 @@ document.querySelectorAll(".vizdom.ants").forEach((container) => {
   </TabItem>
 </Tabs>
 
+### D2 Example
+
+**Try** hower nodes.
+
+<Tabs>
+  <TabItem label="Diagram">
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+direction: right
+a -> b -> c -> d -> e
+```
+  </TabItem>
+  <TabItem label="Markdown">
+````md
+```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
+direction: right
+a -> b -> c -> d -> e
+```
+````
+  </TabItem>
+  <TabItem label="JS">
+
+```ts
+import { json, alg } from "@dagrejs/graphlib";
+
+// interactivity for d2 diagrams
+document.querySelectorAll(".d2.shadow").forEach((container) => {
+  const data = container.getAttribute("data-beoe")
+    ? JSON.parse(container.getAttribute("data-beoe")!)
+    : null;
+
+  if (!data) return;
+  const graph = json.read(data);
+
+  function clear() {
+    container
+      .querySelectorAll("g[id]")
+      .forEach((node) => node.classList.remove("shadow"));
+  }
+
+  function highlight(id: string) {
+    container
+      .querySelectorAll("g[id]")
+      .forEach((node) => node.classList.add("shadow"));
+    alg.postorder(graph, [id]).forEach((node) => {
+      container
+        .querySelector(`#${CSS.escape(node)}`)
+        ?.classList.remove("shadow");
+      graph.outEdges(node)?.forEach(({ name }) => {
+        container
+          .querySelector(`#${CSS.escape(name!)}`)
+          ?.classList.remove("shadow");
+      });
+    });
+  }
+
+  // highlight on hover
+  let currentHover: string | null = null;
+  container.addEventListener("mouseover", (e) => {
+    // @ts-expect-error
+    const node = e.target?.closest(".shape");
+
+    if (node) {
+      const id = node.parentElement.getAttribute("id");
+      if (currentHover == id) return;
+      clear();
+      highlight(id);
+      currentHover = id;
+    } else {
+      if (currentHover == null) return;
+      clear();
+      currentHover = null;
+    }
+  });
+});
+```
+  </TabItem>
+  <TabItem label="CSS">
+
+```css
+.d2[data-beoe].shadow {
+  .shadow {
+    opacity: 0.4;
+  }
+
+  .shape {
+    cursor: default;
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
 ### Notes
 
-- JS and CSS for those examples are not included in Vizdom Rehype plugin, but feel free to copy (from this website) and modify them
+- JS and CSS for those examples are not included in Rehype plugin, but feel free to copy (from this website) and modify them
 - Graphviz Rehype plugin also provides option for `data` (`graphFormat=dagre`), but ids in SVG are not consistent with ids in JSON. So it doesn't really work
-- [Request to support JSON representation for D2](https://github.com/terrastruct/d2/discussions/2224)
+- [There are some issues with D2](https://github.com/terrastruct/d2/discussions/2224)
 
 ### TODO
 
