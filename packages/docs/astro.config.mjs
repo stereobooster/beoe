@@ -8,7 +8,6 @@ import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 import { rehypeVizdom } from "@beoe/rehype-vizdom";
 import { rehypeD2 } from "@beoe/rehype-d2";
-import { rehypePenrose } from "@beoe/rehype-penrose";
 
 const cache = await getCache();
 // requerd for correct displaying mobile warning
@@ -21,6 +20,21 @@ const conf = {
   fsPath: "public/beoe",
   webPath: "/beoe",
 };
+const rehypePlugins = [
+  [rehypeGraphviz, { cache, class: className }],
+  [rehypeVizdom, { cache, class: className }],
+  [rehypeMermaid, conf],
+  [rehypeGnuplot, conf],
+  [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
+];
+if (import.meta.env.DEV) {
+  // this breaks build
+  const { rehypePenrose } = await import("@beoe/rehype-penrose");
+  rehypePlugins.push([
+    rehypePenrose,
+    { ...conf, shared: "shared", svgo: false },
+  ]);
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -59,14 +73,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins: [
-      [rehypeGraphviz, { cache, class: className }],
-      [rehypeVizdom, { cache, class: className }],
-      [rehypeMermaid, conf],
-      [rehypeGnuplot, conf],
-      [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
-      [rehypePenrose, { ...conf, shared: "shared", svgo: false }],
-    ],
+    rehypePlugins,
   },
   vite: {
     plugins: [qrcode()],

@@ -1,3 +1,3 @@
-```test strategy=img
+```test strategy=data-url
 test
 ```

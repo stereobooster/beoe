@@ -22,7 +22,7 @@ it("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypeD2, { strategy: "img" })
+    .use(rehypeD2, { strategy: "data-url" })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 

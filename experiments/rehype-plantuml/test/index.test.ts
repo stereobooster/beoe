@@ -24,7 +24,7 @@ it.skip("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypePlantuml, { strategy: "img" })
+    .use(rehypePlantuml, { strategy: "data-url" })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 

@@ -45,9 +45,9 @@ digraph TD {
 }
 ```
 
-### `strategy=img`
+### `strategy=data-url`
 
-```vizdom strategy=img
+```vizdom strategy=data-url
 digraph TD {
   node [shape=box]
   rankdir="LR"
