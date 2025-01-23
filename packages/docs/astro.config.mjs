@@ -8,6 +8,7 @@ import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 import { rehypeVizdom } from "@beoe/rehype-vizdom";
 import { rehypeD2 } from "@beoe/rehype-d2";
+import { rehypePenrose } from "@beoe/rehype-penrose";
 
 const cache = await getCache();
 // requerd for correct displaying mobile warning
@@ -20,23 +21,6 @@ const conf = {
   fsPath: "public/beoe",
   webPath: "/beoe",
 };
-
-const rehypePlugins = [
-  [rehypeGraphviz, { cache, class: className }],
-  [rehypeVizdom, { cache, class: className }],
-  [rehypeMermaid, conf],
-  [rehypeGnuplot, conf],
-  [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
-];
-// this breaks build
-// this breaks http://localhost:4321/examples/d2-test/
-// if (import.meta.env.DEV) {
-//   const { rehypePenrose } = await import("@beoe/rehype-penrose");
-//   rehypePlugins.push([
-//     rehypePenrose,
-//     { ...conf, shared: "shared", svgo: false },
-//   ]);
-// }
 
 const sidebar = [
   {
@@ -79,7 +63,14 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins,
+    rehypePlugins: [
+      [rehypeGraphviz, { cache, class: className }],
+      [rehypeVizdom, { cache, class: className }],
+      [rehypeMermaid, conf],
+      [rehypeGnuplot, conf],
+      [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
+      [rehypePenrose, { ...conf, shared: "shared", svgo: false }],
+    ],
   },
   vite: {
     plugins: [qrcode()],
