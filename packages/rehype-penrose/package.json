@@ -1,0 +1,47 @@
+{
+  "name": "@beoe/rehype-penrose",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "rehype penrose plugin",
+  "keywords": [
+    "rehype",
+    "penrose"
+  ],
+  "author": "stereobooster",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stereobooster/beoe.git",
+    "directory": "packages/rehype-penrose"
+  },
+  "homepage": "https://beoe.stereobooster.com/diagrams/penrose/",
+  "sideEffects": false,
+  "exports": {
+    "types": "./dist/index.d.js",
+    "default": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.js",
+  "scripts": {
+    "test": "vitest",
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@beoe/rehype-code-hook-img": "workspace:*",
+    "@penrose/core": "3.2.0",
+    "global-jsdom": "^26.0.0"
+  },
+  "devDependencies": {
+    "@types/hast": "^3.0.4",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.1",
+    "unified": "^11.0.5"
+  }
+}

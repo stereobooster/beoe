@@ -8,6 +8,7 @@ import { rehypeGraphviz } from "@beoe/rehype-graphviz";
 import { rehypeGnuplot } from "@beoe/rehype-gnuplot";
 import { rehypeVizdom } from "@beoe/rehype-vizdom";
 import { rehypeD2 } from "@beoe/rehype-d2";
+import { rehypePenrose } from "@beoe/rehype-penrose";
 
 const cache = await getCache();
 // requerd for correct displaying mobile warning
@@ -19,8 +20,6 @@ const conf = {
   // do not use .beoe for Netlify deployments
   fsPath: "public/beoe",
   webPath: "/beoe",
-  // for D2
-  shared: "shared/**/*.d2",
 };
 
 // https://astro.build/config
@@ -65,7 +64,8 @@ export default defineConfig({
       [rehypeVizdom, { cache, class: className }],
       [rehypeMermaid, conf],
       [rehypeGnuplot, conf],
-      [rehypeD2, conf],
+      [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
+      [rehypePenrose, { ...conf, shared: "shared", svgo: false }],
     ],
   },
   vite: {

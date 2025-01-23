@@ -28,7 +28,7 @@ I have implemented core packages and added some examples. However, I still need 
 | Gnuplot  | [@beoe/rehype-gnuplot](/packages/rehype-gnuplot/)   |
 | Vizdom   | [@beoe/rehype-vizdom](/packages/rehype-vizdom/)     |
 | D2       | [@beoe/rehype-d2](/packages/rehype-d2/)             |
-| Penrose  |                                                     |
+| Penrose  | [@beoe/rehype-penrose](/packages/rehype-penrose/)   |
 | ...      |                                                     |
 
 Ideas for other diagrams: [Text to Diagram](https://stereobooster.com/posts/text-to-diagram/).

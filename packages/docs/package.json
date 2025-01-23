@@ -20,6 +20,7 @@
     "@beoe/rehype-graphviz": "workspace:*",
     "@beoe/rehype-mermaid": "workspace:*",
     "@beoe/rehype-vizdom": "workspace:*",
+    "@beoe/rehype-penrose": "workspace:*",
     "@dagrejs/graphlib": "^2.2.4",
     "astro": "4.16.18",
     "playwright": "^1.49.0",
