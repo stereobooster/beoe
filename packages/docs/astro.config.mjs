@@ -28,14 +28,15 @@ const rehypePlugins = [
   [rehypeGnuplot, conf],
   [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
 ];
-if (import.meta.env.DEV) {
-  // this breaks build
-  const { rehypePenrose } = await import("@beoe/rehype-penrose");
-  rehypePlugins.push([
-    rehypePenrose,
-    { ...conf, shared: "shared", svgo: false },
-  ]);
-}
+// this breaks build
+// this breaks http://localhost:4321/examples/d2-test/
+// if (import.meta.env.DEV) {
+//   const { rehypePenrose } = await import("@beoe/rehype-penrose");
+//   rehypePlugins.push([
+//     rehypePenrose,
+//     { ...conf, shared: "shared", svgo: false },
+//   ]);
+// }
 
 const sidebar = [
   {
