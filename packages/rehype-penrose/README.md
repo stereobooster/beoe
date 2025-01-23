@@ -2,6 +2,6 @@
 
 ## TODO
 
-- [ ] add tests
+- [ ] fix SVGO issue
 - [ ] add readme and documentation
 - [ ] publish

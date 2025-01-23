@@ -1,11 +1,11 @@
 // import { type compile } from "@penrose/core";
 import { spawn } from "node:child_process";
 import { fileURLToPath } from "url";
-import { dirname } from "path";
 import { resolve } from "node:path";
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const executablePath = resolve(__dirname, `../bin/penrose.js`);
+const executablePath = resolve(
+  fileURLToPath(import.meta.url),
+  `../../bin/penrose.js`
+);
 
 // type CompileOptions = Parameters<typeof compile>[0];
 type CompileOptions = {
