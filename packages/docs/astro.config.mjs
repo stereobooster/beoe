@@ -20,6 +20,7 @@ const conf = {
   fsPath: "public/beoe",
   webPath: "/beoe",
 };
+
 const rehypePlugins = [
   [rehypeGraphviz, { cache, class: className }],
   [rehypeVizdom, { cache, class: className }],
@@ -36,6 +37,31 @@ if (import.meta.env.DEV) {
   ]);
 }
 
+const sidebar = [
+  {
+    label: "Start here",
+    autogenerate: { directory: "start-here" },
+  },
+  {
+    label: "Diagrams",
+    autogenerate: { directory: "diagrams" },
+  },
+  {
+    label: "Other",
+    autogenerate: { directory: "other" },
+  },
+  {
+    label: "Notes",
+    autogenerate: { directory: "notes" },
+  },
+];
+if (import.meta.env.DEV) {
+  sidebar.push({
+    label: "Examples",
+    autogenerate: { directory: "examples" },
+  });
+}
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [
@@ -44,28 +70,7 @@ export default defineConfig({
       social: {
         github: "https://github.com/stereobooster/beoe",
       },
-      sidebar: [
-        {
-          label: "Start here",
-          autogenerate: { directory: "start-here" },
-        },
-        {
-          label: "Diagrams",
-          autogenerate: { directory: "diagrams" },
-        },
-        {
-          label: "Other",
-          autogenerate: { directory: "other" },
-        },
-        {
-          label: "Notes",
-          autogenerate: { directory: "notes" },
-        },
-        // {
-        //   label: "Examples",
-        //   autogenerate: { directory: "examples" },
-        // },
-      ],
+      sidebar,
       customCss: ["./src/styles/custom.css"],
       components: {
         PageFrame: "./src/components/PageFrame.astro",
