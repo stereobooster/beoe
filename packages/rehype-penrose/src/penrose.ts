@@ -25,7 +25,9 @@ export const penrose = (opts: CompileOptions): Promise<string> => {
     const bin = spawn(executablePath, [], {
       windowsHide: true,
     });
-    bin.stdout.on("data", (data: Buffer) => (res += data.toString()));
+    bin.stdout.on("data", (data: Buffer) => {
+      res += data.toString();
+    });
     bin.stderr.on("data", (data: Buffer) => reject(data.toString()));
     bin.on("close", (code) =>
       code === 0

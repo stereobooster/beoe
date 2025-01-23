@@ -48,17 +48,18 @@ if (optimized.isErr()) {
   console.error(showError(optimized.error));
   process.exit(1);
 }
-const svg = (await toSVG(optimized.value, resolvePath(path), "rehype"))
-  .outerHTML;
+const svgElement = await toSVG(optimized.value, resolvePath(path), "rehype");
 
 // https://github.com/stereobooster/venn-nodejs/blob/main/bin/venn-nodejs.js
 // import serialize from "w3c-xmlserializer";
 // const s = new XMLSerializer();
-// s.serializeToString(svg);
+// const svg = s.serializeToString(svgElement);
+const svg = svgElement.outerHTML;
 
 function chunkString(str, length) {
   return str.match(new RegExp(".{1," + length + "}", "g"));
 }
 
+// writeFileSync("tmp.svg", svg, "utf8")
 chunkString(svg, 1024).forEach((str) => process.stdout.write(str));
 process.exit(0);

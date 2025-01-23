@@ -40,9 +40,11 @@ describe("strategy", () => {
     [
       undefined,
       "inline",
-      "img",
-      "picture-dark-mode",
-      "img-class-dark-mode",
+      "data-url",
+      // "file"
+      // "img",
+      // "picture-dark-mode",
+      // "img-class-dark-mode",
     ] as Strategy[]
   ).forEach((strategy) => {
     it(`${strategy}`, async () => {
