@@ -14,6 +14,8 @@ type CompileOptions = {
   domain: string;
   variation: string;
   excludeWarnings?: string[];
+  width: number;
+  height: number;
 };
 
 export const penrose = (opts: CompileOptions): Promise<string> => {
@@ -23,19 +25,13 @@ export const penrose = (opts: CompileOptions): Promise<string> => {
     const bin = spawn(executablePath, [], {
       windowsHide: true,
     });
-    bin.stdout.on("data", (data: Buffer) => {
-      res += data.toString();
-    });
-    bin.stderr.on("data", (data: Buffer) => {
-      reject(`stderr: ${data.toString()}`);
-    });
-    bin.on("close", (code) => {
-      if (code === 0) {
-        resolve(res);
-      } else {
-        reject(`child process exited with code ${code}`);
-      }
-    });
+    bin.stdout.on("data", (data: Buffer) => (res += data.toString()));
+    bin.stderr.on("data", (data: Buffer) => reject(data.toString()));
+    bin.on("close", (code) =>
+      code === 0
+        ? resolve(res)
+        : reject(`child process exited with code ${code}`)
+    );
 
     bin.stdin.write(JSON.stringify(opts));
     bin.stdin.end();
