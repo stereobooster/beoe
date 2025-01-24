@@ -1,0 +1,129 @@
+---
+title: "@beoe/rehype-penrose"
+---
+
+import { PackageManagers } from "starlight-package-managers";
+import { Tabs, TabItem } from "@astrojs/starlight/components";
+
+Rehype plugin to generate [Penrose](https://penrose.cs.cmu.edu/) diagrams in place of code fences. Example:
+
+<Tabs>
+  <TabItem label="Diagram">
+
+```penrose style="euclidean.style" domain="euclidean.domain" width=800 height=800
+Plane P
+Point p, q, r, s
+In(p, P)
+In(q, P)
+In(r, P)
+In(s, P)
+Let a := Segment(p, q)
+Let b := Segment(p, r)
+Point m := Midpoint(a)
+In(m, P)
+Angle theta := InteriorAngle(q, p, r)
+Let t := Triangle(p, r, s)
+Ray w := Bisector(theta)
+Segment h := PerpendicularBisector(a, m)
+AutoLabel p, q, r, s, m
+Label P $E^2$
+```
+
+  </TabItem>
+  <TabItem label="Markdown">
+
+````md
+```penrose style="euclidean.style" domain="euclidean.domain" width=800 height=800
+Plane P
+Point p, q, r, s
+In(p, P)
+In(q, P)
+In(r, P)
+In(s, P)
+Let a := Segment(p, q)
+Let b := Segment(p, r)
+Point m := Midpoint(a)
+In(m, P)
+Angle theta := InteriorAngle(q, p, r)
+Let t := Triangle(p, r, s)
+Ray w := Bisector(theta)
+Segment h := PerpendicularBisector(a, m)
+AutoLabel p, q, r, s, m
+Label P $E^2$
+```
+````
+
+  </TabItem>
+</Tabs>
+
+## Installation
+
+<PackageManagers pkg="@beoe/rehype-penrose" />
+
+## Usage
+
+```js
+import rehypeD2 from "@beoe/rehype-penrose";
+
+const html = await unified()
+  .use(remarkParse)
+  .use(remarkRehype)
+  .use(rehypeD2, {
+    shared: "shared",
+    /* options */
+  })
+  .use(rehypeStringify)
+  .process(`markdown`);
+```
+
+Check out other [options](/start-here/configuration/).
+
+### Configuration
+
+You probaly want to use [`file`](/start-here/strategy/#file) strategy.
+
+### `PenroseOptions`
+
+```ts
+export type PenroseOptions = {
+  /**
+   * path to shared folder for `.domain` and `.style` files
+   */
+  shared: string;
+  /**
+   * Width of diagram
+   */
+  width?: number;
+  /**
+   * Height of diagram
+   */
+  height?: number;
+  /**
+   * Name (or path) for `.style` file
+   */
+  style?: string;
+  /**
+   * Name (or path) for `.domain` file
+   */
+  domain?: string;
+  variation?: string;
+  namespace?: string;
+};
+```
+
+You can set it globally:
+
+```ts
+use(rehypePenrose, {
+  width: 400,
+  height: 400,
+});
+```
+
+Or locally:
+
+````md
+```penrose width=400 height= 400
+...
+```
+````

@@ -6,18 +6,34 @@ import { rehypeCodeHookImg } from "@beoe/rehype-code-hook-img";
 import { join } from "node:path";
 import { penrose } from "./penrose.js";
 
-export type RehypePenroseConfig = {
+export type PenroseOptions = {
+  /**
+   * path to shared folder for `.domain` and `.style` files
+   */
   shared: string;
+  /**
+   * Width of diagram
+   */
   width?: number;
+  /**
+   * Height of diagram
+   */
   height?: number;
+  /**
+   * Name (or path) for `.style` file
+   */
   style?: string;
+  /**
+   * Name (or path) for `.domain` file
+   */
   domain?: string;
   variation?: string;
   namespace?: string;
 };
 
-export const rehypePenrose = rehypeCodeHookImg<RehypePenroseConfig>({
+export const rehypePenrose = rehypeCodeHookImg<PenroseOptions>({
   language: "penrose",
+  svgo: false,
   render: async (code: string, opts) => {
     if (!opts.domain || !opts.style)
       throw new Error("domain and style required");

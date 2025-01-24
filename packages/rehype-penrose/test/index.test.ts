@@ -15,7 +15,7 @@ it("renders diagram", async () => {
   const file = await unified()
     .use(remarkParse)
     .use(remarkRehype)
-    .use(rehypePenrose, { shared, svgo: false })
+    .use(rehypePenrose, { shared })
     .use(rehypeStringify)
     .process(await fs.readFile(new URL("./fixtures/a.md", import.meta.url)));
 

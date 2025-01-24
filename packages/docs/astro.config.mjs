@@ -69,7 +69,7 @@ export default defineConfig({
       [rehypeMermaid, conf],
       [rehypeGnuplot, conf],
       [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],
-      [rehypePenrose, { ...conf, shared: "shared", svgo: false }],
+      [rehypePenrose, { ...conf, shared: "shared" }],
     ],
   },
   vite: {
