@@ -60,4 +60,3 @@ const html = await unified()
 ## TODO
 
 - [ ] fix SVGO issue
-- [ ] publish
