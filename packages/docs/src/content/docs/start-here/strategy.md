@@ -46,7 +46,7 @@ diagram text
 </figure>
 ```
 
-**Note**: this strategy requires to additional options:
+**Note**: this strategy requires two additional options:
 
 ```js
 use(rehypeDiagram, {
@@ -61,6 +61,12 @@ use(rehypeDiagram, {
 add `fsPath` (`public/beoe`) to `.gitignore`
 
 **Note**: if you deploy to Netlify, do not use path that starts with `.`.
+
+**Note**:
+
+> External resources (e.g. images, stylesheets) cannot be loaded, though they can be used if inlined through `data:` URLs.
+>
+> [SVG as an Image Restrictions](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_as_an_Image#restrictions)
 
 ### `iframe`
 
