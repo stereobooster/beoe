@@ -4,6 +4,18 @@ title: d2 test
 
 ## Interesting ones
 
+### Image/icon
+
+```d2 strategy=inline darkScheme=false
+my network: {
+  icon: https://icons.terrastruct.com/infra/019-network.svg
+}
+github: {
+  shape: image
+  icon: https://icons.terrastruct.com/dev/github.svg
+}
+```
+
 ### Interactive example
 
 ```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
