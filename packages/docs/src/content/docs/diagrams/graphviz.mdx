@@ -35,7 +35,7 @@ digraph finite_state_machine {
     8 -> 5 [label = "S(a)"];
 }
 ```
- 
+
   </TabItem>
   <TabItem label="Markdown">
 
@@ -126,3 +126,15 @@ digraph G {
 }
 ```
 ````
+
+## TODO
+
+- [ ] support images
+
+  ```js
+  graphviz.neato('digraph { a[image="./resources/hpcc-logo.png"]; }', "svg", {
+    images: [
+      { path: "./resources/hpcc-logo.png", width: "272px", height: "92px" },
+    ],
+  });
+  ```
