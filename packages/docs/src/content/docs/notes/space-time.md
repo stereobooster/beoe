@@ -35,7 +35,7 @@ Spaces dimension - shows relationship in space i.e. above, under, in front, behi
 
 ### Other
 
-- Flowchart (algorith) diagram, aka workflow, aka process
+- Flowchart (algorithm) diagram, aka workflow, aka process
 - UML Activity Diagram
 
 ## Space + Time
