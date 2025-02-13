@@ -24,4 +24,4 @@ or
 <img src="..." />
 ```
 
-Diagrams can be embedded in HTML differently, each with its own advantages and trade-offs. [Read more here](/start-here/strategy/).
+Diagrams can be embedded in HTML differently, each with its own advantages and trade-offs. [Read more here](/start-here/tag/).

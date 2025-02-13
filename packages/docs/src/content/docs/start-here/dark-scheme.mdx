@@ -64,13 +64,13 @@ html[data-theme="dark"] .beoe-light {
 </figure>
 ```
 
-## Strategy vs dark scheme
+## Tag vs dark scheme
 
-|                                              | `class`   | `media` |
-| -------------------------------------------- | --------- | ------- |
-| [`inline`](/start-here/strategy/#inline)     | maybe (1) | no      |
-| [`data-url`](/start-here/strategy/#data-url) | yes       | yes     |
-| [`file`](/start-here/strategy/#file)         | yes       | yes     |
+|                                                                                                        | `class`              | `media` | [via css](/start-here/styling-with-css/) |
+| ------------------------------------------------------------------------------------------------------ | -------------------- | ------- | ---------------------------------------- |
+| `svg` ([`inline`](/start-here/strategy/#inline))                                                       | yes with caveats (1) | no      | **possible**                             |
+| `img` ([`data-url`](/start-here/strategy/#data-url), [`file`](/start-here/strategy/#file))             | yes                  | **yes** | no                                       |
+| `iframe`, `embed` ([`data-url`](/start-here/strategy/#data-url), [`file`](/start-here/strategy/#file)) | yes                  | no      | no                                       |
 
 (1) - for example, works for Mermaid, but [doesn't work for D2](https://github.com/terrastruct/d2/pull/1803) (check with light mode):
 

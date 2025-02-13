@@ -2,7 +2,7 @@ import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import parse from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
-import { BasePluginOptions, Result } from "./types.js";
+import { BasePluginOptions, Result, Tag } from "./types.js";
 import { optimize, type Config as SvgoConfig } from "svgo";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -52,18 +52,16 @@ export function metaWithDefaults<
   } as any;
 }
 
-function image({
-  svg,
-  url,
-  ...rest
-}: {
+type ImgOptions = {
   svg?: string;
   url?: string;
   width?: string | number;
   height?: string | number;
   alt?: string;
   class?: string;
-}) {
+};
+
+function image({ svg, url, ...rest }: ImgOptions) {
   return h("img", {
     src: url ?? svgToMiniDataURI(svg!),
     // ...(width && height ? { style: `aspect-ratio: ${width} / ${height}` } : {}),
@@ -72,31 +70,39 @@ function image({
   });
 }
 
-function iframe({
-  svg,
-  url,
-  alt,
-  width,
-  height,
-  ...rest
-}: {
-  svg?: string;
-  url?: string;
-  width?: string | number;
-  height?: string | number;
-  alt?: string;
-  class?: string;
-}) {
+function iframe({ svg, url, alt, width, height, ...rest }: ImgOptions) {
   return h("iframe", {
-    src: url,
+    src: url ?? svgToMiniDataURI(svg!),
+    ...(url ? { loading: "lazy" } : {}),
     title: alt,
     ...(width && height ? { style: `aspect-ratio: ${width} / ${height}` } : {}),
-    loading: "lazy",
     role: "img",
     frameborder: "0",
     // allowfullscreen: true,
     ...rest,
   });
+}
+
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed
+function embed({ svg, url, alt, ...rest }: ImgOptions) {
+  return h("embed", {
+    src: url ?? svgToMiniDataURI(svg!),
+    ...(url ? { loading: "lazy" } : {}),
+    title: alt,
+    role: "img",
+    ...rest,
+  });
+}
+
+function imgLike(tag: Tag | undefined, opts: ImgOptions) {
+  switch (tag) {
+    case "iframe":
+      return iframe(opts);
+    case "embed":
+      return embed(opts);
+    default:
+      return image(opts);
+  }
 }
 
 function figure(className: string | undefined, children: any[]) {
@@ -118,6 +124,7 @@ export function svgStrategy(
     webPath,
     darkScheme,
     alt: optsAlt,
+    tag,
   }: BasePluginOptions & { alt?: string },
   { svg, data, darkSvg, width, height, alt }: Result
 ) {
@@ -212,8 +219,14 @@ export function svgStrategy(
               // wrap in additional div for svg-pan-zoom
               [
                 h("div", [
-                  image({ width, height, alt, class: "beoe-light", url }),
-                  image({
+                  imgLike(tag, {
+                    width,
+                    height,
+                    alt,
+                    class: "beoe-light",
+                    url,
+                  }),
+                  imgLike(tag, {
                     width,
                     height,
                     alt,
@@ -227,58 +240,35 @@ export function svgStrategy(
       }
 
       if (darkScheme === "media" && darkSvg)
-        return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
-          ([url, darkUrl]) => {
-            const imgLight = image({ width, height, alt, url });
-            const imgDark = h("source", {
-              width,
-              height,
-              src: darkUrl,
-              media: `(prefers-color-scheme: dark)`,
-            });
+        if (tag === "img" || tag == undefined) {
+          return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+            ([url, darkUrl]) => {
+              const imgLight = image({ width, height, alt, url });
+              const imgDark = h("source", {
+                width,
+                height,
+                src: darkUrl,
+                media: `(prefers-color-scheme: dark)`,
+              });
 
-            return figure(className, [h("picture", [imgLight, imgDark])]);
-          }
-        );
-
-      return fileUrl(svg).then((url) =>
-        figure(className, [image({ width, height, alt, url })])
-      );
-    }
-    case "iframe": {
-      if (fsPath == undefined || webPath == undefined) return;
-
-      if (darkScheme === "class" && darkSvg) {
-        return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
-          ([url, darkUrl]) =>
-            figure(
-              className,
-              // wrap in additional div for svg-pan-zoom
-              [
-                h("div", [
-                  iframe({ width, height, alt, class: "beoe-light", url }),
-                  iframe({
-                    width,
-                    height,
-                    alt,
-                    class: "beoe-dark",
-                    url: darkUrl,
-                  }),
-                ]),
-              ]
-            )
-        );
-      }
-
-      if (darkScheme === "media") {
-        console.warn("darkScheme media doesn't work for iframe strategy");
-      }
+              return figure(className, [h("picture", [imgLight, imgDark])]);
+            }
+          );
+        } else {
+          console.warn(
+            "darkScheme media doesn't work with tag iframe or embed"
+          );
+        }
 
       return fileUrl(svg).then((url) =>
-        figure(className, [iframe({ width, height, alt, url })])
+        figure(className, [imgLike(tag, { width, height, alt, url })])
       );
     }
     default: {
+      if (tag != undefined) {
+        console.warn("tag doesn't work with inline");
+      }
+
       if (darkScheme === "class" && darkSvg) {
         const element = fromHtmlIsomorphic(removeWidthHeight(svg), {
           fragment: true,

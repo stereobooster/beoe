@@ -19,11 +19,11 @@ a:@"shared/x.d2"
 a -> b
 ```
 
-## `strategy=iframe`
+## Tags
 
-### Images/icons
+### `tag=iframe`
 
-```d2 strategy=iframe
+```d2 strategy=file tag=iframe
 my-network: {
   icon: https://icons.terrastruct.com/infra/019-network.svg
 }
@@ -31,23 +31,49 @@ github: {
   shape: image
   icon: https://icons.terrastruct.com/dev/github.svg
 }
-a
-b
-c
-```
-
-### Link
-
-```d2 strategy=iframe
-direction: right
-a -> b -> c -> d -> e
 a {
   link: https://example.com
   label: link
 }
+b
+c
 ```
 
-- `a` requires `target="_top"`
+### `tag=embed`
+
+```d2 strategy=file tag=embed
+my-network: {
+  icon: https://icons.terrastruct.com/infra/019-network.svg
+}
+github: {
+  shape: image
+  icon: https://icons.terrastruct.com/dev/github.svg
+}
+a {
+  link: https://example.com
+  label: link
+}
+b
+c
+```
+
+### `tag=img`
+
+```d2 strategy=file tag=img
+my-network: {
+  icon: https://icons.terrastruct.com/infra/019-network.svg
+}
+github: {
+  shape: image
+  icon: https://icons.terrastruct.com/dev/github.svg
+}
+a {
+  link: https://example.com
+  label: link
+}
+b
+c
+```
 
 ## containers
 

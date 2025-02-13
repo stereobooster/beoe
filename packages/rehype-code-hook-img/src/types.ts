@@ -48,6 +48,10 @@ export type BasePluginOptions = {
   cache?: MapLike;
   darkScheme?: Scheme;
   /**
+   * @default img
+   */
+  tag?: Tag;
+  /**
    * required for `file` strategy
    */
   fsPath?: string;
@@ -59,9 +63,8 @@ export type BasePluginOptions = {
 
 export type Scheme = "class" | "media";
 
-/**
- * maybe rename img to data-uri
- */
+export type Tag = "img" | "iframe" | "embed";
+
 export type Strategy =
   /**
    * SVG directly in the HTML
@@ -75,10 +78,6 @@ export type Strategy =
    * SVG as standalone file in `img`
    */
   | "file"
-  /**
-   * Experimental. SVG as standalone file in `iframe`
-   */
-  | "iframe"
   /**
    * SVG as data-uri in img
    * @deprecated
