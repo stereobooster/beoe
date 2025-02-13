@@ -66,7 +66,35 @@ function image({
 }) {
   return h("img", {
     src: url ?? svgToMiniDataURI(svg!),
+    // ...(width && height ? { style: `aspect-ratio: ${width} / ${height}` } : {}),
     ...(url ? { loading: "lazy", decoding: "async" } : {}),
+    ...rest,
+  });
+}
+
+function iframe({
+  svg,
+  url,
+  alt,
+  width,
+  height,
+  ...rest
+}: {
+  svg?: string;
+  url?: string;
+  width?: string | number;
+  height?: string | number;
+  alt?: string;
+  class?: string;
+}) {
+  return h("iframe", {
+    src: url,
+    title: alt,
+    ...(width && height ? { style: `aspect-ratio: ${width} / ${height}` } : {}),
+    loading: "lazy",
+    role: "img",
+    frameborder: "0",
+    // allowfullscreen: true,
     ...rest,
   });
 }
@@ -215,6 +243,39 @@ export function svgStrategy(
 
       return fileUrl(svg).then((url) =>
         figure(className, [image({ width, height, alt, url })])
+      );
+    }
+    case "iframe": {
+      if (fsPath == undefined || webPath == undefined) return;
+
+      if (darkScheme === "class" && darkSvg) {
+        return Promise.all([fileUrl(svg), fileUrl(darkSvg)]).then(
+          ([url, darkUrl]) =>
+            figure(
+              className,
+              // wrap in additional div for svg-pan-zoom
+              [
+                h("div", [
+                  iframe({ width, height, alt, class: "beoe-light", url }),
+                  iframe({
+                    width,
+                    height,
+                    alt,
+                    class: "beoe-dark",
+                    url: darkUrl,
+                  }),
+                ]),
+              ]
+            )
+        );
+      }
+
+      if (darkScheme === "media") {
+        console.warn("darkScheme media doesn't work for iframe strategy");
+      }
+
+      return fileUrl(svg).then((url) =>
+        figure(className, [iframe({ width, height, alt, url })])
       );
     }
     default: {

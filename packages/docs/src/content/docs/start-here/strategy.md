@@ -78,7 +78,7 @@ add `fsPath` (`public/beoe`) to `.gitignore`
 </figure>
 ```
 
-**Note**: this strategy requires to additional options:
+**Note**: this strategy requires two additional options:
 
 ```js
 use(rehypeDiagram, {
@@ -96,11 +96,10 @@ add `fsPath` (`public/beoe`) to `.gitignore`
 
 **Note**:
 
-- there is also `allowfullscreen`, `loading=lazy`, `role=img`
-- I wonder if there will be issues with fitting image or if it would allow navigation of top frame
-  - `target=_top` + `allow-top-navigation`
+- there is issue with navigation of top frame: links need `target=_top`, iframe maybe needs `allow-top-navigation`
 - link preview won't work
-- maybe there will be issues with `@beoe/pan-zoom`
+- there are issues with `@beoe/pan-zoom`: gestures doesn't work, buttons work though
+- there is also `allowfullscreen`
 
 ## Pros and cons
 

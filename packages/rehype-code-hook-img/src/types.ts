@@ -72,9 +72,13 @@ export type Strategy =
    */
   | "data-url"
   /**
-   * SVG stored as standalone file
+   * SVG as standalone file in `img`
    */
   | "file"
+  /**
+   * Experimental. SVG as standalone file in `iframe`
+   */
+  | "iframe"
   /**
    * SVG as data-uri in img
    * @deprecated

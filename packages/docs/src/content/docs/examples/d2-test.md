@@ -4,18 +4,6 @@ title: d2 test
 
 ## Interesting ones
 
-### Image/icon
-
-```d2 strategy=inline darkScheme=false
-my network: {
-  icon: https://icons.terrastruct.com/infra/019-network.svg
-}
-github: {
-  shape: image
-  icon: https://icons.terrastruct.com/dev/github.svg
-}
-```
-
 ### Interactive example
 
 ```d2 strategy=inline darkScheme=false graphFormat=dagre class=shadow svgo=false
@@ -30,6 +18,36 @@ direction: right
 a:@"shared/x.d2"
 a -> b
 ```
+
+## `strategy=iframe`
+
+### Images/icons
+
+```d2 strategy=iframe
+my-network: {
+  icon: https://icons.terrastruct.com/infra/019-network.svg
+}
+github: {
+  shape: image
+  icon: https://icons.terrastruct.com/dev/github.svg
+}
+a
+b
+c
+```
+
+### Link
+
+```d2 strategy=iframe
+direction: right
+a -> b -> c -> d -> e
+a {
+  link: https://example.com
+  label: link
+}
+```
+
+- `a` requires `target="_top"`
 
 ## containers
 

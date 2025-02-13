@@ -9,7 +9,8 @@
 }
 
 .beoe svg,
-.beoe img {
+.beoe img,
+.beoe iframe {
   /* need to center smaller images to fix bug in zoom functionality */
   margin: auto;
   display: block;
@@ -20,6 +21,10 @@
 
 .beoe img {
   pointer-events: none;
+}
+
+.beoe iframe {
+  width: 100%;
 }
 
 /* UI */
