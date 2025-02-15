@@ -64,8 +64,8 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [
-      [rehypeGraphviz, { cache, class: className }],
-      [rehypeVizdom, { cache, class: className }],
+      [rehypeGraphviz, { ...conf, strategy: "inline" }],
+      [rehypeVizdom, { ...conf, strategy: "inline" }],
       [rehypeMermaid, conf],
       [rehypeGnuplot, conf],
       [rehypeD2, { ...conf, shared: "shared/**/*.d2" }],

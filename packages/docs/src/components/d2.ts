@@ -1,10 +1,26 @@
 import { json, alg } from "@dagrejs/graphlib";
 
+const css = `.shadow { opacity: 0.4; }
+.shape { cursor: default; }`;
+
 // interactivity for d2 diagrams
-document.querySelectorAll(".d2.shadow").forEach((container) => {
+document.querySelectorAll(".d2.shadow").forEach(async (container: Element) => {
   const data = container.getAttribute("data-beoe")
     ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
+
+  const iframe = container.querySelector("iframe");
+  if (iframe) {
+    if (!iframe.contentDocument)
+      await new Promise((resolve) =>
+        iframe.addEventListener("load", () => resolve(0))
+      );
+    container = iframe.contentDocument!.querySelector("svg")! as Element;
+    const styleSheet = iframe.contentDocument!.styleSheets[0];
+    css
+      .split("\n")
+      .forEach((row) => styleSheet.insertRule(row, styleSheet.cssRules.length));
+  }
 
   if (!data) return;
   const graph = json.read(data);

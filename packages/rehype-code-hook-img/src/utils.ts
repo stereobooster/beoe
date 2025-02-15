@@ -2,7 +2,7 @@ import { h } from "hastscript";
 import svgToMiniDataURI from "mini-svg-data-uri";
 import parse from "@beoe/fenceparser";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
-import { BasePluginOptions, Result, Tag } from "./types.js";
+import { BasePluginOptions, jsonifiable, Result, Tag } from "./types.js";
 import { optimize, type Config as SvgoConfig } from "svgo";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -94,6 +94,7 @@ function embed({ svg, url, alt, ...rest }: ImgOptions) {
   });
 }
 
+// https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies
 function imgLike(tag: Tag | undefined, opts: ImgOptions) {
   switch (tag) {
     case "iframe":
@@ -105,11 +106,16 @@ function imgLike(tag: Tag | undefined, opts: ImgOptions) {
   }
 }
 
-function figure(className: string | undefined, children: any[]) {
+function figure(
+  className: string | undefined,
+  children: any[],
+  data: jsonifiable
+) {
   return h(
     "figure",
     {
       class: className,
+      "data-beoe": data ? JSON.stringify(data) : undefined,
     },
     children
   );
@@ -154,7 +160,7 @@ export function svgStrategy(
   }
 
   const getImage = () =>
-    figure(className, [image({ svg, width, height, alt })]);
+    figure(className, [imgLike(tag, { svg, width, height, alt })], data);
 
   const fileUrl = async (svg: string) => {
     if (!fsPath || !webPath) return "";
@@ -180,6 +186,8 @@ export function svgStrategy(
     strategy = "data-url";
   }
 
+  if (tag !== undefined && tag !== "iframe") data = undefined;
+
   switch (strategy) {
     case "data-url": {
       if (darkScheme === "class" && darkSvg)
@@ -188,23 +196,35 @@ export function svgStrategy(
           // wrap in additional div for svg-pan-zoom
           [
             h("div", [
-              image({ svg, width, height, alt, class: "beoe-light" }),
-              image({ svg: darkSvg, width, height, alt, class: "beoe-dark" }),
+              imgLike(tag, { svg, width, height, alt, class: "beoe-light" }),
+              imgLike(tag, {
+                svg: darkSvg,
+                width,
+                height,
+                alt,
+                class: "beoe-dark",
+              }),
             ]),
-          ]
+          ],
+          data
         );
 
-      if (darkScheme === "media" && darkSvg) {
-        const imgLight = image({ svg, width, height, alt });
-        const imgDark = h("source", {
-          width,
-          height,
-          src: svgToMiniDataURI(darkSvg),
-          media: `(prefers-color-scheme: dark)`,
-        });
+      if (darkScheme === "media" && darkSvg)
+        if (tag === "img" || tag == undefined) {
+          const imgLight = image({ svg, width, height, alt });
+          const imgDark = h("source", {
+            width,
+            height,
+            src: svgToMiniDataURI(darkSvg),
+            media: `(prefers-color-scheme: dark)`,
+          });
 
-        return figure(className, [h("picture", [imgLight, imgDark])]);
-      }
+          return figure(className, [h("picture", [imgLight, imgDark])], data);
+        } else {
+          console.warn(
+            "darkScheme media doesn't work with tag iframe or embed"
+          );
+        }
 
       return getImage();
     }
@@ -234,7 +254,8 @@ export function svgStrategy(
                     url: darkUrl,
                   }),
                 ]),
-              ]
+              ],
+              data
             )
         );
       }
@@ -251,7 +272,11 @@ export function svgStrategy(
                 media: `(prefers-color-scheme: dark)`,
               });
 
-              return figure(className, [h("picture", [imgLight, imgDark])]);
+              return figure(
+                className,
+                [h("picture", [imgLight, imgDark])],
+                data
+              );
             }
           );
         } else {
@@ -261,7 +286,7 @@ export function svgStrategy(
         }
 
       return fileUrl(svg).then((url) =>
-        figure(className, [imgLike(tag, { width, height, alt, url })])
+        figure(className, [imgLike(tag, { width, height, alt, url })], data)
       );
     }
     default: {
@@ -276,18 +301,15 @@ export function svgStrategy(
         const darkElement = fromHtmlIsomorphic(removeWidthHeight(darkSvg), {
           fragment: true,
         });
-        return h(
-          "figure",
-          {
-            class: className,
-            "data-beoe": data ? JSON.stringify(data) : undefined,
-          },
+        return figure(
+          className,
           [
             h("div", [
               h("div", { class: "beoe-light" }, element.children),
               h("div", { class: "beoe-dark" }, darkElement.children),
             ]),
-          ]
+          ],
+          data
         );
       }
 
@@ -298,14 +320,7 @@ export function svgStrategy(
       const element = fromHtmlIsomorphic(removeWidthHeight(svg), {
         fragment: true,
       });
-      return h(
-        "figure",
-        {
-          class: className,
-          "data-beoe": data ? JSON.stringify(data) : undefined,
-        },
-        element.children
-      );
+      return figure(className, element.children, data);
     }
   }
 }

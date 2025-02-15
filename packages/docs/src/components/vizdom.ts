@@ -2,11 +2,61 @@ import { json, alg, type Path } from "@dagrejs/graphlib";
 
 type D = { [node: string]: Path };
 
+// const vizdomCss = [
+//   `@keyframes dash {
+//   from {
+//     stroke-dashoffset: 40;
+//   }
+//   to {
+//     stroke-dashoffset: 0;
+//   }
+// }`,
+//   `.edge.active a path:first-child {
+//   stroke-dasharray: 5 5;
+//   animation-name: dash;
+//   animation-duration: 1000ms;
+//   stroke-dashoffset: 0;
+//   animation-iteration-count: infinite;
+//   animation-timing-function: linear;
+// }`,
+
+//   `.node.selected a *:first-child {
+//   stroke-width: 2px;
+// }`,
+//   `.node {
+//   cursor: pointer;
+// }`,
+//   `@media (prefers-reduced-motion) {
+//   .edge.active a path:first-child {
+//     animation-duration: 4000ms;
+//   }
+// }`,
+// ];
+
 // interactivity for vizdom diagrams
-document.querySelectorAll(".vizdom.ants").forEach((container) => {
+document.querySelectorAll(".vizdom.ants").forEach(async (container) => {
   const data = container.getAttribute("data-beoe")
     ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
+
+  // const iframe = container.querySelector("iframe");
+  // if (iframe) {
+  //   if (!iframe.contentDocument)
+  //     await new Promise((resolve) =>
+  //       iframe.addEventListener("load", () => resolve(0))
+  //     );
+
+  //   container = iframe.contentDocument!.querySelector("svg")! as Element;
+  //   // container.setAttribute("preserveAspectRatio", "xMinYMin meet");
+  //   const style = iframe.contentDocument!.createElement("style");
+  //   style.setAttribute("type", "text/css");
+  //   container.prepend(style);
+  //   const styleSheet = iframe.contentDocument!.styleSheets[0];
+  //   if (styleSheet)
+  //     vizdomCss.forEach((row) =>
+  //       styleSheet.insertRule(row, styleSheet.cssRules.length)
+  //     );
+  // }
 
   if (!data) return;
   const graph = json.read(data);
@@ -129,10 +179,20 @@ document.querySelectorAll(".vizdom.ants").forEach((container) => {
 });
 
 // interactivity for vizdom diagrams
-document.querySelectorAll(".vizdom.shadow").forEach((container) => {
+document.querySelectorAll(".vizdom.shadow").forEach(async (container) => {
   const data = container.getAttribute("data-beoe")
     ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
+
+  // const iframe = container.querySelector("iframe");
+  // if (iframe) {
+  //   if (!iframe.contentDocument)
+  //     await new Promise((resolve) =>
+  //       iframe.addEventListener("load", () => resolve(0))
+  //     );
+
+  //   container = iframe.contentDocument!.querySelector("svg")! as Element;
+  // }
 
   if (!data) return;
   const graph = json.read(data);

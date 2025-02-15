@@ -3,10 +3,19 @@ import { json, alg, type Path } from "@dagrejs/graphlib";
 type D = { [node: string]: Path };
 
 // interactivity for graphviz diagrams
-document.querySelectorAll(".graphviz").forEach((container) => {
+document.querySelectorAll(".graphviz").forEach(async (container) => {
   const data = container.getAttribute("data-beoe")
     ? JSON.parse(container.getAttribute("data-beoe")!)
     : null;
+
+  const iframe = container.querySelector("iframe");
+  if (iframe) {
+    if (!iframe.contentDocument)
+      await new Promise((resolve) =>
+        iframe.addEventListener("load", () => resolve(0))
+      );
+    container = iframe.contentDocument!.querySelector("svg")! as Element;
+  }
 
   if (!data) return;
   const graph = json.read(data);

@@ -64,7 +64,7 @@ diagram text
 | --------------------------------------------------------------------------------------- | ------------------------------------------------ | -------------------- | -------------------- |
 | [Searchable text](/start-here/interactivity/#searchable-text)                           | yes                                              | no                   | yes                  |
 | [Links](/start-here/interactivity/#links)                                               | yes                                              | no                   | yes with caveats (1) |
-| [Interactivity with JS](/start-here/interactivity/#progressive-enhancement-with-js) (2) | yes                                              | no                   | no (3)               |
+| [Interactivity with JS](/start-here/interactivity/#progressive-enhancement-with-js) (2) | yes                                              | no                   | yes with caveats (3) |
 | [Can be styled with CSS](/start-here/styling-with-css/)                                 | yes                                              | no                   | no                   |
 | CSS conflicts                                                                           | possible                                         | no                   | no                   |
 | [`alt="..."` or `title="..."`](/start-here/accessibility/)                              | no                                               | yes                  | yes                  |
@@ -73,8 +73,9 @@ diagram text
 
 - (1) Links require `target=_top`, iframe may require `allow-top-navigation`
 - (2) This includes [link previews](https://astro-digital-garden.stereobooster.com/recipes/link-previews/)
-- (3) Problem is that `iframe` sandboxes content, which makes it impossible to access it via JS
-  - **TODO**: I wonder if domain is the same, maybe restriction can be lifted.
-  - **TODO**: I also don't know if `embed` has the same restrictions
+- (3) It is possible to access `iframe` content via JS, but I suspect it will have issues
+  - with [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+  - `embed`, it seems, doesn't have `DOM`
+  - there probably will be issues with `@floating-ui/dom`
 - (4) [Work only if images inlined (via `data-url`)](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_as_an_Image#restrictions)
 - (5) gestures don't work (at least in the current implementation), buttons work though

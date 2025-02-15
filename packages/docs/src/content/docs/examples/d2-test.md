@@ -11,6 +11,13 @@ direction: right
 a -> b -> c -> d -> e
 ```
 
+### tag=iframe
+
+```d2 darkScheme=false graphFormat=dagre class=shadow svgo=false strategy=file tag=iframe
+direction: right
+a -> b -> c -> d -> e
+```
+
 ### import
 
 ```d2
