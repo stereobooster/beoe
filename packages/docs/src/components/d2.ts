@@ -17,9 +17,12 @@ document.querySelectorAll(".d2.shadow").forEach(async (container: Element) => {
       );
     container = iframe.contentDocument!.querySelector("svg")! as Element;
     const styleSheet = iframe.contentDocument!.styleSheets[0];
-    css
-      .split("\n")
-      .forEach((row) => styleSheet.insertRule(row, styleSheet.cssRules.length));
+    if (styleSheet)
+      css
+        .split("\n")
+        .forEach((row) =>
+          styleSheet.insertRule(row, styleSheet.cssRules.length)
+        );
   }
 
   if (!data) return;
