@@ -63,7 +63,7 @@ export type BasePluginOptions = {
 
 export type Scheme = "class" | "media";
 
-export type Tag = "img" | "iframe" | "embed";
+export type Tag = "img" | "iframe" | "embed" | "object";
 
 export type Strategy =
   /**

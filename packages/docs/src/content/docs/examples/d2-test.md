@@ -18,6 +18,13 @@ direction: right
 a -> b -> c -> d -> e
 ```
 
+### tag=object
+
+```d2 darkScheme=false graphFormat=dagre class=shadow svgo=false strategy=file tag=object
+direction: right
+a -> b -> c -> d -> e
+```
+
 ### import
 
 ```d2

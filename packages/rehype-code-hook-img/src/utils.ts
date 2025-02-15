@@ -94,6 +94,16 @@ function embed({ svg, url, alt, ...rest }: ImgOptions) {
   });
 }
 
+function object({ svg, url, alt, ...rest }: ImgOptions) {
+  return h("object", {
+    data: url ?? svgToMiniDataURI(svg!),
+    ...(url ? { loading: "lazy" } : {}),
+    title: alt,
+    role: "img",
+    ...rest,
+  });
+}
+
 // https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies
 function imgLike(tag: Tag | undefined, opts: ImgOptions) {
   switch (tag) {
@@ -101,6 +111,8 @@ function imgLike(tag: Tag | undefined, opts: ImgOptions) {
       return iframe(opts);
     case "embed":
       return embed(opts);
+    case "object":
+      return object(opts);
     default:
       return image(opts);
   }
