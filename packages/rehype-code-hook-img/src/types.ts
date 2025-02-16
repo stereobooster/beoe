@@ -63,7 +63,20 @@ export type BasePluginOptions = {
 
 export type Scheme = "class" | "media";
 
-export type Tag = "img" | "iframe" | "embed" | "object";
+export type Tag =
+  | "img"
+  /**
+   * experimental https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies
+   */
+  | "iframe"
+  /**
+   * experimental https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed
+   */
+  | "embed"
+  /**
+   * experimental https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object
+   */
+  | "object";
 
 export type Strategy =
   /**

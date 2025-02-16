@@ -83,7 +83,6 @@ function iframe({ svg, url, alt, width, height, ...rest }: ImgOptions) {
   });
 }
 
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed
 function embed({ svg, url, alt, ...rest }: ImgOptions) {
   return h("embed", {
     src: url ?? svgToMiniDataURI(svg!),
@@ -104,7 +103,6 @@ function object({ svg, url, alt, ...rest }: ImgOptions) {
   });
 }
 
-// https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/General_embedding_technologies
 function imgLike(tag: Tag | undefined, opts: ImgOptions) {
   switch (tag) {
     case "iframe":
