@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-graphviz",
   "type": "module",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "rehype graphviz plugin",
   "keywords": [
     "rehype",
@@ -33,8 +33,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@beoe/rehype-code-hook": "^workspace:*",
-    "@beoe/rehype-code-hook-img": "^workspace:*",
+    "@beoe/rehype-code-hook": "workspace:^*",
+    "@beoe/rehype-code-hook-img": "workspace:^*",
     "@hpcc-js/wasm": "^2.22.3"
   },
   "devDependencies": {
