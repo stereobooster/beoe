@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-penrose",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "rehype penrose plugin",
   "keywords": [
     "rehype",
@@ -34,8 +34,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@beoe/rehype-code-hook-img": "workspace:*",
-    "@penrose/core": "3.2.0",
+    "@beoe/rehype-code-hook-img": "^workspace:*",
+    "@penrose/core": "^3.2.0",
     "global-jsdom": "^26.0.0"
   },
   "devDependencies": {
