@@ -126,10 +126,10 @@ importers:
   packages/rehype-code-hook-img:
     dependencies:
       '@beoe/fenceparser':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../fenceparser
       '@beoe/rehype-code-hook':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook
       '@node-rs/xxhash':
         specifier: ^1.7.4
@@ -166,7 +166,7 @@ importers:
   packages/rehype-d2:
     dependencies:
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       '@terrastruct/d2':
         specifier: ^0.1.21
@@ -197,10 +197,10 @@ importers:
   packages/rehype-gnuplot:
     dependencies:
       '@beoe/rehype-code-hook':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       gnuplot-wasm:
         specifier: ^0.0.1
@@ -225,10 +225,10 @@ importers:
   packages/rehype-graphviz:
     dependencies:
       '@beoe/rehype-code-hook':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       '@hpcc-js/wasm':
         specifier: ^2.22.3
@@ -253,7 +253,7 @@ importers:
   packages/rehype-mermaid:
     dependencies:
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       mermaid-isomorphic:
         specifier: ^3.0.0
@@ -284,10 +284,10 @@ importers:
   packages/rehype-penrose:
     dependencies:
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       '@penrose/core':
-        specifier: 3.2.0
+        specifier: ^3.2.0
         version: 3.2.0
       global-jsdom:
         specifier: ^26.0.0
@@ -312,7 +312,7 @@ importers:
   packages/rehype-vizdom:
     dependencies:
       '@beoe/rehype-code-hook-img':
-        specifier: workspace:*
+        specifier: workspace:^
         version: link:../rehype-code-hook-img
       '@vizdom/vizdom-ts-node':
         specifier: ^0.1.18

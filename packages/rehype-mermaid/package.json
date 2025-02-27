@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-mermaid",
   "type": "module",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "rehype mermaid plugin",
   "keywords": [
     "rehype",
@@ -33,7 +33,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@beoe/rehype-code-hook-img": "workspace:^*",
+    "@beoe/rehype-code-hook-img": "workspace:^",
     "mermaid-isomorphic": "^3.0.0",
     "svgo": "^3.3.2"
   },
