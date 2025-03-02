@@ -144,23 +144,122 @@ vpc: VPC 1 10.1.0.0./16 {
 ## ER diagram
 
 ```d2 layout=elk
-objects: {
-  shape: sql_table
+# Edges
+    	User <-> User : "spouse" {
+		# o2o optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-one
+		}
+		
+	}
+    	User <-> User : "children/parent" {
+		# o2m optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-many
+		}
+		
+	}
+    	User <-> Pet : "pets/owner" {
+		# o2m optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-many
+		}
+		
+	}
+    	User <-> Card : "card/owner" {
+		# o2o optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-one
+		}
+		
+	}
+    	User <-> Post : "posts/author" {
+		# o2m optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-many
+		}
+		
+	}
+    	User <-> Metadata : "metadata/user" {
+		# o2m optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-many
+		}
+		
+	}
+    	User <-> Info : "info/user" {
+		# o2m optional
+		source-arrowhead: {
+			shape: cf-one-required
+		}
+		target-arrowhead: {
+			shape: cf-many
+		}
+		
+	}
 
-  id: int {constraint: primary_key}
-  disk: int {constraint: foreign_key}
-
-  json: jsonb {constraint: unique}
-  last_updated: timestamp with time zone
+# Tables
+Card: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	owner_id: int  {constraint: foreign_key}
+	# this is a comment
 }
-
-disks: {
-  shape: sql_table
-  id: int {constraint: primary_key}
+Info: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	content: json.RawMessage 
+	# this is a comment
 }
-
-objects.disk -> disks.id
+Metadata: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	age: int 
+	# this is a comment
+}
+Pet: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	owner_id: int  {constraint: foreign_key}
+	# this is a comment
+}
+Post: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	text: string 
+	# this is a comment
+	author_id: int  {constraint: foreign_key}
+	# this is a comment
+}
+User: {
+	shape: sql_table
+	id: int {constraint: primary_key}
+	parent_id: int  {constraint: foreign_key}
+	# this is a comment
+	spouse_id: int  {constraint: foreign_key}
+	# this is a comment
+}
 ```
+
+Source: https://github.com/tmc/ent2d2/blob/master/testdata/schema.d2
 
 ## Sequence Diagrams
 
