@@ -145,7 +145,7 @@ vpc: VPC 1 10.1.0.0./16 {
 
 ```d2 layout=elk
 # Edges
-    	User <-> User : "spouse" {
+  User <-> User : "spouse" {
 		# o2o optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -155,7 +155,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> User : "children/parent" {
+  User <-> User : "children/parent" {
 		# o2m optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -165,7 +165,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> Pet : "pets/owner" {
+  User <-> Pet : "pets/owner" {
 		# o2m optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -175,7 +175,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> Card : "card/owner" {
+  User <-> Card : "card/owner" {
 		# o2o optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -185,7 +185,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> Post : "posts/author" {
+  User <-> Post : "posts/author" {
 		# o2m optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -195,7 +195,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> Metadata : "metadata/user" {
+  User <-> Metadata : "metadata/user" {
 		# o2m optional
 		source-arrowhead: {
 			shape: cf-one-required
@@ -205,7 +205,7 @@ vpc: VPC 1 10.1.0.0./16 {
 		}
 		
 	}
-    	User <-> Info : "info/user" {
+  User <-> Info : "info/user" {
 		# o2m optional
 		source-arrowhead: {
 			shape: cf-one-required
