@@ -5,6 +5,19 @@ draft: true
 
 ## rehype-gnuplot
 
+```gnuplot tag=iframe svgo=false
+set term svg mouse standalone enhanced
+
+plot [-10:10] [-5:3] \
+	1.5+sin(x)/x with filledcurve x2, \
+	sin(x)/x with filledcurve, \
+	1+sin(x)/x with lines, \
+	-1+sin(x)/x with filledcurve y1=-2, \
+	-2.5+sin(x)/x with filledcurve xy=-5,-4., \
+	-4.3+sin(x)/x with filledcurve x1, \
+	(x>3.5 ? x/3-3 : 1/0) with filledcurve y2
+```
+
 ```gnuplot
 set key fixed left top vertical Right noreverse enhanced autotitle box lt black linewidth 1.000 dashtype solid
 set title "Simple Plots"

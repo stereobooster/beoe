@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-gnuplot",
   "type": "module",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "rehype gnuplot plugin",
   "keywords": [
     "rehype",
@@ -35,7 +35,7 @@
   "dependencies": {
     "@beoe/rehype-code-hook": "workspace:^",
     "@beoe/rehype-code-hook-img": "workspace:^",
-    "gnuplot-wasm": "^0.0.1"
+    "gnuplot-wasm": "^0.1.0"
   },
   "devDependencies": {
     "@types/hast": "^3.0.4",
