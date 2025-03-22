@@ -34,7 +34,7 @@ export async function d2(code: string, options: D2Options) {
   const fs: Record<string, string> = options.shared
     ? { ...(await mGlob(options.shared)), index: code }
     : { index: code };
-  const result = await d2Instance.compile({ fs }, options);
+  const result = await d2Instance.compile({ fs, options });
 
   let data;
   if (options.graphFormat) {
