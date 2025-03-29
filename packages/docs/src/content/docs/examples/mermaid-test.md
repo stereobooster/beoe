@@ -127,7 +127,7 @@ stateDiagram-v2
     Crash --> [*]
 ```
 
-```mermaid
+```mermaid svgo=false
 ---
 title: Order example
 ---

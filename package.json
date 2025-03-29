@@ -10,7 +10,7 @@
     "packages/*"
   ],
   "dependencies": {
-    "@types/node": "^22.13.11",
+    "@types/node": "^22.13.14",
     "turbo": "^2.4.4",
     "typescript": "^5.8.2",
     "vite-tsconfig-paths": "^5.1.4",

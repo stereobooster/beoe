@@ -12,21 +12,21 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@astrojs/starlight": "^0.29.2",
+    "@astrojs/starlight": "^0.32.5",
     "@beoe/cache": "workspace:*",
     "@beoe/pan-zoom": "workspace:*",
     "@beoe/rehype-d2": "workspace:*",
     "@beoe/rehype-gnuplot": "workspace:*",
     "@beoe/rehype-graphviz": "workspace:*",
     "@beoe/rehype-mermaid": "workspace:*",
-    "@beoe/rehype-vizdom": "workspace:*",
     "@beoe/rehype-penrose": "workspace:*",
+    "@beoe/rehype-vizdom": "workspace:*",
     "@dagrejs/graphlib": "^2.2.4",
-    "astro": "4.16.18",
-    "playwright": "^1.49.0",
+    "astro": "5.5.5",
+    "playwright": "^1.51.1",
     "sharp": "^0.33.5",
-    "starlight-package-managers": "^0.8.0",
-    "typescript": "^5.7.2",
-    "vite-plugin-qrcode": "^0.2.3"
+    "starlight-package-managers": "^0.10.0",
+    "typescript": "^5.8.2",
+    "vite-plugin-qrcode": "^0.2.4"
   }
 }

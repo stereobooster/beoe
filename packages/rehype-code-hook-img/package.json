@@ -33,10 +33,10 @@
   "dependencies": {
     "@beoe/fenceparser": "workspace:^",
     "@beoe/rehype-code-hook": "workspace:^",
-    "@node-rs/xxhash": "^1.7.4",
+    "@node-rs/xxhash": "^1.7.6",
     "@types/hast": "^3.0.4",
     "hast-util-from-html-isomorphic": "^2.0.0",
-    "hastscript": "^9.0.0",
+    "hastscript": "^9.0.1",
     "mini-svg-data-uri": "^1.4.4",
     "svgo": "^3.3.2",
     "unified": "^11.0.5"
