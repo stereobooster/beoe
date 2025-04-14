@@ -17,8 +17,10 @@
   "homepage": "https://beoe.stereobooster.com/diagrams/vizdom/",
   "sideEffects": false,
   "exports": {
-    "types": "./dist/index.d.js",
-    "default": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",

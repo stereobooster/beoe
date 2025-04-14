@@ -16,8 +16,10 @@
   },
   "type": "module",
   "exports": {
-    ".": "./index.ts",
-    "./rehype": "./rehype.mjs"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "files": [
     "index.ts",
