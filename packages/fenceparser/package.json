@@ -1,6 +1,6 @@
 {
   "name": "@beoe/fenceparser",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "A well-tested parser for parsing metadata out of fenced code blocks in Markdown",
   "keywords": [
     "markdown"
