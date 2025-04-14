@@ -1,7 +1,7 @@
 {
   "name": "@beoe/rehype-d2",
   "type": "module",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "rehype d2 plugin",
   "keywords": [
     "rehype",
