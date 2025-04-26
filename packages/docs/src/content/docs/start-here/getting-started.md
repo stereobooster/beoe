@@ -25,3 +25,11 @@ or
 ```
 
 Diagrams can be embedded in HTML differently, each with its own advantages and trade-offs. [Read more here](/start-here/tag/).
+
+## TODO
+
+- [ ] add support for image tags
+
+  ```md
+  ![alt](path/to/diagram.some-diagram)
+  ```
