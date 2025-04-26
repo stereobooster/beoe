@@ -77,5 +77,5 @@ diagram text
   - with [CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
   - `embed`, it seems, doesn't have `DOM`
   - there probably will be issues with `@floating-ui/dom`
-- (4) [Work only if images inlined (via `data-url`)](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_as_an_Image#restrictions)
+- (4) [Works only if images inlined (via `data-url`)](https://developer.mozilla.org/en-US/docs/Web/SVG/SVG_as_an_Image#restrictions)
 - (5) gestures don't work (at least in the current implementation), buttons work though
