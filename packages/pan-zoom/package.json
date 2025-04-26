@@ -19,7 +19,7 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/index.d.js",
+      "types": "./dist/index.d.ts",
       "default": "./dist/index.js",
       "import": "./dist/index.js"
     },
@@ -34,7 +34,7 @@
     "./dist/*",
     "./css/*"
   ],
-  "types": "./dist/index.d.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "vitest",
     "prepublishOnly": "npm run build",

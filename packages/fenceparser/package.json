@@ -24,7 +24,7 @@
   "files": [
     "dist"
   ],
-  "types": "./dist/index.d.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "exit 0",
     "build": "rm -rf dist && tsc",

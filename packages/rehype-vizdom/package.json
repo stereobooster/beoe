@@ -27,7 +27,7 @@
   "files": [
     "dist"
   ],
-  "types": "./dist/index.d.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "vitest",
     "build": "rm -rf dist && tsc",
