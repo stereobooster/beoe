@@ -3,7 +3,8 @@ title: Space and time classification
 ---
 
 Time dimension - shows relationship in time i.e. earlier (prior to), later (afterwards)
-Spaces dimension - shows relationship in space i.e. above, under, in front, behind, etc.
+
+Space dimension - shows relationship in space i.e. above, under, in front, behind, etc.
 
 ## Space
 
