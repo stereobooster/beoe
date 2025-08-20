@@ -22,7 +22,7 @@
     "@beoe/rehype-penrose": "workspace:*",
     "@beoe/rehype-vizdom": "workspace:*",
     "@dagrejs/graphlib": "^2.2.4",
-    "astro": "5.5.5",
+    "astro": "5.13.1",
     "playwright": "^1.51.1",
     "sharp": "^0.33.5",
     "starlight-package-managers": "^0.10.0",
