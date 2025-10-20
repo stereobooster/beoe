@@ -72,8 +72,8 @@ importers:
         specifier: 5.5.5
         version: 5.5.5(@types/node@22.13.14)(rollup@4.37.0)(typescript@5.8.2)(yaml@2.7.0)
       playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
+        specifier: ^1.55.1
+        version: 1.55.1
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -257,7 +257,7 @@ importers:
         version: link:../rehype-code-hook-img
       mermaid-isomorphic:
         specifier: ^3.0.2
-        version: 3.0.2(playwright@1.51.1)
+        version: 3.0.2(playwright@1.55.1)
       svgo:
         specifier: ^3.3.2
         version: 3.3.2
@@ -266,8 +266,8 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4
       playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
+        specifier: ^1.55.1
+        version: 1.55.1
       rehype-stringify:
         specifier: ^10.0.1
         version: 10.0.1
@@ -475,8 +475,8 @@ packages:
   '@chevrotain/utils@11.0.3':
     resolution: {integrity: sha512-YslZMgtJUyuMbZ+aKvfF3x1f5liK4mWNxghFRv7jqRR9C3R3fAOGTTKvxXDa2Y1s9zSbcpuO0cAxDYsc9SrXoQ==}
 
-  '@csstools/color-helpers@5.0.2':
-    resolution: {integrity: sha512-JqWH1vsgdGcw2RR6VliXXdA0/59LttzlU8UlRT/iUUsEeWfYq8I+K0yhihEUTTHLRm1EXvpsCx3083EU15ecsA==}
+  '@csstools/color-helpers@5.1.0':
+    resolution: {integrity: sha512-S11EXWJyy0Mz5SYvRmY8nJYTFFd1LCNV+7cXyAgQtOOuzb4EsgfqDufL+9esx72/eLhsRdGZwaldu/h+E4t4BA==}
     engines: {node: '>=18'}
 
   '@csstools/css-calc@2.1.4':
@@ -486,8 +486,8 @@ packages:
       '@csstools/css-parser-algorithms': ^3.0.5
       '@csstools/css-tokenizer': ^3.0.4
 
-  '@csstools/css-color-parser@3.0.10':
-    resolution: {integrity: sha512-TiJ5Ajr6WRd1r8HSiwJvZBiJOqtH86aHpUjq5aEKWHiII2Qfjqd/HCWKPOW8EP4vcspXbHnXrwIDlu5savQipg==}
+  '@csstools/css-color-parser@3.1.0':
+    resolution: {integrity: sha512-nbtKwh3a6xNVIp/VRuXV64yTKnb1IjTAEEh3irzS+HkKjAOYLTGNb9pmVNntZ8iVBHcWDA2Dof0QtPgFI1BaTA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@csstools/css-parser-algorithms': ^3.0.5
@@ -1815,8 +1815,8 @@ packages:
       supports-color:
         optional: true
 
-  debug@4.4.1:
-    resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
+  debug@4.4.3:
+    resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
     peerDependencies:
       supports-color: '*'
@@ -2449,6 +2449,7 @@ packages:
 
   mathjax-full@3.2.2:
     resolution: {integrity: sha512-+LfG9Fik+OuI8SLwsiR02IVdjcnRCy5MufYLi0C3TdMT56L/pjB0alMVGgoWJF8pN9Rc7FESycZB9BMNWIid5w==}
+    deprecated: Version 4 replaces this package with the scoped package @mathjax/src
 
   mathjs@14.4.0:
     resolution: {integrity: sha512-CpoYDhNENefjIG9wU9epr+0pBHzlaySfpWcblZdAf5qXik/j/U8eSmx/oNbmXO0F5PyfwPGVD/wK4VWsTho1SA==}
@@ -2725,8 +2726,8 @@ packages:
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
 
-  nwsapi@2.2.20:
-    resolution: {integrity: sha512-/ieB+mDe4MrrKMT8z+mQL8klXydZWGR5Dowt4RAGKbJ3kIGEx3X4ljUo+6V73IXtUPWgfOlU5B9MlGxFO5T+cA==}
+  nwsapi@2.2.22:
+    resolution: {integrity: sha512-ujSMe1OWVn55euT1ihwCI1ZcAaAU3nxUiDwfDQldc51ZXaB9m2AyOn6/jh1BLe2t/G8xd6uKG1UBF2aZJeg2SQ==}
 
   obliterator@2.0.5:
     resolution: {integrity: sha512-42CPE9AhahZRsMNslczq0ctAEtqk8Eka26QofnqC346BZdHDySk3LWka23LI7ULIw11NmltpiLagIq8gBozxTw==}
@@ -2821,13 +2822,13 @@ packages:
   pkg-types@2.1.0:
     resolution: {integrity: sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==}
 
-  playwright-core@1.51.1:
-    resolution: {integrity: sha512-/crRMj8+j/Nq5s8QcvegseuyeZPxpQCZb6HNk3Sos3BlZyAknRjoyJPFWkpNn8v0+P3WiwqFF8P+zQo4eqiNuw==}
+  playwright-core@1.55.1:
+    resolution: {integrity: sha512-Z6Mh9mkwX+zxSlHqdr5AOcJnfp+xUWLCt9uKV18fhzA8eyxUd8NUWzAjxUh55RZKSYwDGX0cfaySdhZJGMoJ+w==}
     engines: {node: '>=18'}
     hasBin: true
 
-  playwright@1.51.1:
-    resolution: {integrity: sha512-kkx+MB2KQRkyxjYPc3a0wLZZoDczmppyGJIvQ43l+aZihkaVvmu/21kiyaHeHjiFxjxNNFnUncKmcGIyOojsaw==}
+  playwright@1.55.1:
+    resolution: {integrity: sha512-cJW4Xd/G3v5ovXtJJ52MAOclqeac9S/aGGgRzLabuF8TnIb6xHvMzKIa6JmrRzUkeXJgfL1MhukP0NK6l39h3A==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -3100,6 +3101,7 @@ packages:
   sitemap@8.0.0:
     resolution: {integrity: sha512-+AbdxhM9kJsHtruUF39bwS/B0Fytw6Fr1o4ZAIAEqA6cke2xcoO2GleBw9Zw7nRzILVEgz7zBM5GiTJjie1G9A==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
+    deprecated: 'SECURITY: Multiple vulnerabilities fixed in 8.0.1 (XML injection, path traversal, command injection, protocol injection). Upgrade immediately: npm install sitemap@8.0.1'
     hasBin: true
 
   smol-toml@1.3.1:
@@ -3779,7 +3781,7 @@ snapshots:
   '@asamuzakjp/css-color@3.2.0':
     dependencies:
       '@csstools/css-calc': 2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
-      '@csstools/css-color-parser': 3.0.10(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
+      '@csstools/css-color-parser': 3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
       lru-cache: 10.4.3
@@ -3966,16 +3968,16 @@ snapshots:
 
   '@chevrotain/utils@11.0.3': {}
 
-  '@csstools/color-helpers@5.0.2': {}
+  '@csstools/color-helpers@5.1.0': {}
 
   '@csstools/css-calc@2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
 
-  '@csstools/css-color-parser@3.0.10(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
+  '@csstools/css-color-parser@3.1.0(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)':
     dependencies:
-      '@csstools/color-helpers': 5.0.2
+      '@csstools/color-helpers': 5.1.0
       '@csstools/css-calc': 2.1.4(@csstools/css-parser-algorithms@3.0.5(@csstools/css-tokenizer@3.0.4))(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-parser-algorithms': 3.0.5(@csstools/css-tokenizer@3.0.4)
       '@csstools/css-tokenizer': 3.0.4
@@ -5352,7 +5354,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  debug@4.4.1:
+  debug@4.4.3:
     dependencies:
       ms: 2.1.3
 
@@ -5917,14 +5919,14 @@ snapshots:
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
   https-proxy-agent@7.0.6:
     dependencies:
       agent-base: 7.1.4
-      debug: 4.4.1
+      debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
 
@@ -6016,7 +6018,7 @@ snapshots:
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.6
       is-potential-custom-element-name: 1.0.1
-      nwsapi: 2.2.20
+      nwsapi: 2.2.22
       parse5: 7.3.0
       rrweb-cssom: 0.8.0
       saxes: 6.0.0
@@ -6312,12 +6314,12 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  mermaid-isomorphic@3.0.2(playwright@1.51.1):
+  mermaid-isomorphic@3.0.2(playwright@1.55.1):
     dependencies:
       '@fortawesome/fontawesome-free': 6.7.2
       mermaid: 11.6.0
     optionalDependencies:
-      playwright: 1.51.1
+      playwright: 1.55.1
     transitivePeerDependencies:
       - supports-color
 
@@ -6693,7 +6695,7 @@ snapshots:
     dependencies:
       boolbase: 1.0.0
 
-  nwsapi@2.2.20: {}
+  nwsapi@2.2.22: {}
 
   obliterator@2.0.5: {}
 
@@ -6815,11 +6817,11 @@ snapshots:
       exsolve: 1.0.4
       pathe: 2.0.3
 
-  playwright-core@1.51.1: {}
+  playwright-core@1.55.1: {}
 
-  playwright@1.51.1:
+  playwright@1.55.1:
     dependencies:
-      playwright-core: 1.51.1
+      playwright-core: 1.55.1
     optionalDependencies:
       fsevents: 2.3.2
 
